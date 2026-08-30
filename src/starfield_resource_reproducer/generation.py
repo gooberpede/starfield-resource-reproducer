@@ -647,6 +647,17 @@ def _run_planet(
         if special_entry is not None:
             special_resources.append(special_entry.resource)
             emitted_resources.append(special_entry.resource)
+            # Diagnostics expose the insertion already performed by this branch.
+            # The event does not alter selection, ordering, or duplicate handling.
+            biome_events.append(
+                event(
+                    EventKind.SPECIAL_EMITTED,
+                    operation="emit_special_resource",
+                    biome_index=biome.index,
+                    emitted_resource=special_entry.resource,
+                    rng_consumed=False,
+                )
+            )
         if ires_nodes is not None and common_entry is not None:
             family_access = get_or_generate_family(
                 common_entry,

@@ -1,0 +1,383 @@
+PlanetFormID,PlanetName,EventIndex,RawDrawNumber,RawValue,BiomeRuntimePosition,BiomeIndex,BiomeEditorID,BiomeName,EffectiveRSGDFormID,EffectiveRSGD,Operation,EventKind,CommonRootFormID,CommonRoot,CurrentStructuralNodeFormID,CurrentStructuralNode,CandidateCount,SelectedCandidateFormID,SelectedCandidate,EmittedResourceFormID,EmittedResource,EmittedRarity,CacheHit,InsertionAttempt,InsertedNewResource,PlanetResourceCountBefore,PlanetResourceCountAfter,GeneratedFamilyCountBefore,GeneratedFamilyCountAfter,CanonicalMembershipOfInsertedResource,FamilyOrdinal
+0005DE3A,Fermi VII-a,1,,,,,,,,,seed_planet_rng,RNG_SEEDED,,,,,,,,,,,false,false,false,0,0,0,0,,
+0005DE3A,Fermi VII-a,2,,,,,,,,,copy_pndt_biome_order,BIOME_LIST_INITIAL,,,,,,,,,,,false,false,false,0,0,0,0,,
+0005DE3A,Fermi VII-a,3,1,3670925630,,,,,,,shuffle_bounded_integer,SHUFFLE_STEP,,,,,2,,,,,,false,false,false,0,0,0,0,,
+0005DE3A,Fermi VII-a,4,2,4156479448,,,,,,,shuffle_bounded_integer,SHUFFLE_STEP,,,,,3,,,,,,false,false,false,0,0,0,0,,
+0005DE3A,Fermi VII-a,5,3,3612626488,,,,,,,shuffle_bounded_integer,SHUFFLE_STEP,,,,,4,,,,,,false,false,false,0,0,0,0,,
+0005DE3A,Fermi VII-a,6,,,,,,,,,complete_biome_shuffle,BIOME_LIST_SHUFFLED,,,,,,,,,,,false,false,false,0,0,0,0,,
+0005DE3A,Fermi VII-a,7,,,,1,,,,,provisional_upstream_everywhere_discovery,EVERYWHERE_DISCOVERED,,,,,,,,000083EC,Water,Everywhere,false,true,true,0,1,0,0,true,
+0005DE3A,Fermi VII-a,8,,,0,3,DesertSandyLifeExtreme,Sandy Desert,,,begin_biome_orchestration,BIOME_BEGIN,,,,,,,,,,,false,false,false,1,1,0,0,,
+0005DE3A,Fermi VII-a,9,,,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,resolve_effective_rsgd,RSGD_RESOLVED,,,,,,,,,,,false,false,false,1,1,0,0,,
+0005DE3A,Fermi VII-a,10,,,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,begin_special_selector,SPECIAL_PASS_BEGIN,,,,,0,,,,,,false,false,false,1,1,0,0,,
+0005DE3A,Fermi VII-a,11,4,2473612629,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,special_selector,SPECIAL_PASS_RESULT,,,,,0,,,,,,false,false,false,1,1,0,0,,
+0005DE3A,Fermi VII-a,12,,,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,begin_common_root_selector,COMMON_PASS_BEGIN,,,,,2,,,,,,false,false,false,1,1,0,0,,
+0005DE3A,Fermi VII-a,13,5,1833711188,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,common_root_selector,COMMON_ROLL,,,,,2,,,,,,false,false,false,1,1,0,0,,
+0005DE3A,Fermi VII-a,14,,,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,complete_common_root_selector,COMMON_SELECTED,000057EB,Uranium,,,,,,,,,false,false,false,1,1,0,0,,
+0005DE3A,Fermi VII-a,15,,,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,begin_resource_family,FAMILY_BEGIN,000057EB,Uranium,,,,,,,,,false,false,false,1,1,0,0,,1
+0005DE3A,Fermi VII-a,16,,,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,emit_common_root,ROOT_EMITTED,000057EB,Uranium,,,,,,000057EB,Uranium,Common,false,true,true,1,2,0,0,true,1
+0005DE3A,Fermi VII-a,17,,,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057EB,Uranium,000057EB,Uranium,,,,,,,false,false,false,2,2,0,0,,1
+0005DE3A,Fermi VII-a,18,,,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057EB,Uranium,,,1,,,,,,false,false,false,2,2,0,0,,1
+0005DE3A,Fermi VII-a,19,6,2085291559,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057EB,Uranium,,,,,,,,,false,false,false,2,2,0,0,,1
+0005DE3A,Fermi VII-a,20,7,3539306741,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057EB,Uranium,000057EC,Iridium,1,000057EC,Iridium,,,,false,false,false,2,2,0,0,,1
+0005DE3A,Fermi VII-a,21,,,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057EB,Uranium,,,,000057EC,Iridium,,,,false,false,false,2,2,0,0,,1
+0005DE3A,Fermi VII-a,22,,,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057EB,Uranium,000057EC,Iridium,,,,,,,false,false,false,2,2,0,0,,1
+0005DE3A,Fermi VII-a,23,,,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057EB,Uranium,,,1,,,,,,false,false,false,2,2,0,0,,1
+0005DE3A,Fermi VII-a,24,8,2049231043,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057EB,Uranium,,,,,,,,,false,false,false,2,2,0,0,,1
+0005DE3A,Fermi VII-a,25,9,2814961405,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057EB,Uranium,000057ED,Vanadium,1,000057ED,Vanadium,,,,false,false,false,2,2,0,0,,1
+0005DE3A,Fermi VII-a,26,,,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057EB,Uranium,,,,000057ED,Vanadium,,,,false,false,false,2,2,0,0,,1
+0005DE3A,Fermi VII-a,27,,,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057EB,Uranium,000057ED,Vanadium,,,,,,,false,false,false,2,2,0,0,,1
+0005DE3A,Fermi VII-a,28,,,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057EB,Uranium,,,1,,,,,,false,false,false,2,2,0,0,,1
+0005DE3A,Fermi VII-a,29,10,3877671168,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057EB,Uranium,,,,,,,,,false,false,false,2,2,0,0,,1
+0005DE3A,Fermi VII-a,30,11,355982293,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057EB,Uranium,000057EE,Plutonium,1,000057EE,Plutonium,,,,false,false,false,2,2,0,0,,1
+0005DE3A,Fermi VII-a,31,,,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057EB,Uranium,,,,000057EE,Plutonium,,,,false,false,false,2,2,0,0,,1
+0005DE3A,Fermi VII-a,32,,,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057EB,Uranium,000057EE,Plutonium,,,,,,,false,false,false,2,2,0,0,,1
+0005DE3A,Fermi VII-a,33,,,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057EB,Uranium,,,1,,,,,,false,false,false,2,2,0,0,,1
+0005DE3A,Fermi VII-a,34,12,3236570253,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057EB,Uranium,,,,,,,,,false,false,false,2,2,0,0,,1
+0005DE3A,Fermi VII-a,35,13,1597515930,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057EB,Uranium,00005DF8,Vytinium,1,00005DF8,Vytinium,,,,false,false,false,2,2,0,0,,1
+0005DE3A,Fermi VII-a,36,,,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057EB,Uranium,,,,00005DF8,Vytinium,,,,false,false,false,2,2,0,0,,1
+0005DE3A,Fermi VII-a,37,,,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,end_resource_family,FAMILY_END,000057EB,Uranium,,,,,,,,,false,false,false,2,2,0,1,,1
+0005DE3A,Fermi VII-a,38,,,0,3,DesertSandyLifeExtreme,Sandy Desert,000083DD,DesertSandDefaultRes,end_biome_orchestration,BIOME_END,000057EB,Uranium,,,,,,,,,false,false,false,2,2,1,1,,1
+0005DE3A,Fermi VII-a,39,,,1,2,HillsLifeExtreme,Hills,,,begin_biome_orchestration,BIOME_BEGIN,,,,,,,,,,,false,false,false,2,2,1,1,,
+0005DE3A,Fermi VII-a,40,,,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,resolve_effective_rsgd,RSGD_RESOLVED,,,,,,,,,,,false,false,false,2,2,1,1,,
+0005DE3A,Fermi VII-a,41,,,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,begin_special_selector,SPECIAL_PASS_BEGIN,,,,,0,,,,,,false,false,false,2,2,1,1,,
+0005DE3A,Fermi VII-a,42,14,804973181,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,special_selector,SPECIAL_PASS_RESULT,,,,,0,,,,,,false,false,false,2,2,1,1,,
+0005DE3A,Fermi VII-a,43,,,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,begin_common_root_selector,COMMON_PASS_BEGIN,,,,,2,,,,,,false,false,false,2,2,1,1,,
+0005DE3A,Fermi VII-a,44,15,1723207151,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,common_root_selector,COMMON_ROLL,,,,,2,,,,,,false,false,false,2,2,1,1,,
+0005DE3A,Fermi VII-a,45,,,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,complete_common_root_selector,COMMON_SELECTED,000057CB,Nickel,,,,,,,,,false,false,false,2,2,1,1,,
+0005DE3A,Fermi VII-a,46,,,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,begin_resource_family,FAMILY_BEGIN,000057CB,Nickel,,,,,,,,,false,false,false,2,2,1,1,,2
+0005DE3A,Fermi VII-a,47,,,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,emit_common_root,ROOT_EMITTED,000057CB,Nickel,,,,,,000057CB,Nickel,Common,false,true,true,2,3,1,1,true,2
+0005DE3A,Fermi VII-a,48,,,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057CB,Nickel,000057CB,Nickel,,,,,,,false,false,false,3,3,1,1,,2
+0005DE3A,Fermi VII-a,49,,,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057CB,Nickel,,,1,,,,,,false,false,false,3,3,1,1,,2
+0005DE3A,Fermi VII-a,50,16,2310645091,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057CB,Nickel,,,,,,,,,false,false,false,3,3,1,1,,2
+0005DE3A,Fermi VII-a,51,17,1312013415,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057CB,Nickel,000057CE,Cobalt,1,000057CE,Cobalt,,,,false,false,false,3,3,1,1,,2
+0005DE3A,Fermi VII-a,52,,,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,complete_descendant_emission,DESCENDANT_EMITTED,000057CB,Nickel,,,,000057CE,Cobalt,000057CE,Cobalt,Uncommon,false,true,true,3,4,1,1,true,2
+0005DE3A,Fermi VII-a,53,,,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057CB,Nickel,000057CE,Cobalt,,,,,,,false,false,false,4,4,1,1,,2
+0005DE3A,Fermi VII-a,54,,,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057CB,Nickel,,,1,,,,,,false,false,false,4,4,1,1,,2
+0005DE3A,Fermi VII-a,55,18,581421283,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057CB,Nickel,,,,,,,,,false,false,false,4,4,1,1,,2
+0005DE3A,Fermi VII-a,56,19,2339223334,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057CB,Nickel,000057CC,Platinum,1,000057CC,Platinum,,,,false,false,false,4,4,1,1,,2
+0005DE3A,Fermi VII-a,57,,,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,complete_descendant_emission,DESCENDANT_EMITTED,000057CB,Nickel,,,,000057CC,Platinum,000057CC,Platinum,Rare,false,true,true,4,5,1,1,true,2
+0005DE3A,Fermi VII-a,58,,,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057CB,Nickel,000057CC,Platinum,,,,,,,false,false,false,5,5,1,1,,2
+0005DE3A,Fermi VII-a,59,,,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057CB,Nickel,,,1,,,,,,false,false,false,5,5,1,1,,2
+0005DE3A,Fermi VII-a,60,20,363277098,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057CB,Nickel,,,,,,,,,false,false,false,5,5,1,1,,2
+0005DE3A,Fermi VII-a,61,21,2803018957,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057CB,Nickel,000057CD,Palladium,1,000057CD,Palladium,,,,false,false,false,5,5,1,1,,2
+0005DE3A,Fermi VII-a,62,,,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,complete_descendant_emission,DESCENDANT_EMITTED,000057CB,Nickel,,,,000057CD,Palladium,000057CD,Palladium,Exotic,false,true,true,5,6,1,1,true,2
+0005DE3A,Fermi VII-a,63,,,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057CB,Nickel,000057CD,Palladium,,,,,,,false,false,false,6,6,1,1,,2
+0005DE3A,Fermi VII-a,64,,,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057CB,Nickel,,,1,,,,,,false,false,false,6,6,1,1,,2
+0005DE3A,Fermi VII-a,65,22,1355085777,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057CB,Nickel,,,,,,,,,false,false,false,6,6,1,1,,2
+0005DE3A,Fermi VII-a,66,23,4221158549,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057CB,Nickel,00005DF6,Tasine,1,00005DF6,Tasine,,,,false,false,false,6,6,1,1,,2
+0005DE3A,Fermi VII-a,67,,,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057CB,Nickel,,,,00005DF6,Tasine,,,,false,false,false,6,6,1,1,,2
+0005DE3A,Fermi VII-a,68,,,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,end_resource_family,FAMILY_END,000057CB,Nickel,,,,,,,,,false,false,false,6,6,1,2,,2
+0005DE3A,Fermi VII-a,69,,,1,2,HillsLifeExtreme,Hills,000083F1,HillsNoLifeDefaultRes,end_biome_orchestration,BIOME_END,000057CB,Nickel,,,,,,,,,false,false,false,6,6,2,2,,2
+0005DE3A,Fermi VII-a,70,,,2,0,CanyonsLifeExtreme,Plateau,,,begin_biome_orchestration,BIOME_BEGIN,,,,,,,,,,,false,false,false,6,6,2,2,,
+0005DE3A,Fermi VII-a,71,,,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,resolve_effective_rsgd,RSGD_RESOLVED,,,,,,,,,,,false,false,false,6,6,2,2,,
+0005DE3A,Fermi VII-a,72,,,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,begin_special_selector,SPECIAL_PASS_BEGIN,,,,,0,,,,,,false,false,false,6,6,2,2,,
+0005DE3A,Fermi VII-a,73,24,2846664406,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,special_selector,SPECIAL_PASS_RESULT,,,,,0,,,,,,false,false,false,6,6,2,2,,
+0005DE3A,Fermi VII-a,74,,,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,begin_common_root_selector,COMMON_PASS_BEGIN,,,,,2,,,,,,false,false,false,6,6,2,2,,
+0005DE3A,Fermi VII-a,75,25,1951046174,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,common_root_selector,COMMON_ROLL,,,,,2,,,,,,false,false,false,6,6,2,2,,
+0005DE3A,Fermi VII-a,76,,,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,complete_common_root_selector,COMMON_SELECTED,000057CF,Copper,,,,,,,,,false,false,false,6,6,2,2,,
+0005DE3A,Fermi VII-a,77,,,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,begin_resource_family,FAMILY_BEGIN,000057CF,Copper,,,,,,,,,false,false,false,6,6,2,2,,3
+0005DE3A,Fermi VII-a,78,,,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,emit_common_root,ROOT_EMITTED,000057CF,Copper,,,,,,000057CF,Copper,Common,false,true,true,6,7,2,2,true,3
+0005DE3A,Fermi VII-a,79,,,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057CF,Copper,000057CF,Copper,,,,,,,false,false,false,7,7,2,2,,3
+0005DE3A,Fermi VII-a,80,,,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057CF,Copper,,,1,,,,,,false,false,false,7,7,2,2,,3
+0005DE3A,Fermi VII-a,81,26,1541620139,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057CF,Copper,,,,,,,,,false,false,false,7,7,2,2,,3
+0005DE3A,Fermi VII-a,82,27,961164079,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057CF,Copper,000057D0,Fluorine,1,000057D0,Fluorine,,,,false,false,false,7,7,2,2,,3
+0005DE3A,Fermi VII-a,83,,,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,complete_descendant_emission,DESCENDANT_EMITTED,000057CF,Copper,,,,000057D0,Fluorine,000057D0,Fluorine,Uncommon,false,true,true,7,8,2,2,true,3
+0005DE3A,Fermi VII-a,84,,,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057CF,Copper,000057D0,Fluorine,,,,,,,false,false,false,8,8,2,2,,3
+0005DE3A,Fermi VII-a,85,,,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057CF,Copper,,,2,,,,,,false,false,false,8,8,2,2,,3
+0005DE3A,Fermi VII-a,86,28,1803791553,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057CF,Copper,,,,,,,,,false,false,false,8,8,2,2,,3
+0005DE3A,Fermi VII-a,87,29,2989793224,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057CF,Copper,000057D1,Tetrafluorides,2,000057D1,Tetrafluorides,,,,false,false,false,8,8,2,2,,3
+0005DE3A,Fermi VII-a,88,,,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057CF,Copper,,,,000057D1,Tetrafluorides,,,,false,false,false,8,8,2,2,,3
+0005DE3A,Fermi VII-a,89,,,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057CF,Copper,000057D1,Tetrafluorides,,,,,,,false,false,false,8,8,2,2,,3
+0005DE3A,Fermi VII-a,90,,,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057CF,Copper,,,1,,,,,,false,false,false,8,8,2,2,,3
+0005DE3A,Fermi VII-a,91,30,510386694,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057CF,Copper,,,,,,,,,false,false,false,8,8,2,2,,3
+0005DE3A,Fermi VII-a,92,31,4097668562,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057CF,Copper,000057D4,Ionic Liquids,1,000057D4,Ionic Liquids,,,,false,false,false,8,8,2,2,,3
+0005DE3A,Fermi VII-a,93,,,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,complete_descendant_emission,DESCENDANT_EMITTED,000057CF,Copper,,,,000057D4,Ionic Liquids,000057D4,Ionic Liquids,Exotic,false,true,true,8,9,2,2,false,3
+0005DE3A,Fermi VII-a,94,,,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057CF,Copper,000057D4,Ionic Liquids,,,,,,,false,false,false,9,9,2,2,,3
+0005DE3A,Fermi VII-a,95,,,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057CF,Copper,,,0,,,,,,false,false,false,9,9,2,2,,3
+0005DE3A,Fermi VII-a,96,32,1833719633,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,consume_empty_descendant_raw,DESCENDANT_OMITTED,000057CF,Copper,000057D4,Ionic Liquids,0,,,,,,false,false,false,9,9,2,2,,3
+0005DE3A,Fermi VII-a,97,,,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,end_resource_family,FAMILY_END,000057CF,Copper,,,,,,,,,false,false,false,9,9,2,3,,3
+0005DE3A,Fermi VII-a,98,,,2,0,CanyonsLifeExtreme,Plateau,00258050,CanyonsDefaultRes,end_biome_orchestration,BIOME_END,000057CF,Copper,,,,,,,,,false,false,false,9,9,3,3,,3
+0005DE3A,Fermi VII-a,99,,,3,1,FrozenLifeExtreme,Frozen Hills,,,begin_biome_orchestration,BIOME_BEGIN,,,,,,,,,,,false,false,false,9,9,3,3,,
+0005DE3A,Fermi VII-a,100,,,3,1,FrozenLifeExtreme,Frozen Hills,0037C66F,FrozenBarrenDefaultRes02,resolve_effective_rsgd,RSGD_RESOLVED,,,,,,,,,,,false,false,false,9,9,3,3,,
+0005DE3A,Fermi VII-a,101,,,3,1,FrozenLifeExtreme,Frozen Hills,0037C66F,FrozenBarrenDefaultRes02,begin_special_selector,SPECIAL_PASS_BEGIN,,,,,0,,,,,,false,false,false,9,9,3,3,,
+0005DE3A,Fermi VII-a,102,33,2775949151,3,1,FrozenLifeExtreme,Frozen Hills,0037C66F,FrozenBarrenDefaultRes02,special_selector,SPECIAL_PASS_RESULT,,,,,0,,,,,,false,false,false,9,9,3,3,,
+0005DE3A,Fermi VII-a,103,,,3,1,FrozenLifeExtreme,Frozen Hills,0037C66F,FrozenBarrenDefaultRes02,begin_common_root_selector,COMMON_PASS_BEGIN,,,,,2,,,,,,false,false,false,9,9,3,3,,
+0005DE3A,Fermi VII-a,104,34,634501057,3,1,FrozenLifeExtreme,Frozen Hills,0037C66F,FrozenBarrenDefaultRes02,common_root_selector,COMMON_ROLL,,,,,2,,,,,,false,false,false,9,9,3,3,,
+0005DE3A,Fermi VII-a,105,,,3,1,FrozenLifeExtreme,Frozen Hills,0037C66F,FrozenBarrenDefaultRes02,complete_common_root_selector,COMMON_SELECTED,000057CF,Copper,,,,,,,,,false,false,false,9,9,3,3,,
+0005DE3A,Fermi VII-a,106,,,3,1,FrozenLifeExtreme,Frozen Hills,0037C66F,FrozenBarrenDefaultRes02,reuse_resource_family,FAMILY_CACHE_HIT,000057CF,Copper,,,,,,,,,true,false,false,9,9,3,3,,3
+0005DE3A,Fermi VII-a,107,,,3,1,FrozenLifeExtreme,Frozen Hills,0037C66F,FrozenBarrenDefaultRes02,end_biome_orchestration,BIOME_END,000057CF,Copper,,,,,,,,,false,false,false,9,9,3,3,,3
+0005DE3A,Fermi VII-a,108,,,,,,,,,end_planet_orchestration,PLANET_ORCHESTRATION_END,,,,,,,,,,,false,false,false,9,9,3,3,,
+0005DE3A,Fermi VII-a,109,,,,,,,,,assemble_predicted_inorganic_resources,PLANET_GENERATION_END,,,,,,,,,,,false,false,false,9,9,3,3,,
+0005DE6F,Maal VIII,1,,,,,,,,,seed_planet_rng,RNG_SEEDED,,,,,,,,,,,false,false,false,0,0,0,0,,
+0005DE6F,Maal VIII,2,,,,,,,,,copy_pndt_biome_order,BIOME_LIST_INITIAL,,,,,,,,,,,false,false,false,0,0,0,0,,
+0005DE6F,Maal VIII,3,1,420528736,,,,,,,shuffle_bounded_integer,SHUFFLE_STEP,,,,,2,,,,,,false,false,false,0,0,0,0,,
+0005DE6F,Maal VIII,4,2,3854443004,,,,,,,shuffle_bounded_integer,SHUFFLE_STEP,,,,,3,,,,,,false,false,false,0,0,0,0,,
+0005DE6F,Maal VIII,5,3,2497521777,,,,,,,shuffle_bounded_integer,SHUFFLE_STEP,,,,,4,,,,,,false,false,false,0,0,0,0,,
+0005DE6F,Maal VIII,6,,,,,,,,,complete_biome_shuffle,BIOME_LIST_SHUFFLED,,,,,,,,,,,false,false,false,0,0,0,0,,
+0005DE6F,Maal VIII,7,,,,1,,,,,provisional_upstream_everywhere_discovery,EVERYWHERE_DISCOVERED,,,,,,,,000083EC,Water,Everywhere,false,true,true,0,1,0,0,true,
+0005DE6F,Maal VIII,8,,,0,1,FrozenNoLife09,Frozen Plains,,,begin_biome_orchestration,BIOME_BEGIN,,,,,,,,,,,false,false,false,1,1,0,0,,
+0005DE6F,Maal VIII,9,,,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,resolve_effective_rsgd,RSGD_RESOLVED,,,,,,,,,,,false,false,false,1,1,0,0,,
+0005DE6F,Maal VIII,10,,,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,begin_special_selector,SPECIAL_PASS_BEGIN,,,,,0,,,,,,false,false,false,1,1,0,0,,
+0005DE6F,Maal VIII,11,4,1127919854,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,special_selector,SPECIAL_PASS_RESULT,,,,,0,,,,,,false,false,false,1,1,0,0,,
+0005DE6F,Maal VIII,12,,,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,begin_common_root_selector,COMMON_PASS_BEGIN,,,,,2,,,,,,false,false,false,1,1,0,0,,
+0005DE6F,Maal VIII,13,5,225443988,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,common_root_selector,COMMON_ROLL,,,,,2,,,,,,false,false,false,1,1,0,0,,
+0005DE6F,Maal VIII,14,,,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,complete_common_root_selector,COMMON_SELECTED,000057CB,Nickel,,,,,,,,,false,false,false,1,1,0,0,,
+0005DE6F,Maal VIII,15,,,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,begin_resource_family,FAMILY_BEGIN,000057CB,Nickel,,,,,,,,,false,false,false,1,1,0,0,,1
+0005DE6F,Maal VIII,16,,,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,emit_common_root,ROOT_EMITTED,000057CB,Nickel,,,,,,000057CB,Nickel,Common,false,true,true,1,2,0,0,true,1
+0005DE6F,Maal VIII,17,,,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057CB,Nickel,000057CB,Nickel,,,,,,,false,false,false,2,2,0,0,,1
+0005DE6F,Maal VIII,18,,,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,build_descendant_candidates,DESCENDANT_CANDIDATES,000057CB,Nickel,,,1,,,,,,false,false,false,2,2,0,0,,1
+0005DE6F,Maal VIII,19,6,2292357790,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057CB,Nickel,,,,,,,,,false,false,false,2,2,0,0,,1
+0005DE6F,Maal VIII,20,7,405042803,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057CB,Nickel,000057CE,Cobalt,1,000057CE,Cobalt,,,,false,false,false,2,2,0,0,,1
+0005DE6F,Maal VIII,21,,,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,complete_descendant_emission,DESCENDANT_OMITTED,000057CB,Nickel,,,,000057CE,Cobalt,,,,false,false,false,2,2,0,0,,1
+0005DE6F,Maal VIII,22,,,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057CB,Nickel,000057CE,Cobalt,,,,,,,false,false,false,2,2,0,0,,1
+0005DE6F,Maal VIII,23,,,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,build_descendant_candidates,DESCENDANT_CANDIDATES,000057CB,Nickel,,,1,,,,,,false,false,false,2,2,0,0,,1
+0005DE6F,Maal VIII,24,8,3649174447,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057CB,Nickel,,,,,,,,,false,false,false,2,2,0,0,,1
+0005DE6F,Maal VIII,25,9,2789087435,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057CB,Nickel,000057CC,Platinum,1,000057CC,Platinum,,,,false,false,false,2,2,0,0,,1
+0005DE6F,Maal VIII,26,,,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,complete_descendant_emission,DESCENDANT_OMITTED,000057CB,Nickel,,,,000057CC,Platinum,,,,false,false,false,2,2,0,0,,1
+0005DE6F,Maal VIII,27,,,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057CB,Nickel,000057CC,Platinum,,,,,,,false,false,false,2,2,0,0,,1
+0005DE6F,Maal VIII,28,,,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,build_descendant_candidates,DESCENDANT_CANDIDATES,000057CB,Nickel,,,1,,,,,,false,false,false,2,2,0,0,,1
+0005DE6F,Maal VIII,29,10,1464835844,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057CB,Nickel,,,,,,,,,false,false,false,2,2,0,0,,1
+0005DE6F,Maal VIII,30,11,1715250017,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057CB,Nickel,000057CD,Palladium,1,000057CD,Palladium,,,,false,false,false,2,2,0,0,,1
+0005DE6F,Maal VIII,31,,,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,complete_descendant_emission,DESCENDANT_OMITTED,000057CB,Nickel,,,,000057CD,Palladium,,,,false,false,false,2,2,0,0,,1
+0005DE6F,Maal VIII,32,,,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057CB,Nickel,000057CD,Palladium,,,,,,,false,false,false,2,2,0,0,,1
+0005DE6F,Maal VIII,33,,,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,build_descendant_candidates,DESCENDANT_CANDIDATES,000057CB,Nickel,,,1,,,,,,false,false,false,2,2,0,0,,1
+0005DE6F,Maal VIII,34,12,683640630,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057CB,Nickel,,,,,,,,,false,false,false,2,2,0,0,,1
+0005DE6F,Maal VIII,35,13,740923621,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057CB,Nickel,00005DF6,Tasine,1,00005DF6,Tasine,,,,false,false,false,2,2,0,0,,1
+0005DE6F,Maal VIII,36,,,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,complete_descendant_emission,DESCENDANT_OMITTED,000057CB,Nickel,,,,00005DF6,Tasine,,,,false,false,false,2,2,0,0,,1
+0005DE6F,Maal VIII,37,,,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,end_resource_family,FAMILY_END,000057CB,Nickel,,,,,,,,,false,false,false,2,2,0,1,,1
+0005DE6F,Maal VIII,38,,,0,1,FrozenNoLife09,Frozen Plains,0037C672,FrozenBarrenDefaultRes03,end_biome_orchestration,BIOME_END,000057CB,Nickel,,,,,,,,,false,false,false,2,2,1,1,,1
+0005DE6F,Maal VIII,39,,,1,3,CanyonsNoLife02,Plateau,,,begin_biome_orchestration,BIOME_BEGIN,,,,,,,,,,,false,false,false,2,2,1,1,,
+0005DE6F,Maal VIII,40,,,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,resolve_effective_rsgd,RSGD_RESOLVED,,,,,,,,,,,false,false,false,2,2,1,1,,
+0005DE6F,Maal VIII,41,,,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,begin_special_selector,SPECIAL_PASS_BEGIN,,,,,0,,,,,,false,false,false,2,2,1,1,,
+0005DE6F,Maal VIII,42,14,1719783809,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,special_selector,SPECIAL_PASS_RESULT,,,,,0,,,,,,false,false,false,2,2,1,1,,
+0005DE6F,Maal VIII,43,,,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,begin_common_root_selector,COMMON_PASS_BEGIN,,,,,2,,,,,,false,false,false,2,2,1,1,,
+0005DE6F,Maal VIII,44,15,3661274106,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,common_root_selector,COMMON_ROLL,,,,,2,,,,,,false,false,false,2,2,1,1,,
+0005DE6F,Maal VIII,45,,,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,complete_common_root_selector,COMMON_SELECTED,000057CF,Copper,,,,,,,,,false,false,false,2,2,1,1,,
+0005DE6F,Maal VIII,46,,,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,begin_resource_family,FAMILY_BEGIN,000057CF,Copper,,,,,,,,,false,false,false,2,2,1,1,,2
+0005DE6F,Maal VIII,47,,,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,emit_common_root,ROOT_EMITTED,000057CF,Copper,,,,,,000057CF,Copper,Common,false,true,true,2,3,1,1,true,2
+0005DE6F,Maal VIII,48,,,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057CF,Copper,000057CF,Copper,,,,,,,false,false,false,3,3,1,1,,2
+0005DE6F,Maal VIII,49,,,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057CF,Copper,,,1,,,,,,false,false,false,3,3,1,1,,2
+0005DE6F,Maal VIII,50,16,3329454183,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057CF,Copper,,,,,,,,,false,false,false,3,3,1,1,,2
+0005DE6F,Maal VIII,51,17,2198457943,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057CF,Copper,000057D0,Fluorine,1,000057D0,Fluorine,,,,false,false,false,3,3,1,1,,2
+0005DE6F,Maal VIII,52,,,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057CF,Copper,,,,000057D0,Fluorine,,,,false,false,false,3,3,1,1,,2
+0005DE6F,Maal VIII,53,,,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057CF,Copper,000057D0,Fluorine,,,,,,,false,false,false,3,3,1,1,,2
+0005DE6F,Maal VIII,54,,,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057CF,Copper,,,2,,,,,,false,false,false,3,3,1,1,,2
+0005DE6F,Maal VIII,55,18,2938949264,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057CF,Copper,,,,,,,,,false,false,false,3,3,1,1,,2
+0005DE6F,Maal VIII,56,19,1360904762,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057CF,Copper,000057D2,Gold,2,000057D2,Gold,,,,false,false,false,3,3,1,1,,2
+0005DE6F,Maal VIII,57,,,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057CF,Copper,,,,000057D2,Gold,,,,false,false,false,3,3,1,1,,2
+0005DE6F,Maal VIII,58,,,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057CF,Copper,000057D2,Gold,,,,,,,false,false,false,3,3,1,1,,2
+0005DE6F,Maal VIII,59,,,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057CF,Copper,,,1,,,,,,false,false,false,3,3,1,1,,2
+0005DE6F,Maal VIII,60,20,2191635399,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057CF,Copper,,,,,,,,,false,false,false,3,3,1,1,,2
+0005DE6F,Maal VIII,61,21,631451672,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057CF,Copper,000057D3,Antimony,1,000057D3,Antimony,,,,false,false,false,3,3,1,1,,2
+0005DE6F,Maal VIII,62,,,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057CF,Copper,,,,000057D3,Antimony,,,,false,false,false,3,3,1,1,,2
+0005DE6F,Maal VIII,63,,,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057CF,Copper,000057D3,Antimony,,,,,,,false,false,false,3,3,1,1,,2
+0005DE6F,Maal VIII,64,,,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057CF,Copper,,,0,,,,,,false,false,false,3,3,1,1,,2
+0005DE6F,Maal VIII,65,22,2573527244,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,consume_empty_descendant_raw,DESCENDANT_OMITTED,000057CF,Copper,000057D3,Antimony,0,,,,,,false,false,false,3,3,1,1,,2
+0005DE6F,Maal VIII,66,,,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,end_resource_family,FAMILY_END,000057CF,Copper,,,,,,,,,false,false,false,3,3,1,2,,2
+0005DE6F,Maal VIII,67,,,1,3,CanyonsNoLife02,Plateau,00258050,CanyonsDefaultRes,end_biome_orchestration,BIOME_END,000057CF,Copper,,,,,,,,,false,false,false,3,3,2,2,,2
+0005DE6F,Maal VIII,68,,,2,2,DesertSandyNoLife09,Sandy Desert,,,begin_biome_orchestration,BIOME_BEGIN,,,,,,,,,,,false,false,false,3,3,2,2,,
+0005DE6F,Maal VIII,69,,,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,resolve_effective_rsgd,RSGD_RESOLVED,,,,,,,,,,,false,false,false,3,3,2,2,,
+0005DE6F,Maal VIII,70,,,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,begin_special_selector,SPECIAL_PASS_BEGIN,,,,,0,,,,,,false,false,false,3,3,2,2,,
+0005DE6F,Maal VIII,71,23,1193048698,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,special_selector,SPECIAL_PASS_RESULT,,,,,0,,,,,,false,false,false,3,3,2,2,,
+0005DE6F,Maal VIII,72,,,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,begin_common_root_selector,COMMON_PASS_BEGIN,,,,,2,,,,,,false,false,false,3,3,2,2,,
+0005DE6F,Maal VIII,73,24,407712089,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,common_root_selector,COMMON_ROLL,,,,,2,,,,,,false,false,false,3,3,2,2,,
+0005DE6F,Maal VIII,74,,,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,complete_common_root_selector,COMMON_SELECTED,000057EB,Uranium,,,,,,,,,false,false,false,3,3,2,2,,
+0005DE6F,Maal VIII,75,,,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,begin_resource_family,FAMILY_BEGIN,000057EB,Uranium,,,,,,,,,false,false,false,3,3,2,2,,3
+0005DE6F,Maal VIII,76,,,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,emit_common_root,ROOT_EMITTED,000057EB,Uranium,,,,,,000057EB,Uranium,Common,false,true,true,3,4,2,2,true,3
+0005DE6F,Maal VIII,77,,,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057EB,Uranium,000057EB,Uranium,,,,,,,false,false,false,4,4,2,2,,3
+0005DE6F,Maal VIII,78,,,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057EB,Uranium,,,1,,,,,,false,false,false,4,4,2,2,,3
+0005DE6F,Maal VIII,79,25,1400222878,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057EB,Uranium,,,,,,,,,false,false,false,4,4,2,2,,3
+0005DE6F,Maal VIII,80,26,1974142022,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057EB,Uranium,000057EC,Iridium,1,000057EC,Iridium,,,,false,false,false,4,4,2,2,,3
+0005DE6F,Maal VIII,81,,,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,complete_descendant_emission,DESCENDANT_EMITTED,000057EB,Uranium,,,,000057EC,Iridium,000057EC,Iridium,Uncommon,false,true,true,4,5,2,2,true,3
+0005DE6F,Maal VIII,82,,,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057EB,Uranium,000057EC,Iridium,,,,,,,false,false,false,5,5,2,2,,3
+0005DE6F,Maal VIII,83,,,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057EB,Uranium,,,1,,,,,,false,false,false,5,5,2,2,,3
+0005DE6F,Maal VIII,84,27,919044616,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057EB,Uranium,,,,,,,,,false,false,false,5,5,2,2,,3
+0005DE6F,Maal VIII,85,28,4239536841,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057EB,Uranium,000057ED,Vanadium,1,000057ED,Vanadium,,,,false,false,false,5,5,2,2,,3
+0005DE6F,Maal VIII,86,,,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,complete_descendant_emission,DESCENDANT_EMITTED,000057EB,Uranium,,,,000057ED,Vanadium,000057ED,Vanadium,Rare,false,true,true,5,6,2,2,true,3
+0005DE6F,Maal VIII,87,,,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057EB,Uranium,000057ED,Vanadium,,,,,,,false,false,false,6,6,2,2,,3
+0005DE6F,Maal VIII,88,,,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057EB,Uranium,,,1,,,,,,false,false,false,6,6,2,2,,3
+0005DE6F,Maal VIII,89,29,1773876497,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057EB,Uranium,,,,,,,,,false,false,false,6,6,2,2,,3
+0005DE6F,Maal VIII,90,30,599838329,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057EB,Uranium,000057EE,Plutonium,1,000057EE,Plutonium,,,,false,false,false,6,6,2,2,,3
+0005DE6F,Maal VIII,91,,,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057EB,Uranium,,,,000057EE,Plutonium,,,,false,false,false,6,6,2,2,,3
+0005DE6F,Maal VIII,92,,,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057EB,Uranium,000057EE,Plutonium,,,,,,,false,false,false,6,6,2,2,,3
+0005DE6F,Maal VIII,93,,,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057EB,Uranium,,,1,,,,,,false,false,false,6,6,2,2,,3
+0005DE6F,Maal VIII,94,31,1315901124,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057EB,Uranium,,,,,,,,,false,false,false,6,6,2,2,,3
+0005DE6F,Maal VIII,95,32,2009634482,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057EB,Uranium,00005DF8,Vytinium,1,00005DF8,Vytinium,,,,false,false,false,6,6,2,2,,3
+0005DE6F,Maal VIII,96,,,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057EB,Uranium,,,,00005DF8,Vytinium,,,,false,false,false,6,6,2,2,,3
+0005DE6F,Maal VIII,97,,,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,end_resource_family,FAMILY_END,000057EB,Uranium,,,,,,,,,false,false,false,6,6,2,3,,3
+0005DE6F,Maal VIII,98,,,2,2,DesertSandyNoLife09,Sandy Desert,000083DD,DesertSandDefaultRes,end_biome_orchestration,BIOME_END,000057EB,Uranium,,,,,,,,,false,false,false,6,6,3,3,,3
+0005DE6F,Maal VIII,99,,,3,0,MountainsNoLife08,Mountains,,,begin_biome_orchestration,BIOME_BEGIN,,,,,,,,,,,false,false,false,6,6,3,3,,
+0005DE6F,Maal VIII,100,,,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,resolve_effective_rsgd,RSGD_RESOLVED,,,,,,,,,,,false,false,false,6,6,3,3,,
+0005DE6F,Maal VIII,101,,,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,begin_special_selector,SPECIAL_PASS_BEGIN,,,,,0,,,,,,false,false,false,6,6,3,3,,
+0005DE6F,Maal VIII,102,33,2086673044,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,special_selector,SPECIAL_PASS_RESULT,,,,,0,,,,,,false,false,false,6,6,3,3,,
+0005DE6F,Maal VIII,103,,,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,begin_common_root_selector,COMMON_PASS_BEGIN,,,,,2,,,,,,false,false,false,6,6,3,3,,
+0005DE6F,Maal VIII,104,34,2402027328,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,common_root_selector,COMMON_ROLL,,,,,2,,,,,,false,false,false,6,6,3,3,,
+0005DE6F,Maal VIII,105,,,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,complete_common_root_selector,COMMON_SELECTED,000057C7,Iron,,,,,,,,,false,false,false,6,6,3,3,,
+0005DE6F,Maal VIII,106,,,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,begin_resource_family,FAMILY_BEGIN,000057C7,Iron,,,,,,,,,false,false,false,6,6,3,3,,4
+0005DE6F,Maal VIII,107,,,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,emit_common_root,ROOT_EMITTED,000057C7,Iron,,,,,,000057C7,Iron,Common,false,true,true,6,7,3,3,true,4
+0005DE6F,Maal VIII,108,,,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057C7,Iron,000057C7,Iron,,,,,,,false,false,false,7,7,3,3,,4
+0005DE6F,Maal VIII,109,,,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057C7,Iron,,,1,,,,,,false,false,false,7,7,3,3,,4
+0005DE6F,Maal VIII,110,35,1951474139,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057C7,Iron,,,,,,,,,false,false,false,7,7,3,3,,4
+0005DE6F,Maal VIII,111,36,1053488104,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057C7,Iron,000057C9,Alkanes,1,000057C9,Alkanes,,,,false,false,false,7,7,3,3,,4
+0005DE6F,Maal VIII,112,,,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,complete_descendant_emission,DESCENDANT_EMITTED,000057C7,Iron,,,,000057C9,Alkanes,000057C9,Alkanes,Uncommon,false,true,true,7,8,3,3,false,4
+0005DE6F,Maal VIII,113,,,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057C7,Iron,000057C9,Alkanes,,,,,,,false,false,false,8,8,3,3,,4
+0005DE6F,Maal VIII,114,,,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057C7,Iron,,,1,,,,,,false,false,false,8,8,3,3,,4
+0005DE6F,Maal VIII,115,37,4237523473,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057C7,Iron,,,,,,,,,false,false,false,8,8,3,3,,4
+0005DE6F,Maal VIII,116,38,2572063186,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057C7,Iron,000057C8,Tantalum,1,000057C8,Tantalum,,,,false,false,false,8,8,3,3,,4
+0005DE6F,Maal VIII,117,,,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057C7,Iron,,,,000057C8,Tantalum,,,,false,false,false,8,8,3,3,,4
+0005DE6F,Maal VIII,118,,,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057C7,Iron,000057C8,Tantalum,,,,,,,false,false,false,8,8,3,3,,4
+0005DE6F,Maal VIII,119,,,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057C7,Iron,,,1,,,,,,false,false,false,8,8,3,3,,4
+0005DE6F,Maal VIII,120,39,3930011937,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057C7,Iron,,,,,,,,,false,false,false,8,8,3,3,,4
+0005DE6F,Maal VIII,121,40,2575130374,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057C7,Iron,000057CA,Ytterbium,1,000057CA,Ytterbium,,,,false,false,false,8,8,3,3,,4
+0005DE6F,Maal VIII,122,,,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057C7,Iron,,,,000057CA,Ytterbium,,,,false,false,false,8,8,3,3,,4
+0005DE6F,Maal VIII,123,,,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057C7,Iron,000057CA,Ytterbium,,,,,,,false,false,false,8,8,3,3,,4
+0005DE6F,Maal VIII,124,,,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057C7,Iron,,,1,,,,,,false,false,false,8,8,3,3,,4
+0005DE6F,Maal VIII,125,41,1234787153,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057C7,Iron,,,,,,,,,false,false,false,8,8,3,3,,4
+0005DE6F,Maal VIII,126,42,1959640966,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057C7,Iron,00005DF1,Rothicite,1,00005DF1,Rothicite,,,,false,false,false,8,8,3,3,,4
+0005DE6F,Maal VIII,127,,,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057C7,Iron,,,,00005DF1,Rothicite,,,,false,false,false,8,8,3,3,,4
+0005DE6F,Maal VIII,128,,,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,end_resource_family,FAMILY_END,000057C7,Iron,,,,,,,,,false,false,false,8,8,3,4,,4
+0005DE6F,Maal VIII,129,,,3,0,MountainsNoLife08,Mountains,000083D8,MountainNoLifeDefaultRes,end_biome_orchestration,BIOME_END,000057C7,Iron,,,,,,,,,false,false,false,8,8,4,4,,4
+0005DE6F,Maal VIII,130,,,,,,,,,end_planet_orchestration,PLANET_ORCHESTRATION_END,,,,,,,,,,,false,false,false,8,8,4,4,,
+0005DE6F,Maal VIII,131,,,,,,,,,assemble_predicted_inorganic_resources,PLANET_GENERATION_END,,,,,,,,,,,false,false,false,8,8,4,4,,
+0005DE2D,Fermi III,1,,,,,,,,,seed_planet_rng,RNG_SEEDED,,,,,,,,,,,false,false,false,0,0,0,0,,
+0005DE2D,Fermi III,2,,,,,,,,,copy_pndt_biome_order,BIOME_LIST_INITIAL,,,,,,,,,,,false,false,false,0,0,0,0,,
+0005DE2D,Fermi III,3,1,3568814739,,,,,,,shuffle_bounded_integer,SHUFFLE_STEP,,,,,2,,,,,,false,false,false,0,0,0,0,,
+0005DE2D,Fermi III,4,2,3126613862,,,,,,,shuffle_bounded_integer,SHUFFLE_STEP,,,,,3,,,,,,false,false,false,0,0,0,0,,
+0005DE2D,Fermi III,5,3,1905662738,,,,,,,shuffle_bounded_integer,SHUFFLE_STEP,,,,,4,,,,,,false,false,false,0,0,0,0,,
+0005DE2D,Fermi III,6,4,3991355975,,,,,,,shuffle_bounded_integer,SHUFFLE_STEP,,,,,5,,,,,,false,false,false,0,0,0,0,,
+0005DE2D,Fermi III,7,,,,,,,,,complete_biome_shuffle,BIOME_LIST_SHUFFLED,,,,,,,,,,,false,false,false,0,0,0,0,,
+0005DE2D,Fermi III,8,,,,1,,,,,provisional_upstream_everywhere_discovery,EVERYWHERE_DISCOVERED,,,,,,,,000083EC,Water,Everywhere,false,true,true,0,1,0,0,true,
+0005DE2D,Fermi III,9,,,0,4,MountainsLife03,Mountains,,,begin_biome_orchestration,BIOME_BEGIN,,,,,,,,,,,false,false,false,1,1,0,0,,
+0005DE2D,Fermi III,10,,,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,resolve_effective_rsgd,RSGD_RESOLVED,,,,,,,,,,,false,false,false,1,1,0,0,,
+0005DE2D,Fermi III,11,,,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,begin_special_selector,SPECIAL_PASS_BEGIN,,,,,0,,,,,,false,false,false,1,1,0,0,,
+0005DE2D,Fermi III,12,5,238210210,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,special_selector,SPECIAL_PASS_RESULT,,,,,0,,,,,,false,false,false,1,1,0,0,,
+0005DE2D,Fermi III,13,,,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,begin_common_root_selector,COMMON_PASS_BEGIN,,,,,2,,,,,,false,false,false,1,1,0,0,,
+0005DE2D,Fermi III,14,6,870474109,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,common_root_selector,COMMON_ROLL,,,,,2,,,,,,false,false,false,1,1,0,0,,
+0005DE2D,Fermi III,15,,,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,complete_common_root_selector,COMMON_SELECTED,000057C7,Iron,,,,,,,,,false,false,false,1,1,0,0,,
+0005DE2D,Fermi III,16,,,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,begin_resource_family,FAMILY_BEGIN,000057C7,Iron,,,,,,,,,false,false,false,1,1,0,0,,1
+0005DE2D,Fermi III,17,,,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,emit_common_root,ROOT_EMITTED,000057C7,Iron,,,,,,000057C7,Iron,Common,false,true,true,1,2,0,0,true,1
+0005DE2D,Fermi III,18,,,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057C7,Iron,000057C7,Iron,,,,,,,false,false,false,2,2,0,0,,1
+0005DE2D,Fermi III,19,,,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057C7,Iron,,,1,,,,,,false,false,false,2,2,0,0,,1
+0005DE2D,Fermi III,20,7,1565842397,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057C7,Iron,,,,,,,,,false,false,false,2,2,0,0,,1
+0005DE2D,Fermi III,21,8,1239293469,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057C7,Iron,000057C9,Alkanes,1,000057C9,Alkanes,,,,false,false,false,2,2,0,0,,1
+0005DE2D,Fermi III,22,,,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,complete_descendant_emission,DESCENDANT_EMITTED,000057C7,Iron,,,,000057C9,Alkanes,000057C9,Alkanes,Uncommon,false,true,true,2,3,0,0,true,1
+0005DE2D,Fermi III,23,,,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057C7,Iron,000057C9,Alkanes,,,,,,,false,false,false,3,3,0,0,,1
+0005DE2D,Fermi III,24,,,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057C7,Iron,,,1,,,,,,false,false,false,3,3,0,0,,1
+0005DE2D,Fermi III,25,9,2908815067,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057C7,Iron,,,,,,,,,false,false,false,3,3,0,0,,1
+0005DE2D,Fermi III,26,10,2309624663,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057C7,Iron,000057C8,Tantalum,1,000057C8,Tantalum,,,,false,false,false,3,3,0,0,,1
+0005DE2D,Fermi III,27,,,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057C7,Iron,,,,000057C8,Tantalum,,,,false,false,false,3,3,0,0,,1
+0005DE2D,Fermi III,28,,,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057C7,Iron,000057C8,Tantalum,,,,,,,false,false,false,3,3,0,0,,1
+0005DE2D,Fermi III,29,,,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057C7,Iron,,,1,,,,,,false,false,false,3,3,0,0,,1
+0005DE2D,Fermi III,30,11,967449935,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057C7,Iron,,,,,,,,,false,false,false,3,3,0,0,,1
+0005DE2D,Fermi III,31,12,3021207213,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057C7,Iron,000057CA,Ytterbium,1,000057CA,Ytterbium,,,,false,false,false,3,3,0,0,,1
+0005DE2D,Fermi III,32,,,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057C7,Iron,,,,000057CA,Ytterbium,,,,false,false,false,3,3,0,0,,1
+0005DE2D,Fermi III,33,,,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057C7,Iron,000057CA,Ytterbium,,,,,,,false,false,false,3,3,0,0,,1
+0005DE2D,Fermi III,34,,,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057C7,Iron,,,1,,,,,,false,false,false,3,3,0,0,,1
+0005DE2D,Fermi III,35,13,1929100966,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057C7,Iron,,,,,,,,,false,false,false,3,3,0,0,,1
+0005DE2D,Fermi III,36,14,1530632203,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057C7,Iron,00005DF1,Rothicite,1,00005DF1,Rothicite,,,,false,false,false,3,3,0,0,,1
+0005DE2D,Fermi III,37,,,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057C7,Iron,,,,00005DF1,Rothicite,,,,false,false,false,3,3,0,0,,1
+0005DE2D,Fermi III,38,,,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,end_resource_family,FAMILY_END,000057C7,Iron,,,,,,,,,false,false,false,3,3,0,1,,1
+0005DE2D,Fermi III,39,,,0,4,MountainsLife03,Mountains,00007EDD,MountainDefaultRes,end_biome_orchestration,BIOME_END,000057C7,Iron,,,,,,,,,false,false,false,3,3,1,1,,1
+0005DE2D,Fermi III,40,,,1,1,FrozenLife08,Frozen Mountains,,,begin_biome_orchestration,BIOME_BEGIN,,,,,,,,,,,false,false,false,3,3,1,1,,
+0005DE2D,Fermi III,41,,,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,resolve_effective_rsgd,RSGD_RESOLVED,,,,,,,,,,,false,false,false,3,3,1,1,,
+0005DE2D,Fermi III,42,,,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,begin_special_selector,SPECIAL_PASS_BEGIN,,,,,0,,,,,,false,false,false,3,3,1,1,,
+0005DE2D,Fermi III,43,15,3728718058,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,special_selector,SPECIAL_PASS_RESULT,,,,,0,,,,,,false,false,false,3,3,1,1,,
+0005DE2D,Fermi III,44,,,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,begin_common_root_selector,COMMON_PASS_BEGIN,,,,,2,,,,,,false,false,false,3,3,1,1,,
+0005DE2D,Fermi III,45,16,2434634792,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,common_root_selector,COMMON_ROLL,,,,,2,,,,,,false,false,false,3,3,1,1,,
+0005DE2D,Fermi III,46,,,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,complete_common_root_selector,COMMON_SELECTED,000057EA,Argon,,,,,,,,,false,false,false,3,3,1,1,,
+0005DE2D,Fermi III,47,,,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,begin_resource_family,FAMILY_BEGIN,000057EA,Argon,,,,,,,,,false,false,false,3,3,1,1,,2
+0005DE2D,Fermi III,48,,,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,emit_common_root,ROOT_EMITTED,000057EA,Argon,,,,,,000057EA,Argon,Common,false,true,true,3,4,1,1,true,2
+0005DE2D,Fermi III,49,,,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057EA,Argon,000057EA,Argon,,,,,,,false,false,false,4,4,1,1,,2
+0005DE2D,Fermi III,50,,,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057EA,Argon,,,1,,,,,,false,false,false,4,4,1,1,,2
+0005DE2D,Fermi III,51,17,2051241691,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057EA,Argon,,,,,,,,,false,false,false,4,4,1,1,,2
+0005DE2D,Fermi III,52,18,1587481401,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057EA,Argon,000057E7,Benzene,1,000057E7,Benzene,,,,false,false,false,4,4,1,1,,2
+0005DE2D,Fermi III,53,,,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,complete_descendant_emission,DESCENDANT_EMITTED,000057EA,Argon,,,,000057E7,Benzene,000057E7,Benzene,Uncommon,false,true,true,4,5,1,1,true,2
+0005DE2D,Fermi III,54,,,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057EA,Argon,000057E7,Benzene,,,,,,,false,false,false,5,5,1,1,,2
+0005DE2D,Fermi III,55,,,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057EA,Argon,,,1,,,,,,false,false,false,5,5,1,1,,2
+0005DE2D,Fermi III,56,19,2838628268,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057EA,Argon,,,,,,,,,false,false,false,5,5,1,1,,2
+0005DE2D,Fermi III,57,20,1996309045,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057EA,Argon,000057E8,Carboxylic Acids,1,000057E8,Carboxylic Acids,,,,false,false,false,5,5,1,1,,2
+0005DE2D,Fermi III,58,,,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057EA,Argon,,,,000057E8,Carboxylic Acids,,,,false,false,false,5,5,1,1,,2
+0005DE2D,Fermi III,59,,,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057EA,Argon,000057E8,Carboxylic Acids,,,,,,,false,false,false,5,5,1,1,,2
+0005DE2D,Fermi III,60,,,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057EA,Argon,,,1,,,,,,false,false,false,5,5,1,1,,2
+0005DE2D,Fermi III,61,21,1834810616,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057EA,Argon,,,,,,,,,false,false,false,5,5,1,1,,2
+0005DE2D,Fermi III,62,22,2923658530,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057EA,Argon,000057E9,Neon,1,000057E9,Neon,,,,false,false,false,5,5,1,1,,2
+0005DE2D,Fermi III,63,,,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057EA,Argon,,,,000057E9,Neon,,,,false,false,false,5,5,1,1,,2
+0005DE2D,Fermi III,64,,,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057EA,Argon,000057E9,Neon,,,,,,,false,false,false,5,5,1,1,,2
+0005DE2D,Fermi III,65,,,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057EA,Argon,,,1,,,,,,false,false,false,5,5,1,1,,2
+0005DE2D,Fermi III,66,23,3387708758,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057EA,Argon,,,,,,,,,false,false,false,5,5,1,1,,2
+0005DE2D,Fermi III,67,24,4200868932,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057EA,Argon,00005DF7,Veryl,1,00005DF7,Veryl,,,,false,false,false,5,5,1,1,,2
+0005DE2D,Fermi III,68,,,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057EA,Argon,,,,00005DF7,Veryl,,,,false,false,false,5,5,1,1,,2
+0005DE2D,Fermi III,69,,,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,end_resource_family,FAMILY_END,000057EA,Argon,,,,,,,,,false,false,false,5,5,1,2,,2
+0005DE2D,Fermi III,70,,,1,1,FrozenLife08,Frozen Mountains,000083F0,FrozenBarrenDefaultRes,end_biome_orchestration,BIOME_END,000057EA,Argon,,,,,,,,,false,false,false,5,5,2,2,,2
+0005DE2D,Fermi III,71,,,2,3,DesertSandyLife09,Sandy Desert,,,begin_biome_orchestration,BIOME_BEGIN,,,,,,,,,,,false,false,false,5,5,2,2,,
+0005DE2D,Fermi III,72,,,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,resolve_effective_rsgd,RSGD_RESOLVED,,,,,,,,,,,false,false,false,5,5,2,2,,
+0005DE2D,Fermi III,73,,,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,begin_special_selector,SPECIAL_PASS_BEGIN,,,,,0,,,,,,false,false,false,5,5,2,2,,
+0005DE2D,Fermi III,74,25,981349029,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,special_selector,SPECIAL_PASS_RESULT,,,,,0,,,,,,false,false,false,5,5,2,2,,
+0005DE2D,Fermi III,75,,,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,begin_common_root_selector,COMMON_PASS_BEGIN,,,,,2,,,,,,false,false,false,5,5,2,2,,
+0005DE2D,Fermi III,76,26,1062816445,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,common_root_selector,COMMON_ROLL,,,,,2,,,,,,false,false,false,5,5,2,2,,
+0005DE2D,Fermi III,77,,,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,complete_common_root_selector,COMMON_SELECTED,000057EB,Uranium,,,,,,,,,false,false,false,5,5,2,2,,
+0005DE2D,Fermi III,78,,,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,begin_resource_family,FAMILY_BEGIN,000057EB,Uranium,,,,,,,,,false,false,false,5,5,2,2,,3
+0005DE2D,Fermi III,79,,,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,emit_common_root,ROOT_EMITTED,000057EB,Uranium,,,,,,000057EB,Uranium,Common,false,true,true,5,6,2,2,true,3
+0005DE2D,Fermi III,80,,,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057EB,Uranium,000057EB,Uranium,,,,,,,false,false,false,6,6,2,2,,3
+0005DE2D,Fermi III,81,,,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057EB,Uranium,,,1,,,,,,false,false,false,6,6,2,2,,3
+0005DE2D,Fermi III,82,27,872087418,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057EB,Uranium,,,,,,,,,false,false,false,6,6,2,2,,3
+0005DE2D,Fermi III,83,28,3002514977,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057EB,Uranium,000057EC,Iridium,1,000057EC,Iridium,,,,false,false,false,6,6,2,2,,3
+0005DE2D,Fermi III,84,,,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,complete_descendant_emission,DESCENDANT_EMITTED,000057EB,Uranium,,,,000057EC,Iridium,000057EC,Iridium,Uncommon,false,true,true,6,7,2,2,true,3
+0005DE2D,Fermi III,85,,,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057EB,Uranium,000057EC,Iridium,,,,,,,false,false,false,7,7,2,2,,3
+0005DE2D,Fermi III,86,,,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057EB,Uranium,,,1,,,,,,false,false,false,7,7,2,2,,3
+0005DE2D,Fermi III,87,29,183590725,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057EB,Uranium,,,,,,,,,false,false,false,7,7,2,2,,3
+0005DE2D,Fermi III,88,30,1776060988,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057EB,Uranium,000057ED,Vanadium,1,000057ED,Vanadium,,,,false,false,false,7,7,2,2,,3
+0005DE2D,Fermi III,89,,,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,complete_descendant_emission,DESCENDANT_EMITTED,000057EB,Uranium,,,,000057ED,Vanadium,000057ED,Vanadium,Rare,false,true,true,7,8,2,2,true,3
+0005DE2D,Fermi III,90,,,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057EB,Uranium,000057ED,Vanadium,,,,,,,false,false,false,8,8,2,2,,3
+0005DE2D,Fermi III,91,,,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057EB,Uranium,,,1,,,,,,false,false,false,8,8,2,2,,3
+0005DE2D,Fermi III,92,31,965132085,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057EB,Uranium,,,,,,,,,false,false,false,8,8,2,2,,3
+0005DE2D,Fermi III,93,32,492800254,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057EB,Uranium,000057EE,Plutonium,1,000057EE,Plutonium,,,,false,false,false,8,8,2,2,,3
+0005DE2D,Fermi III,94,,,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057EB,Uranium,,,,000057EE,Plutonium,,,,false,false,false,8,8,2,2,,3
+0005DE2D,Fermi III,95,,,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057EB,Uranium,000057EE,Plutonium,,,,,,,false,false,false,8,8,2,2,,3
+0005DE2D,Fermi III,96,,,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057EB,Uranium,,,1,,,,,,false,false,false,8,8,2,2,,3
+0005DE2D,Fermi III,97,33,2576494828,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057EB,Uranium,,,,,,,,,false,false,false,8,8,2,2,,3
+0005DE2D,Fermi III,98,34,1212274679,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057EB,Uranium,00005DF8,Vytinium,1,00005DF8,Vytinium,,,,false,false,false,8,8,2,2,,3
+0005DE2D,Fermi III,99,,,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,complete_descendant_emission,DESCENDANT_OMITTED,000057EB,Uranium,,,,00005DF8,Vytinium,,,,false,false,false,8,8,2,2,,3
+0005DE2D,Fermi III,100,,,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,end_resource_family,FAMILY_END,000057EB,Uranium,,,,,,,,,false,false,false,8,8,2,3,,3
+0005DE2D,Fermi III,101,,,2,3,DesertSandyLife09,Sandy Desert,000083DD,DesertSandDefaultRes,end_biome_orchestration,BIOME_END,000057EB,Uranium,,,,,,,,,false,false,false,8,8,3,3,,3
+0005DE2D,Fermi III,102,,,3,2,ForestDeciduousLife14,Deciduous Forest,,,begin_biome_orchestration,BIOME_BEGIN,,,,,,,,,,,false,false,false,8,8,3,3,,
+0005DE2D,Fermi III,103,,,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,resolve_effective_rsgd,RSGD_RESOLVED,,,,,,,,,,,false,false,false,8,8,3,3,,
+0005DE2D,Fermi III,104,,,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,begin_special_selector,SPECIAL_PASS_BEGIN,,,,,0,,,,,,false,false,false,8,8,3,3,,
+0005DE2D,Fermi III,105,35,648844081,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,special_selector,SPECIAL_PASS_RESULT,,,,,0,,,,,,false,false,false,8,8,3,3,,
+0005DE2D,Fermi III,106,,,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,begin_common_root_selector,COMMON_PASS_BEGIN,,,,,2,,,,,,false,false,false,8,8,3,3,,
+0005DE2D,Fermi III,107,36,2810004502,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,common_root_selector,COMMON_ROLL,,,,,2,,,,,,false,false,false,8,8,3,3,,
+0005DE2D,Fermi III,108,,,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,complete_common_root_selector,COMMON_SELECTED,000057CB,Nickel,,,,,,,,,false,false,false,8,8,3,3,,
+0005DE2D,Fermi III,109,,,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,begin_resource_family,FAMILY_BEGIN,000057CB,Nickel,,,,,,,,,false,false,false,8,8,3,3,,4
+0005DE2D,Fermi III,110,,,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,emit_common_root,ROOT_EMITTED,000057CB,Nickel,,,,,,000057CB,Nickel,Common,false,true,true,8,9,3,3,false,4
+0005DE2D,Fermi III,111,,,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057CB,Nickel,000057CB,Nickel,,,,,,,false,false,false,9,9,3,3,,4
+0005DE2D,Fermi III,112,,,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057CB,Nickel,,,1,,,,,,false,false,false,9,9,3,3,,4
+0005DE2D,Fermi III,113,37,4211498876,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057CB,Nickel,,,,,,,,,false,false,false,9,9,3,3,,4
+0005DE2D,Fermi III,114,38,4050946722,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057CB,Nickel,000057CE,Cobalt,1,000057CE,Cobalt,,,,false,false,false,9,9,3,3,,4
+0005DE2D,Fermi III,115,,,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,complete_descendant_emission,DESCENDANT_OMITTED,000057CB,Nickel,,,,000057CE,Cobalt,,,,false,false,false,9,9,3,3,,4
+0005DE2D,Fermi III,116,,,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057CB,Nickel,000057CE,Cobalt,,,,,,,false,false,false,9,9,3,3,,4
+0005DE2D,Fermi III,117,,,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057CB,Nickel,,,1,,,,,,false,false,false,9,9,3,3,,4
+0005DE2D,Fermi III,118,39,2420576559,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057CB,Nickel,,,,,,,,,false,false,false,9,9,3,3,,4
+0005DE2D,Fermi III,119,40,3112587078,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057CB,Nickel,000057CC,Platinum,1,000057CC,Platinum,,,,false,false,false,9,9,3,3,,4
+0005DE2D,Fermi III,120,,,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,complete_descendant_emission,DESCENDANT_OMITTED,000057CB,Nickel,,,,000057CC,Platinum,,,,false,false,false,9,9,3,3,,4
+0005DE2D,Fermi III,121,,,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057CB,Nickel,000057CC,Platinum,,,,,,,false,false,false,9,9,3,3,,4
+0005DE2D,Fermi III,122,,,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057CB,Nickel,,,1,,,,,,false,false,false,9,9,3,3,,4
+0005DE2D,Fermi III,123,41,3364082799,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057CB,Nickel,,,,,,,,,false,false,false,9,9,3,3,,4
+0005DE2D,Fermi III,124,42,1820633003,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057CB,Nickel,000057CD,Palladium,1,000057CD,Palladium,,,,false,false,false,9,9,3,3,,4
+0005DE2D,Fermi III,125,,,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,complete_descendant_emission,DESCENDANT_OMITTED,000057CB,Nickel,,,,000057CD,Palladium,,,,false,false,false,9,9,3,3,,4
+0005DE2D,Fermi III,126,,,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,begin_descendant_level,DESCENDANT_LEVEL_BEGIN,000057CB,Nickel,000057CD,Palladium,,,,,,,false,false,false,9,9,3,3,,4
+0005DE2D,Fermi III,127,,,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,build_descendant_candidates,DESCENDANT_CANDIDATES,000057CB,Nickel,,,1,,,,,,false,false,false,9,9,3,3,,4
+0005DE2D,Fermi III,128,43,2124850156,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,descendant_inclusion_roll,DESCENDANT_INCLUSION_ROLL,000057CB,Nickel,,,,,,,,,false,false,false,9,9,3,3,,4
+0005DE2D,Fermi III,129,44,2038209574,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,descendant_scaled_index,DESCENDANT_CANDIDATE_SELECTED,000057CB,Nickel,00005DF6,Tasine,1,00005DF6,Tasine,,,,false,false,false,9,9,3,3,,4
+0005DE2D,Fermi III,130,,,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,complete_descendant_emission,DESCENDANT_OMITTED,000057CB,Nickel,,,,00005DF6,Tasine,,,,false,false,false,9,9,3,3,,4
+0005DE2D,Fermi III,131,,,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,end_resource_family,FAMILY_END,000057CB,Nickel,,,,,,,,,false,false,false,9,9,3,4,,4
+0005DE2D,Fermi III,132,,,3,2,ForestDeciduousLife14,Deciduous Forest,0037C66C,ForestDeciduousRes,end_biome_orchestration,BIOME_END,000057CB,Nickel,,,,,,,,,false,false,false,9,9,4,4,,4
+0005DE2D,Fermi III,133,,,4,0,OceanLife07,Ocean,,,begin_biome_orchestration,BIOME_BEGIN,,,,,,,,,,,false,false,false,9,9,4,4,,
+0005DE2D,Fermi III,134,,,4,0,OceanLife07,Ocean,000083ED,OceanDefaultRes,resolve_effective_rsgd,RSGD_RESOLVED,,,,,,,,,,,false,false,false,9,9,4,4,,
+0005DE2D,Fermi III,135,,,4,0,OceanLife07,Ocean,000083ED,OceanDefaultRes,begin_special_selector,SPECIAL_PASS_BEGIN,,,,,0,,,,,,false,false,false,9,9,4,4,,
+0005DE2D,Fermi III,136,45,2484823133,4,0,OceanLife07,Ocean,000083ED,OceanDefaultRes,special_selector,SPECIAL_PASS_RESULT,,,,,0,,,,,,false,false,false,9,9,4,4,,
+0005DE2D,Fermi III,137,,,4,0,OceanLife07,Ocean,000083ED,OceanDefaultRes,begin_common_root_selector,COMMON_PASS_BEGIN,,,,,0,,,,,,false,false,false,9,9,4,4,,
+0005DE2D,Fermi III,138,46,1878059337,4,0,OceanLife07,Ocean,000083ED,OceanDefaultRes,common_root_selector,COMMON_ROLL,,,,,0,,,,,,false,false,false,9,9,4,4,,
+0005DE2D,Fermi III,139,,,4,0,OceanLife07,Ocean,000083ED,OceanDefaultRes,complete_common_root_selector,COMMON_SELECTED,,,,,,,,,,,false,false,false,9,9,4,4,,
+0005DE2D,Fermi III,140,,,4,0,OceanLife07,Ocean,000083ED,OceanDefaultRes,end_biome_orchestration,BIOME_END,,,,,,,,,,,false,false,false,9,9,4,4,,
+0005DE2D,Fermi III,141,,,,,,,,,end_planet_orchestration,PLANET_ORCHESTRATION_END,,,,,,,,,,,false,false,false,9,9,4,4,,
+0005DE2D,Fermi III,142,,,,,,,,,assemble_predicted_inorganic_resources,PLANET_GENERATION_END,,,,,,,,,,,false,false,false,9,9,4,4,,
