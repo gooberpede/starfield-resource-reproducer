@@ -9,6 +9,14 @@ from starfield_resource_reproducer.generation import (
 
 
 EXPECTED = {
+    ZeroCandidatePolicy.CONSUME_RAW: (
+        10,
+        17,
+        357224398,
+        0.08317194879055023,
+        True,
+        {"Water", "Lead", "Silver", "Argon", "Neon", "Iron", "Alkanes"},
+    ),
     ZeroCandidatePolicy.CONSUME_NONE: (
         8,
         15,
@@ -18,14 +26,6 @@ EXPECTED = {
         {"Water", "Lead", "Silver", "Argon", "Iron", "Alkanes"},
     ),
     ZeroCandidatePolicy.CONSUME_INCLUSION: (
-        10,
-        17,
-        357224398,
-        0.08317194879055023,
-        True,
-        {"Water", "Lead", "Silver", "Argon", "Neon", "Iron", "Alkanes"},
-    ),
-    ZeroCandidatePolicy.CONSUME_INDEX_RAW: (
         10,
         17,
         357224398,
@@ -86,17 +86,18 @@ def test_kreet_zero_candidate_counterfactual_matrix(
     assert "raw_values_consumed=" in timeline
 
 
-def test_production_default_remains_no_draw(generation_data, ires_nodes) -> None:
+def test_production_default_consumes_one_raw_word_per_empty_level(
+    generation_data, ires_nodes
+) -> None:
     kreet = generation_data[FormId("0003F59F")]
 
     default = generate_planet(kreet, ires_nodes)
     explicit = generate_planet(
         kreet,
         ires_nodes,
-        zero_candidate_policy=ZeroCandidatePolicy.CONSUME_NONE,
+        zero_candidate_policy=ZeroCandidatePolicy.CONSUME_RAW,
     )
 
-    assert default.zero_candidate_policy is ZeroCandidatePolicy.CONSUME_NONE
+    assert default.zero_candidate_policy is ZeroCandidatePolicy.CONSUME_RAW
     assert default.predicted_form_ids == explicit.predicted_form_ids
-    assert default.final_draw_count == explicit.final_draw_count == 28
-
+    assert default.final_draw_count == explicit.final_draw_count == 30

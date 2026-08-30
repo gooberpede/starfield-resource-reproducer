@@ -154,12 +154,13 @@ def test_family_cache_reuses_form_id_without_descendant_draws(
     assert list(cache) == [root_entry.resource_form_id]
     assert reused.events[0].kind is EventKind.FAMILY_CACHE_HIT
     assert reused.events[0]["descendant_rng_consumed"] is False
+    assert reused.events[0]["evidence_status"] == "PROVEN"
     assert reused.events[0]["draw_count_before"] == after_generation
     assert reused.events[0]["draw_count_after"] == after_generation
     assert reused.events[0]["cached_emitted_family"] == generated.family.emitted_resources
 
 
-def test_zero_candidate_levels_are_provisional_and_consume_no_rng(
+def test_zero_candidate_levels_consume_one_raw_word_and_preserve_structure(
     generation_data,
 ) -> None:
     mimas = generation_data[FormId("0005DEC0")]
@@ -184,7 +185,7 @@ def test_zero_candidate_levels_are_provisional_and_consume_no_rng(
 
     family = generate_family(root_entry, graph, rng)
 
-    assert rng.draw_count == 0
+    assert rng.draw_count == 4
     assert all(level.candidates == () for level in family.levels)
     assert all(level.selected_candidate is None for level in family.levels)
     omitted = [
@@ -193,5 +194,10 @@ def test_zero_candidate_levels_are_provisional_and_consume_no_rng(
         if event.kind is EventKind.DESCENDANT_OMITTED
     ]
     assert len(omitted) == 4
-    assert all(event["evidence_status"] == "PROVISIONAL" for event in omitted)
+    assert all(event["evidence_status"] == "PROVEN" for event in omitted)
+    assert all(event["raw_draws_consumed"] == 1 for event in omitted)
+    assert all(
+        event["operation_types"] == ("raw_advance_semantics_unknown",)
+        for event in omitted
+    )
     assert all(event["structural_node_changed"] is False for event in omitted)

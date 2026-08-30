@@ -2,10 +2,13 @@
 
 ## Question
 
-Determine independently for Kreet's Lead family whether the Exotic and Unique
-descendant calls consume zero, one, or two raw MT19937 words when their filtered
-candidate count is zero. The production model remains no-draw and PROVISIONAL
-until this is established by a live trace.
+This question was resolved by the Algorab I bounded live traces used in Brief
+05B. A zero-candidate descendant call consumes exactly one raw MT19937 word,
+selects no candidate, and retains the structural node. The raw-word count is
+PROVEN; the engine's high-level operation name remains unknown.
+
+Kreet therefore consumes one word at each empty Lead level. Argon's Neon roll
+moves to draw 17 (`357224398`, `0.08317194879055023`) and is emitted.
 
 ## Known entry point and missing address
 
@@ -29,7 +32,7 @@ The two calls of interest occur after Lead reaches Mercury structurally:
 
 Record the two calls separately; do not infer one from the other.
 
-## Minimal breakpoint/log plan
+## Historical breakpoint/log plan
 
 1. Break at `1415DCFB0` and continue until the Kreet Volcanic invocation.
 2. From that invocation, break at the recovered descendant-level helper entry
@@ -59,13 +62,8 @@ only from its call site/control flow. Two helper hits establish two raw draws
 and their call order. A state delta without a captured helper hit means the
 breakpoint coverage is incomplete and the run should not be treated as proof.
 
-## Why exact x64dbg commands are not included yet
+## Historical command limitation
 
-The repository does not contain the descendant helper address, PRNG helper
-address, argument registers/stack offsets, or verified module relocation for
-the user's current executable. Exact `bp`, conditional-expression, and logging
-commands would therefore require invented addresses or registers. Once those
-four facts are exported from the existing Ghidra/x64dbg work, this plan can be
-translated directly into two conditional logging breakpoints with automatic
-continue and no manual stepping.
-
+At the time of Brief 05A, exact PRNG-helper details and argument locations were
+not recorded in the repository, so commands were deliberately not invented.
+The later Algorab I traces supplied the required state-advance evidence.

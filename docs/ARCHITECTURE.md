@@ -264,7 +264,10 @@ Responsibilities:
 - preserve an explicitly partial orchestration result for Brief 03 diagnostics;
 - generate immutable Common-family configurations;
 - process descendant levels in rarity order with exact draw accounting;
-- maintain the planet-scope FormID-keyed family cache and reuse cached results.
+- consume one raw MT word when a descendant level has no candidates while
+  retaining the structural node;
+- maintain the planet-scope FormID-keyed family cache, reusing cached results
+  without invoking descendant generation or consuming descendant RNG;
 - assemble complete planet output from Everywhere, Special, and emitted families.
 
 `orchestrate_planet()` stops after Common-root selection. The separate

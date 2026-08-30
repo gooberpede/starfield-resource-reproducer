@@ -98,14 +98,14 @@ class DescendantLevelResult:
 class ZeroCandidatePolicy(str, Enum):
     """Evidence-qualified empty-descendant RNG policies for diagnostics.
 
-    ``CONSUME_NONE`` is the production default. The other values are
-    COUNTERFACTUAL modes: ``CONSUME_INDEX_RAW`` means one raw MT word with
-    index-like intent, not the undefined operation ``next_index(0)``.
+    ``CONSUME_RAW`` is the PROVEN production default. Live Algorab I evidence
+    establishes one raw MT word of consumption without identifying the engine's
+    high-level operation. The other values remain COUNTERFACTUAL modes.
     """
 
+    CONSUME_RAW = "CONSUME_RAW"
     CONSUME_NONE = "CONSUME_NONE"
     CONSUME_INCLUSION = "CONSUME_INCLUSION"
-    CONSUME_INDEX_RAW = "CONSUME_INDEX_RAW"
     CONSUME_BOTH = "CONSUME_BOTH"
 
 
@@ -235,7 +235,7 @@ def generate_family(
     ires_nodes: Mapping[FormId, IRESNode],
     rng: StarfieldRng,
     *,
-    zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_NONE,
+    zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_RAW,
 ) -> ResourceFamilyResult:
     """Generate a new Common family using the selected root entry's chances."""
 
@@ -290,10 +290,10 @@ def generate_family(
         if not candidates:
             consumed_draws = _consume_zero_candidate_rng(rng, zero_candidate_policy)
             is_production_policy = (
-                zero_candidate_policy is ZeroCandidatePolicy.CONSUME_NONE
+                zero_candidate_policy is ZeroCandidatePolicy.CONSUME_RAW
             )
             evidence_status = (
-                "PROVISIONAL"
+                "PROVEN"
                 if is_production_policy
                 else "COUNTERFACTUAL / NOT RUNTIME-PROVEN"
             )
@@ -301,7 +301,7 @@ def generate_family(
                 event(
                     EventKind.DESCENDANT_OMITTED,
                     operation=(
-                        "skip_empty_descendant_level"
+                        "consume_empty_descendant_raw"
                         if is_production_policy
                         else "counterfactual_empty_descendant_level"
                     ),
@@ -318,20 +318,15 @@ def generate_family(
                         draw.operation == "float01" for draw in consumed_draws
                     ),
                     index_rng_consumed=False,
-                    index_raw_equivalent_consumed=any(
-                        draw.operation == "uint32" for draw in consumed_draws
+                    index_raw_equivalent_consumed=(
+                        zero_candidate_policy is ZeroCandidatePolicy.CONSUME_BOTH
                     ),
                     raw_draws_consumed=len(consumed_draws),
                     raw_values_consumed=tuple(
                         draw.raw_value for draw in consumed_draws
                     ),
-                    operation_types=tuple(
-                        (
-                            "inclusion"
-                            if draw.operation == "float01"
-                            else "index_raw_equivalent"
-                        )
-                        for draw in consumed_draws
+                    operation_types=_zero_candidate_operation_types(
+                        zero_candidate_policy
                     ),
                     structural_node_changed=False,
                     structural_node_after=current_form_id,
@@ -445,16 +440,15 @@ def get_or_generate_family(
     ires_nodes: Mapping[FormId, IRESNode],
     rng: StarfieldRng,
     *,
-    zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_NONE,
+    zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_RAW,
 ) -> FamilyAccessResult:
     """Reuse a planet-scope family or generate and cache it on first selection."""
 
     draw_count_before = rng.draw_count
     cached = family_cache.get(root_entry.resource_form_id)
     if cached is not None:
-        # PROVEN: an existing family is reused instead of rerolling descendants.
-        # PROVISIONAL: the recovered bypass currently consumes no additional
-        # words; exact cache-branch RNG behavior lacks its own live trace.
+        # PROVEN by the Algorab I repeated-Uranium trace: a cache hit bypasses
+        # descendant generation entirely and consumes no descendant RNG words.
         cache_event = event(
             EventKind.FAMILY_CACHE_HIT,
             operation="reuse_resource_family",
@@ -464,7 +458,7 @@ def get_or_generate_family(
             draw_count_after=rng.draw_count,
             descendant_rng_consumed=False,
             cached_emitted_family=cached.emitted_resources,
-            evidence_status="PROVISIONAL",
+            evidence_status="PROVEN",
         )
         return FamilyAccessResult(
             family=cached,
@@ -503,7 +497,7 @@ def generate_planet_families(
     planet: Planet,
     ires_nodes: Mapping[FormId, IRESNode],
     *,
-    zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_NONE,
+    zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_RAW,
 ) -> PlanetFamilyGenerationResult:
     """Compatibility wrapper for :func:`generate_planet`."""
 
@@ -516,7 +510,7 @@ def generate_planet(
     planet: Planet,
     ires_nodes: Mapping[FormId, IRESNode],
     *,
-    zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_NONE,
+    zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_RAW,
 ) -> PlanetGenerationResult:
     """Generate the complete predicted inorganic set without oracle input."""
 
@@ -533,7 +527,7 @@ def _run_planet(
     planet: Planet,
     ires_nodes: Mapping[FormId, IRESNode] | None,
     *,
-    zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_NONE,
+    zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_RAW,
 ) -> PlanetOrchestrationResult | PlanetGenerationResult:
     """Shared planet pipeline; descendants are enabled only with an IRES graph."""
 
@@ -840,9 +834,10 @@ def _consume_zero_candidate_rng(
 ) -> tuple[RngDraw, ...]:
     """Apply one diagnostic empty-level policy without fabricating index(0).
 
-    PROVISIONAL production behavior consumes nothing. All consuming modes are
-    COUNTERFACTUAL and exist only to distinguish operation semantics from the
-    number of raw MT words advanced while a runtime trace is still absent.
+    PROVEN: Algorab I establishes exactly one raw word for an empty level while
+    leaving the structural node unchanged. The trace does not establish which
+    high-level RNG operation consumed it, so production uses raw extraction.
+    Other modes remain COUNTERFACTUAL diagnostics.
     """
 
     draws: list[RngDraw] = []
@@ -853,14 +848,29 @@ def _consume_zero_candidate_rng(
         rng.next_float01()
         draws.append(_required_last_draw(rng))
     if policy in {
-        ZeroCandidatePolicy.CONSUME_INDEX_RAW,
+        ZeroCandidatePolicy.CONSUME_RAW,
         ZeroCandidatePolicy.CONSUME_BOTH,
     }:
-        # COUNTERFACTUAL: next_index(0) is undefined. A raw extraction models
-        # only equivalent stream advancement while retaining that distinction.
+        # Do not fabricate next_index(0). For CONSUME_RAW this is the smallest
+        # exact representation of the proven raw-word advancement. In the
+        # two-draw counterfactual it remains an index-like raw equivalent.
         rng.next_uint32()
         draws.append(_required_last_draw(rng))
     return tuple(draws)
+
+
+def _zero_candidate_operation_types(
+    policy: ZeroCandidatePolicy,
+) -> tuple[str, ...]:
+    """Describe semantics without upgrading raw consumption into an operation."""
+
+    if policy is ZeroCandidatePolicy.CONSUME_RAW:
+        return ("raw_advance_semantics_unknown",)
+    if policy is ZeroCandidatePolicy.CONSUME_NONE:
+        return ()
+    if policy is ZeroCandidatePolicy.CONSUME_INCLUSION:
+        return ("inclusion",)
+    return ("inclusion", "index_raw_equivalent")
 
 
 def _validate_zero_candidate_policy(policy: ZeroCandidatePolicy) -> None:

@@ -51,13 +51,13 @@ def _empty_family(generation_data, policy: ZeroCandidatePolicy):
 @pytest.mark.parametrize(
     ("policy", "draws_per_level", "operations"),
     [
+        (
+            ZeroCandidatePolicy.CONSUME_RAW,
+            1,
+            ("raw_advance_semantics_unknown",),
+        ),
         (ZeroCandidatePolicy.CONSUME_NONE, 0, ()),
         (ZeroCandidatePolicy.CONSUME_INCLUSION, 1, ("inclusion",)),
-        (
-            ZeroCandidatePolicy.CONSUME_INDEX_RAW,
-            1,
-            ("index_raw_equivalent",),
-        ),
         (
             ZeroCandidatePolicy.CONSUME_BOTH,
             2,
@@ -77,23 +77,23 @@ def test_zero_candidate_policy_exposes_draw_count_and_operation_semantics(
     assert all(item["operation_types"] == operations for item in empty_events)
     assert all(item["structural_node_changed"] is False for item in empty_events)
     expected_status = (
-        "PROVISIONAL"
-        if policy is ZeroCandidatePolicy.CONSUME_NONE
+        "PROVEN"
+        if policy is ZeroCandidatePolicy.CONSUME_RAW
         else "COUNTERFACTUAL / NOT RUNTIME-PROVEN"
     )
     assert all(item["evidence_status"] == expected_status for item in empty_events)
 
 
-def test_index_counterfactual_consumes_raw_word_without_next_index_zero(
+def test_production_raw_advance_does_not_claim_index_semantics(
     generation_data,
 ) -> None:
     _, _, empty_events = _empty_family(
-        generation_data, ZeroCandidatePolicy.CONSUME_INDEX_RAW
+        generation_data, ZeroCandidatePolicy.CONSUME_RAW
     )
 
     assert all(item["index_rng_consumed"] is False for item in empty_events)
     assert all(
-        item["index_raw_equivalent_consumed"] is True for item in empty_events
+        item["index_raw_equivalent_consumed"] is False for item in empty_events
     )
     assert all(item["inclusion_rng_consumed"] is False for item in empty_events)
     assert all(item["raw_values_consumed"] for item in empty_events)

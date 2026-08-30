@@ -120,23 +120,21 @@ STRONG compatibility findings rather than universal PROVEN rules.
 - [x] initial order `[0, 1, 2]`.
 - [x] shuffled processing order `[2, 0, 1]`.
 - [x] Volcanic -> Lead + Silver.
-- [ ] Frozen Volcanic -> Argon + Neon.
+- [x] Frozen Volcanic -> Argon + Neon.
 - [x] Mountains -> Iron + Alkanes.
 - [x] Water present upstream/provisionally.
-- [ ] final set matches oracle.
-- [x] deterministic missing Neon mismatch is reported by FormID.
+- [x] final set matches oracle.
+- [x] historical deterministic missing-Neon mismatch is preserved diagnostically.
 - [x] Argon/Neon inclusion draw and preceding Lead zero-candidate levels are exposed.
 - [x] diagnostics-only two-draw displacement counterfactual is labeled unproven.
 - [x] compare no-draw, inclusion, index-raw-equivalent, and two-draw policies.
 - [x] reproduce Neon at draw 17 when one raw word is consumed at each empty level.
-- [ ] prove the zero-candidate branch with static control flow or a live trace.
+- [x] prove one raw MT word is consumed per zero-candidate level by live trace.
 
 Acceptance:
 
-Oberon, Mimas, and Decaran VII-b match exactly. Kreet remains an
-evidence-preserving mismatch: the current model omits Neon at Argon draw 15 and
-identifies the preceding Lead zero-candidate branch as the first plausible RNG
-divergence region.
+Oberon, Mimas, Decaran VII-b, and Kreet match exactly. Kreet's two empty Lead
+levels advance the stream to Argon's passing Neon roll at draw 17.
 
 ### Worked-case validation infrastructure
 
@@ -171,8 +169,10 @@ Only investigate branches demonstrated to matter.
 Possible categories:
 
 - [ ] Everywhere/Water upstream insertion semantics.
-- [ ] family-cache RNG consumption on repeated-root biomes.
-- [ ] no-candidate RNG consumption (Brief 05A matrix complete; runtime proof pending).
+- [x] family-cache RNG consumption on repeated-root biomes (Algorab I live proof).
+- [x] no-candidate RNG consumption (Algorab I live proof: one raw word).
+- [ ] Algorab I Lead structural path / bounded-index interpretation (canonical
+  set exact; current model draw 23 versus live-shaped draw 22).
 - [ ] zero/100-percent inclusion draw behavior.
 - [ ] five-family limit.
 - [ ] eight-resource-slot limit.

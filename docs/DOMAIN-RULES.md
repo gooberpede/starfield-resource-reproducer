@@ -396,17 +396,23 @@ Each descendant level with a valid candidate consumed:
 
 The candidate-index draw occurred even when only one candidate existed.
 
-Exact behavior for zero candidates and other edge branches remains mismatch-driven work.
+Other edge branches remain mismatch-driven work.
 
 ### Zero-candidate levels
 
-**PROVISIONAL**
+**PROVEN by the Algorab I live trace**
 
-The Brief 04 implementation consumes neither an inclusion nor candidate-index
-draw when the filtered candidate list is empty, and retains the current structural
-node. Diagnostics expose candidate count, structural node before/after, and draw
-counts around both non-consumption decisions. No live zero-candidate branch
-currently proves this behavior, so it remains deliberately replaceable.
+When the filtered candidate list is empty, the descendant call:
+
+```text
+consumes exactly one raw MT19937 word
+selects no candidate
+retains the current structural node
+```
+
+The trace does not establish whether the engine describes this as an inclusion
+operation, an index-related operation, or another helper call. Production uses
+a raw-word advance and diagnostics deliberately do not assign stronger semantics.
 
 ## Family Configuration Cache
 
@@ -421,12 +427,10 @@ Consequences:
 - shuffled biome order can determine which biome first establishes a family configuration;
 - all biomes using that root share the same descendant pattern for that generation run.
 
-Exact PRNG consumption on cache-hit branches should be verified if canonical mismatches expose it.
-
-**PROVISIONAL for exact RNG consumption:** the recovered bypass implemented in
-Brief 04 consumes no descendant RNG draws on a cache hit. Structured diagnostics
-record draw counts before and after reuse, and the behavior is locked by a test,
-but no dedicated live cache-hit trace yet proves every branch detail.
+**PROVEN by the Algorab I repeated-Uranium live trace:** the second Uranium
+selection made zero calls to `FUN_14157F120`. The cached configuration is reused,
+descendant generation is bypassed entirely, and no descendant RNG words are
+consumed on the cache hit.
 
 ## Unique Resources
 
@@ -494,21 +498,37 @@ Iron
 Alkanes
 ```
 
-### Brief 05 model mismatch
+### Brief 05B resolution
 
-**PROVISIONAL production behavior; COUNTERFACTUAL diagnostic only**
+**PROVEN zero-candidate consumption; exact worked-case result**
 
-The current no-draw zero-candidate interpretation produces every observed Kreet
-resource except Neon. Argon's Neon inclusion uses raw draw 15 (`1553730631`),
-converted to `0.3617524802684784`, which fails its `0.15` threshold.
+Lead's empty Exotic and Unique levels each consume one raw word, moving Argon's
+Neon inclusion to draw 17 (`357224398`) and roll `0.08317194879055023`. The roll
+passes its `0.15` threshold, so the production model emits Neon and Kreet matches
+the canonical inorganic set exactly. The final production draw count is 30.
 
-Before that decision, Lead encounters empty Exotic and Unique candidate levels;
-both currently leave the draw count at 8. A diagnostics-only replay shows that
-one extra earlier draw would still fail Neon (`0.7946245074272156`), while two
-extra earlier draws would move its inclusion operation to a value of
-`0.08317194879055023`, which would pass. This is not runtime proof that either
-empty level consumes a draw. It only prioritizes the zero-candidate branch for
-the next targeted trace and does not alter production generation.
+## Algorab I Lead Structural Discrepancy
+
+**UNRESOLVED; no production ordering change**
+
+The serialized Lead edges place Silver before Tungsten. With the current
+STRONG modulo bounded-index conversion, Algorab draw 18 selects index 1
+(Tungsten), after which Titanium and Dysprosium remain valid structural
+candidates. The live trace instead shows structural advancement at L1/L2 and
+no advancement at L3/L4, consistent with - but not yet proving - the Silver to
+Mercury branch. Exact selected FormIDs or the bounded helper's returned index
+are needed before changing candidate order, candidate construction, or bounded
+index conversion.
+
+The distinction is explicit:
+
+```text
+live-shaped trace: L1/L2 advance, L3/L4 empty, final draw 22
+current model:     L1/L2/L3 advance, L4 empty, final draw 23
+```
+
+Algorab's predicted final resource membership matches the canonical set, but
+its current internal Lead path and final draw count are not trace-exact.
 
 ## Canonical Validation Oracle
 
@@ -534,8 +554,7 @@ Do not block v0.1 on these unless necessary:
 
 - exact upstream Everywhere insertion routine;
 - RSCS = 0 fallback path;
-- zero-candidate RNG consumption;
-- cache-hit RNG consumption details;
+- Algorab I Lead structural selection / bounded-index interpretation;
 - five-family limit;
 - eight-resource-slot limit;
 - duplicate suppression side effects;
