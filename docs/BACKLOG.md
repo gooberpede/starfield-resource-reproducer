@@ -26,15 +26,15 @@ Acceptance:
 
 ## Phase 1 — Canonical Data Loading
 
-- [ ] Load `PlanetResourceGeneration_v5.csv`.
-- [ ] Validate required schema.
-- [ ] Reconstruct planets and ordered biome entries.
-- [ ] Reconstruct ordered RSGD resource arrays.
-- [ ] Load `Starfield_IRES_Hierarchy.csv`.
-- [ ] Reconstruct IRES graph.
-- [ ] Load `planet-all-resources.csv` as validation oracle.
-- [ ] Filter validation oracle to `ResourceCategory == Inorganic`.
-- [ ] Add schema/data-integrity tests.
+- [x] Load `PlanetResourceGeneration_v5.csv`.
+- [x] Validate required schema.
+- [x] Reconstruct planets and ordered biome entries.
+- [x] Reconstruct ordered RSGD resource arrays.
+- [x] Load `Starfield_IRES_Hierarchy.csv`.
+- [x] Reconstruct IRES graph.
+- [x] Load `planet-all-resources.csv` as validation oracle.
+- [x] Filter validation oracle to `ResourceCategory == Inorganic`.
+- [x] Add schema/data-integrity tests.
 
 Acceptance:
 

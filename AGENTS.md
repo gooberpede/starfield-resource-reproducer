@@ -168,6 +168,52 @@ When behavior changes, update the relevant documentation in the same change:
 
 Do not rewrite historical evidence merely to make documentation look cleaner. If a recovered rule changes, record the correction explicitly.
 
+## Code Documentation and Comments
+
+Implementation files containing substantive project logic should include a concise module-level header describing the file's intent.
+
+At minimum, the header should cover:
+
+* **Purpose** — why the module exists;
+* **Responsibilities** — what concerns belong in this module;
+* **Boundaries / Non-responsibilities** — important concerns deliberately kept elsewhere;
+* **Domain or evidence notes** — where behavior reflects recovered Starfield rules, provisional assumptions, or externally verified constraints.
+
+Do not use comments to narrate obvious Python syntax or restate what competent readers can infer directly from the code.
+
+Prefer comments that explain **intent, constraints, provenance, and ambiguity**, especially where a future maintainer might reasonably ask "why is this done this way?"
+
+Good comment subjects include:
+
+* why order must be preserved;
+* why a value is deliberately not normalized;
+* why two apparently redundant data sources are retained separately;
+* why a structural selection is preserved even when no resource is emitted;
+* why a seemingly unnecessary PRNG draw must still occur;
+* why canonical output data must not influence generation;
+* whether a behavior is PROVEN, STRONG, or PROVISIONAL;
+* where a code path intentionally mirrors an observed runtime sequence;
+* why a simpler-looking implementation would be incorrect.
+
+Avoid comments such as:
+
+```python
+# Increment the index
+index += 1
+```
+
+Prefer comments such as:
+
+```python
+# RSGDResourceIndex is generation-significant: the runtime selector walks
+# entries cumulatively in stored order, so sorting by resource identity here
+# would change deterministic output.
+```
+
+Public or non-trivial functions/classes should use concise docstrings where their contract, assumptions, return semantics, or domain role are not obvious from the signature.
+
+Comments should remain accurate as behavior changes. When changing a recovered rule, update or remove comments that encode the old interpretation in the same change.
+
 ## Commits
 
 Prefer small, reviewable commits.

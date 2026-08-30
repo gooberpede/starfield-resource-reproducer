@@ -1,0 +1,33 @@
+from pathlib import Path
+
+import pytest
+
+from starfield_resource_reproducer.domain import (
+    CanonicalBodyResources,
+    FormId,
+    IRESNode,
+    Planet,
+)
+from starfield_resource_reproducer.load_data import (
+    load_canonical_oracle,
+    load_generation_data,
+    load_ires_hierarchy,
+)
+
+
+DATA_DIR = Path(__file__).resolve().parents[1] / "data"
+
+
+@pytest.fixture(scope="session")
+def generation_data() -> dict[FormId, Planet]:
+    return load_generation_data(DATA_DIR / "PlanetResourceGeneration_v5.csv")
+
+
+@pytest.fixture(scope="session")
+def ires_nodes() -> dict[FormId, IRESNode]:
+    return load_ires_hierarchy(DATA_DIR / "Starfield_IRES_Hierarchy.csv")
+
+
+@pytest.fixture(scope="session")
+def canonical_oracle() -> dict[FormId, CanonicalBodyResources]:
+    return load_canonical_oracle(DATA_DIR / "planet-all-resources.csv")
