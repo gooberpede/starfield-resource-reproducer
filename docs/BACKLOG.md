@@ -8,14 +8,14 @@ Do not attempt to implement every theoretical engine edge case before the first 
 
 ## Phase 0 — Repository Bootstrap
 
-- [ ] Create Python project/environment.
-- [ ] Add `AGENTS.md` and documentation.
-- [ ] Add `.gitignore`.
-- [ ] Add `pyproject.toml`.
-- [ ] Establish `src/` package layout.
-- [ ] Establish `tests/`.
-- [ ] Add canonical data files under an agreed local/data path.
-- [ ] Ensure deprecated `Starfield_InorganicResources_Canonical.csv` is absent or clearly excluded.
+- [x] Create Python project/environment.
+- [x] Add `AGENTS.md` and documentation.
+- [x] Add `.gitignore`.
+- [x] Add `pyproject.toml`.
+- [x] Establish `src/` package layout.
+- [x] Establish `tests/`.
+- [x] Add canonical data files under an agreed local/data path.
+- [x] Ensure deprecated `Starfield_InorganicResources_Canonical.csv` is absent or clearly excluded.
 
 Acceptance:
 

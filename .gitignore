@@ -13,3 +13,14 @@ tmp/
 
 # Local working material
 .local-work/
+
+# Python environments / caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Python build artifacts
+*.egg-info/
+build/
+dist/
