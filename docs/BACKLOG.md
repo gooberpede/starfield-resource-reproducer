@@ -148,10 +148,10 @@ levels advance the stream to Argon's passing Neon roll at draw 17.
 
 ## Phase 5 — Full Canonical Validation
 
-- [ ] Run every body in `planet-all-resources.csv` for which static reproducer inputs exist.
-- [ ] Compare inorganic predicted vs canonical sets.
-- [ ] Produce summary metrics.
-- [ ] Produce mismatch report with:
+- [x] Run every body in `planet-all-resources.csv` for which static reproducer inputs exist.
+- [x] Compare inorganic predicted vs canonical sets.
+- [x] Produce summary metrics.
+- [x] Produce mismatch report with:
   - PlanetFormID;
   - planet/system;
   - expected;
@@ -159,7 +159,24 @@ levels advance the stream to Argon's passing Neon roll at draw 17.
   - missing;
   - unexpected;
   - diagnostic pointer/reason where available.
-- [ ] Group mismatches by apparent pattern.
+- [x] Group mismatches by apparent pattern.
+
+Brief 06 baseline (current canonical files):
+
+```text
+validation population  1,444
+FINAL_SET_EXACT        1,281 (88.71%)
+mismatches               163
+generation errors           0
+coverage-only bodies         0
+```
+
+The dominant mismatch class is unexpected output on resource-dense multi-biome
+planets: 148 are unexpected-only and one mixed mismatch also contains an
+unexpected resource. Separately, all 15 missing occurrences are Water, matching
+the known PROVISIONAL Everywhere boundary. These are research targets, not
+accepted production behavior. The next priority is the resource-slot/family
+limit and insertion-order class; Everywhere insertion remains a separate follow-up.
 
 Do not change rules merely to increase aggregate match rate without evidence.
 

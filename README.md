@@ -9,8 +9,10 @@ A standalone reference implementation of Starfield's deterministic planetary res
 The reverse-engineering phase has recovered most of the central generation path from Creation Kit live traces, Ghidra analysis, xEdit extraction, and verified game/runtime observations.
 
 The runtime-proven split between biome-shuffle integer bounded selection and
-descendant float32-scaled selection is now implemented. The next milestone is
-full canonical-dataset validation.
+descendant float32-scaled selection is implemented. Brief 06 has now run the
+complete canonical inorganic intersection: 1,281 of 1,444 planets are exact
+final-set matches (88.71%), with no dataset coverage gaps or generation errors.
+The 163 mismatches remain active research evidence rather than accepted output.
 
 The generation engine now carries one explicitly accounted PRNG stream through
 biome shuffle, effective-RSGD resolution, provisional Everywhere discovery,
@@ -24,6 +26,13 @@ VII-b, Kreet, and Algorab I exactly. Algorab also agrees internally with its
 live Lead trace: scaled descendant selection takes Silver then Mercury and ends
 at draw 22. Empty descendant levels consume one raw MT word, while family-cache
 hits bypass descendant generation without consuming descendant RNG.
+
+The full baseline clusters primarily around unexpected resources on dense,
+multi-biome planets, consistent with the still-unrecovered resource-slot/family
+limit boundary. All missing occurrences are Water and are tracked separately
+against the PROVISIONAL upstream Everywhere model. See
+`docs/experiments/06-full-canonical-validation.md` for the measured baseline and
+recommended next investigation.
 
 ## Goal
 

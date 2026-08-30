@@ -336,12 +336,17 @@ Responsibilities:
 
 - compare an independent generation result with an inorganic canonical body;
 - compare expected/predicted resource membership by FormID;
-- produce exact-match status;
-- report missing/unexpected FormIDs;
-- retain readable metadata;
+- derive the generation/oracle-inorganic intersection and report coverage gaps;
+- retain exact, missing-only, unexpected-only, mixed, and generation-error status;
+- classify family-, biome-, RSGD-, override-, cache-, and RSCS-aware dimensions;
+- aggregate the complete corpus without aborting on one planet error;
+- export deterministic machine-readable mismatch rows;
 - identify an evidence-qualified first plausible mismatch region.
 
-Full-dataset aggregation and mismatch-file output remain Brief 06 work.
+`validate_all_planets()` owns batch comparison, not generation. The oracle is
+supplied only after each independent prediction is complete. Final-set exactness
+is reported separately from trace exactness because the corpus oracle does not
+contain per-operation RNG traces.
 
 Validation must never alter generator behavior.
 
