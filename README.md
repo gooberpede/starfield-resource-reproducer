@@ -8,15 +8,19 @@ A standalone reference implementation of Starfield's deterministic planetary res
 
 The reverse-engineering phase has recovered most of the central generation path from Creation Kit live traces, Ghidra analysis, xEdit extraction, and verified game/runtime observations.
 
-The next milestone is to encode those rules in a small standalone reproducer, validate known worked examples, and then compare predictions across the full canonical dataset.
+The next milestone is to resolve the first precisely diagnosed worked-case
+mismatch before comparing predictions across the full canonical dataset.
 
 The generation engine now carries one explicitly accounted PRNG stream through
 biome shuffle, effective-RSGD resolution, provisional Everywhere discovery,
 Special/Common selection, and planet-scoped Common-family generation. The
 Brief 03 partial orchestration API remains available for outer-decision research;
 the family API adds structural descendant paths, independent inclusion/emission,
-and FormID-keyed cache reuse. Complete worked-planet validation remains planned
-for the next phase.
+and FormID-keyed cache reuse. A complete `generate_planet()` prediction API now
+assembles Everywhere, Special, and emitted family resources without consulting
+the oracle. A separate FormID-based validator reproduces Oberon, Mimas, and
+Decaran VII-b exactly. Kreet deterministically misses Neon and reports the
+preceding zero-candidate Lead levels plus Argon's exact inclusion draw.
 
 ## Goal
 

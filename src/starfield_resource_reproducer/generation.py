@@ -10,7 +10,7 @@ Responsibilities:
 Boundaries:
     CSV loading and oracle validation remain separate. ``orchestrate_planet``
     retains the Brief 03 partial boundary; ``generate_planet_families`` adds the
-    family layer without representing a final canonical-validation workflow.
+    family layer; ``generate_planet`` exposes the complete prediction boundary.
 Evidence notes:
     Kreet proves the observed shuffle and processing order. The broader loop and
     empty-Special behavior are evidence-qualified below and remain easy to replace.
@@ -126,8 +126,8 @@ class BiomeFamilyGenerationResult:
 
 
 @dataclass(frozen=True, slots=True)
-class PlanetFamilyGenerationResult:
-    """Planet-scope family results without canonical-oracle comparison."""
+class PlanetGenerationResult:
+    """Complete deterministic planet prediction, independent of the oracle."""
 
     planet: Planet
     initial_biomes: tuple[Biome, ...]
@@ -135,10 +135,28 @@ class PlanetFamilyGenerationResult:
     everywhere_resources: tuple[ResourceRef, ...]
     biome_results: tuple[BiomeFamilyGenerationResult, ...]
     family_cache: Mapping[FormId, ResourceFamilyResult]
-    emitted_resources: tuple[ResourceRef, ...]
-    emitted_form_ids: frozenset[FormId]
+    special_resources: tuple[ResourceRef, ...]
+    family_results: tuple[ResourceFamilyResult, ...]
+    predicted_resources: tuple[ResourceRef, ...]
+    predicted_form_ids: frozenset[FormId]
     events: tuple[DiagnosticEvent, ...]
     final_draw_count: int
+
+    @property
+    def emitted_resources(self) -> tuple[ResourceRef, ...]:
+        """Compatibility name retained for the Brief 04 API."""
+
+        return self.predicted_resources
+
+    @property
+    def emitted_form_ids(self) -> frozenset[FormId]:
+        """Compatibility name retained for the Brief 04 API."""
+
+        return self.predicted_form_ids
+
+
+# Brief 04 callers may continue importing the earlier conceptual name.
+PlanetFamilyGenerationResult = PlanetGenerationResult
 
 
 def shuffle_biomes(
@@ -259,13 +277,18 @@ def generate_family(
                     EventKind.DESCENDANT_OMITTED,
                     operation="skip_empty_descendant_level",
                     root=root,
+                    current_structural_node=current_form_id,
                     rarity=rarity,
+                    requested_rarity=rarity,
+                    candidate_count=0,
                     selected_candidate=None,
                     reason="no_candidates",
                     evidence_status="PROVISIONAL",
                     inclusion_rng_consumed=False,
-                    candidate_rng_consumed=False,
+                    index_rng_consumed=False,
                     structural_node_changed=False,
+                    structural_node_after=current_form_id,
+                    draw_count_before=rng.draw_count,
                     draw_count_after=rng.draw_count,
                 )
             )
@@ -391,6 +414,7 @@ def get_or_generate_family(
             draw_count_before=draw_count_before,
             draw_count_after=rng.draw_count,
             descendant_rng_consumed=False,
+            cached_emitted_family=cached.emitted_resources,
             evidence_status="PROVISIONAL",
         )
         return FamilyAccessResult(
@@ -425,10 +449,19 @@ def generate_planet_families(
     planet: Planet,
     ires_nodes: Mapping[FormId, IRESNode],
 ) -> PlanetFamilyGenerationResult:
-    """Run outer orchestration and family generation with one evolving RNG."""
+    """Compatibility wrapper for :func:`generate_planet`."""
+
+    return generate_planet(planet, ires_nodes)
+
+
+def generate_planet(
+    planet: Planet,
+    ires_nodes: Mapping[FormId, IRESNode],
+) -> PlanetGenerationResult:
+    """Generate the complete predicted inorganic set without oracle input."""
 
     result = _run_planet(planet, ires_nodes)
-    if not isinstance(result, PlanetFamilyGenerationResult):  # pragma: no cover
+    if not isinstance(result, PlanetGenerationResult):  # pragma: no cover
         raise AssertionError("family generation returned a partial result")
     return result
 
@@ -436,7 +469,7 @@ def generate_planet_families(
 def _run_planet(
     planet: Planet,
     ires_nodes: Mapping[FormId, IRESNode] | None,
-) -> PlanetOrchestrationResult | PlanetFamilyGenerationResult:
+) -> PlanetOrchestrationResult | PlanetGenerationResult:
     """Shared planet pipeline; descendants are enabled only with an IRES graph."""
 
     # PROVEN: one RSCS-seeded RNG state evolves through shuffle and every biome.
@@ -476,6 +509,7 @@ def _run_planet(
     family_biome_results: list[BiomeFamilyGenerationResult] = []
     family_cache: dict[FormId, ResourceFamilyResult] = {}
     emitted_resources: list[ResourceRef] = list(everywhere_resources)
+    special_resources: list[ResourceRef] = []
     for processing_position, biome in enumerate(shuffle.biomes):
         biome_events: list[DiagnosticEvent] = [
             event(
@@ -538,6 +572,7 @@ def _run_planet(
 
         family_access: FamilyAccessResult | None = None
         if special_entry is not None:
+            special_resources.append(special_entry.resource)
             emitted_resources.append(special_entry.resource)
         if ires_nodes is not None and common_entry is not None:
             family_access = get_or_generate_family(
@@ -581,15 +616,26 @@ def _run_planet(
     )
     if ires_nodes is not None:
         unique_emitted = _unique_resources(emitted_resources)
-        return PlanetFamilyGenerationResult(
+        all_events.append(
+            event(
+                EventKind.PLANET_GENERATION_END,
+                operation="assemble_predicted_inorganic_resources",
+                predicted_resources=unique_emitted,
+                predicted_form_ids=frozenset(resource.form_id for resource in unique_emitted),
+                final_draw_count=rng.draw_count,
+            )
+        )
+        return PlanetGenerationResult(
             planet=planet,
             initial_biomes=initial_biomes,
             shuffled_biomes=shuffle.biomes,
             everywhere_resources=everywhere_resources,
             biome_results=tuple(family_biome_results),
             family_cache=MappingProxyType(dict(family_cache)),
-            emitted_resources=unique_emitted,
-            emitted_form_ids=frozenset(
+            special_resources=_unique_resources(special_resources),
+            family_results=tuple(family_cache.values()),
+            predicted_resources=unique_emitted,
+            predicted_form_ids=frozenset(
                 resource.form_id for resource in unique_emitted
             ),
             events=tuple(all_events),

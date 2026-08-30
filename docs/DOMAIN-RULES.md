@@ -404,8 +404,9 @@ Exact behavior for zero candidates and other edge branches remains mismatch-driv
 
 The Brief 04 implementation consumes neither an inclusion nor candidate-index
 draw when the filtered candidate list is empty, and retains the current structural
-node. Diagnostics expose both non-consumption decisions. No live zero-candidate
-branch currently proves this behavior, so it remains deliberately replaceable.
+node. Diagnostics expose candidate count, structural node before/after, and draw
+counts around both non-consumption decisions. No live zero-candidate branch
+currently proves this behavior, so it remains deliberately replaceable.
 
 ## Family Configuration Cache
 
@@ -492,6 +493,22 @@ Neon
 Iron
 Alkanes
 ```
+
+### Brief 05 model mismatch
+
+**PROVISIONAL production behavior; COUNTERFACTUAL diagnostic only**
+
+The current no-draw zero-candidate interpretation produces every observed Kreet
+resource except Neon. Argon's Neon inclusion uses raw draw 15 (`1553730631`),
+converted to `0.3617524802684784`, which fails its `0.15` threshold.
+
+Before that decision, Lead encounters empty Exotic and Unique candidate levels;
+both currently leave the draw count at 8. A diagnostics-only replay shows that
+one extra earlier draw would still fail Neon (`0.7946245074272156`), while two
+extra earlier draws would move its inclusion operation to a value of
+`0.08317194879055023`, which would pass. This is not runtime proof that either
+empty level consumes a draw. It only prioritizes the zero-candidate branch for
+the next targeted trace and does not alter production generation.
 
 ## Canonical Validation Oracle
 

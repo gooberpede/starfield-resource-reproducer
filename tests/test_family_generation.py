@@ -154,6 +154,9 @@ def test_family_cache_reuses_form_id_without_descendant_draws(
     assert list(cache) == [root_entry.resource_form_id]
     assert reused.events[0].kind is EventKind.FAMILY_CACHE_HIT
     assert reused.events[0]["descendant_rng_consumed"] is False
+    assert reused.events[0]["draw_count_before"] == after_generation
+    assert reused.events[0]["draw_count_after"] == after_generation
+    assert reused.events[0]["cached_emitted_family"] == generated.family.emitted_resources
 
 
 def test_zero_candidate_levels_are_provisional_and_consume_no_rng(

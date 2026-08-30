@@ -178,7 +178,7 @@ emitted_resources
 
 Preserve structural selections even when a level was not emitted.
 
-### `GenerationResult`
+### `PlanetGenerationResult`
 
 ```text
 planet
@@ -187,8 +187,28 @@ everywhere_resources
 special_resources
 family_cache
 predicted_resources
+predicted_form_ids
 events
+final_draw_count
 ```
+
+This is the complete prediction boundary. It contains no canonical-oracle data.
+
+### `PlanetValidationResult`
+
+```text
+planet_form_id
+predicted_form_ids
+expected_form_ids
+missing_form_ids
+unexpected_form_ids
+exact_match
+suspected_cause
+first_plausible_divergence
+```
+
+Readable resource metadata is retained alongside FormID membership, but identity
+and comparison semantics remain FormID-based.
 
 ## Modules
 
@@ -245,12 +265,13 @@ Responsibilities:
 - generate immutable Common-family configurations;
 - process descendant levels in rarity order with exact draw accounting;
 - maintain the planet-scope FormID-keyed family cache and reuse cached results.
+- assemble complete planet output from Everywhere, Special, and emitted families.
 
 `orchestrate_planet()` stops after Common-root selection. The separate
-`generate_planet_families()` pipeline uses the same outer control flow but runs a
-new family immediately after its root is selected, before the shared RNG advances
-to the next biome. It exposes emitted membership for family research but is not a
-canonical validation result.
+`generate_planet()` pipeline uses the same outer control flow but runs a new
+family immediately after its root is selected, before the shared RNG advances to
+the next biome. `generate_planet_families()` remains a compatibility wrapper.
+The result is a complete prediction, not a canonical validation result.
 
 No CSV access.
 
@@ -277,7 +298,10 @@ BIOME_END
 PLANET_END
 ```
 
-Prefer structured events that the CLI can render rather than ad-hoc print statements throughout generation code.
+Prefer structured events that the deterministic timeline formatter can render
+rather than ad-hoc print statements throughout generation code. Diagnostics-only
+counterfactual draws use an independent RNG and are explicitly labeled
+`COUNTERFACTUAL / NOT RUNTIME-PROVEN`.
 
 Descendant, cache, and emission events are added only with their corresponding
 generation stages. Brief 04 adds family begin/end, root emission, per-level
@@ -287,12 +311,14 @@ candidate/inclusion/selection/emission, and cache-hit events.
 
 Responsibilities:
 
-- filter `planet-all-resources.csv` to inorganic rows;
-- compare expected/predicted sets by `PlanetFormID`;
+- compare an independent generation result with an inorganic canonical body;
+- compare expected/predicted resource membership by FormID;
 - produce exact-match status;
 - report missing/unexpected FormIDs;
-- aggregate match statistics;
-- write mismatch CSV/JSON.
+- retain readable metadata;
+- identify an evidence-qualified first plausible mismatch region.
+
+Full-dataset aggregation and mismatch-file output remain Brief 06 work.
 
 Validation must never alter generator behavior.
 

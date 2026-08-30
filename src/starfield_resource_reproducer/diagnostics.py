@@ -1,12 +1,14 @@
 """Structured diagnostics for generation research.
 
 Purpose:
-    Represent auditable orchestration events without coupling generation to a CLI.
+    Represent and render auditable generation events without coupling generation
+    or validation to a CLI.
 Responsibilities:
     Name event kinds, retain operation-specific immutable fields, and attach the
     exact PRNG draw that caused a random decision.
 Boundaries:
-    This module does not render events, evolve RNG state, or make selections.
+    This module does not evolve production RNG state or make selections. Its
+    counterfactual helper advances an independent RNG solely for research.
 Evidence notes:
     Event fields deliberately retain evidence-sensitive details such as bounds,
     ordered thresholds, and whether an empty selector consumed RNG.
@@ -16,10 +18,11 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
+from collections.abc import Iterable
 from typing import Any
 
 from .domain import FormId
-from .prng import RngDraw
+from .prng import RngDraw, StarfieldRng
 
 
 class EventKind(str, Enum):
@@ -49,6 +52,7 @@ class EventKind(str, Enum):
     FAMILY_CACHE_HIT = "FAMILY_CACHE_HIT"
     BIOME_END = "BIOME_END"
     PLANET_ORCHESTRATION_END = "PLANET_ORCHESTRATION_END"
+    PLANET_GENERATION_END = "PLANET_GENERATION_END"
 
 
 @dataclass(frozen=True, slots=True)
@@ -98,3 +102,100 @@ def event(
     """Build an event while preserving the caller's deliberate field order."""
 
     return DiagnosticEvent(kind, tuple(fields.items()), operation, rng_draw)
+
+
+@dataclass(frozen=True, slots=True)
+class CounterfactualFloatDraw:
+    """A diagnostics-only shifted float draw that never alters generation."""
+
+    evidence_status: str
+    original_draw_number: int
+    extra_draws_before: int
+    counterfactual_draw: RngDraw
+
+
+def counterfactual_shifted_float(
+    seed: int, original_draw_number: int, extra_draws_before: int
+) -> CounterfactualFloatDraw:
+    """Return the float at a shifted draw position using an independent RNG.
+
+    COUNTERFACTUAL / NOT RUNTIME-PROVEN: this answers displacement questions
+    only. It must never be called by production generation control flow.
+    """
+
+    if original_draw_number <= 0:
+        raise ValueError("original_draw_number must be positive")
+    if extra_draws_before < 0:
+        raise ValueError("extra_draws_before must be non-negative")
+    rng = StarfieldRng(seed)
+    target = original_draw_number + extra_draws_before
+    for _ in range(target - 1):
+        rng.next_uint32()
+    rng.next_float01()
+    draw = rng.last_draw
+    if draw is None:  # pragma: no cover - guarded by the float call above.
+        raise AssertionError("counterfactual draw was not recorded")
+    return CounterfactualFloatDraw(
+        evidence_status="COUNTERFACTUAL / NOT RUNTIME-PROVEN",
+        original_draw_number=original_draw_number,
+        extra_draws_before=extra_draws_before,
+        counterfactual_draw=draw,
+    )
+
+
+def format_diagnostic_timeline(
+    planet_name: str,
+    seed: int,
+    events: Iterable[DiagnosticEvent],
+) -> str:
+    """Render structured events in stable generation order for investigation."""
+
+    lines = [f"Planet {planet_name}", f"Seed {seed}"]
+    for item in events:
+        draw = item.rng_draw
+        prefix = f"draw {draw.draw_number}" if draw is not None else "event"
+        details: list[str] = []
+        if draw is not None:
+            details.extend((f"raw={draw.raw_value}", f"converted={draw.converted_value}"))
+        for name, value in item.fields:
+            if name in {
+                "biome_indices",
+                "biome_name",
+                "bound",
+                "selected_position",
+                "resulting_order",
+                "rsgd_editor_id",
+                "resolution_source",
+                "rarity",
+                "candidate_count",
+                "candidates",
+                "selected_resource",
+                "selected_candidate",
+                "roll",
+                "threshold",
+                "included",
+                "draw_count_before",
+                "draw_count_after",
+                "inclusion_rng_consumed",
+                "index_rng_consumed",
+                "structural_node_after",
+                "evidence_status",
+            }:
+                rendered = _timeline_value(value)
+                details.append(f"{name}={rendered}")
+        lines.append(f"{prefix} {item.kind.value}" + (f" {' '.join(details)}" if details else ""))
+    return "\n".join(lines)
+
+
+def _timeline_value(value: Any) -> Any:
+    """Reduce domain-rich values to stable, readable timeline labels."""
+
+    if isinstance(value, Enum):
+        return value.value
+    if isinstance(value, tuple):
+        return tuple(_timeline_value(item) for item in value)
+    name = getattr(value, "name", None)
+    form_id = getattr(value, "form_id", None)
+    if name is not None and form_id is not None:
+        return f"{name}[{form_id}]"
+    return value

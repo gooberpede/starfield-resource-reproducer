@@ -94,6 +94,7 @@ STRONG compatibility findings rather than universal PROVEN rules.
 - [x] Water present in provisional Everywhere result.
 - [x] Nickel selected as Common root.
 - [x] no emitted descendants for observed seed.
+- [x] complete predicted set matches oracle by FormID.
 
 ### Mimas
 
@@ -103,6 +104,7 @@ STRONG compatibility findings rather than universal PROVEN rules.
 - [x] Palladium emitted.
 - [x] Tasine structurally chosen but omitted.
 - [x] final relevant set matches oracle.
+- [x] exact comparison reports no missing/unexpected FormIDs.
 
 ### Decaran VII-b
 
@@ -111,20 +113,36 @@ STRONG compatibility findings rather than universal PROVEN rules.
 - [x] Uranium root.
 - [x] Vytinium reached via ordinary IRES traversal.
 - [x] final set matches oracle.
+- [x] exact comparison uses FormID despite Helium-3/Helium3 naming.
 
 ### Kreet
 
 - [x] initial order `[0, 1, 2]`.
 - [x] shuffled processing order `[2, 0, 1]`.
-- [ ] Volcanic -> Lead + Silver.
+- [x] Volcanic -> Lead + Silver.
 - [ ] Frozen Volcanic -> Argon + Neon.
-- [ ] Mountains -> Iron + Alkanes.
+- [x] Mountains -> Iron + Alkanes.
 - [x] Water present upstream/provisionally.
 - [ ] final set matches oracle.
+- [x] deterministic missing Neon mismatch is reported by FormID.
+- [x] Argon/Neon inclusion draw and preceding Lead zero-candidate levels are exposed.
+- [x] diagnostics-only two-draw displacement counterfactual is labeled unproven.
 
 Acceptance:
 
-All four cases pass with intermediate diagnostic assertions.
+Oberon, Mimas, and Decaran VII-b match exactly. Kreet remains an
+evidence-preserving mismatch: the current model omits Neon at Argon draw 15 and
+identifies the preceding Lead zero-candidate branch as the first plausible RNG
+divergence region.
+
+### Worked-case validation infrastructure
+
+- [x] Complete oracle-independent planet prediction result.
+- [x] Separate FormID-based oracle comparison result.
+- [x] Deterministic structured-event timeline formatter.
+- [x] Missing/unexpected resource diagnostics with readable metadata.
+- [x] Zero-candidate and cache-hit draw accounting.
+- [x] Evidence-qualified mismatch classification.
 
 ## Phase 5 — Full Canonical Validation
 
