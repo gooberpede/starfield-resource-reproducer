@@ -10,6 +10,10 @@ The reverse-engineering phase has recovered most of the central generation path 
 
 The next milestone is to encode those rules in a small standalone reproducer, validate known worked examples, and then compare predictions across the full canonical dataset.
 
+The isolated PRNG compatibility layer now reproduces the supplied Mimas float
+anchors and Kreet biome-swap choices with explicit raw-output draw accounting.
+The full resource-generation engine remains the next implementation stage.
+
 ## Goal
 
 Given authoritative static inputs for a planet:

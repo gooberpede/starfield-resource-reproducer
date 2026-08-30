@@ -63,6 +63,50 @@ The same evolving PRNG state is used through subsequent generation.
 
 Exact API/conversion behavior must be validated in `prng.py`; statistical equivalence is insufficient.
 
+### Raw output and draw accounting
+
+**PROVEN for the Mimas and Kreet live anchors; STRONG as the general interface**
+
+The compatibility layer uses the classic 32-bit MT19937 state initialization
+and tempering sequence. One diagnostic draw means one extracted raw 32-bit
+MT19937 output, regardless of which public conversion consumes it.
+
+Python's `random.Random` API is not used because its integer seeding and helper
+conversion/consumption behavior do not reproduce this observable interface.
+
+### Probability float conversion
+
+**STRONG**
+
+The Mimas values are reproduced, to their recorded nine decimal places, by
+binary32 arithmetic equivalent to:
+
+```text
+float32(float32(raw_uint32) * float32(2^-32))
+    * float32(0.99999)
+```
+
+with the final multiplication rounded to binary32. This reproduces the known
+Common, Uncommon, Rare, and Exotic rolls without weakening trace tolerances.
+The available trace does not distinguish every algebraically equivalent
+binary32 construction, so the exact source-level expression is not labeled
+PROVEN.
+
+### Bounded index conversion
+
+**STRONG**
+
+The current compatible operation consumes one raw output and returns:
+
+```text
+raw_uint32 % upper_bound
+```
+
+It reproduces both observed Kreet swap choices. A bound of one still consumes a
+raw output and returns zero; that consumption behavior is **PROVEN** by Mimas.
+Kreet alone does not exclude every bounded construction that produces the same
+two choices, so modulo conversion remains STRONG rather than PROVEN.
+
 ## Biome List Construction
 
 ### Initial list order
@@ -93,6 +137,11 @@ Kreet observed:
 initial:  [0, 1, 2]
 shuffled: [2, 0, 1]
 ```
+
+The compatibility harness reproduces the observed swaps as target/selected
+index pairs `(1, 0)` and `(2, 0)`, consuming the first two raw outputs. The
+harness is not yet the generation engine, and the broader shuffle loop semantics
+remain subject to later trace/canonical validation.
 
 ### Sequential processing
 

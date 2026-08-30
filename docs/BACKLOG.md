@@ -47,12 +47,12 @@ Acceptance:
 
 Highest risk before broad implementation.
 
-- [ ] Implement candidate MT19937 wrapper.
-- [ ] Confirm unsigned 32-bit seed handling.
-- [ ] Reproduce known live trace random values at known draw positions.
-- [ ] Verify bounded-index conversion used by shuffle/candidate selection.
-- [ ] Record draw count in diagnostics.
-- [ ] Do not proceed with broad validation if PRNG mismatch remains unexplained.
+- [x] Implement candidate MT19937 wrapper.
+- [x] Confirm unsigned 32-bit seed handling.
+- [x] Reproduce known live trace random values at known draw positions.
+- [x] Verify bounded-index conversion used by shuffle/candidate selection.
+- [x] Record draw count in diagnostics.
+- [x] Do not proceed with broad validation if PRNG mismatch remains unexplained.
 
 Known anchors include Mimas:
 
@@ -65,6 +65,11 @@ L3 inclusion        ~= 0.108883217
 ```
 
 Exact expected draw positions should be specified in the implementation brief once the current trace model is encoded.
+
+Brief 02 reproduces all supplied anchors. The Mimas Common roll is raw draw 2;
+the high-level operation responsible for the one-word prefix remains explicitly
+unresolved. Bounded modulo conversion and the binary32 float expression are
+STRONG compatibility findings rather than universal PROVEN rules.
 
 ## Phase 3 — Core Generation v0.1
 
