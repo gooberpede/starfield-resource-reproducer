@@ -1,0 +1,15 @@
+# Executables / binaries
+*.exe
+*.dll
+*.pdb
+
+# Generated exports
+exports/*
+!exports/.gitkeep
+
+# Local scratch
+scratch/
+tmp/
+
+# Local working material
+.local-work/
