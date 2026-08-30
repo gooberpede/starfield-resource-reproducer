@@ -168,6 +168,22 @@ When behavior changes, update the relevant documentation in the same change:
 
 Do not rewrite historical evidence merely to make documentation look cleaner. If a recovered rule changes, record the correction explicitly.
 
+### Preserve text encoding
+
+All repository text files must remain valid UTF-8.
+
+Do not introduce mojibake or encoding-corrupted punctuation such as `ÔÇö`, `Ôëê`, `Ã`, `â`, or replacement characters (`�`).
+
+When editing Markdown, source, tests, or other text files:
+
+- preserve existing UTF-8 encoding;
+- prefer ordinary ASCII punctuation when there is any uncertainty about tool/editor encoding;
+- do not "repair" intentionally quoted mojibake when it is present as an example or test fixture;
+- before completion, inspect newly added or modified prose for obvious encoding corruption;
+- run `git diff --check`.
+
+If encoding corruption appears in generated or edited text, correct it before reporting the task complete.
+
 ## Code Documentation and Comments
 
 Implementation files containing substantive project logic should include a concise module-level header describing the file's intent.

@@ -41,11 +41,15 @@ Lead child in serialized order. Reversing source order would make index 1 select
 Silver, but the trace has not established such a generic reversal and Kreet must
 remain intact. No production ordering change is justified.
 
-The leading alternative is bounded-index conversion: multiplication scaling
-would map draw 18 to index 0, while the current STRONG modulo conversion maps it
-to index 1. This is a hypothesis, not yet proof.
+Brief 05C's narrow trace confirmed that the live bounded helper returns index 0
+at draw 18. The runtime therefore selects Silver in serialized order; candidate
+reordering is not required. Modulo is disproven for this descendant call.
 
-## Minimal live experiment
+A generic scaled replacement remains blocked because it changes Kreet's proven
+shuffle selections from `(0, 0)` to `(1, 2)`. See
+`docs/experiments/05C-algorab-bounded-index.md`.
+
+## Historical live experiment
 
 Repeat only Algorab I's Volcanic Lead L1 call to `FUN_14157F120`:
 

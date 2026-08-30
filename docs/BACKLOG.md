@@ -50,7 +50,8 @@ Highest risk before broad implementation.
 - [x] Implement candidate MT19937 wrapper.
 - [x] Confirm unsigned 32-bit seed handling.
 - [x] Reproduce known live trace random values at known draw positions.
-- [x] Verify bounded-index conversion used by shuffle/candidate selection.
+- [ ] Resolve whether shuffle and descendant selection use distinct bounded
+  conversions; generic scaling fixes Algorab but breaks Kreet's live shuffle.
 - [x] Record draw count in diagnostics.
 - [x] Do not proceed with broad validation if PRNG mismatch remains unexplained.
 
@@ -68,8 +69,9 @@ Exact expected draw positions should be specified in the implementation brief on
 
 Brief 02 reproduces all supplied anchors. The Mimas Common roll is raw draw 2;
 the high-level operation responsible for the one-word prefix remains explicitly
-unresolved. Bounded modulo conversion and the binary32 float expression are
-STRONG compatibility findings rather than universal PROVEN rules.
+unresolved. The binary32 probability expression remains STRONG. Brief 05C
+disproves modulo as the generic descendant bounded conversion while exposing a
+conflict with Kreet's proven shuffle selections.
 
 ## Phase 3 — Core Generation v0.1
 
@@ -171,8 +173,8 @@ Possible categories:
 - [ ] Everywhere/Water upstream insertion semantics.
 - [x] family-cache RNG consumption on repeated-root biomes (Algorab I live proof).
 - [x] no-candidate RNG consumption (Algorab I live proof: one raw word).
-- [ ] Algorab I Lead structural path / bounded-index interpretation (canonical
-  set exact; current model draw 23 versus live-shaped draw 22).
+- [ ] shuffle versus descendant bounded-index path distinction; Algorab proves
+  scaled descendant index 0 while Kreet's proven shuffle requires `(0, 0)`.
 - [ ] zero/100-percent inclusion draw behavior.
 - [ ] five-family limit.
 - [ ] eight-resource-slot limit.

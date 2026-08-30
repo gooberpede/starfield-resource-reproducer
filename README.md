@@ -8,8 +8,9 @@ A standalone reference implementation of Starfield's deterministic planetary res
 
 The reverse-engineering phase has recovered most of the central generation path from Creation Kit live traces, Ghidra analysis, xEdit extraction, and verified game/runtime observations.
 
-The next milestone is to resolve Algorab I's precisely localized Lead structural
-path discrepancy before comparing predictions across the full canonical dataset.
+The next milestone is to resolve whether biome shuffle and descendant selection
+use distinct bounded-index paths before comparing predictions across the full
+canonical dataset.
 
 The generation engine now carries one explicitly accounted PRNG stream through
 biome shuffle, effective-RSGD resolution, provisional Everywhere discovery,

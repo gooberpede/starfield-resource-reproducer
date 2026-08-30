@@ -94,18 +94,28 @@ PROVEN.
 
 ### Bounded index conversion
 
-**STRONG**
+**DISPROVEN as a generic rule; compatibility hold remains in production**
 
-The current compatible operation consumes one raw output and returns:
+The current implementation consumes one raw output and returns:
 
 ```text
 raw_uint32 % upper_bound
 ```
 
-It reproduces both observed Kreet swap choices. A bound of one still consumes a
-raw output and returns zero; that consumption behavior is **PROVEN** by Mimas.
-Kreet alone does not exclude every bounded construction that produces the same
-two choices, so modulo conversion remains STRONG rather than PROVEN.
+It reproduces both observed Kreet shuffle choices, but Algorab I descendant draw
+18 (`1826241303`, bound 2) proves modulo is not the generic runtime conversion:
+modulo returns 1 while the live helper returned 0.
+
+The Algorab trace supports float scaling and truncation. Reusing the current
+STRONG binary32 probability path gives `0.8504013419151306`, truncated to index
+0. That same generic conversion would change Kreet's proven shuffle selections
+from `(0, 0)` to `(1, 2)`, however. This is the first unresolved divergence.
+Production retains modulo temporarily rather than inventing separate shuffle
+and descendant APIs before a narrow shuffle trace establishes whether the engine
+uses distinct paths or the recovered shuffle call interpretation needs revision.
+
+A bound of one still consumes a raw output and returns zero; that consumption
+behavior remains **PROVEN** by Mimas.
 
 ## Biome List Construction
 
@@ -509,16 +519,12 @@ the canonical inorganic set exactly. The final production draw count is 30.
 
 ## Algorab I Lead Structural Discrepancy
 
-**UNRESOLVED; no production ordering change**
+**CAUSE ISOLATED; generic bounded-path conflict remains unresolved**
 
-The serialized Lead edges place Silver before Tungsten. With the current
-STRONG modulo bounded-index conversion, Algorab draw 18 selects index 1
-(Tungsten), after which Titanium and Dysprosium remain valid structural
-candidates. The live trace instead shows structural advancement at L1/L2 and
-no advancement at L3/L4, consistent with - but not yet proving - the Silver to
-Mercury branch. Exact selected FormIDs or the bounded helper's returned index
-are needed before changing candidate order, candidate construction, or bounded
-index conversion.
+The serialized Lead edges place Silver before Tungsten. Algorab's live bounded
+helper returned index 0 at draw 18, selecting Silver without any candidate
+reordering. The resulting path is Lead -> Silver -> Mercury -> empty Exotic ->
+empty Unique, matching the observed structural shape and final draw 22.
 
 The distinction is explicit:
 
@@ -527,8 +533,9 @@ live-shaped trace: L1/L2 advance, L3/L4 empty, final draw 22
 current model:     L1/L2/L3 advance, L4 empty, final draw 23
 ```
 
-Algorab's predicted final resource membership matches the canonical set, but
-its current internal Lead path and final draw count are not trace-exact.
+Algorab's predicted final resource membership matches the canonical set. Its
+current production path remains trace-inexact only because the generic scaled
+conversion cannot yet replace modulo without breaking Kreet's proven shuffle.
 
 ## Canonical Validation Oracle
 
@@ -554,7 +561,7 @@ Do not block v0.1 on these unless necessary:
 
 - exact upstream Everywhere insertion routine;
 - RSCS = 0 fallback path;
-- Algorab I Lead structural selection / bounded-index interpretation;
+- shuffle versus descendant bounded-index path distinction;
 - five-family limit;
 - eight-resource-slot limit;
 - duplicate suppression side effects;

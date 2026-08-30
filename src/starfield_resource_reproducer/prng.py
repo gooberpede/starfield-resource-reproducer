@@ -8,9 +8,10 @@ Responsibilities:
 Boundaries:
     This module does not shuffle biomes or make resource-generation decisions.
 Evidence notes:
-    MT19937 seeding and shared state are PROVEN.  The explicit conversions are
-    STRONG matches for the Mimas and Kreet live anchors; equivalent bounded
-    constructions have not all been excluded by the available traces.
+    MT19937 seeding and shared state are PROVEN. The probability conversion is
+    a STRONG match for Mimas. Modulo remains temporarily in production because
+    it reproduces Kreet's proven shuffle, but Algorab I disproves it for a
+    descendant bound of two; the runtime path split is unresolved.
 """
 
 from dataclasses import dataclass
@@ -120,8 +121,10 @@ class StarfieldRng:
 
         raw_value = self._extract_uint32()
 
-        # STRONG: raw modulo reproduces both Kreet live swap choices.  The trace
-        # does not yet distinguish this from every equivalent construction.
+        # COMPATIBILITY HOLD: raw modulo reproduces both proven Kreet shuffle
+        # choices, but Algorab I proves it is wrong for descendant selection.
+        # A generic float-scaled replacement breaks Kreet at its first shuffle
+        # draw, so production remains unchanged pending a narrow shuffle trace.
         # PROVEN: upper_bound == 1 still consumes this raw draw; do not shortcut.
         converted = raw_value % upper_bound
 
