@@ -138,10 +138,33 @@ initial:  [0, 1, 2]
 shuffled: [2, 0, 1]
 ```
 
-The compatibility harness reproduces the observed swaps as target/selected
-index pairs `(1, 0)` and `(2, 0)`, consuming the first two raw outputs. The
-harness is not yet the generation engine, and the broader shuffle loop semantics
-remain subject to later trace/canonical validation.
+The generation orchestrator reproduces the observed swaps as target/selected
+index pairs `(1, 0)` and `(2, 0)`, consuming the first two raw outputs.
+
+### Biome shuffle RNG consumption
+
+**STRONG**
+
+The recovered loop visits ascending target positions:
+
+```text
+target = 1 .. N - 1
+bound  = target + 1
+selected = next_index(bound)
+swap(target, selected)
+```
+
+It therefore consumes `N - 1` raw outputs:
+
+```text
+N = 1 -> 0 shuffle draws
+N = 2 -> 1 shuffle draw, bound 2
+N = 3 -> 2 shuffle draws, bounds 2 then 3
+```
+
+Kreet directly proves the `N = 3` swaps. The generalized loop, including the
+zero-draw `N = 1` case, matches the recovered control flow but has not been
+live-traced for every biome count, so it remains STRONG rather than PROVEN.
 
 ### Sequential processing
 
@@ -233,6 +256,19 @@ Helium-3 is category 5 / Special.
 The per-biome generator performs a category-5 weighted selector pass.
 
 Decaran VII-b directly demonstrated Helium-3 matching category 5.
+
+### Empty Special selector consumption
+
+**STRONG**
+
+The recovered category-selector call obtains one probability roll before it
+walks the ordered RSGD entries. Consequently the Special pass consumes one raw
+draw even when the effective RSGD contains zero Special entries, then returns no
+selection. This accounts for Mimas raw draw 1 without a dummy draw or planet
+special case; its Common roll remains raw draw 2 at `0.5611079931259155`.
+
+Decaran VII-b uses the same call shape: Special/Helium-3 consumes draw 1 and
+Common/Uranium consumes draw 2.
 
 ## Common / Family Root Selection
 

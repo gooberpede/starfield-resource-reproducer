@@ -73,31 +73,31 @@ STRONG compatibility findings rather than universal PROVEN rules.
 
 ## Phase 3 — Core Generation v0.1
 
-- [ ] Construct biome list in PNDT `BiomeIndex` order.
-- [ ] Implement deterministic shuffle.
-- [ ] Implement effective RSGD precedence.
-- [ ] Implement provisional Everywhere/Water preload.
-- [ ] Implement Special pass.
-- [ ] Implement Common cumulative weighted selector.
-- [ ] Preserve RSGD order.
-- [ ] Do not normalize weights.
+- [x] Construct biome list in PNDT `BiomeIndex` order.
+- [x] Implement deterministic shuffle.
+- [x] Implement effective RSGD precedence.
+- [x] Implement provisional Everywhere/Water preload.
+- [x] Implement Special pass.
+- [x] Implement Common cumulative weighted selector.
+- [x] Preserve RSGD order.
+- [x] Do not normalize weights.
 - [ ] Implement IRES descendant candidate builder.
 - [ ] Separate structural choice from inclusion/emission.
 - [ ] Consume candidate-index RNG with one candidate.
 - [ ] Implement family configuration cache.
-- [ ] Emit structured diagnostics.
+- [x] Emit structured orchestration diagnostics.
 
 ## Phase 4 — Worked-Case Regression Tests
 
 ### Oberon
 
-- [ ] Water present.
-- [ ] Nickel selected.
+- [x] Water present in provisional Everywhere result.
+- [x] Nickel selected as Common root.
 - [ ] no emitted descendants for observed seed.
 
 ### Mimas
 
-- [ ] Nickel wins against Lead.
+- [x] Nickel wins against Lead in outer orchestration.
 - [ ] Cobalt structurally chosen but omitted.
 - [ ] Platinum structurally chosen but omitted.
 - [ ] Palladium emitted.
@@ -106,20 +106,20 @@ STRONG compatibility findings rather than universal PROVEN rules.
 
 ### Decaran VII-b
 
-- [ ] PNDT RSGD replaces BIOM RSGD.
-- [ ] Helium-3 selected as Special.
-- [ ] Uranium root.
+- [x] PNDT RSGD replaces BIOM RSGD.
+- [x] Helium-3 selected as Special.
+- [x] Uranium root.
 - [ ] Vytinium reached via ordinary IRES traversal.
 - [ ] final set matches oracle.
 
 ### Kreet
 
-- [ ] initial order `[0, 1, 2]`.
-- [ ] shuffled processing order `[2, 0, 1]`.
+- [x] initial order `[0, 1, 2]`.
+- [x] shuffled processing order `[2, 0, 1]`.
 - [ ] Volcanic -> Lead + Silver.
 - [ ] Frozen Volcanic -> Argon + Neon.
 - [ ] Mountains -> Iron + Alkanes.
-- [ ] Water present upstream/provisionally.
+- [x] Water present upstream/provisionally.
 - [ ] final set matches oracle.
 
 Acceptance:

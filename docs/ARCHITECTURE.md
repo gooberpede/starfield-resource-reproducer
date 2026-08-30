@@ -241,9 +241,11 @@ Responsibilities:
 - resolve effective RSGD;
 - Special pass;
 - Common weighted selection;
-- family cache lookup;
-- descendant generation;
-- produce `GenerationResult`.
+- produce an explicitly partial orchestration result.
+
+The current Brief 03 boundary stops after Common-root selection. Descendant
+generation, family caching, resource emission, and a complete `GenerationResult`
+remain later responsibilities and must not be inferred from the partial result.
 
 No CSV access.
 
@@ -251,7 +253,8 @@ No CSV access.
 
 Responsibilities:
 
-Represent significant events such as:
+Represent significant orchestration events as immutable named records with an
+optional exact `RngDraw`. Current events include:
 
 ```text
 PRNG_SEEDED
@@ -265,16 +268,14 @@ SPECIAL_SELECTED
 COMMON_CANDIDATE
 COMMON_ROLL
 COMMON_SELECTED
-FAMILY_CACHE_HIT
-DESCENDANT_CANDIDATES
-DESCENDANT_CHOSEN
-DESCENDANT_INCLUSION
-RESOURCE_EMITTED
 BIOME_END
 PLANET_END
 ```
 
 Prefer structured events that the CLI can render rather than ad-hoc print statements throughout generation code.
+
+Descendant, cache, and emission events will be added only with the corresponding
+generation stages.
 
 ### `validation.py`
 
