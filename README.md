@@ -10,11 +10,13 @@ The reverse-engineering phase has recovered most of the central generation path 
 
 The next milestone is to encode those rules in a small standalone reproducer, validate known worked examples, and then compare predictions across the full canonical dataset.
 
-The partial generation orchestrator now carries one explicitly accounted PRNG
-stream through biome shuffle, effective-RSGD resolution, provisional Everywhere
-discovery, and Special/Common selection. It reproduces the required outer
-decisions for Oberon, Mimas, Decaran VII-b, and Kreet. Descendant-family
-generation and complete predicted resource sets remain intentionally unimplemented.
+The generation engine now carries one explicitly accounted PRNG stream through
+biome shuffle, effective-RSGD resolution, provisional Everywhere discovery,
+Special/Common selection, and planet-scoped Common-family generation. The
+Brief 03 partial orchestration API remains available for outer-decision research;
+the family API adds structural descendant paths, independent inclusion/emission,
+and FormID-keyed cache reuse. Complete worked-planet validation remains planned
+for the next phase.
 
 ## Goal
 

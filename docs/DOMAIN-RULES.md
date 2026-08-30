@@ -334,6 +334,12 @@ filtered for the requested rarity.
 
 This produces effective branching that may differ from a simple parent-chain interpretation.
 
+Candidate order is direct children of the root followed by direct children of
+the current structural node, preserving canonical IRES child order. Duplicate
+FormIDs are removed by retaining their first occurrence. This is required by the
+Mimas L1 observation: when root and current are both Nickel, Cobalt remains one
+candidate and the bounded selection uses `upper_bound = 1`.
+
 ## Descendant Levels
 
 **PROVEN**
@@ -354,9 +360,14 @@ After Common/root generation, levels are processed:
 At a descendant level:
 
 1. build structurally valid candidate list;
-2. select a structural candidate;
-3. evaluate inclusion/emission;
+2. consume and evaluate the inclusion roll;
+3. consume the candidate-index roll and select a structural candidate;
 4. continue traversal through the selected structural candidate whether or not it was emitted.
+
+**Correction recorded in Brief 04:** earlier wording listed structural selection
+before inclusion. The recovered Mimas raw sequence proves the runtime call order
+is inclusion first, then candidate index. This changes no prior conclusion about
+the independence of structural traversal and emission.
 
 Therefore a deeper resource can be emitted while intermediate structural nodes are absent from final output.
 
@@ -387,6 +398,15 @@ The candidate-index draw occurred even when only one candidate existed.
 
 Exact behavior for zero candidates and other edge branches remains mismatch-driven work.
 
+### Zero-candidate levels
+
+**PROVISIONAL**
+
+The Brief 04 implementation consumes neither an inclusion nor candidate-index
+draw when the filtered candidate list is empty, and retains the current structural
+node. Diagnostics expose both non-consumption decisions. No live zero-candidate
+branch currently proves this behavior, so it remains deliberately replaceable.
+
 ## Family Configuration Cache
 
 ### Planet-wide reuse
@@ -401,6 +421,11 @@ Consequences:
 - all biomes using that root share the same descendant pattern for that generation run.
 
 Exact PRNG consumption on cache-hit branches should be verified if canonical mismatches expose it.
+
+**PROVISIONAL for exact RNG consumption:** the recovered bypass implemented in
+Brief 04 consumes no descendant RNG draws on a cache hit. Structured diagnostics
+record draw counts before and after reuse, and the behavior is locked by a test,
+but no dedicated live cache-hit trace yet proves every branch detail.
 
 ## Unique Resources
 

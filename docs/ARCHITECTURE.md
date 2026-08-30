@@ -241,11 +241,16 @@ Responsibilities:
 - resolve effective RSGD;
 - Special pass;
 - Common weighted selection;
-- produce an explicitly partial orchestration result.
+- preserve an explicitly partial orchestration result for Brief 03 diagnostics;
+- generate immutable Common-family configurations;
+- process descendant levels in rarity order with exact draw accounting;
+- maintain the planet-scope FormID-keyed family cache and reuse cached results.
 
-The current Brief 03 boundary stops after Common-root selection. Descendant
-generation, family caching, resource emission, and a complete `GenerationResult`
-remain later responsibilities and must not be inferred from the partial result.
+`orchestrate_planet()` stops after Common-root selection. The separate
+`generate_planet_families()` pipeline uses the same outer control flow but runs a
+new family immediately after its root is selected, before the shared RNG advances
+to the next biome. It exposes emitted membership for family research but is not a
+canonical validation result.
 
 No CSV access.
 
@@ -274,8 +279,9 @@ PLANET_END
 
 Prefer structured events that the CLI can render rather than ad-hoc print statements throughout generation code.
 
-Descendant, cache, and emission events will be added only with the corresponding
-generation stages.
+Descendant, cache, and emission events are added only with their corresponding
+generation stages. Brief 04 adds family begin/end, root emission, per-level
+candidate/inclusion/selection/emission, and cache-hit events.
 
 ### `validation.py`
 

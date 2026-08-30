@@ -81,10 +81,10 @@ STRONG compatibility findings rather than universal PROVEN rules.
 - [x] Implement Common cumulative weighted selector.
 - [x] Preserve RSGD order.
 - [x] Do not normalize weights.
-- [ ] Implement IRES descendant candidate builder.
-- [ ] Separate structural choice from inclusion/emission.
-- [ ] Consume candidate-index RNG with one candidate.
-- [ ] Implement family configuration cache.
+- [x] Implement IRES descendant candidate builder.
+- [x] Separate structural choice from inclusion/emission.
+- [x] Consume candidate-index RNG with one candidate.
+- [x] Implement family configuration cache.
 - [x] Emit structured orchestration diagnostics.
 
 ## Phase 4 — Worked-Case Regression Tests
@@ -93,24 +93,24 @@ STRONG compatibility findings rather than universal PROVEN rules.
 
 - [x] Water present in provisional Everywhere result.
 - [x] Nickel selected as Common root.
-- [ ] no emitted descendants for observed seed.
+- [x] no emitted descendants for observed seed.
 
 ### Mimas
 
 - [x] Nickel wins against Lead in outer orchestration.
-- [ ] Cobalt structurally chosen but omitted.
-- [ ] Platinum structurally chosen but omitted.
-- [ ] Palladium emitted.
-- [ ] Tasine structurally chosen but omitted.
-- [ ] final relevant set matches oracle.
+- [x] Cobalt structurally chosen but omitted.
+- [x] Platinum structurally chosen but omitted.
+- [x] Palladium emitted.
+- [x] Tasine structurally chosen but omitted.
+- [x] final relevant set matches oracle.
 
 ### Decaran VII-b
 
 - [x] PNDT RSGD replaces BIOM RSGD.
 - [x] Helium-3 selected as Special.
 - [x] Uranium root.
-- [ ] Vytinium reached via ordinary IRES traversal.
-- [ ] final set matches oracle.
+- [x] Vytinium reached via ordinary IRES traversal.
+- [x] final set matches oracle.
 
 ### Kreet
 
