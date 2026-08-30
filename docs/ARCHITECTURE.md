@@ -34,6 +34,7 @@ Exact reproduction requires exact RNG consumption.
 All random operations should flow through one small PRNG abstraction that can:
 
 - reproduce Bethesda's MT19937 behavior;
+- expose the distinct runtime conversion used for each call site;
 - expose draw count/position;
 - optionally record diagnostic events.
 
@@ -230,10 +231,29 @@ No generation decisions.
 Responsibilities:
 
 - exact 32-bit MT19937 seeding;
-- game-compatible integer/float conversion;
-- deterministic bounded index selection;
+- shared game-compatible probability conversion;
+- rejection-sampled integer bounded selection for biome shuffle;
+- float32-scaled and truncated index selection for descendants;
 - draw accounting;
 - optional event logging.
+
+The two bounded-choice APIs are intentionally separate:
+
+```text
+MT19937 raw uint32
+        |
+        +--> next_bounded_integer
+        |       rejection sampling -> modulo -> biome shuffle
+        |
+        +--> probability float32
+                +--> inclusion rolls
+                +--> next_scaled_index -> scale/truncate -> descendants
+```
+
+Runtime traces PROVE that these call sites use different mechanisms. A rejected
+integer-bounded attempt consumes an additional raw word; a normal descendant
+scaled choice consumes exactly one. Do not collapse the APIs into a generic
+bounded-index helper without new runtime evidence.
 
 Do not assume Python's `random.Random` is compatible until verified against known trace values.
 

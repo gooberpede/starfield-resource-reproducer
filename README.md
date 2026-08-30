@@ -8,9 +8,9 @@ A standalone reference implementation of Starfield's deterministic planetary res
 
 The reverse-engineering phase has recovered most of the central generation path from Creation Kit live traces, Ghidra analysis, xEdit extraction, and verified game/runtime observations.
 
-The next milestone is to resolve whether biome shuffle and descendant selection
-use distinct bounded-index paths before comparing predictions across the full
-canonical dataset.
+The runtime-proven split between biome-shuffle integer bounded selection and
+descendant float32-scaled selection is now implemented. The next milestone is
+full canonical-dataset validation.
 
 The generation engine now carries one explicitly accounted PRNG stream through
 biome shuffle, effective-RSGD resolution, provisional Everywhere discovery,
@@ -20,9 +20,10 @@ the family API adds structural descendant paths, independent inclusion/emission,
 and FormID-keyed cache reuse. A complete `generate_planet()` prediction API now
 assembles Everywhere, Special, and emitted family resources without consulting
 the oracle. A separate FormID-based validator reproduces Oberon, Mimas, Decaran
-VII-b, and Kreet exactly. Algorab I live evidence proves that empty descendant
-levels consume one raw MT word and family-cache hits bypass descendant generation
-without consuming descendant RNG.
+VII-b, Kreet, and Algorab I exactly. Algorab also agrees internally with its
+live Lead trace: scaled descendant selection takes Silver then Mercury and ends
+at draw 22. Empty descendant levels consume one raw MT word, while family-cache
+hits bypass descendant generation without consuming descendant RNG.
 
 ## Goal
 
@@ -143,6 +144,7 @@ PNDT biome entries in BiomeIndex order
              |
              v
  deterministic biome shuffle
+ integer rejection + modulo
              |
              v
    process shuffled biomes
@@ -162,6 +164,7 @@ PNDT biome entries in BiomeIndex order
                          +--> new family
                                  |
                                  +--> emit root
+                                 +--> descendants use float32 scaled indices
                                  +--> Uncommon (1)
                                  +--> Rare (2)
                                  +--> Exotic (3)

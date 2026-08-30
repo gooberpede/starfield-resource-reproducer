@@ -67,28 +67,81 @@ def test_draw_count_and_last_draw_describe_raw_outputs() -> None:
     ) == (1, 253654728, "float01", value)
 
 
-def test_next_index_one_returns_zero_and_consumes_a_draw() -> None:
+def test_scaled_index_one_returns_zero_and_consumes_a_draw() -> None:
     rng = StarfieldRng(2008989584)
 
-    assert rng.next_index(1) == 0
+    assert rng.next_scaled_index(1) == 0
     assert rng.draw_count == 1
     assert rng.last_draw is not None
     assert rng.last_draw.raw_value == 253654728
+    assert rng.last_draw.probability_value == 0.05905799940228462
+    assert rng.last_draw.scaled_value == 0.05905799940228462
 
 
+def test_bounded_integer_one_consumes_a_draw_without_short_circuiting() -> None:
+    rng = StarfieldRng(2008989584)
+
+    assert rng.next_bounded_integer(1) == 0
+    assert rng.draw_count == 1
+    assert len(rng.last_bounded_attempts) == 1
+    assert rng.last_bounded_attempts[0].accepted is True
+
+
+@pytest.mark.parametrize("method_name", ["next_bounded_integer", "next_scaled_index"])
 @pytest.mark.parametrize("upper_bound", [0, -1])
-def test_next_index_rejects_non_positive_bounds(upper_bound: int) -> None:
+def test_bounded_operations_reject_non_positive_bounds(
+    method_name: str, upper_bound: int
+) -> None:
     rng = StarfieldRng(1)
 
     with pytest.raises(ValueError, match="greater than zero"):
-        rng.next_index(upper_bound)
+        getattr(rng, method_name)(upper_bound)
     assert rng.draw_count == 0
 
 
+@pytest.mark.parametrize("method_name", ["next_bounded_integer", "next_scaled_index"])
 @pytest.mark.parametrize("upper_bound", [True, 1.5, "2"])
-def test_next_index_rejects_non_integer_bounds(upper_bound: object) -> None:
+def test_bounded_operations_reject_non_integer_bounds(
+    method_name: str, upper_bound: object
+) -> None:
     rng = StarfieldRng(1)
 
     with pytest.raises(TypeError, match="must be an integer"):
-        rng.next_index(upper_bound)  # type: ignore[arg-type]
+        getattr(rng, method_name)(upper_bound)
     assert rng.draw_count == 0
+
+
+class _ScriptedRawRng(StarfieldRng):
+    """Feed production conversion logic exact raw words for boundary tests."""
+
+    def __init__(self, raw_values: tuple[int, ...]) -> None:
+        super().__init__(0)
+        self._scripted_values = iter(raw_values)
+
+    def _extract_uint32(self) -> int:
+        self._draw_count += 1
+        return next(self._scripted_values)
+
+
+def test_bounded_integer_rejects_then_consumes_a_second_raw_word() -> None:
+    rng = _ScriptedRawRng((0xFFFFFFFF, 4))
+
+    assert rng.next_bounded_integer(3) == 1
+    assert rng.draw_count == 2
+    assert [attempt.raw_value for attempt in rng.last_bounded_attempts] == [
+        0xFFFFFFFF,
+        4,
+    ]
+    assert [attempt.accepted for attempt in rng.last_bounded_attempts] == [
+        False,
+        True,
+    ]
+    assert (
+        rng.last_bounded_attempts[0].quotient_random
+        == rng.last_bounded_attempts[0].quotient_threshold
+    )
+    assert [attempt.quotient_threshold for attempt in rng.last_bounded_attempts] == [
+        0xFFFFFFFF // 3,
+        0xFFFFFFFF // 3,
+    ]
+    assert rng.last_draw is rng.last_bounded_attempts[-1]

@@ -26,21 +26,21 @@ def test_mimas_live_float_sequence(generation_data) -> None:
     assert rng.next_float01() == pytest.approx(
         0.894184828, abs=TRACE_ABS_TOLERANCE
     )
-    assert rng.next_index(1) == 0
+    assert rng.next_scaled_index(1) == 0
 
     assert rng.next_float01() == pytest.approx(
         0.686025143, abs=TRACE_ABS_TOLERANCE
     )
-    assert rng.next_index(1) == 0
+    assert rng.next_scaled_index(1) == 0
 
     assert rng.next_float01() == pytest.approx(
         0.108883217, abs=TRACE_ABS_TOLERANCE
     )
-    assert rng.next_index(1) == 0
+    assert rng.next_scaled_index(1) == 0
 
     # The observed Mimas path has a fourth descendant level with the same proven
     # inclusion-then-index call shape, although no L4 float value was retained as
     # a numeric anchor in the brief.
     rng.next_float01()
-    assert rng.next_index(1) == 0
+    assert rng.next_scaled_index(1) == 0
     assert rng.draw_count == 10

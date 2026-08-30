@@ -37,10 +37,10 @@ def test_algorab_proven_cache_behavior_and_canonical_final_set(
     assert cache_event["evidence_status"] == "PROVEN"
 
 
-def test_algorab_current_model_documents_unresolved_lead_trace_mismatch(
+def test_algorab_scaled_descendant_path_matches_live_lead_trace(
     generation_data, ires_nodes
 ) -> None:
-    """Keep modeled behavior distinct from the independently observed trace."""
+    """Lock the live Silver branch independently from final-set exactness."""
 
     result = generate_planet(generation_data[FormId("0003F599")], ires_nodes)
     volcanic = result.biome_results[2]
@@ -53,24 +53,38 @@ def test_algorab_current_model_documents_unresolved_lead_trace_mismatch(
         for level in lead.levels
     ] == [
         ("Silver", "Tungsten"),
-        ("Titanium",),
-        ("Dysprosium",),
+        ("Mercury",),
+        (),
         (),
     ]
+    # Descendant levels remain rarity-ordered; Mercury is the Rare (L2) node.
+    assert [level.rarity for level in lead.levels] == [
+        GenerationRarity.UNCOMMON,
+        GenerationRarity.RARE,
+        GenerationRarity.EXOTIC,
+        GenerationRarity.UNIQUE,
+    ]
+    assert tuple(resource.name for resource in lead.levels[1].candidates) == (
+        "Mercury",
+    )
     assert [
         level.selected_candidate.name if level.selected_candidate else None
         for level in lead.levels
-    ] == ["Tungsten", "Titanium", "Dysprosium", None]
+    ] == ["Silver", "Mercury", None, None]
 
-    # LIVE: Algorab advanced structurally only at L1/L2, and its two empty
-    # calls consumed d21/d22. MODEL: the unresolved Tungsten branch also
-    # advances at L3 and does not reach its sole empty call until d23.
-    live_structural_advancement = (True, True, False, False)
-    model_structural_advancement = tuple(
+    structural_advancement = tuple(
         level.selected_candidate is not None for level in lead.levels
     )
-    assert model_structural_advancement == (True, True, True, False)
-    assert model_structural_advancement != live_structural_advancement
+    assert structural_advancement == (True, True, False, False)
+
+    l1_draw = lead.levels[0].candidate_draw
+    assert l1_draw is not None
+    assert l1_draw.draw_number == 18
+    assert l1_draw.raw_value == 1826241303
+    assert l1_draw.upper_bound == 2
+    assert l1_draw.probability_value == 0.4252006709575653
+    assert l1_draw.scaled_value == 0.8504013419151306
+    assert l1_draw.converted_value == 0
 
     model_empty_events = tuple(
         item
@@ -78,20 +92,14 @@ def test_algorab_current_model_documents_unresolved_lead_trace_mismatch(
         if item.kind is EventKind.DESCENDANT_OMITTED
         and item.get("reason") == "no_candidates"
     )
-    assert len(model_empty_events) == 1
-    empty = model_empty_events[0]
-    assert empty["requested_rarity"] is GenerationRarity.UNIQUE
-    assert empty["draw_count_before"] == 22
-    assert empty["draw_count_after"] == 23
-    assert empty["raw_values_consumed"] == (1749088046,)
-    assert empty["structural_node_changed"] is False
-    live_empty_draws = ((21, 3583630102), (22, 832141661))
-    model_empty_draws = tuple(
+    assert [item["requested_rarity"] for item in model_empty_events] == [
+        GenerationRarity.EXOTIC,
+        GenerationRarity.UNIQUE,
+    ]
+    assert all(item["structural_node_changed"] is False for item in model_empty_events)
+    empty_draws = tuple(
         (item["draw_count_after"], item["raw_values_consumed"][0])
         for item in model_empty_events
     )
-    assert model_empty_draws == ((23, 1749088046),)
-    assert model_empty_draws != live_empty_draws
-    live_final_draw_count = 22
-    assert result.final_draw_count == 23
-    assert result.final_draw_count != live_final_draw_count
+    assert empty_draws == ((21, 3583630102), (22, 832141661))
+    assert result.final_draw_count == 22

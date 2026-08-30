@@ -4,14 +4,15 @@ Purpose:
     Provide the deterministic random interface used by later resource generation.
 Responsibilities:
     Validate unsigned RSCS seeds, evolve classic 32-bit MT19937 state, perform
-    recovered float/index conversions, and expose raw-output draw accounting.
+    recovered probability and bounded-choice conversions, and expose raw-output
+    draw accounting.
 Boundaries:
     This module does not shuffle biomes or make resource-generation decisions.
 Evidence notes:
     MT19937 seeding and shared state are PROVEN. The probability conversion is
-    a STRONG match for Mimas. Modulo remains temporarily in production because
-    it reproduces Kreet's proven shuffle, but Algorab I disproves it for a
-    descendant bound of two; the runtime path split is unresolved.
+    a STRONG match for Mimas. Runtime traces PROVE that biome shuffle uses an
+    integer rejection/modulo helper while descendant selection uses float32
+    probability scaling. These mechanisms are deliberately not interchangeable.
 """
 
 from dataclasses import dataclass
@@ -44,13 +45,24 @@ class RngDraw:
     raw_value: int
     operation: str
     converted_value: float | int | None
+    upper_bound: int | None = None
+    probability_value: float | None = None
+    scaled_value: float | None = None
+    quotient_threshold: int | None = None
+    quotient_random: int | None = None
+    accepted: bool | None = None
 
 
 class StarfieldRng:
     """Stateful RSCS-seeded MT19937 with Starfield-compatible conversions.
 
     ``draw_count`` counts extracted 32-bit MT19937 words, not public method
-    calls.  Every current public draw operation consumes exactly one word.
+    calls. A rejection-sampled bounded integer call may consume multiple words.
+
+    PROVEN: Starfield uses distinct bounded-random mechanisms for biome shuffle
+    and descendant candidate selection. Do not consolidate
+    ``next_bounded_integer`` and ``next_scaled_index`` without new runtime
+    evidence: their arithmetic and raw-word consumption can differ.
     """
 
     def __init__(self, seed: int) -> None:
@@ -70,6 +82,7 @@ class StarfieldRng:
         self._state_index = _STATE_SIZE
         self._draw_count = 0
         self._last_draw: RngDraw | None = None
+        self._last_bounded_attempts: tuple[RngDraw, ...] = ()
 
     @property
     def seed(self) -> int:
@@ -89,10 +102,17 @@ class StarfieldRng:
 
         return self._last_draw
 
+    @property
+    def last_bounded_attempts(self) -> tuple[RngDraw, ...]:
+        """Return all attempts from the most recent integer bounded choice."""
+
+        return self._last_bounded_attempts
+
     def next_uint32(self) -> int:
         """Extract the next tempered 32-bit MT19937 output."""
 
         raw_value = self._extract_uint32()
+        self._last_bounded_attempts = ()
         self._record_draw(raw_value, "uint32", None)
         return raw_value
 
@@ -100,35 +120,68 @@ class StarfieldRng:
         """Return the recovered binary32 probability value for one raw word."""
 
         raw_value = self._extract_uint32()
+        self._last_bounded_attempts = ()
+        probability = _probability_from_raw(raw_value)
+        self._record_draw(
+            raw_value,
+            "float01",
+            probability,
+            probability_value=probability,
+        )
+        return probability
 
-        # STRONG: all four Mimas anchors equal this binary32 operation sequence.
-        # Keeping each rounding step explicit avoids silently substituting Python's
-        # double-precision random conversion, which produces different values.
-        raw_float = _float32(raw_value)
-        unit_value = _float32(raw_float * _UINT32_UNIT_FLOAT32)
-        converted = _float32(unit_value * _OPEN_UPPER_SCALE_FLOAT32)
+    def next_bounded_integer(self, upper_bound: int) -> int:
+        """Return the rejection-sampled integer choice used by biome shuffle.
 
-        self._record_draw(raw_value, "float01", converted)
-        return converted
+        Each rejected and accepted attempt consumes one MT word. The runtime's
+        traced 32-bit inequality accepts only when ``raw // upper_bound`` is
+        strictly less than ``UINT32_MAX // upper_bound``; the accepted result is
+        then ``raw % upper_bound``. Bound one is not short-circuited.
+        """
 
-    def next_index(self, upper_bound: int) -> int:
-        """Return a bounded index while consuming exactly one raw output."""
+        _validate_upper_bound(upper_bound)
+        quotient_threshold = _UINT32_MAX // upper_bound
+        attempts: list[RngDraw] = []
+        while True:
+            raw_value = self._extract_uint32()
+            quotient_random = raw_value // upper_bound
+            accepted = quotient_random < quotient_threshold
+            converted = raw_value % upper_bound if accepted else None
+            attempts.append(
+                self._record_draw(
+                    raw_value,
+                    "bounded_integer_attempt",
+                    converted,
+                    upper_bound=upper_bound,
+                    quotient_threshold=quotient_threshold,
+                    quotient_random=quotient_random,
+                    accepted=accepted,
+                )
+            )
+            if accepted:
+                self._last_bounded_attempts = tuple(attempts)
+                # ``converted`` is an integer on the accepted branch; keeping
+                # rejection represented as None makes every attempt auditable.
+                assert converted is not None
+                return converted
 
-        if isinstance(upper_bound, bool) or not isinstance(upper_bound, int):
-            raise TypeError("upper_bound must be an integer")
-        if upper_bound <= 0:
-            raise ValueError("upper_bound must be greater than zero")
+    def next_scaled_index(self, upper_bound: int) -> int:
+        """Return the float32-scaled choice used for descendant candidates."""
 
+        _validate_upper_bound(upper_bound)
         raw_value = self._extract_uint32()
-
-        # COMPATIBILITY HOLD: raw modulo reproduces both proven Kreet shuffle
-        # choices, but Algorab I proves it is wrong for descendant selection.
-        # A generic float-scaled replacement breaks Kreet at its first shuffle
-        # draw, so production remains unchanged pending a narrow shuffle trace.
-        # PROVEN: upper_bound == 1 still consumes this raw draw; do not shortcut.
-        converted = raw_value % upper_bound
-
-        self._record_draw(raw_value, "index", converted)
+        self._last_bounded_attempts = ()
+        probability = _probability_from_raw(raw_value)
+        scaled = _float32(probability * _float32(upper_bound))
+        converted = int(scaled)
+        self._record_draw(
+            raw_value,
+            "scaled_index",
+            converted,
+            upper_bound=upper_bound,
+            probability_value=probability,
+            scaled_value=scaled,
+        )
         return converted
 
     def _extract_uint32(self) -> int:
@@ -164,10 +217,46 @@ class StarfieldRng:
         raw_value: int,
         operation: str,
         converted_value: float | int | None,
-    ) -> None:
-        self._last_draw = RngDraw(
+        *,
+        upper_bound: int | None = None,
+        probability_value: float | None = None,
+        scaled_value: float | None = None,
+        quotient_threshold: int | None = None,
+        quotient_random: int | None = None,
+        accepted: bool | None = None,
+    ) -> RngDraw:
+        draw = RngDraw(
             draw_number=self._draw_count,
             raw_value=raw_value,
             operation=operation,
             converted_value=converted_value,
+            upper_bound=upper_bound,
+            probability_value=probability_value,
+            scaled_value=scaled_value,
+            quotient_threshold=quotient_threshold,
+            quotient_random=quotient_random,
+            accepted=accepted,
         )
+        self._last_draw = draw
+        return draw
+
+
+def _probability_from_raw(raw_value: int) -> float:
+    """Apply the recovered binary32 probability conversion to one MT word."""
+
+    # STRONG: all four Mimas anchors equal this exact binary32 operation order.
+    # Explicit rounding avoids Python double precision changing boundary cases.
+    raw_float = _float32(raw_value)
+    unit_value = _float32(raw_float * _UINT32_UNIT_FLOAT32)
+    return _float32(unit_value * _OPEN_UPPER_SCALE_FLOAT32)
+
+
+def _validate_upper_bound(upper_bound: int) -> None:
+    """Validate bounds shared by the two semantically distinct choice paths."""
+
+    if isinstance(upper_bound, bool) or not isinstance(upper_bound, int):
+        raise TypeError("upper_bound must be an integer")
+    if upper_bound <= 0:
+        raise ValueError("upper_bound must be greater than zero")
+    if upper_bound > _UINT32_MAX:
+        raise ValueError("upper_bound must fit in an unsigned 32-bit integer")

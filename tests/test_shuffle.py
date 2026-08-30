@@ -22,6 +22,9 @@ def test_shuffle_draw_counts_and_bounds_for_one_two_three_biomes(
         assert rng.draw_count == draw_count
         assert [event["bound"] for event in result.events] == bounds
         assert all(event.kind is EventKind.SHUFFLE_STEP for event in result.events)
+        assert all(
+            event.operation == "shuffle_bounded_integer" for event in result.events
+        )
 
 
 def test_kreet_shuffle_records_exact_observed_swaps_and_raw_draws(
@@ -45,3 +48,13 @@ def test_kreet_shuffle_records_exact_observed_swaps_and_raw_draws(
         3789400562,
         3546750279,
     ]
+    assert [event["attempt_count"] for event in result.events] == [1, 1]
+    assert [event["rejected_attempt_count"] for event in result.events] == [0, 0]
+    assert [event["rng_mechanism"] for event in result.events] == [
+        "integer_rejection_modulo",
+        "integer_rejection_modulo",
+    ]
+    assert [
+        tuple(attempt.accepted for attempt in event["attempts"])
+        for event in result.events
+    ] == [(True,), (True,)]

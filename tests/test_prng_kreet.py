@@ -9,7 +9,7 @@ def _recovered_shuffle_harness(
 
     swaps: list[tuple[int, int]] = []
     for target_index in range(1, len(values)):
-        selected_index = rng.next_index(target_index + 1)
+        selected_index = rng.next_bounded_integer(target_index + 1)
         swaps.append((target_index, selected_index))
         values[target_index], values[selected_index] = (
             values[selected_index],
@@ -30,3 +30,4 @@ def test_kreet_live_swap_choices(generation_data) -> None:
     assert swaps == [(1, 0), (2, 0)]
     assert order == [2, 0, 1]
     assert rng.draw_count == 2
+    assert rng.last_bounded_attempts[0].accepted is True

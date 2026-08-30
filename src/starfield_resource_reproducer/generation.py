@@ -192,8 +192,11 @@ def shuffle_biomes(
     for iteration, target_position in enumerate(range(1, len(working))):
         order_before = tuple(biome.index for biome in working)
         bound = target_position + 1
-        selected_position = rng.next_index(bound)
+        # PROVEN: biome shuffle uses the integer rejection/modulo helper. It is
+        # not interchangeable with descendant float32 scaled selection.
+        selected_position = rng.next_bounded_integer(bound)
         rng_draw = _required_last_draw(rng)
+        attempts = rng.last_bounded_attempts
         working[target_position], working[selected_position] = (
             working[selected_position],
             working[target_position],
@@ -201,13 +204,19 @@ def shuffle_biomes(
         events.append(
             event(
                 EventKind.SHUFFLE_STEP,
-                operation="biome_shuffle_index",
+                operation="shuffle_bounded_integer",
                 rng_draw=rng_draw,
+                rng_mechanism="integer_rejection_modulo",
                 iteration=iteration,
                 input_biome_count=len(working),
                 target_position=target_position,
                 bound=bound,
                 selected_position=selected_position,
+                attempts=attempts,
+                attempt_count=len(attempts),
+                rejected_attempt_count=sum(
+                    attempt.accepted is False for attempt in attempts
+                ),
                 swap_left=selected_position,
                 swap_right=target_position,
                 order_before=order_before,
@@ -364,9 +373,10 @@ def generate_family(
             )
         )
 
-        # PROVEN: selection follows inclusion and consumes a draw even with one
-        # candidate. It determines traversal independently of emission.
-        selected_index = rng.next_index(len(candidates))
+        # PROVEN: descendant selection follows inclusion through the runtime's
+        # float32 probability-scaling path, even with one candidate. This is not
+        # interchangeable with the shuffle's integer rejection/modulo helper.
+        selected_index = rng.next_scaled_index(len(candidates))
         candidate_draw = _required_last_draw(rng)
         selected = candidates[selected_index]
         previous_form_id = current_form_id
@@ -374,10 +384,14 @@ def generate_family(
         events.append(
             event(
                 EventKind.DESCENDANT_CANDIDATE_SELECTED,
-                operation="select_descendant_candidate",
+                operation="descendant_scaled_index",
                 rng_draw=candidate_draw,
+                rng_mechanism="float32_scaled_truncation",
                 root=root,
                 rarity=rarity,
+                bound=len(candidates),
+                probability=candidate_draw.probability_value,
+                scaled=candidate_draw.scaled_value,
                 selected_index=selected_index,
                 selected_candidate=selected,
                 previous_structural_form_id=previous_form_id,
@@ -851,9 +865,10 @@ def _consume_zero_candidate_rng(
         ZeroCandidatePolicy.CONSUME_RAW,
         ZeroCandidatePolicy.CONSUME_BOTH,
     }:
-        # Do not fabricate next_index(0). For CONSUME_RAW this is the smallest
-        # exact representation of the proven raw-word advancement. In the
-        # two-draw counterfactual it remains an index-like raw equivalent.
+        # Do not fabricate a bounded choice with zero candidates. For
+        # CONSUME_RAW this is the smallest exact representation of the proven
+        # raw-word advancement. In the two-draw counterfactual it remains an
+        # index-like raw equivalent.
         rng.next_uint32()
         draws.append(_required_last_draw(rng))
     return tuple(draws)

@@ -92,30 +92,44 @@ The available trace does not distinguish every algebraically equivalent
 binary32 construction, so the exact source-level expression is not labeled
 PROVEN.
 
-### Bounded index conversion
+### Distinct bounded-choice mechanisms
 
-**DISPROVEN as a generic rule; compatibility hold remains in production**
+**PROVEN**
 
-The current implementation consumes one raw output and returns:
+Starfield uses two different mechanisms at the recovered call sites. They are
+not interchangeable.
+
+Biome shuffle uses an integer bounded helper. For current 32-bit bounds it
+repeats:
 
 ```text
-raw_uint32 % upper_bound
+raw = next_uint32()
+quotient_threshold = UINT32_MAX // upper_bound
+quotient_random = raw // upper_bound
+accept only when quotient_random < quotient_threshold
+result = accepted_raw % upper_bound
 ```
 
-It reproduces both observed Kreet shuffle choices, but Algorab I descendant draw
-18 (`1826241303`, bound 2) proves modulo is not the generic runtime conversion:
-modulo returns 1 while the live helper returned 0.
+Every rejected and accepted attempt consumes one raw MT word, so one shuffle
+choice can consume multiple words. A bound of one still enters the helper and
+consumes RNG rather than short-circuiting.
 
-The Algorab trace supports float scaling and truncation. Reusing the current
-STRONG binary32 probability path gives `0.8504013419151306`, truncated to index
-0. That same generic conversion would change Kreet's proven shuffle selections
-from `(0, 0)` to `(1, 2)`, however. This is the first unresolved divergence.
-Production retains modulo temporarily rather than inventing separate shuffle
-and descendant APIs before a narrow shuffle trace establishes whether the engine
-uses distinct paths or the recovered shuffle call interpretation needs revision.
+Descendant candidate selection instead consumes one raw word, applies the
+recovered binary32 probability conversion, multiplies by the binary32 candidate
+count, rounds that product to binary32, and truncates it:
 
-A bound of one still consumes a raw output and returns zero; that consumption
-behavior remains **PROVEN** by Mimas.
+```text
+probability = float32(float32(raw) * float32(2^-32))
+probability = float32(probability * float32(0.99999))
+scaled = float32(probability * float32(candidate_count))
+index = trunc(scaled)
+```
+
+Algorab I draw 18 (`1826241303`, bound 2) produces probability
+`0.4252006709575653`, scaled value `0.8504013419151306`, and index 0. Modulo
+would produce 1. The discriminating result and scaled/truncation instruction
+path are PROVEN; the exact `0.99999` formulation remains STRONG where nearby
+binary32-equivalent expressions are not distinguished by the trace.
 
 ## Biome List Construction
 
@@ -160,16 +174,17 @@ The recovered loop visits ascending target positions:
 ```text
 target = 1 .. N - 1
 bound  = target + 1
-selected = next_index(bound)
+selected = next_bounded_integer(bound)
 swap(target, selected)
 ```
 
-It therefore consumes `N - 1` raw outputs:
+It performs `N - 1` bounded choices. Each choice normally consumes one raw
+output but may consume more if the integer helper rejects an attempt:
 
 ```text
-N = 1 -> 0 shuffle draws
-N = 2 -> 1 shuffle draw, bound 2
-N = 3 -> 2 shuffle draws, bounds 2 then 3
+N = 1 -> 0 bounded choices, 0 raw draws
+N = 2 -> 1 bounded choice, bound 2, at least 1 raw draw
+N = 3 -> 2 bounded choices, bounds 2 then 3, at least 2 raw draws
 ```
 
 Kreet directly proves the `N = 3` swaps. The generalized loop, including the
@@ -517,25 +532,18 @@ Neon inclusion to draw 17 (`357224398`) and roll `0.08317194879055023`. The roll
 passes its `0.15` threshold, so the production model emits Neon and Kreet matches
 the canonical inorganic set exactly. The final production draw count is 30.
 
-## Algorab I Lead Structural Discrepancy
+## Algorab I Lead Structural Resolution
 
-**CAUSE ISOLATED; generic bounded-path conflict remains unresolved**
+**PROVEN and reproduced internally**
 
 The serialized Lead edges place Silver before Tungsten. Algorab's live bounded
 helper returned index 0 at draw 18, selecting Silver without any candidate
 reordering. The resulting path is Lead -> Silver -> Mercury -> empty Exotic ->
 empty Unique, matching the observed structural shape and final draw 22.
 
-The distinction is explicit:
-
-```text
-live-shaped trace: L1/L2 advance, L3/L4 empty, final draw 22
-current model:     L1/L2/L3 advance, L4 empty, final draw 23
-```
-
-Algorab's predicted final resource membership matches the canonical set. Its
-current production path remains trace-inexact only because the generic scaled
-conversion cannot yet replace modulo without breaking Kreet's proven shuffle.
+Production now uses the descendant float32-scaled path for that call, producing
+the live-shaped `advance, advance, empty, empty` sequence and final draw count
+22. Its canonical inorganic set remains exactly Lead, Uranium, and Iridium.
 
 ## Canonical Validation Oracle
 
@@ -561,7 +569,6 @@ Do not block v0.1 on these unless necessary:
 
 - exact upstream Everywhere insertion routine;
 - RSCS = 0 fallback path;
-- shuffle versus descendant bounded-index path distinction;
 - five-family limit;
 - eight-resource-slot limit;
 - duplicate suppression side effects;

@@ -157,6 +157,14 @@ def format_diagnostic_timeline(
         details: list[str] = []
         if draw is not None:
             details.extend((f"raw={draw.raw_value}", f"converted={draw.converted_value}"))
+            if draw.upper_bound is not None:
+                details.append(f"upper_bound={draw.upper_bound}")
+            if draw.probability_value is not None:
+                details.append(f"probability={draw.probability_value}")
+            if draw.scaled_value is not None:
+                details.append(f"scaled={draw.scaled_value}")
+            if draw.accepted is not None:
+                details.append(f"accepted={draw.accepted}")
         for name, value in item.fields:
             if name in {
                 "biome_indices",
@@ -185,6 +193,13 @@ def format_diagnostic_timeline(
                 "raw_draws_consumed",
                 "raw_values_consumed",
                 "operation_types",
+                "rng_mechanism",
+                "attempts",
+                "attempt_count",
+                "rejected_attempt_count",
+                "probability",
+                "scaled",
+                "selected_index",
             }:
                 rendered = _timeline_value(value)
                 details.append(f"{name}={rendered}")

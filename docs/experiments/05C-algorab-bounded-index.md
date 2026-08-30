@@ -36,7 +36,7 @@ matches its live structural shape. The exact reuse of the `0.99999` probability
 factor remains STRONG because the discriminating index does not distinguish
 nearby binary32-equivalent formulations.
 
-## Generic-path conflict
+## Historical generic-path conflict
 
 Applying the same reconstructed conversion to all current `next_index()` calls
 breaks Kreet's PROVEN shuffle selections:
@@ -50,9 +50,9 @@ runtime index 0; scaled index 2
 ```
 
 Algorab's shuffle still matches under scaling (`1`, then `0`), but Kreet fails
-at its first shuffle operation. This is Outcome B from Brief 05C. Production
-has not been split into separate bounded APIs and has not been changed to a
-generic scaled primitive, because current evidence cannot distinguish:
+at its first shuffle operation. This was Outcome B from Brief 05C. At that time,
+production had not been split into separate bounded APIs because the evidence
+could not yet distinguish:
 
 1. separate runtime conversion paths for shuffle and descendants; or
 2. a mistaken interpretation of the recovered shuffle call/returned index.
@@ -70,7 +70,14 @@ Oberon, Mimas, and Decaran VII-b remain exact in that replay because their
 observed candidate-index operations use bound 1. Algorab becomes internally
 trace-exact at draw 22.
 
-## Minimal follow-up trace
+## Follow-up trace resolution
+
+The requested Kreet trace captured the first biome-shuffle bounded call and its
+dedicated helper chain. It established integer rejection sampling followed by
+modulo after acceptance, distinct from Algorab's descendant float path. Brief
+05D records the complete resolved evidence and production consequence.
+
+The historical requested capture was:
 
 Trace only Kreet's first biome-shuffle bounded call. Capture:
 

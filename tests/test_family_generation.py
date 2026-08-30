@@ -75,6 +75,16 @@ def test_mimas_family_path_emission_and_draw_interleaving(
         EventKind.DESCENDANT_CANDIDATE_SELECTED,
     ] * 4
     assert [event.rng_draw.draw_number for event in rng_events] == list(range(3, 11))
+    selection_events = rng_events[1::2]
+    assert all(
+        event.operation == "descendant_scaled_index" for event in selection_events
+    )
+    assert all(
+        event["rng_mechanism"] == "float32_scaled_truncation"
+        for event in selection_events
+    )
+    assert all(event["bound"] == 1 for event in selection_events)
+    assert all(event.rng_draw.scaled_value is not None for event in selection_events)
     assert result.emitted_form_ids == canonical_oracle[
         FormId("0005DEC0")
     ].inorganic_resources

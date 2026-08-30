@@ -1,6 +1,6 @@
 # Algorab I Lead Structural-Branch Follow-up
 
-## Current data and model
+## Historical discrepancy and current resolution
 
 The serialized Lead edges are, in source order:
 
@@ -12,7 +12,7 @@ The serialized Lead edges are, in source order:
 000057C6 Titanium -> 000057C2 Dysprosium
 ```
 
-At Algorab draw 18 the current bounded conversion returns:
+Before Brief 05D, the production bounded conversion returned:
 
 ```text
 1826241303 % 2 = 1
@@ -32,7 +32,7 @@ current model: d17/d18 L1, d19/d20 L2, d21/d22 L3, d23 empty L4
                final draw position 23
 ```
 
-The current model still matches Algorab's canonical final resource set, but its
+That model matched Algorab's canonical final resource set, but its
 Lead structural path and final draw position disagree with the live trace.
 
 Candidate concatenation order cannot explain the first divergence because root
@@ -45,9 +45,11 @@ Brief 05C's narrow trace confirmed that the live bounded helper returns index 0
 at draw 18. The runtime therefore selects Silver in serialized order; candidate
 reordering is not required. Modulo is disproven for this descendant call.
 
-A generic scaled replacement remains blocked because it changes Kreet's proven
-shuffle selections from `(0, 0)` to `(1, 2)`. See
-`docs/experiments/05C-algorab-bounded-index.md`.
+Brief 05D's Kreet helper trace proved that shuffle and descendant selection use
+different runtime mechanisms. Production now selects Silver through the scaled
+descendant path while preserving Kreet through the integer rejection/modulo
+shuffle path. Algorab follows Silver -> Mercury -> empty -> empty and ends at
+draw 22; the discrepancy is resolved without candidate reordering.
 
 ## Historical live experiment
 

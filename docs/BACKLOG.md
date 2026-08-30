@@ -50,8 +50,7 @@ Highest risk before broad implementation.
 - [x] Implement candidate MT19937 wrapper.
 - [x] Confirm unsigned 32-bit seed handling.
 - [x] Reproduce known live trace random values at known draw positions.
-- [ ] Resolve whether shuffle and descendant selection use distinct bounded
-  conversions; generic scaling fixes Algorab but breaks Kreet's live shuffle.
+- [x] Resolve shuffle and descendant selection as distinct bounded conversions.
 - [x] Record draw count in diagnostics.
 - [x] Do not proceed with broad validation if PRNG mismatch remains unexplained.
 
@@ -68,10 +67,10 @@ L3 inclusion        ~= 0.108883217
 Exact expected draw positions should be specified in the implementation brief once the current trace model is encoded.
 
 Brief 02 reproduces all supplied anchors. The Mimas Common roll is raw draw 2;
-the high-level operation responsible for the one-word prefix remains explicitly
-unresolved. The binary32 probability expression remains STRONG. Brief 05C
-disproves modulo as the generic descendant bounded conversion while exposing a
-conflict with Kreet's proven shuffle selections.
+the empty Special pass accounts for draw 1. The binary32 probability expression
+remains STRONG. Brief 05D resolves the Brief 05C conflict: shuffle uses a proven
+integer rejection/modulo helper, while descendants use proven float32 scaling
+and truncation.
 
 ## Phase 3 — Core Generation v0.1
 
@@ -173,8 +172,8 @@ Possible categories:
 - [ ] Everywhere/Water upstream insertion semantics.
 - [x] family-cache RNG consumption on repeated-root biomes (Algorab I live proof).
 - [x] no-candidate RNG consumption (Algorab I live proof: one raw word).
-- [ ] shuffle versus descendant bounded-index path distinction; Algorab proves
-  scaled descendant index 0 while Kreet's proven shuffle requires `(0, 0)`.
+- [x] shuffle versus descendant bounded-index path distinction (Brief 05D live
+  proof and separate production APIs).
 - [ ] zero/100-percent inclusion draw behavior.
 - [ ] five-family limit.
 - [ ] eight-resource-slot limit.
