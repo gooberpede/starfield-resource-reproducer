@@ -127,6 +127,9 @@ STRONG compatibility findings rather than universal PROVEN rules.
 - [x] deterministic missing Neon mismatch is reported by FormID.
 - [x] Argon/Neon inclusion draw and preceding Lead zero-candidate levels are exposed.
 - [x] diagnostics-only two-draw displacement counterfactual is labeled unproven.
+- [x] compare no-draw, inclusion, index-raw-equivalent, and two-draw policies.
+- [x] reproduce Neon at draw 17 when one raw word is consumed at each empty level.
+- [ ] prove the zero-candidate branch with static control flow or a live trace.
 
 Acceptance:
 
@@ -169,7 +172,7 @@ Possible categories:
 
 - [ ] Everywhere/Water upstream insertion semantics.
 - [ ] family-cache RNG consumption on repeated-root biomes.
-- [ ] no-candidate RNG consumption.
+- [ ] no-candidate RNG consumption (Brief 05A matrix complete; runtime proof pending).
 - [ ] zero/100-percent inclusion draw behavior.
 - [ ] five-family limit.
 - [ ] eight-resource-slot limit.

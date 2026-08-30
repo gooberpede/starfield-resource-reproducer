@@ -178,8 +178,13 @@ def format_diagnostic_timeline(
                 "draw_count_after",
                 "inclusion_rng_consumed",
                 "index_rng_consumed",
+                "index_raw_equivalent_consumed",
                 "structural_node_after",
                 "evidence_status",
+                "zero_candidate_policy",
+                "raw_draws_consumed",
+                "raw_values_consumed",
+                "operation_types",
             }:
                 rendered = _timeline_value(value)
                 details.append(f"{name}={rendered}")

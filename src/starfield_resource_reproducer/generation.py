@@ -21,6 +21,7 @@ from __future__ import annotations
 from collections.abc import Mapping, MutableMapping
 from dataclasses import dataclass
 from decimal import Decimal
+from enum import Enum
 from types import MappingProxyType
 from typing import Callable, Sequence
 
@@ -94,6 +95,20 @@ class DescendantLevelResult:
     candidate_draw: RngDraw | None
 
 
+class ZeroCandidatePolicy(str, Enum):
+    """Evidence-qualified empty-descendant RNG policies for diagnostics.
+
+    ``CONSUME_NONE`` is the production default. The other values are
+    COUNTERFACTUAL modes: ``CONSUME_INDEX_RAW`` means one raw MT word with
+    index-like intent, not the undefined operation ``next_index(0)``.
+    """
+
+    CONSUME_NONE = "CONSUME_NONE"
+    CONSUME_INCLUSION = "CONSUME_INCLUSION"
+    CONSUME_INDEX_RAW = "CONSUME_INDEX_RAW"
+    CONSUME_BOTH = "CONSUME_BOTH"
+
+
 @dataclass(frozen=True, slots=True)
 class ResourceFamilyResult:
     """Immutable generated configuration for one Common root."""
@@ -141,6 +156,7 @@ class PlanetGenerationResult:
     predicted_form_ids: frozenset[FormId]
     events: tuple[DiagnosticEvent, ...]
     final_draw_count: int
+    zero_candidate_policy: ZeroCandidatePolicy
 
     @property
     def emitted_resources(self) -> tuple[ResourceRef, ...]:
@@ -218,9 +234,12 @@ def generate_family(
     root_entry: RSGDResourceEntry,
     ires_nodes: Mapping[FormId, IRESNode],
     rng: StarfieldRng,
+    *,
+    zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_NONE,
 ) -> ResourceFamilyResult:
     """Generate a new Common family using the selected root entry's chances."""
 
+    _validate_zero_candidate_policy(zero_candidate_policy)
     root = root_entry.resource
     current_form_id = root.form_id
     events: list[DiagnosticEvent] = [
@@ -269,13 +288,23 @@ def generate_family(
         )
 
         if not candidates:
-            # PROVISIONAL: no live zero-candidate branch is available. The
-            # current interpretation consumes no unexplained draws and retains
-            # the current structural node until evidence establishes otherwise.
+            consumed_draws = _consume_zero_candidate_rng(rng, zero_candidate_policy)
+            is_production_policy = (
+                zero_candidate_policy is ZeroCandidatePolicy.CONSUME_NONE
+            )
+            evidence_status = (
+                "PROVISIONAL"
+                if is_production_policy
+                else "COUNTERFACTUAL / NOT RUNTIME-PROVEN"
+            )
             events.append(
                 event(
                     EventKind.DESCENDANT_OMITTED,
-                    operation="skip_empty_descendant_level",
+                    operation=(
+                        "skip_empty_descendant_level"
+                        if is_production_policy
+                        else "counterfactual_empty_descendant_level"
+                    ),
                     root=root,
                     current_structural_node=current_form_id,
                     rarity=rarity,
@@ -283,12 +312,30 @@ def generate_family(
                     candidate_count=0,
                     selected_candidate=None,
                     reason="no_candidates",
-                    evidence_status="PROVISIONAL",
-                    inclusion_rng_consumed=False,
+                    evidence_status=evidence_status,
+                    zero_candidate_policy=zero_candidate_policy,
+                    inclusion_rng_consumed=any(
+                        draw.operation == "float01" for draw in consumed_draws
+                    ),
                     index_rng_consumed=False,
+                    index_raw_equivalent_consumed=any(
+                        draw.operation == "uint32" for draw in consumed_draws
+                    ),
+                    raw_draws_consumed=len(consumed_draws),
+                    raw_values_consumed=tuple(
+                        draw.raw_value for draw in consumed_draws
+                    ),
+                    operation_types=tuple(
+                        (
+                            "inclusion"
+                            if draw.operation == "float01"
+                            else "index_raw_equivalent"
+                        )
+                        for draw in consumed_draws
+                    ),
                     structural_node_changed=False,
                     structural_node_after=current_form_id,
-                    draw_count_before=rng.draw_count,
+                    draw_count_before=rng.draw_count - len(consumed_draws),
                     draw_count_after=rng.draw_count,
                 )
             )
@@ -397,6 +444,8 @@ def get_or_generate_family(
     family_cache: MutableMapping[FormId, ResourceFamilyResult],
     ires_nodes: Mapping[FormId, IRESNode],
     rng: StarfieldRng,
+    *,
+    zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_NONE,
 ) -> FamilyAccessResult:
     """Reuse a planet-scope family or generate and cache it on first selection."""
 
@@ -425,7 +474,12 @@ def get_or_generate_family(
             events=(cache_event,),
         )
 
-    family = generate_family(root_entry, ires_nodes, rng)
+    family = generate_family(
+        root_entry,
+        ires_nodes,
+        rng,
+        zero_candidate_policy=zero_candidate_policy,
+    )
     family_cache[root_entry.resource_form_id] = family
     return FamilyAccessResult(
         family=family,
@@ -448,19 +502,28 @@ def orchestrate_planet(planet: Planet) -> PlanetOrchestrationResult:
 def generate_planet_families(
     planet: Planet,
     ires_nodes: Mapping[FormId, IRESNode],
+    *,
+    zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_NONE,
 ) -> PlanetFamilyGenerationResult:
     """Compatibility wrapper for :func:`generate_planet`."""
 
-    return generate_planet(planet, ires_nodes)
+    return generate_planet(
+        planet, ires_nodes, zero_candidate_policy=zero_candidate_policy
+    )
 
 
 def generate_planet(
     planet: Planet,
     ires_nodes: Mapping[FormId, IRESNode],
+    *,
+    zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_NONE,
 ) -> PlanetGenerationResult:
     """Generate the complete predicted inorganic set without oracle input."""
 
-    result = _run_planet(planet, ires_nodes)
+    _validate_zero_candidate_policy(zero_candidate_policy)
+    result = _run_planet(
+        planet, ires_nodes, zero_candidate_policy=zero_candidate_policy
+    )
     if not isinstance(result, PlanetGenerationResult):  # pragma: no cover
         raise AssertionError("family generation returned a partial result")
     return result
@@ -469,6 +532,8 @@ def generate_planet(
 def _run_planet(
     planet: Planet,
     ires_nodes: Mapping[FormId, IRESNode] | None,
+    *,
+    zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_NONE,
 ) -> PlanetOrchestrationResult | PlanetGenerationResult:
     """Shared planet pipeline; descendants are enabled only with an IRES graph."""
 
@@ -576,7 +641,11 @@ def _run_planet(
             emitted_resources.append(special_entry.resource)
         if ires_nodes is not None and common_entry is not None:
             family_access = get_or_generate_family(
-                common_entry, family_cache, ires_nodes, rng
+                common_entry,
+                family_cache,
+                ires_nodes,
+                rng,
+                zero_candidate_policy=zero_candidate_policy,
             )
             biome_events.extend(family_access.events)
             emitted_resources.extend(family_access.family.emitted_resources)
@@ -640,6 +709,7 @@ def _run_planet(
             ),
             events=tuple(all_events),
             final_draw_count=rng.draw_count,
+            zero_candidate_policy=zero_candidate_policy,
         )
     return PlanetOrchestrationResult(
         planet=planet,
@@ -763,6 +833,41 @@ def _descendant_chance(
         return chance_by_rarity[rarity]
     except KeyError as error:  # Defensive: callers use only descendant levels.
         raise ValueError(f"{rarity.value} is not a descendant rarity") from error
+
+
+def _consume_zero_candidate_rng(
+    rng: StarfieldRng, policy: ZeroCandidatePolicy
+) -> tuple[RngDraw, ...]:
+    """Apply one diagnostic empty-level policy without fabricating index(0).
+
+    PROVISIONAL production behavior consumes nothing. All consuming modes are
+    COUNTERFACTUAL and exist only to distinguish operation semantics from the
+    number of raw MT words advanced while a runtime trace is still absent.
+    """
+
+    draws: list[RngDraw] = []
+    if policy in {
+        ZeroCandidatePolicy.CONSUME_INCLUSION,
+        ZeroCandidatePolicy.CONSUME_BOTH,
+    }:
+        rng.next_float01()
+        draws.append(_required_last_draw(rng))
+    if policy in {
+        ZeroCandidatePolicy.CONSUME_INDEX_RAW,
+        ZeroCandidatePolicy.CONSUME_BOTH,
+    }:
+        # COUNTERFACTUAL: next_index(0) is undefined. A raw extraction models
+        # only equivalent stream advancement while retaining that distinction.
+        rng.next_uint32()
+        draws.append(_required_last_draw(rng))
+    return tuple(draws)
+
+
+def _validate_zero_candidate_policy(policy: ZeroCandidatePolicy) -> None:
+    """Reject strings so diagnostic modes cannot be enabled accidentally."""
+
+    if not isinstance(policy, ZeroCandidatePolicy):
+        raise TypeError("zero_candidate_policy must be a ZeroCandidatePolicy")
 
 
 def _unique_resources(resources: Sequence[ResourceRef]) -> tuple[ResourceRef, ...]:
