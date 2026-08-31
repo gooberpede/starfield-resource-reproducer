@@ -29,7 +29,7 @@ from .domain import (
     ProjectData,
     ResourceRef,
 )
-from .generation import PlanetGenerationResult, generate_planet
+from .generation import PlanetGenerationResult, PlanetResourceState, generate_planet
 
 
 class MismatchClassification(str, Enum):
@@ -94,6 +94,8 @@ class PlanetValidationResult:
     resource_creation_seed: int
     biome_count: int
     predicted_form_ids: frozenset[FormId]
+    atmospheric_form_ids: frozenset[FormId]
+    final_player_facing_form_ids: frozenset[FormId]
     expected_form_ids: frozenset[FormId]
     missing_form_ids: frozenset[FormId]
     unexpected_form_ids: frozenset[FormId]
@@ -101,6 +103,8 @@ class PlanetValidationResult:
     match_status: MatchStatus
     mismatch_signature: MismatchSignature
     predicted_resources: tuple[ResourceRef, ...]
+    atmospheric_resources: tuple[ResourceRef, ...]
+    final_player_facing_resources: tuple[ResourceRef, ...]
     expected_resources: tuple[CanonicalResource, ...]
     shuffled_biome_indices: tuple[int, ...]
     shuffled_biome_names: tuple[str, ...]
@@ -113,6 +117,10 @@ class PlanetValidationResult:
     has_pndt_override: bool
     has_cache_reuse: bool
     rscs_zero: bool
+    has_atmospheric: bool
+    has_everywhere: bool
+    has_special: bool
+    capacity_reached: bool
     first_divergent_family_biome_index: int | None
     suspected_cause: MismatchClassification | None
     first_plausible_divergence: DiagnosticEvent | None
@@ -158,6 +166,14 @@ class ValidationAggregates:
     cache_reuse_mismatches: int
     rscs_zero_planets: int
     rscs_zero_mismatches: int
+    mismatches_by_predicted_count: tuple[tuple[str, int], ...]
+    atmospheric_mismatches: int
+    everywhere_mismatches: int
+    special_mismatches: int
+    single_biome_mismatches: int
+    multi_biome_mismatches: int
+    capacity_reached_mismatches: int
+    provenance_validation_available: bool
 
 
 @dataclass(frozen=True, slots=True)
@@ -192,7 +208,10 @@ def compare_to_oracle(
 
     if generation_result.planet.form_id != canonical_body.planet_form_id:
         raise ValueError("generation and canonical results describe different planets")
-    predicted = generation_result.predicted_form_ids
+    # The runtime oracle omits at least some ATMO-only resources. Compare its
+    # still-OPEN contract with the RSGD/CK-visible channel, while separately
+    # retaining both ATMO and final player-facing union channels.
+    predicted = generation_result.rsgd_form_ids
     expected = canonical_body.inorganic_resources
     missing = frozenset(expected - predicted)
     unexpected = frozenset(predicted - expected)
@@ -235,7 +254,13 @@ def compare_to_oracle(
         exact_match=status is MatchStatus.EXACT,
         match_status=status,
         mismatch_signature=signature,
-        predicted_resources=generation_result.predicted_resources,
+        atmospheric_form_ids=frozenset(
+            resource.form_id for resource in generation_result.atmospheric_resources
+        ),
+        final_player_facing_form_ids=generation_result.predicted_form_ids,
+        predicted_resources=generation_result.rsgd_resources,
+        atmospheric_resources=generation_result.atmospheric_resources,
+        final_player_facing_resources=generation_result.predicted_resources,
         expected_resources=canonical_body.inorganic_resource_records,
         shuffled_biome_indices=tuple(
             biome.index for biome in generation_result.shuffled_biomes
@@ -258,6 +283,12 @@ def compare_to_oracle(
         has_pndt_override=_has_pndt_override(generation_result.planet),
         has_cache_reuse=bool(cache_roots),
         rscs_zero=generation_result.planet.resource_creation_seed == 0,
+        has_atmospheric=bool(generation_result.atmospheric_resources),
+        has_everywhere=bool(generation_result.everywhere_resources),
+        has_special=bool(generation_result.special_resources),
+        capacity_reached=(
+            len(generation_result.occupied_resource_ids) >= PlanetResourceState.CAPACITY
+        ),
         first_divergent_family_biome_index=_first_divergent_family_biome(
             generation_result, family_analysis
         ),
@@ -299,7 +330,15 @@ def validate_all_planets(
         try:
             # Oracle rows are deliberately absent from this call so they cannot
             # choose, reorder, or repair generation branches.
-            generation = generator(planet, project_data.ires_nodes)
+            if generator is generate_planet:
+                generation = generate_planet(
+                    planet,
+                    project_data.ires_nodes,
+                    atmospheric_records=project_data.atmospheric_resources.get(form_id, ()),
+                )
+            else:
+                # Preserve the injectable two-argument test/research generator API.
+                generation = generator(planet, project_data.ires_nodes)
             results.append(compare_to_oracle(generation, canonical, project_data.ires_nodes))
         except Exception as error:  # Corpus analysis must retain subsequent bodies.
             results.append(_generation_error_result(planet, canonical, error))
@@ -339,7 +378,8 @@ def validate_all_planets(
 
 _CSV_COLUMNS = (
     "PlanetFormID", "PlanetEditorID", "PlanetName", "SystemName", "RSCS", "BiomeCount",
-    "FinalDrawCount", "MatchStatus", "PredictedFormIDs", "ExpectedFormIDs",
+    "FinalDrawCount", "MatchStatus", "PredictedFormIDs", "AtmosphericFormIDs",
+    "FinalPlayerFacingFormIDs", "ExpectedFormIDs",
     "PredictedCount", "ExpectedCount", "MissingFormIDs", "MissingNames",
     "UnexpectedFormIDs", "UnexpectedNames", "SelectedCommonRoots",
     "CacheHitRoots", "EffectiveRSGDs", "MismatchSignature",
@@ -381,6 +421,8 @@ def mismatch_csv_row(result: PlanetValidationResult) -> dict[str, str]:
         "FinalDrawCount": "" if result.final_draw_count is None else str(result.final_draw_count),
         "MatchStatus": result.match_status.value,
         "PredictedFormIDs": _join_ids(result.predicted_form_ids),
+        "AtmosphericFormIDs": _join_ids(result.atmospheric_form_ids),
+        "FinalPlayerFacingFormIDs": _join_ids(result.final_player_facing_form_ids),
         "ExpectedFormIDs": _join_ids(result.expected_form_ids),
         "PredictedCount": str(len(result.predicted_form_ids)),
         "ExpectedCount": str(len(result.expected_form_ids)),
@@ -423,9 +465,18 @@ def format_full_validation_summary(result: FullValidationResult) -> str:
             f"Exact matches: {aggregate.exact_matches}",
             f"Mismatches: {aggregate.mismatches}",
             f"Exact-match percentage: {aggregate.exact_match_percentage:.2f}%",
+            f"Prediction-only mismatches: {aggregate.unexpected_only_planets}",
+            f"Oracle-only mismatches: {aggregate.missing_only_planets}",
+            f"Both-sides mismatches: {aggregate.missing_and_unexpected_planets}",
             f"Generation errors: {aggregate.generation_errors}",
             f"Missing occurrences: {aggregate.total_missing_resource_occurrences}",
             f"Unexpected occurrences: {aggregate.total_unexpected_resource_occurrences}",
+            f"Residuals with atmosphere: {aggregate.atmospheric_mismatches}",
+            f"Residuals with Everywhere: {aggregate.everywhere_mismatches}",
+            f"Residuals with Special: {aggregate.special_mismatches}",
+            f"Residuals at capacity: {aggregate.capacity_reached_mismatches}",
+            "Full-corpus provenance comparison: not measurable "
+            "(no independent expected-provenance oracle)",
             f"Runtime seconds: {result.runtime_seconds:.3f}",
         )
     )
@@ -567,6 +618,8 @@ def _generation_error_result(
         resource_creation_seed=planet.resource_creation_seed,
         biome_count=len(planet.biomes),
         predicted_form_ids=frozenset(),
+        atmospheric_form_ids=frozenset(),
+        final_player_facing_form_ids=frozenset(),
         expected_form_ids=canonical.inorganic_resources,
         missing_form_ids=canonical.inorganic_resources,
         unexpected_form_ids=frozenset(),
@@ -574,6 +627,8 @@ def _generation_error_result(
         match_status=MatchStatus.GENERATION_ERROR,
         mismatch_signature=MismatchSignature.GENERATION_ERROR,
         predicted_resources=(),
+        atmospheric_resources=(),
+        final_player_facing_resources=(),
         expected_resources=canonical.inorganic_resource_records,
         shuffled_biome_indices=(),
         shuffled_biome_names=(),
@@ -586,6 +641,10 @@ def _generation_error_result(
         has_pndt_override=_has_pndt_override(planet),
         has_cache_reuse=False,
         rscs_zero=planet.resource_creation_seed == 0,
+        has_atmospheric=False,
+        has_everywhere=False,
+        has_special=False,
+        capacity_reached=False,
         first_divergent_family_biome_index=None,
         suspected_cause=None,
         first_plausible_divergence=None,
@@ -600,6 +659,7 @@ def _aggregate(results: tuple[PlanetValidationResult, ...]) -> ValidationAggrega
     non_exact = [result for result in results if not result.exact_match]
     signature_counts = Counter(result.mismatch_signature.value for result in non_exact)
     biome_counts = Counter(str(result.biome_count) for result in non_exact)
+    predicted_counts = Counter(str(len(result.predicted_form_ids)) for result in non_exact)
     rsgd_counts: Counter[str] = Counter()
     root_counts: Counter[str] = Counter()
     for result in non_exact:
@@ -625,6 +685,14 @@ def _aggregate(results: tuple[PlanetValidationResult, ...]) -> ValidationAggrega
         sum(result.has_cache_reuse for result in non_exact),
         sum(result.rscs_zero for result in results),
         sum(result.rscs_zero for result in non_exact),
+        tuple(sorted(predicted_counts.items(), key=lambda item: int(item[0]))),
+        sum(result.has_atmospheric for result in non_exact),
+        sum(result.has_everywhere for result in non_exact),
+        sum(result.has_special for result in non_exact),
+        sum(result.biome_count == 1 for result in non_exact),
+        sum(result.biome_count > 1 for result in non_exact),
+        sum(result.capacity_reached for result in non_exact),
+        False,
     )
 
 

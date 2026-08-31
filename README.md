@@ -9,30 +9,33 @@ A standalone reference implementation of Starfield's deterministic planetary res
 The reverse-engineering phase has recovered most of the central generation path from Creation Kit live traces, Ghidra analysis, xEdit extraction, and verified game/runtime observations.
 
 The runtime-proven split between biome-shuffle integer bounded selection and
-descendant float32-scaled selection is implemented. Brief 06 has now run the
-complete canonical inorganic intersection: 1,281 of 1,444 planets are exact
-final-set matches (88.71%), with no dataset coverage gaps or generation errors.
-The 163 mismatches remain active research evidence rather than accepted output.
+descendant float32-scaled selection is implemented. Brief 07B integrates the
+atmospheric export, pre-main Everywhere handling, the recovered category-generic
+Special/Common selector, and a shared eight-unique-FormID state. The complete
+canonical inorganic intersection now has 1,426 exact matches out of 1,444
+(98.75%), with 18 residual mismatches and no generation errors.
 
-The generation engine now carries one explicitly accounted PRNG stream through
-biome shuffle, effective-RSGD resolution, provisional Everywhere discovery,
-Special/Common selection, and planet-scoped Common-family generation. The
+The generation engine prepopulates atmosphere occurrences, visits every effective
+RSGD in the Everywhere pre-pass, and then carries one explicitly accounted PRNG
+stream through biome shuffle and per-biome generation. Resource identity/capacity
+is separate from occurrence provenance: ATMO, Everywhere, Special, Common, and
+Descendant occurrences may share one occupied FormID slot. The
 Brief 03 partial orchestration API remains available for outer-decision research;
 the family API adds structural descendant paths, independent inclusion/emission,
 and FormID-keyed cache reuse. A complete `generate_planet()` prediction API now
-assembles Everywhere, Special, and emitted family resources without consulting
-the oracle. A separate FormID-based validator reproduces Oberon, Mimas, Decaran
+assembles final player-facing, RSGD/CK-visible, and atmospheric channels without
+consulting the oracle. The validator compares the RSGD/CK-visible channel because
+`planet-all-resources.csv` is proven to omit at least some atmospheric resources;
+its exact SurveyAggregator contract remains open. It reproduces Oberon, Mimas, Decaran
 VII-b, Kreet, and Algorab I exactly. Algorab also agrees internally with its
 live Lead trace: scaled descendant selection takes Silver then Mercury and ends
 at draw 22. Empty descendant levels consume one raw MT word, while family-cache
 hits bypass descendant generation without consuming descendant RNG.
 
-The full baseline clusters primarily around unexpected resources on dense,
-multi-biome planets, consistent with the still-unrecovered resource-slot/family
-limit boundary. All missing occurrences are Water and are tracked separately
-against the PROVISIONAL upstream Everywhere model. See
-`docs/experiments/06-full-canonical-validation.md` for the measured baseline and
-recommended next investigation.
+The remaining 18 mismatches are retained as research evidence. Brief 07B does not
+apply heuristics to chase them. See
+`docs/experiments/07B-atmosphere-provenance-integration.md` for the post-run
+metrics and residual stratification.
 
 ## Goal
 
@@ -41,13 +44,14 @@ Given authoritative static inputs for a planet:
 - PNDT resource seed and biome entries;
 - effective per-biome RSGD data;
 - IRES resource hierarchy;
+- effective atmospheric inorganic-resource records;
 
 the reproducer should independently predict the resources assigned by the game.
 
 Conceptually:
 
 ```text
-PNDT / BIOM / RSGD + IRES hierarchy + RSCS
+PNDT / BIOM / RSGD + ATMO + IRES hierarchy + RSCS
                      |
                      v
               deterministic model
@@ -99,6 +103,13 @@ Canonical static IRES graph:
 
 This is the authoritative resource-tree input.
 
+### `Starfield_PlanetAtmosphericResources.tsv`
+
+First-class atmospheric inorganic-resource input. This TSV preserves ordered
+planet/resource rows, atmosphere identity, the defining ATMO record, source files,
+and inheritance depth. Absence means the export contains no atmospheric resource
+row for that planet; it is not a malformed generation record.
+
 ### `planet-all-resources.csv`
 
 **Canonical validation oracle.**
@@ -143,16 +154,17 @@ Do not use it as the expected-output source. In particular, it predates the curr
 
 ## Recovered Algorithm: Current Core Model
 
-At a high level:
+At a high level, all mechanisms share capacity for eight unique resource FormIDs
+while retaining separate provenance occurrences:
 
 ```text
-PNDT biome entries in BiomeIndex order
+Atmospheric resource prepopulation (no RNG)
              |
              v
-      MT19937 seeded by RSCS
+Everywhere/category-6 pre-pass over every effective RSGD (no RNG)
              |
              v
- deterministic biome shuffle
+PNDT biome entries -> MT19937 deterministic biome shuffle
  integer rejection + modulo
              |
              v
@@ -180,7 +192,9 @@ PNDT biome entries in BiomeIndex order
                                  +--> Unique (4)
 ```
 
-Water (`Everywhere`, category 6) is already present upstream of the per-biome generator observed in the current traces. Its exact upstream insertion routine is not yet required for v0.1 unless validation shows that the provisional model is insufficient.
+The Everywhere pre-pass visits all biome/effective-RSGD contexts before shuffled
+main generation. The helper's exact category-6 selection arithmetic remains open;
+the reproducer does not misrepresent it as the category-5 weighted selector.
 
 See `docs/DOMAIN-RULES.md` for the detailed rule set and evidence status.
 
@@ -315,7 +329,7 @@ and write a machine-readable mismatch report.
 **v0.1**
 
 1. establish repository structure and tests;
-2. load the three canonical datasets;
+2. load the four canonical input datasets;
 3. validate the exact MT19937 behavior used by the game;
 4. implement the recovered central generation path;
 5. reproduce Oberon, Mimas, Decaran VII-b, and Kreet;

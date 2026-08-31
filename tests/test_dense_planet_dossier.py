@@ -30,29 +30,34 @@ def test_event_and_family_ledgers_are_deterministic(
 
     assert first == second
     assert [item.root.name for item in first.families] == [
-        "Uranium", "Nickel", "Copper", "Copper"
+        "Uranium", "Nickel", "Copper", "Chlorine"
     ]
-    assert [item.cache_hit for item in first.families] == [False, False, False, True]
-    assert [item.generated_family_count_after for item in first.families] == [1, 2, 3, 3]
+    assert [item.cache_hit for item in first.families] == [False, False, False, False]
+    assert [item.generated_family_count_after for item in first.families] == [1, 2, 3, 4]
 
 
 def test_resource_insertion_count_is_monotonic_and_first_divergence_is_stable(
     generation_data, ires_nodes, canonical_oracle
 ) -> None:
     expected = {
-        FERMI_VII_A: ("Ionic Liquids", 9, "DESCENDANT_EMITTED"),
-        MAAL_VIII: ("Alkanes", 8, "DESCENDANT_EMITTED"),
-        FERMI_III: ("Nickel", 9, "ROOT_EMITTED"),
+        FERMI_VII_A: None,
+        MAAL_VIII: ("Alkanes", 8),
+        FERMI_III: None,
     }
-    for planet_id, (name, sequence, source) in expected.items():
+    for planet_id, divergence in expected.items():
         dossier = _dossier(planet_id, generation_data, ires_nodes, canonical_oracle)
         assert [item.count_after for item in dossier.insertions] == list(
             range(1, len(dossier.insertions) + 1)
         )
-        assert dossier.first_divergence is not None
-        assert dossier.first_divergence.resource.name == name
-        assert dossier.first_divergence.sequence == sequence
-        assert dossier.first_divergence.source_event == source
+        if divergence is None:
+            assert dossier.first_divergence is None
+        else:
+            assert dossier.first_divergence is not None
+            assert (
+                dossier.first_divergence.resource.name,
+                dossier.first_divergence.sequence,
+            ) == divergence
+            assert dossier.first_divergence.source_event == "RESOURCE_SLOT_OCCUPIED"
 
 
 def test_canonical_annotation_and_counterfactuals_do_not_mutate_generation(
@@ -90,7 +95,7 @@ def test_csv_output_is_deterministic(
     assert first.read_bytes() == second.read_bytes()
     text = first.read_text(encoding="utf-8")
     assert text.startswith("PlanetFormID,PlanetName,EventIndex,RawDrawNumber")
-    assert "Ionic Liquids" in text
+    assert "Fluorine" in text
     assert "Alkanes" in text
     assert "Nickel" in text
 

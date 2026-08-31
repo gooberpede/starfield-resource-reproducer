@@ -32,7 +32,15 @@ class EventKind(str, Enum):
     BIOME_LIST_INITIAL = "BIOME_LIST_INITIAL"
     SHUFFLE_STEP = "SHUFFLE_STEP"
     BIOME_LIST_SHUFFLED = "BIOME_LIST_SHUFFLED"
+    ATMOSPHERIC_RESOURCE_LOADED = "ATMOSPHERIC_RESOURCE_LOADED"
+    RESOURCE_OCCURRENCE_RECORDED = "RESOURCE_OCCURRENCE_RECORDED"
+    RESOURCE_SLOT_OCCUPIED = "RESOURCE_SLOT_OCCUPIED"
+    RESOURCE_SLOT_ALREADY_OCCUPIED = "RESOURCE_SLOT_ALREADY_OCCUPIED"
+    RESOURCE_CAPACITY_REACHED = "RESOURCE_CAPACITY_REACHED"
+    EVERYWHERE_PREPASS_BEGIN = "EVERYWHERE_PREPASS_BEGIN"
+    EVERYWHERE_PREPASS_CONTEXT = "EVERYWHERE_PREPASS_CONTEXT"
     EVERYWHERE_DISCOVERED = "EVERYWHERE_DISCOVERED"
+    EVERYWHERE_PREPASS_END = "EVERYWHERE_PREPASS_END"
     BIOME_BEGIN = "BIOME_BEGIN"
     RSGD_RESOLVED = "RSGD_RESOLVED"
     SPECIAL_PASS_BEGIN = "SPECIAL_PASS_BEGIN"
@@ -201,6 +209,13 @@ def format_diagnostic_timeline(
                 "probability",
                 "scaled",
                 "selected_index",
+                "resource",
+                "provenance",
+                "accepted",
+                "occupied_new_slot",
+                "occupied_count_before",
+                "occupied_count_after",
+                "capacity",
             }:
                 rendered = _timeline_value(value)
                 details.append(f"{name}={rendered}")

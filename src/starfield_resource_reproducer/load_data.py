@@ -1,4 +1,4 @@
-"""Load and validate the three canonical Starfield CSV datasets.
+"""Load and validate the canonical Starfield CSV and atmospheric TSV datasets.
 
 Purpose: translate flat canonical exports into the immutable objects in ``domain``.
 Responsibilities include schema and consistency checks, numeric parsing, grouping,
@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import TypeVar
 
 from starfield_resource_reproducer.domain import (
+    AtmosphericResourceRecord,
     Biome,
     CanonicalBodyResources,
     CanonicalResource,
@@ -99,15 +100,30 @@ ORACLE_COLUMNS = frozenset(
     }
 )
 
+ATMOSPHERIC_COLUMNS = frozenset(
+    {
+        "SourceFile", "ExtractTimestamp", "PlanetFormID", "PlanetEditorID",
+        "PlanetName", "BodyType", "StarSystemID", "SystemName", "ParentPlanetID",
+        "PlanetID", "AtmosphereFormID", "AtmosphereEditorID",
+        "AtmosphereSourceFile", "AtmosphericResourceCount",
+        "AtmosphericResourceIndex", "ResourceFormID", "ResourceEditorID",
+        "ResourceName", "ResourceSourceFile", "ResourceDefinedByAtmosphereFormID",
+        "ResourceDefinedByAtmosphereEditorID",
+        "ResourceDefinedByAtmosphereSourceFile", "AtmosphereInheritanceDepth",
+    }
+)
+
 
 class DataValidationError(ValueError):
     """Canonical input is malformed, incomplete, or internally contradictory."""
 
 
-def _read_rows(path: Path, required_columns: frozenset[str]) -> list[dict[str, str]]:
+def _read_rows(
+    path: Path, required_columns: frozenset[str], *, delimiter: str = ","
+) -> list[dict[str, str]]:
     try:
         with path.open("r", encoding="utf-8-sig", newline="") as source:
-            reader = csv.DictReader(source)
+            reader = csv.DictReader(source, delimiter=delimiter)
             columns = set(reader.fieldnames or ())
             missing = sorted(required_columns - columns)
             if missing:
@@ -116,7 +132,7 @@ def _read_rows(path: Path, required_columns: frozenset[str]) -> list[dict[str, s
                 )
             rows = [dict(row) for row in reader]
             if not rows:
-                raise DataValidationError(f"{path}: canonical CSV contains no data rows")
+                raise DataValidationError(f"{path}: canonical data contains no data rows")
             for row_number, row in enumerate(rows, start=2):
                 short_fields = sorted(
                     field for field in required_columns if row.get(field) is None
@@ -130,7 +146,7 @@ def _read_rows(path: Path, required_columns: frozenset[str]) -> list[dict[str, s
     except DataValidationError:
         raise
     except (OSError, csv.Error) as error:
-        raise DataValidationError(f"{path}: could not read canonical CSV: {error}") from error
+        raise DataValidationError(f"{path}: could not read canonical data: {error}") from error
 
 
 def _context(path: Path, row_number: int, detail: str = "") -> str:
@@ -582,12 +598,169 @@ def load_canonical_oracle(path: Path) -> dict[FormId, CanonicalBodyResources]:
     return oracle
 
 
-def load_project_data(data_dir: Path) -> ProjectData:
-    """Load all canonical datasets from an explicit project data directory."""
+def load_atmospheric_resources(
+    path: Path,
+) -> dict[FormId, tuple[AtmosphericResourceRecord, ...]]:
+    """Load ordered atmospheric occurrences from the explicit TSV export."""
+
+    path = Path(path)
+    raw_rows = _read_rows(path, ATMOSPHERIC_COLUMNS, delimiter="\t")
+    grouped: dict[FormId, list[tuple[int, AtmosphericResourceRecord]]] = defaultdict(list)
+    seen_pairs: dict[tuple[FormId, FormId], AtmosphericResourceRecord] = {}
+
+    for row_number, row in enumerate(raw_rows, start=2):
+        context = _context(path, row_number)
+        blank_fields = sorted(field for field in ATMOSPHERIC_COLUMNS if row[field] == "")
+        if blank_fields:
+            raise DataValidationError(
+                f"{context}: blank required value(s): {', '.join(blank_fields)}"
+            )
+        planet_form_id = _form_id(row["PlanetFormID"], context, "PlanetFormID")
+        resource_form_id = _form_id(row["ResourceFormID"], context, "ResourceFormID")
+        record = AtmosphericResourceRecord(
+            source_file=row["SourceFile"],
+            extract_timestamp=row["ExtractTimestamp"],
+            planet_form_id=planet_form_id,
+            planet_editor_id=row["PlanetEditorID"],
+            planet_name=row["PlanetName"],
+            body_type=row["BodyType"],
+            star_system_id=_integer(row["StarSystemID"], context, "StarSystemID", minimum=0),
+            system_name=row["SystemName"],
+            parent_planet_id=_integer(
+                row["ParentPlanetID"], context, "ParentPlanetID", minimum=0
+            ),
+            planet_id=_integer(row["PlanetID"], context, "PlanetID", minimum=0),
+            atmosphere_form_id=_form_id(
+                row["AtmosphereFormID"], context, "AtmosphereFormID"
+            ),
+            atmosphere_editor_id=row["AtmosphereEditorID"],
+            atmosphere_source_file=row["AtmosphereSourceFile"],
+            atmospheric_resource_count=_integer(
+                row["AtmosphericResourceCount"],
+                context,
+                "AtmosphericResourceCount",
+                minimum=1,
+            ),
+            atmospheric_resource_index=_integer(
+                row["AtmosphericResourceIndex"],
+                context,
+                "AtmosphericResourceIndex",
+                minimum=0,
+            ),
+            resource_form_id=resource_form_id,
+            resource_editor_id=row["ResourceEditorID"],
+            resource_name=row["ResourceName"],
+            resource_source_file=row["ResourceSourceFile"],
+            defined_by_atmosphere_form_id=_form_id(
+                row["ResourceDefinedByAtmosphereFormID"],
+                context,
+                "ResourceDefinedByAtmosphereFormID",
+            ),
+            defined_by_atmosphere_editor_id=row[
+                "ResourceDefinedByAtmosphereEditorID"
+            ],
+            defined_by_atmosphere_source_file=row[
+                "ResourceDefinedByAtmosphereSourceFile"
+            ],
+            atmosphere_inheritance_depth=_integer(
+                row["AtmosphereInheritanceDepth"],
+                context,
+                "AtmosphereInheritanceDepth",
+                minimum=0,
+            ),
+        )
+        pair = (planet_form_id, resource_form_id)
+        if pair in seen_pairs:
+            qualifier = "contradictory " if seen_pairs[pair] != record else ""
+            raise DataValidationError(
+                f"{context}: {qualifier}duplicate atmospheric planet/resource row "
+                f"({planet_form_id}, {resource_form_id})"
+            )
+        seen_pairs[pair] = record
+        grouped[planet_form_id].append((row_number, record))
+
+    result: dict[FormId, tuple[AtmosphericResourceRecord, ...]] = {}
+    for planet_form_id, numbered_records in grouped.items():
+        records = [record for _, record in numbered_records]
+        planet_context = f"{path}: PlanetFormID {planet_form_id}"
+        counts = {record.atmospheric_resource_count for record in records}
+        if counts != {len(records)}:
+            raise DataValidationError(
+                f"{planet_context}: AtmosphericResourceCount values {sorted(counts)!r} "
+                f"do not match {len(records)} exported rows"
+            )
+        indices = sorted(record.atmospheric_resource_index for record in records)
+        if indices != list(range(len(records))):
+            raise DataValidationError(
+                f"{planet_context}: AtmosphericResourceIndex values must be contiguous "
+                f"from zero; found {indices!r}"
+            )
+        identity_fields = (
+            "planet_editor_id", "planet_name", "atmosphere_form_id",
+            "atmosphere_editor_id", "atmosphere_source_file",
+        )
+        for field_name in identity_fields:
+            values = {getattr(record, field_name) for record in records}
+            if len(values) != 1:
+                raise DataValidationError(
+                    f"{planet_context}: conflicting {field_name} values: {sorted(values)!r}"
+                )
+        result[planet_form_id] = tuple(
+            sorted(records, key=lambda record: record.atmospheric_resource_index)
+        )
+    return result
+
+
+def _validate_atmospheric_coherence(
+    planets: dict[FormId, Planet],
+    ires_nodes: dict[FormId, IRESNode],
+    atmospheric: dict[FormId, tuple[AtmosphericResourceRecord, ...]],
+) -> None:
+    """Validate identity overlap without assigning RSGD rarity to ATMO records."""
+
+    for planet_form_id, records in atmospheric.items():
+        planet = planets.get(planet_form_id)
+        # The atmospheric export may cover bodies outside the current PNDT
+        # intersection. Retain them; validate planet identity only on overlap.
+        if planet is not None and any(
+            (record.planet_editor_id, record.planet_name)
+            != (planet.editor_id, planet.name)
+            for record in records
+        ):
+            raise DataValidationError(
+                f"atmospheric planet metadata conflicts for {planet_form_id}"
+            )
+        for record in records:
+            node = ires_nodes.get(record.resource_form_id)
+            if node is None:
+                raise DataValidationError(
+                    f"atmospheric resource {record.resource_form_id} has no IRES node"
+                )
+            if (record.resource_editor_id, record.resource_name) != (
+                node.editor_id, node.name
+            ):
+                raise DataValidationError(
+                    f"atmospheric resource metadata conflicts for {record.resource_form_id}: "
+                    f"{(record.resource_editor_id, record.resource_name)!r} versus "
+                    f"{(node.editor_id, node.name)!r}"
+                )
+
+
+def load_project_data(
+    data_dir: Path, *, atmospheric_path: Path | None = None
+) -> ProjectData:
+    """Load all four datasets from explicit project paths."""
 
     data_dir = Path(data_dir)
+    planets = load_generation_data(data_dir / "PlanetResourceGeneration_v5.csv")
+    ires_nodes = load_ires_hierarchy(data_dir / "Starfield_IRES_Hierarchy.csv")
+    atmospheric = load_atmospheric_resources(
+        atmospheric_path or data_dir / "Starfield_PlanetAtmosphericResources.tsv"
+    )
+    _validate_atmospheric_coherence(planets, ires_nodes, atmospheric)
     return ProjectData(
-        planets=load_generation_data(data_dir / "PlanetResourceGeneration_v5.csv"),
-        ires_nodes=load_ires_hierarchy(data_dir / "Starfield_IRES_Hierarchy.csv"),
+        planets=planets,
+        ires_nodes=ires_nodes,
         oracle=load_canonical_oracle(data_dir / "planet-all-resources.csv"),
+        atmospheric_resources=atmospheric,
     )

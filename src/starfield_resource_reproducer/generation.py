@@ -3,17 +3,18 @@
 Purpose:
     Reproduce control flow from PNDT biome order through Common-family results.
 Responsibilities:
-    Run the recovered biome shuffle, model provisional Everywhere discovery,
-    resolve effective RSGDs, and perform ordered Special/Common selectors using
-    one evolving ``StarfieldRng``; generate and cache descendant families while
-    emitting structured diagnostics.
+    Prepopulate atmosphere and Everywhere resources, run the recovered biome
+    shuffle, resolve effective RSGDs, and perform the category-generic ordered
+    Special/Common selector using one evolving ``StarfieldRng``; maintain shared
+    unique-FormID capacity, provenance occurrences, cached families, and diagnostics.
 Boundaries:
     CSV loading and oracle validation remain separate. ``orchestrate_planet``
     retains the Brief 03 partial boundary; ``generate_planet_families`` adds the
     family layer; ``generate_planet`` exposes the complete prediction boundary.
 Evidence notes:
-    Kreet proves the observed shuffle and processing order. The broader loop and
-    empty-Special behavior are evidence-qualified below and remain easy to replace.
+    The pre-main ordering and selector draw behavior are PROVEN. Treating duplicate
+    provenance occurrences as one occupied slot is the current STRONG engine-shaped
+    capacity model and remains explicit rather than being upgraded to universal proof.
 """
 
 from __future__ import annotations
@@ -34,6 +35,7 @@ from .diagnostics import (
     event,
 )
 from .domain import (
+    AtmosphericResourceRecord,
     Biome,
     FormId,
     GenerationRarity,
@@ -43,6 +45,8 @@ from .domain import (
     RSGDResourceEntry,
     RSGDSource,
     ResourceRef,
+    ResourceOccurrence,
+    ResourceProvenance,
 )
 from .prng import RngDraw, StarfieldRng
 
@@ -147,11 +151,16 @@ class PlanetGenerationResult:
     planet: Planet
     initial_biomes: tuple[Biome, ...]
     shuffled_biomes: tuple[Biome, ...]
+    atmospheric_occurrences: tuple[ResourceOccurrence, ...]
     everywhere_resources: tuple[ResourceRef, ...]
     biome_results: tuple[BiomeFamilyGenerationResult, ...]
     family_cache: Mapping[FormId, ResourceFamilyResult]
     special_resources: tuple[ResourceRef, ...]
     family_results: tuple[ResourceFamilyResult, ...]
+    occurrences: tuple[ResourceOccurrence, ...]
+    occupied_resource_ids: frozenset[FormId]
+    rsgd_resources: tuple[ResourceRef, ...]
+    rsgd_form_ids: frozenset[FormId]
     predicted_resources: tuple[ResourceRef, ...]
     predicted_form_ids: frozenset[FormId]
     events: tuple[DiagnosticEvent, ...]
@@ -169,6 +178,115 @@ class PlanetGenerationResult:
         """Compatibility name retained for the Brief 04 API."""
 
         return self.predicted_form_ids
+
+    @property
+    def atmospheric_resources(self) -> tuple[ResourceRef, ...]:
+        """Return accepted ATMO-channel identities in stable input order."""
+
+        return _resources_from_occurrences(self.atmospheric_occurrences)
+
+    def occurrences_for(
+        self, provenance: ResourceProvenance
+    ) -> tuple[ResourceOccurrence, ...]:
+        """Return all accepted and rejected contributions for one mechanism."""
+
+        return tuple(item for item in self.occurrences if item.provenance is provenance)
+
+    @property
+    def everywhere_occurrences(self) -> tuple[ResourceOccurrence, ...]:
+        return self.occurrences_for(ResourceProvenance.EVERYWHERE)
+
+    @property
+    def special_occurrences(self) -> tuple[ResourceOccurrence, ...]:
+        return self.occurrences_for(ResourceProvenance.SPECIAL)
+
+    @property
+    def common_occurrences(self) -> tuple[ResourceOccurrence, ...]:
+        return self.occurrences_for(ResourceProvenance.COMMON)
+
+    @property
+    def descendant_occurrences(self) -> tuple[ResourceOccurrence, ...]:
+        return self.occurrences_for(ResourceProvenance.DESCENDANT)
+
+
+class PlanetResourceState:
+    """Shared eight-slot identity state with independent provenance occurrences.
+
+    STRONG / engine-shaped model: capacity counts unique IRES FormIDs. Repeating
+    a FormID through another provenance records another occurrence but consumes
+    no second slot. New identities are rejected once eight IDs are occupied.
+    """
+
+    CAPACITY = 8
+
+    def __init__(self) -> None:
+        self._occupied: dict[FormId, ResourceRef] = {}
+        self._occurrences: list[ResourceOccurrence] = []
+
+    @property
+    def occupied_resource_ids(self) -> frozenset[FormId]:
+        return frozenset(self._occupied)
+
+    @property
+    def occupied_resources(self) -> tuple[ResourceRef, ...]:
+        return tuple(self._occupied.values())
+
+    @property
+    def occurrences(self) -> tuple[ResourceOccurrence, ...]:
+        return tuple(self._occurrences)
+
+    @property
+    def at_capacity(self) -> bool:
+        return len(self._occupied) >= self.CAPACITY
+
+    def record(
+        self,
+        resource: ResourceRef,
+        provenance: ResourceProvenance,
+        **context: object,
+    ) -> tuple[ResourceOccurrence, tuple[DiagnosticEvent, ...]]:
+        """Record provenance and try to occupy the shared FormID state."""
+
+        before = len(self._occupied)
+        already_occupied = resource.form_id in self._occupied
+        accepted = already_occupied or before < self.CAPACITY
+        occupied_new = accepted and not already_occupied
+        if occupied_new:
+            self._occupied[resource.form_id] = resource
+        occurrence = ResourceOccurrence(
+            resource=resource,
+            provenance=provenance,
+            occupies_state=accepted,
+            occupied_new_slot=occupied_new,
+            **context,
+        )
+        self._occurrences.append(occurrence)
+        occurrence_event = event(
+            EventKind.RESOURCE_OCCURRENCE_RECORDED,
+            operation="record_resource_occurrence",
+            resource=resource,
+            provenance=provenance,
+            accepted=accepted,
+            occupied_new_slot=occupied_new,
+            occupied_count_before=before,
+            occupied_count_after=len(self._occupied),
+        )
+        if occupied_new:
+            slot_kind = EventKind.RESOURCE_SLOT_OCCUPIED
+        elif already_occupied:
+            slot_kind = EventKind.RESOURCE_SLOT_ALREADY_OCCUPIED
+        else:
+            slot_kind = EventKind.RESOURCE_CAPACITY_REACHED
+        slot_event = event(
+            slot_kind,
+            operation="update_shared_resource_state",
+            resource=resource,
+            provenance=provenance,
+            capacity=self.CAPACITY,
+            occupied_count_before=before,
+            occupied_count_after=len(self._occupied),
+        )
+        return occurrence, (occurrence_event, slot_event)
 
 
 # Brief 04 callers may continue importing the earlier conceptual name.
@@ -245,10 +363,13 @@ def generate_family(
     rng: StarfieldRng,
     *,
     zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_RAW,
+    resource_state: PlanetResourceState | None = None,
+    biome: Biome | None = None,
 ) -> ResourceFamilyResult:
     """Generate a new Common family using the selected root entry's chances."""
 
     _validate_zero_candidate_policy(zero_candidate_policy)
+    state = resource_state or PlanetResourceState()
     root = root_entry.resource
     current_form_id = root.form_id
     events: list[DiagnosticEvent] = [
@@ -258,14 +379,28 @@ def generate_family(
             root=root,
             draw_count_before=rng.draw_count,
         ),
+    ]
+    root_occurrence, root_state_events = state.record(
+        root,
+        ResourceProvenance.COMMON,
+        biome_index=(biome.index if biome is not None else None),
+        biome_form_id=(biome.form_id if biome is not None else None),
+        effective_rsgd_form_id=(biome.effective_rsgd.form_id if biome is not None else None),
+        rsgd_source=(biome.effective_rsgd.source if biome is not None else None),
+        root_form_id=root.form_id,
+    )
+    events.append(
         event(
             EventKind.ROOT_EMITTED,
             operation="emit_common_root",
             root=root,
             emitted_resource=root,
+            emitted=root_occurrence.occupies_state,
+            occupied_new_slot=root_occurrence.occupied_new_slot,
             rng_consumed=False,
-        ),
-    ]
+        )
+    )
+    events.extend(root_state_events)
     levels: list[DescendantLevelResult] = []
     emitted_descendants: list[ResourceRef] = []
 
@@ -281,6 +416,39 @@ def generate_family(
                 draw_count_before=rng.draw_count,
             )
         )
+        if state.at_capacity:
+            # PROVEN descendant helper guard: full shared identity state returns
+            # the current structural node without consuming RNG.
+            current = _resource_from_graph(current_form_id, ires_nodes)
+            events.append(
+                event(
+                    EventKind.RESOURCE_CAPACITY_REACHED,
+                    operation="descendant_capacity_guard",
+                    root=root,
+                    rarity=rarity,
+                    current_structural_node=current_form_id,
+                    selected_candidate=current,
+                    capacity=state.CAPACITY,
+                    occupied_count=len(state.occupied_resource_ids),
+                    rng_consumed=False,
+                    draw_count_before=rng.draw_count,
+                    draw_count_after=rng.draw_count,
+                    evidence_status="PROVEN",
+                )
+            )
+            levels.append(
+                DescendantLevelResult(
+                    rarity=rarity,
+                    candidates=(),
+                    inclusion_roll=None,
+                    inclusion_threshold=threshold,
+                    selected_candidate=current,
+                    emitted=False,
+                    inclusion_draw=None,
+                    candidate_draw=None,
+                )
+            )
+            continue
         candidates = build_descendant_candidates(
             root.form_id, current_form_id, rarity, ires_nodes
         )
@@ -398,16 +566,34 @@ def generate_family(
                 current_structural_form_id=current_form_id,
             )
         )
+        emitted = False
         if included:
-            emitted_descendants.append(selected)
+            occurrence, state_events = state.record(
+                selected,
+                ResourceProvenance.DESCENDANT,
+                biome_index=(biome.index if biome is not None else None),
+                biome_form_id=(biome.form_id if biome is not None else None),
+                effective_rsgd_form_id=(
+                    biome.effective_rsgd.form_id if biome is not None else None
+                ),
+                rsgd_source=(biome.effective_rsgd.source if biome is not None else None),
+                root_form_id=root.form_id,
+                descendant_rarity=rarity,
+            )
+            emitted = occurrence.occupies_state
+            if emitted:
+                emitted_descendants.append(selected)
+            events.extend(state_events)
         events.append(
             event(
-                EventKind.DESCENDANT_EMITTED if included else EventKind.DESCENDANT_OMITTED,
+                EventKind.DESCENDANT_EMITTED if emitted else EventKind.DESCENDANT_OMITTED,
                 operation="complete_descendant_emission",
                 root=root,
                 rarity=rarity,
                 selected_candidate=selected,
-                emitted=included,
+                emitted=emitted,
+                inclusion_passed=included,
+                reason=(None if emitted or not included else "capacity_rejected"),
                 structural_traversal_continues=True,
             )
         )
@@ -418,13 +604,14 @@ def generate_family(
                 inclusion_roll=inclusion_roll,
                 inclusion_threshold=threshold,
                 selected_candidate=selected,
-                emitted=included,
+                emitted=emitted,
                 inclusion_draw=inclusion_draw,
                 candidate_draw=candidate_draw,
             )
         )
 
-    emitted_resources = _unique_resources((root, *emitted_descendants))
+    root_resources = (root,) if root_occurrence.occupies_state else ()
+    emitted_resources = _unique_resources((*root_resources, *emitted_descendants))
     events.append(
         event(
             EventKind.FAMILY_END,
@@ -455,6 +642,8 @@ def get_or_generate_family(
     rng: StarfieldRng,
     *,
     zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_RAW,
+    resource_state: PlanetResourceState | None = None,
+    biome: Biome | None = None,
 ) -> FamilyAccessResult:
     """Reuse a planet-scope family or generate and cache it on first selection."""
 
@@ -474,12 +663,29 @@ def get_or_generate_family(
             cached_emitted_family=cached.emitted_resources,
             evidence_status="PROVEN",
         )
+        state_events: list[DiagnosticEvent] = []
+        if resource_state is not None:
+            cached_occurrence_resources = (cached.root, *cached.emitted_descendants)
+            for index, resource in enumerate(cached_occurrence_resources):
+                _, recorded = resource_state.record(
+                    resource,
+                    (ResourceProvenance.COMMON if index == 0 else ResourceProvenance.DESCENDANT),
+                    biome_index=(biome.index if biome is not None else None),
+                    biome_form_id=(biome.form_id if biome is not None else None),
+                    effective_rsgd_form_id=(
+                        biome.effective_rsgd.form_id if biome is not None else None
+                    ),
+                    rsgd_source=(biome.effective_rsgd.source if biome is not None else None),
+                    root_form_id=cached.root.form_id,
+                    descendant_rarity=(None if index == 0 else resource.rarity),
+                )
+                state_events.extend(recorded)
         return FamilyAccessResult(
             family=cached,
             cache_hit=True,
             draw_count_before=draw_count_before,
             draw_count_after=rng.draw_count,
-            events=(cache_event,),
+            events=(cache_event, *state_events),
         )
 
     family = generate_family(
@@ -487,6 +693,8 @@ def get_or_generate_family(
         ires_nodes,
         rng,
         zero_candidate_policy=zero_candidate_policy,
+        resource_state=resource_state,
+        biome=biome,
     )
     family_cache[root_entry.resource_form_id] = family
     return FamilyAccessResult(
@@ -512,11 +720,15 @@ def generate_planet_families(
     ires_nodes: Mapping[FormId, IRESNode],
     *,
     zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_RAW,
+    atmospheric_records: Sequence[AtmosphericResourceRecord] = (),
 ) -> PlanetFamilyGenerationResult:
     """Compatibility wrapper for :func:`generate_planet`."""
 
     return generate_planet(
-        planet, ires_nodes, zero_candidate_policy=zero_candidate_policy
+        planet,
+        ires_nodes,
+        zero_candidate_policy=zero_candidate_policy,
+        atmospheric_records=atmospheric_records,
     )
 
 
@@ -525,12 +737,16 @@ def generate_planet(
     ires_nodes: Mapping[FormId, IRESNode],
     *,
     zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_RAW,
+    atmospheric_records: Sequence[AtmosphericResourceRecord] = (),
 ) -> PlanetGenerationResult:
     """Generate the complete predicted inorganic set without oracle input."""
 
     _validate_zero_candidate_policy(zero_candidate_policy)
     result = _run_planet(
-        planet, ires_nodes, zero_candidate_policy=zero_candidate_policy
+        planet,
+        ires_nodes,
+        zero_candidate_policy=zero_candidate_policy,
+        atmospheric_records=atmospheric_records,
     )
     if not isinstance(result, PlanetGenerationResult):  # pragma: no cover
         raise AssertionError("family generation returned a partial result")
@@ -542,11 +758,13 @@ def _run_planet(
     ires_nodes: Mapping[FormId, IRESNode] | None,
     *,
     zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_RAW,
+    atmospheric_records: Sequence[AtmosphericResourceRecord] = (),
 ) -> PlanetOrchestrationResult | PlanetGenerationResult:
     """Shared planet pipeline; descendants are enabled only with an IRES graph."""
 
     # PROVEN: one RSCS-seeded RNG state evolves through shuffle and every biome.
     rng = StarfieldRng(planet.resource_creation_seed)
+    resource_state = PlanetResourceState()
     initial_biomes = tuple(planet.biomes)
     all_events: list[DiagnosticEvent] = [
         event(
@@ -563,6 +781,40 @@ def _run_planet(
         ),
     ]
 
+    atmospheric_occurrences: list[ResourceOccurrence] = []
+    if ires_nodes is not None:
+        for record in atmospheric_records:
+            if record.planet_form_id != planet.form_id:
+                raise ValueError(
+                    f"atmospheric record {record.planet_form_id} does not belong to {planet.form_id}"
+                )
+            resource = _resource_from_graph(record.resource_form_id, ires_nodes)
+            occurrence, state_events = resource_state.record(
+                resource,
+                ResourceProvenance.ATMO,
+                atmospheric_record=record,
+            )
+            atmospheric_occurrences.append(occurrence)
+            all_events.append(
+                event(
+                    EventKind.ATMOSPHERIC_RESOURCE_LOADED,
+                    operation="prepopulate_atmospheric_resource",
+                    resource=resource,
+                    atmospheric_resource_index=record.atmospheric_resource_index,
+                    atmosphere_form_id=record.atmosphere_form_id,
+                    inheritance_depth=record.atmosphere_inheritance_depth,
+                    occupied=occurrence.occupies_state,
+                    rng_consumed=False,
+                    evidence_status="PROVEN",
+                )
+            )
+            all_events.extend(state_events)
+
+    everywhere_resources, everywhere_events = _discover_everywhere(
+        initial_biomes, resource_state
+    )
+    all_events.extend(everywhere_events)
+
     shuffle = shuffle_biomes(initial_biomes, rng)
     all_events.extend(shuffle.events)
     all_events.append(
@@ -575,13 +827,9 @@ def _run_planet(
         )
     )
 
-    everywhere_resources, everywhere_events = _discover_everywhere(initial_biomes)
-    all_events.extend(everywhere_events)
-
     biome_results: list[BiomeOrchestrationResult] = []
     family_biome_results: list[BiomeFamilyGenerationResult] = []
     family_cache: dict[FormId, ResourceFamilyResult] = {}
-    emitted_resources: list[ResourceRef] = list(everywhere_resources)
     special_resources: list[ResourceRef] = []
     for processing_position, biome in enumerate(shuffle.biomes):
         biome_events: list[DiagnosticEvent] = [
@@ -645,19 +893,28 @@ def _run_planet(
 
         family_access: FamilyAccessResult | None = None
         if special_entry is not None:
-            special_resources.append(special_entry.resource)
-            emitted_resources.append(special_entry.resource)
-            # Diagnostics expose the insertion already performed by this branch.
-            # The event does not alter selection, ordering, or duplicate handling.
+            special_occurrence, state_events = resource_state.record(
+                special_entry.resource,
+                ResourceProvenance.SPECIAL,
+                biome_index=biome.index,
+                biome_form_id=biome.form_id,
+                effective_rsgd_form_id=effective_rsgd.form_id,
+                rsgd_source=effective_rsgd.source,
+            )
+            if special_occurrence.occupies_state:
+                special_resources.append(special_entry.resource)
             biome_events.append(
                 event(
                     EventKind.SPECIAL_EMITTED,
                     operation="emit_special_resource",
                     biome_index=biome.index,
                     emitted_resource=special_entry.resource,
+                    emitted=special_occurrence.occupies_state,
+                    occupied_new_slot=special_occurrence.occupied_new_slot,
                     rng_consumed=False,
                 )
             )
+            biome_events.extend(state_events)
         if ires_nodes is not None and common_entry is not None:
             family_access = get_or_generate_family(
                 common_entry,
@@ -665,9 +922,10 @@ def _run_planet(
                 ires_nodes,
                 rng,
                 zero_candidate_policy=zero_candidate_policy,
+                resource_state=resource_state,
+                biome=biome,
             )
             biome_events.extend(family_access.events)
-            emitted_resources.extend(family_access.family.emitted_resources)
         biome_events.append(
             event(
                 EventKind.BIOME_END,
@@ -703,7 +961,14 @@ def _run_planet(
         )
     )
     if ires_nodes is not None:
-        unique_emitted = _unique_resources(emitted_resources)
+        occurrences = resource_state.occurrences
+        rsgd_occurrences = tuple(
+            item
+            for item in occurrences
+            if item.provenance is not ResourceProvenance.ATMO and item.occupies_state
+        )
+        rsgd_resources = _resources_from_occurrences(rsgd_occurrences)
+        unique_emitted = resource_state.occupied_resources
         all_events.append(
             event(
                 EventKind.PLANET_GENERATION_END,
@@ -717,11 +982,16 @@ def _run_planet(
             planet=planet,
             initial_biomes=initial_biomes,
             shuffled_biomes=shuffle.biomes,
+            atmospheric_occurrences=tuple(atmospheric_occurrences),
             everywhere_resources=everywhere_resources,
             biome_results=tuple(family_biome_results),
             family_cache=MappingProxyType(dict(family_cache)),
             special_resources=_unique_resources(special_resources),
             family_results=tuple(family_cache.values()),
+            occurrences=occurrences,
+            occupied_resource_ids=resource_state.occupied_resource_ids,
+            rsgd_resources=rsgd_resources,
+            rsgd_form_ids=frozenset(resource.form_id for resource in rsgd_resources),
             predicted_resources=unique_emitted,
             predicted_form_ids=frozenset(
                 resource.form_id for resource in unique_emitted
@@ -743,35 +1013,77 @@ def _run_planet(
 
 def _discover_everywhere(
     biomes: Sequence[Biome],
+    resource_state: PlanetResourceState,
 ) -> tuple[tuple[ResourceRef, ...], tuple[DiagnosticEvent, ...]]:
-    # PROVISIONAL: static Everywhere entries are modeled as upstream resources;
-    # the exact runtime insertion routine and duplicate behavior remain unknown.
+    # PROVEN structural ordering: all effective-RSGD work objects are visited in
+    # a category-6 pre-pass before shuffle-driven main generation. The helper's
+    # exact category-6 selection arithmetic remains OPEN, so positive configured
+    # entries are retained without inventing category-5 weighting.
     resources: list[ResourceRef] = []
-    events: list[DiagnosticEvent] = []
-    seen_form_ids = set()
+    events: list[DiagnosticEvent] = [
+        event(
+            EventKind.EVERYWHERE_PREPASS_BEGIN,
+            operation="begin_everywhere_prepass",
+            biome_count=len(biomes),
+            rng_consumed=False,
+            evidence_status="PROVEN",
+        )
+    ]
     for biome in biomes:
+        events.append(
+            event(
+                EventKind.EVERYWHERE_PREPASS_CONTEXT,
+                operation="visit_everywhere_prepass_context",
+                biome_index=biome.index,
+                biome_form_id=biome.form_id,
+                rsgd_form_id=biome.effective_rsgd.form_id,
+                rsgd_editor_id=biome.effective_rsgd.editor_id,
+                rng_consumed=False,
+            )
+        )
         for entry in biome.effective_rsgd.entries:
             if (
                 entry.resource_rarity is not GenerationRarity.EVERYWHERE
                 or entry.everywhere_chance <= 0
-                or entry.resource_form_id in seen_form_ids
             ):
                 continue
-            seen_form_ids.add(entry.resource_form_id)
-            resources.append(entry.resource)
+            occurrence, state_events = resource_state.record(
+                entry.resource,
+                ResourceProvenance.EVERYWHERE,
+                biome_index=biome.index,
+                biome_form_id=biome.form_id,
+                effective_rsgd_form_id=biome.effective_rsgd.form_id,
+                rsgd_source=biome.effective_rsgd.source,
+            )
+            if occurrence.occupies_state:
+                resources.append(entry.resource)
             events.append(
                 event(
                     EventKind.EVERYWHERE_DISCOVERED,
-                    operation="provisional_upstream_everywhere_discovery",
+                    operation="everywhere_prepass_resource",
                     biome_index=biome.index,
                     rsgd_form_id=biome.effective_rsgd.form_id,
                     resource=entry.resource,
                     chance_percent=float(entry.everywhere_chance),
-                    evidence_status="PROVISIONAL",
+                    evidence_status="PROVEN_STRUCTURE_OPEN_HELPER_SELECTION",
+                    occupied=occurrence.occupies_state,
+                    occupied_new_slot=occurrence.occupied_new_slot,
                     rng_consumed=False,
                 )
             )
-    return tuple(resources), tuple(events)
+            events.extend(state_events)
+    unique = _unique_resources(resources)
+    events.append(
+        event(
+            EventKind.EVERYWHERE_PREPASS_END,
+            operation="end_everywhere_prepass",
+            visited_biome_count=len(biomes),
+            resources=unique,
+            occupied_count=len(resource_state.occupied_resource_ids),
+            rng_consumed=False,
+        )
+    )
+    return unique, tuple(events)
 
 
 def _select_weighted(
@@ -797,7 +1109,7 @@ def _select_weighted(
         draw_count_before=rng.draw_count,
     )
 
-    # STRONG: the recovered category selector obtains its probability value
+    # PROVEN: the recovered category-generic selector obtains its probability value
     # before walking entries. This naturally consumes Mimas draw 1 even though
     # no Special entry is eligible; no synthetic alignment draw is inserted.
     roll = rng.next_float01()
@@ -916,6 +1228,26 @@ def _unique_resources(resources: Sequence[ResourceRef]) -> tuple[ResourceRef, ..
             seen.add(resource.form_id)
             result.append(resource)
     return tuple(result)
+
+
+def _resources_from_occurrences(
+    occurrences: Sequence[ResourceOccurrence],
+) -> tuple[ResourceRef, ...]:
+    """Return accepted unique identities while retaining occurrence data elsewhere."""
+
+    return _unique_resources(
+        tuple(item.resource for item in occurrences if item.occupies_state)
+    )
+
+
+def _resource_from_graph(
+    form_id: FormId, ires_nodes: Mapping[FormId, IRESNode]
+) -> ResourceRef:
+    try:
+        node = ires_nodes[form_id]
+    except KeyError as error:
+        raise ValueError(f"IRES graph has no node for resource {form_id}") from error
+    return ResourceRef(node.form_id, node.editor_id, node.name, node.rarity)
 
 
 def _required_last_draw(rng: StarfieldRng) -> RngDraw:

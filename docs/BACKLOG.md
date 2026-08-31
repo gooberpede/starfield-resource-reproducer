@@ -77,7 +77,10 @@ and truncation.
 - [x] Construct biome list in PNDT `BiomeIndex` order.
 - [x] Implement deterministic shuffle.
 - [x] Implement effective RSGD precedence.
-- [x] Implement provisional Everywhere/Water preload.
+- [x] Integrate atmospheric prepopulation as a fourth first-class input.
+- [x] Implement the recovered Everywhere/category-6 pre-pass ordering.
+- [x] Preserve ATMO/Everywhere/Special/Common/Descendant provenance occurrences.
+- [x] Enforce the shared eight-unique-FormID state across all mechanisms.
 - [x] Implement Special pass.
 - [x] Implement Common cumulative weighted selector.
 - [x] Preserve RSGD order.
@@ -180,25 +183,38 @@ limit and insertion-order class; Everywhere insertion remains a separate follow-
 
 Do not change rules merely to increase aggregate match rate without evidence.
 
+Brief 07B post-integration result:
+
+```text
+validation population  1,444
+FINAL_SET_EXACT        1,426 (98.75%)
+mismatches                18
+generation errors          0
+coverage-only bodies       0
+```
+
+The validator compares the RSGD/CK-visible channel with the still-open oracle
+contract and reports atmospheric and final player-facing channels separately.
+
 ## Phase 6 — Mismatch-Driven Reverse Engineering
 
 Only investigate branches demonstrated to matter.
 
 Possible categories:
 
-- [ ] Everywhere/Water upstream insertion semantics.
+- [x] Everywhere/Water pre-main ordering and all-biome work-object traversal.
 - [x] family-cache RNG consumption on repeated-root biomes (Algorab I live proof).
 - [x] no-candidate RNG consumption (Algorab I live proof: one raw word).
 - [x] shuffle versus descendant bounded-index path distinction (Brief 05D live
   proof and separate production APIs).
 - [ ] zero/100-percent inclusion draw behavior.
 - [ ] five-family limit.
-- [ ] eight-resource-slot limit.
+- [x] shared eight-unique-FormID capacity model (STRONG duplicate-slot semantics).
 - [ ] RSCS = 0 fallback behavior.
 - [ ] duplicate suppression.
 - [ ] fallback/additional RSGD paths.
 - [ ] unusual DLC/plugin data.
-- [ ] edge handling for Special/Everywhere interaction.
+- [x] shared capacity integration for Special/Everywhere/ATMO/families.
 
 Each discovered behavior should receive:
 

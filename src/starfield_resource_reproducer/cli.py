@@ -1,3 +1,9 @@
+"""Command-line validation entry point for explicit project data paths.
+
+The CLI loads inputs and renders/writes validation results. It does not implement
+generation rules or infer data files outside the requested data directory.
+"""
+
 import argparse
 import sys
 from collections.abc import Sequence
@@ -43,6 +49,15 @@ def build_parser() -> argparse.ArgumentParser:
         default=_PROJECT_ROOT / "data",
         help=argparse.SUPPRESS,
     )
+    parser.add_argument(
+        "--atmosphere-data",
+        type=Path,
+        default=None,
+        help=(
+            "path to Starfield_PlanetAtmosphericResources.tsv "
+            "(defaults to the named file in --data-dir)"
+        ),
+    )
     return parser
 
 
@@ -56,7 +71,9 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     parsed = parser.parse_args(arguments)
     if parsed.validate_all:
-        project_data = load_project_data(parsed.data_dir)
+        project_data = load_project_data(
+            parsed.data_dir, atmospheric_path=parsed.atmosphere_data
+        )
         result = validate_all_planets(project_data)
         write_mismatch_csv(result, parsed.output)
         print(format_full_validation_summary(result))

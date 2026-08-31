@@ -110,9 +110,11 @@ def test_stable_result_and_csv_ordering(
 
 
 def test_complete_corpus_baseline_is_deterministic_and_consistent(
-    generation_data, ires_nodes, canonical_oracle
+    generation_data, ires_nodes, canonical_oracle, atmospheric_resources
 ) -> None:
-    project = ProjectData(generation_data, ires_nodes, canonical_oracle)
+    project = ProjectData(
+        generation_data, ires_nodes, canonical_oracle, atmospheric_resources
+    )
     first = validate_all_planets(project)
     second = validate_all_planets(project)
 
@@ -124,11 +126,12 @@ def test_complete_corpus_baseline_is_deterministic_and_consistent(
     assert first.oracle_only == ()
     assert len(first.planet_results) == first.intersection_count
     assert len({item.planet_form_id for item in first.planet_results}) == 1444
-    assert first.aggregates.exact_matches == 1281
-    assert first.aggregates.mismatches == 163
+    assert first.aggregates.exact_matches == 1426
+    assert first.aggregates.mismatches == 18
     assert first.aggregates.generation_errors == 0
+    assert first.aggregates.provenance_validation_available is False
     assert (
         first.aggregates.exact_matches + first.aggregates.mismatches
         == first.aggregates.total_validation_planets
     )
-    assert sum(count for _, count in first.aggregates.mismatch_status_counts) == 163
+    assert sum(count for _, count in first.aggregates.mismatch_status_counts) == 18

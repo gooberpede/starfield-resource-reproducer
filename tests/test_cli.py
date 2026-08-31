@@ -31,5 +31,10 @@ def test_validate_all_writes_report(tmp_path, capsys: pytest.CaptureFixture[str]
 
     rendered = capsys.readouterr().out
     assert "Validation intersection: 1444" in rendered
-    assert "Exact matches: 1281" in rendered
+    assert "Exact matches: 1426" in rendered
+    assert "Final-set/provenance mismatches" not in rendered
+    assert (
+        "Full-corpus provenance comparison: not measurable "
+        "(no independent expected-provenance oracle)"
+    ) in rendered
     assert output.read_text(encoding="utf-8").startswith("PlanetFormID,")

@@ -3,12 +3,14 @@ from pathlib import Path
 import pytest
 
 from starfield_resource_reproducer.domain import (
+    AtmosphericResourceRecord,
     CanonicalBodyResources,
     FormId,
     IRESNode,
     Planet,
 )
 from starfield_resource_reproducer.load_data import (
+    load_atmospheric_resources,
     load_canonical_oracle,
     load_generation_data,
     load_ires_hierarchy,
@@ -31,3 +33,12 @@ def ires_nodes() -> dict[FormId, IRESNode]:
 @pytest.fixture(scope="session")
 def canonical_oracle() -> dict[FormId, CanonicalBodyResources]:
     return load_canonical_oracle(DATA_DIR / "planet-all-resources.csv")
+
+
+@pytest.fixture(scope="session")
+def atmospheric_resources() -> dict[
+    FormId, tuple[AtmosphericResourceRecord, ...]
+]:
+    return load_atmospheric_resources(
+        DATA_DIR / "Starfield_PlanetAtmosphericResources.tsv"
+    )

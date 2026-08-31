@@ -2,15 +2,15 @@
 
 Purpose: provide immutable domain objects at the boundary between CSV loading and
 later resource-generation work. Responsibilities include stable FormID identity,
-static generation categories, ordered biome/RSGD data, the direct IRES graph, and
-separate runtime-oracle records. CSV parsing, PRNG behavior, generation, and
+static generation categories, ordered biome/RSGD and atmospheric data, the direct
+IRES graph, and separate runtime-oracle records. Parsing, PRNG behavior, generation, and
 prediction validation deliberately live elsewhere. The PNDT-over-BIOM property is
 the only recovered runtime rule represented here because its precedence is PROVEN.
 """
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from decimal import Decimal
 from enum import Enum
 import re
@@ -65,6 +65,16 @@ class RSGDSource(str, Enum):
     PNDT = "PNDT"
     BIOM = "BIOM"
     PNDT_AND_BIOM = "PNDT+BIOM"
+
+
+class ResourceProvenance(str, Enum):
+    """Mechanism that contributed one planet resource occurrence."""
+
+    ATMO = "ATMO"
+    EVERYWHERE = "EVERYWHERE"
+    SPECIAL = "SPECIAL"
+    COMMON = "COMMON"
+    DESCENDANT = "DESCENDANT"
 
 
 @dataclass(frozen=True)
@@ -158,6 +168,57 @@ class Planet:
 
 
 @dataclass(frozen=True)
+class AtmosphericResourceRecord:
+    """One ordered atmospheric-resource export row with source provenance."""
+
+    source_file: str
+    extract_timestamp: str
+    planet_form_id: FormId
+    planet_editor_id: str
+    planet_name: str
+    body_type: str
+    star_system_id: int
+    system_name: str
+    parent_planet_id: int
+    planet_id: int
+    atmosphere_form_id: FormId
+    atmosphere_editor_id: str
+    atmosphere_source_file: str
+    atmospheric_resource_count: int
+    atmospheric_resource_index: int
+    resource_form_id: FormId
+    resource_editor_id: str
+    resource_name: str
+    resource_source_file: str
+    defined_by_atmosphere_form_id: FormId
+    defined_by_atmosphere_editor_id: str
+    defined_by_atmosphere_source_file: str
+    atmosphere_inheritance_depth: int
+
+
+@dataclass(frozen=True, slots=True)
+class ResourceOccurrence:
+    """One provenance-specific resource contribution or rejected insertion.
+
+    ``occupies_state`` is true both for a new slot and for an already occupied
+    FormID. A false value records a capacity-rejected contribution without
+    incorrectly presenting it as part of the final planet state.
+    """
+
+    resource: ResourceRef
+    provenance: ResourceProvenance
+    occupies_state: bool
+    occupied_new_slot: bool
+    biome_index: int | None = None
+    biome_form_id: FormId | None = None
+    effective_rsgd_form_id: FormId | None = None
+    rsgd_source: RSGDSource | None = None
+    root_form_id: FormId | None = None
+    descendant_rarity: GenerationRarity | None = None
+    atmospheric_record: AtmosphericResourceRecord | None = None
+
+
+@dataclass(frozen=True)
 class IRESNode:
     """One IRES resource and its direct children in source edge-list order."""
 
@@ -200,3 +261,6 @@ class ProjectData:
     planets: dict[FormId, Planet]
     ires_nodes: dict[FormId, IRESNode]
     oracle: dict[FormId, CanonicalBodyResources]
+    atmospheric_resources: dict[
+        FormId, tuple[AtmosphericResourceRecord, ...]
+    ] = field(default_factory=dict)

@@ -105,7 +105,7 @@ def test_oberon_discovers_water_upstream_and_selects_nickel(
     assert [resource.name for resource in result.everywhere_resources] == ["Water"]
     everywhere = _events(result, EventKind.EVERYWHERE_DISCOVERED)
     assert len(everywhere) == 1
-    assert everywhere[0]["evidence_status"] == "PROVISIONAL"
+    assert everywhere[0]["evidence_status"] == "PROVEN_STRUCTURE_OPEN_HELPER_SELECTION"
     assert everywhere[0]["rng_consumed"] is False
     assert result.biome_results[0].special_selection is None
     assert result.biome_results[0].common_root.name == "Nickel"

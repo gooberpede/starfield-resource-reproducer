@@ -274,13 +274,16 @@ Keep structural graph logic out of orchestration code.
 
 Responsibilities:
 
+- prepopulate ordered atmospheric occurrences before RNG-backed work;
+- run the category-6 / Everywhere pre-pass across every biome/effective RSGD;
 - construct/copy biome list in PNDT order;
 - deterministic shuffle;
-- Everywhere provisional handling;
 - iterate shuffled biomes;
 - resolve effective RSGD;
-- Special pass;
-- Common weighted selection;
+- run the same recovered ordered cumulative selector for Special then Common;
+- retain provenance-specific occurrences independently of resource identity;
+- enforce one shared eight-unique-FormID capacity across ATMO, Everywhere,
+  Special, Common, and descendants;
 - preserve an explicitly partial orchestration result for Brief 03 diagnostics;
 - generate immutable Common-family configurations;
 - process descendant levels in rarity order with exact draw accounting;
@@ -288,13 +291,15 @@ Responsibilities:
   retaining the structural node;
 - maintain the planet-scope FormID-keyed family cache, reusing cached results
   without invoking descendant generation or consuming descendant RNG;
-- assemble complete planet output from Everywhere, Special, and emitted families.
+- expose atmospheric, RSGD/CK-visible, and final player-facing resource channels.
 
 `orchestrate_planet()` stops after Common-root selection. The separate
 `generate_planet()` pipeline uses the same outer control flow but runs a new
 family immediately after its root is selected, before the shared RNG advances to
 the next biome. `generate_planet_families()` remains a compatibility wrapper.
-The result is a complete prediction, not a canonical validation result.
+The result is a complete prediction, not a canonical validation result. Its
+central invariant is that occurrence count is not slot count: two mechanisms may
+contribute the same FormID while only one unique identity occupies shared state.
 
 No CSV access.
 
@@ -330,11 +335,18 @@ Descendant, cache, and emission events are added only with their corresponding
 generation stages. Brief 04 adds family begin/end, root emission, per-level
 candidate/inclusion/selection/emission, and cache-hit events.
 
+Brief 07B also records atmospheric prepopulation, Everywhere pre-pass boundaries,
+provenance occurrences, new-slot occupancy, already-occupied identities, and
+capacity rejection. Occurrences remain first-class result data; diagnostics explain
+state transitions rather than serving as the only provenance API.
+
 ### `validation.py`
 
 Responsibilities:
 
-- compare an independent generation result with an inorganic canonical body;
+- compare the independent RSGD/CK-visible channel with an inorganic canonical body;
+- retain atmospheric and final player-facing union channels without treating
+  ATMO-only oracle omissions as generation failures;
 - compare expected/predicted resource membership by FormID;
 - derive the generation/oracle-inorganic intersection and report coverage gaps;
 - retain exact, missing-only, unexpected-only, mixed, and generation-error status;

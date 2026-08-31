@@ -11,7 +11,7 @@ Boundaries:
     canonical membership back into generation. Counterfactuals filter immutable
     recorded results only; they do not model a recovered runtime limit.
 Evidence notes:
-    Resource counts are visible unique-insertion counts, not proven engine slots.
+    Resource counts now mirror the shared unique-FormID state insertion events.
     Family counts mirror completed reproducer cache entries, not a proven runtime
     configuration-capacity field.
 """
@@ -127,10 +127,7 @@ class PlanetDossier:
 
 
 _INSERTION_KINDS = {
-    EventKind.EVERYWHERE_DISCOVERED,
-    EventKind.SPECIAL_EMITTED,
-    EventKind.ROOT_EMITTED,
-    EventKind.DESCENDANT_EMITTED,
+    EventKind.RESOURCE_SLOT_OCCUPIED,
 }
 
 
@@ -388,6 +385,8 @@ def _cutoff_result(
 
 
 def _emitted_resource(item: DiagnosticEvent) -> ResourceRef | None:
+    if item.kind is EventKind.RESOURCE_SLOT_OCCUPIED:
+        return item.get("resource")
     if item.kind is EventKind.EVERYWHERE_DISCOVERED:
         return item.get("resource")
     if item.kind in {EventKind.SPECIAL_EMITTED, EventKind.ROOT_EMITTED}:

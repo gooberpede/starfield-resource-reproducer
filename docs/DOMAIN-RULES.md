@@ -250,21 +250,33 @@ In the observed `FUN_1415DCFB0` per-biome generator:
 
 Oberon showed Water already present in working result state and only read, not written, during the traced per-biome routine.
 
-### Upstream insertion
+### Pre-main-generation handling
 
-**PROVEN architecturally, mechanism unresolved**
+**PROVEN structure; OPEN helper selection details**
 
-Everywhere resources are populated earlier/upstream.
+Before any shuffled per-biome generator call, the planet orchestration visits
+every biome/effective-RSGD work object and handles its category-6 entry. It does
+not stop globally after the first Everywhere resource. The selected FormID enters
+shared planet resource state without consuming RNG.
 
-Exact upstream routine and all edge semantics are not yet reconstructed.
+This proves privileged pre-main handling and biome-work association. It does not
+prove that the resource is physically generated in every biome, nor that the
+category-6 helper uses category-5 weighted selection. The reproducer therefore
+retains a distinct Everywhere pre-pass and does not invent stronger physical claims.
 
-### Reproducer v0.1 handling
+## Atmospheric Resources
 
-**PROVISIONAL**
+### Prepopulation and provenance
 
-Model Water/Everywhere from static RSGD/category data sufficiently to reproduce observed planet sets.
+**PROVEN in the observed CK path**
 
-If the full canonical comparison shows mismatches, trace/recover the exact upstream path rather than hard-coding planet exceptions.
+Effective inorganic atmospheric resources are prepopulated before Everywhere and
+before shuffled main generation. Atmospheric insertion consumes no RNG and is not
+an RSGD result. Ordered records from `Starfield_PlanetAtmosphericResources.tsv`
+retain their defining ATMO identity, source file, and inheritance depth.
+
+The same IRES FormID may occur through ATMO and an RSGD mechanism. These are two
+provenance occurrences, not two resource identities.
 
 ## Special / Helium-3
 
@@ -282,9 +294,9 @@ The per-biome generator performs a category-5 weighted selector pass.
 
 Decaran VII-b directly demonstrated Helium-3 matching category 5.
 
-### Empty Special selector consumption
+### Category-generic selector and draw consumption
 
-**STRONG**
+**PROVEN**
 
 The recovered category-selector call obtains one probability roll before it
 walks the ordered RSGD entries. Consequently the Special pass consumes one raw
@@ -292,8 +304,15 @@ draw even when the effective RSGD contains zero Special entries, then returns no
 selection. This accounts for Mimas raw draw 1 without a dummy draw or planet
 special case; its Common roll remains raw draw 2 at `0.5611079931259155`.
 
-Decaran VII-b uses the same call shape: Special/Helium-3 consumes draw 1 and
-Common/Uranium consumes draw 2.
+The recovered selector consumes one MT word, converts it to the binary32
+probability, scans ordered RSGD entries matching the requested category, adds
+`chance(category) / 100` cumulatively without normalization, and returns the first
+entry for which `roll < cumulative`. It consumes exactly one word for zero, one,
+or many eligible entries, including a single 100-percent candidate.
+
+Decaran VII-b uses this call shape: Special/Helium-3 consumes draw 1 and
+Common/Uranium consumes draw 2. Callisto independently demonstrates a 100-percent
+Special candidate still consuming the first draw before Common consumes the next.
 
 ## Common / Family Root Selection
 
@@ -318,6 +337,23 @@ Root selection is cumulative weighted selection in RSGD array order.
 Do not normalize stored weights before selection.
 
 Treat cumulative thresholds using the values as stored.
+
+## Shared Planet Resource State
+
+### Capacity identity versus occurrence provenance
+
+**PROVEN:** recovered code guards a shared state at eight resource IDs.
+
+**STRONG / engine-shaped capacity model:** capacity is modeled as eight unique
+IRES FormIDs across ATMO, Everywhere, Special, Common roots, and emitted
+descendants. A repeated FormID records another provenance occurrence but does not
+consume a second slot. Exact duplicate behavior at every insertion site remains
+OPEN, so this broader collision model is not labeled universally proven.
+
+There is no Water-, Chlorine-, atmosphere-, or vapor-specific capacity exception.
+When the shared state is full, the descendant helper returns the current structural
+node and consumes no RNG. Occurrence count and occupied-slot count are deliberately
+separate result fields.
 
 ## Root Emission
 
@@ -567,12 +603,11 @@ The supplied file contains 7,663 total resource rows across 1,445 bodies and inc
 
 Do not block v0.1 on these unless necessary:
 
-- exact upstream Everywhere insertion routine;
+- exact category-6 helper selection arithmetic;
 - RSCS = 0 fallback path;
 - five-family limit;
-- eight-resource-slot limit;
-- duplicate suppression side effects;
+- exact same-FormID duplicate behavior at every insertion site;
 - fallback/additional RSGD iteration;
-- unusual Special/Everywhere slot interactions.
+- exact SurveyAggregator contract of `planet-all-resources.csv`.
 
 The first full canonical run should determine which of these actually matters.
