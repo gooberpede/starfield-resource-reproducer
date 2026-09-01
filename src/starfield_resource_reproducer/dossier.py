@@ -12,8 +12,9 @@ Boundaries:
     recorded results only; they do not model a recovered runtime limit.
 Evidence notes:
     Resource counts now mirror the shared unique-FormID state insertion events.
-    Family counts mirror completed reproducer cache entries, not a proven runtime
-    configuration-capacity field.
+    Family counts mirror completed reproducer cache entries, while the assignment
+    ledger also includes normal reuse and guarded fallback. It is not a claim
+    about an unrecovered runtime configuration-capacity field.
 """
 
 from __future__ import annotations
@@ -24,7 +25,14 @@ from pathlib import Path
 from typing import Iterable, Mapping
 
 from .diagnostics import DiagnosticEvent, EventKind
-from .domain import CanonicalBodyResources, FormId, IRESNode, ResourceRef
+from .domain import (
+    CanonicalBodyResources,
+    CommonAssignmentMechanism,
+    CommonGuardReason,
+    FormId,
+    IRESNode,
+    ResourceRef,
+)
 from .generation import PlanetGenerationResult
 
 
@@ -81,7 +89,7 @@ class ResourceInsertion:
 
 @dataclass(frozen=True, slots=True)
 class FamilyLedgerEntry:
-    """One Common-root access in runtime biome-processing order."""
+    """One biome-local Common-family assignment in processing order."""
 
     sequence: int
     biome_runtime_position: int
@@ -94,6 +102,10 @@ class FamilyLedgerEntry:
     emitted_descendants: tuple[ResourceRef, ...]
     generated_family_count_before: int
     generated_family_count_after: int
+    assignment_mechanism: CommonAssignmentMechanism
+    guard_reason: CommonGuardReason | None
+    origin_biome_index: int | None
+    origin_biome_name: str | None
 
 
 @dataclass(frozen=True, slots=True)
@@ -343,11 +355,12 @@ def _family_ledger(generation: PlanetGenerationResult) -> tuple[FamilyLedgerEntr
     rows: list[FamilyLedgerEntry] = []
     generated_count = 0
     for runtime_position, biome in enumerate(generation.biome_results):
-        access = biome.family_access
-        if access is None:
+        assignment = biome.common_assignment
+        family = assignment.family
+        if family is None:
             continue
         before = generated_count
-        if not access.cache_hit:
+        if assignment.mechanism is CommonAssignmentMechanism.NEW_FAMILY:
             generated_count += 1
         rows.append(
             FamilyLedgerEntry(
@@ -356,12 +369,20 @@ def _family_ledger(generation: PlanetGenerationResult) -> tuple[FamilyLedgerEntr
                 biome_index=biome.orchestration.biome.index,
                 biome_name=biome.orchestration.biome.name,
                 effective_rsgd_editor_id=biome.orchestration.effective_rsgd.editor_id,
-                root=access.family.root,
-                cache_hit=access.cache_hit,
-                root_emitted=not access.cache_hit,
-                emitted_descendants=access.family.emitted_descendants,
+                root=family.root,
+                cache_hit=(
+                    assignment.mechanism is not CommonAssignmentMechanism.NEW_FAMILY
+                ),
+                root_emitted=(
+                    assignment.mechanism is CommonAssignmentMechanism.NEW_FAMILY
+                ),
+                emitted_descendants=family.emitted_descendants,
                 generated_family_count_before=before,
                 generated_family_count_after=generated_count,
+                assignment_mechanism=assignment.mechanism,
+                guard_reason=assignment.guard_reason,
+                origin_biome_index=family.origin.biome_index,
+                origin_biome_name=family.origin.biome_name,
             )
         )
     return tuple(rows)

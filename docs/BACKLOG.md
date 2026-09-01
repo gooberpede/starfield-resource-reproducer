@@ -226,6 +226,13 @@ consumes no selector RNG. This removes the terrestrial/Common Chlorine
 occurrences on Zeta Ophiuchi I and Indum IV-d while retaining atmospheric
 Chlorine in the final player-facing union.
 
+Brief 08D preserves the 1,444 / 1,444 planet-wide result while implementing the
+PROVEN LIVE guarded biome-family fallback. Both pre-Common guards now scan the
+effective RSGD for cached root matches, fall back to the full family cache when
+needed, and record the assigned configuration with origin and mechanism
+provenance. CK regression observations for Jaffa VII-b, Bara VII-d, Indum IV-d,
+Zeta Ophiuchi I, and Pyraas VIII-a are reproduced.
+
 ## Phase 6 - Mismatch-Driven Reverse Engineering
 
 Only investigate branches demonstrated to matter.
@@ -247,7 +254,8 @@ Possible categories:
   before selector RNG consumption (Indum IV-d live proof).
 - [ ] RSCS = 0 fallback behavior.
 - [ ] duplicate suppression.
-- [ ] fallback/additional RSGD paths.
+- [x] guarded biome-family fallback after five-tree/shared-eight suppression.
+- [ ] additional RSGD paths.
 - [ ] unusual DLC/plugin data.
 - [x] shared capacity integration for Special/Everywhere/ATMO/families.
 
@@ -258,15 +266,13 @@ Each discovered behavior should receive:
 3. a focused regression test;
 4. an implementation change.
 
-### Open: biomes reached after the shared-eight guard
+### Guarded biome assignment after capacity
 
-If an early biome establishes a Common root plus several descendants while
-atmosphere/Everywhere resources occupy other shared slots, later biomes may reach
-the shared-eight guard before Common generation. Why vanilla planets show few or
-no genuinely empty biomes remains OPEN. Possible explanations include typical
-descendant probabilities leaving spare capacity, later Everywhere or Special
-resources, planet-wide presentation reuse, or unrecovered engine behavior. Do not
-implement an empty-biome fallback without evidence.
+Resolved by Brief 08D: a guard suppresses new identity generation but does not
+necessarily leave the biome without Common resources. It enters the proven
+cached-family fallback. The defensive state with Common RSGD entries but an empty
+global family cache remains OPEN because no live trace establishes behavior and
+the recovered guards appear to make it unreachable in ordinary control flow.
 
 ## Phase 7 — Reference Reproducer 1.0
 

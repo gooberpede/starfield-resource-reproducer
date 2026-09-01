@@ -51,6 +51,10 @@ class EventKind(str, Enum):
     COMMON_SELECTED = "COMMON_SELECTED"
     COMMON_TREE_LIMIT_REACHED = "COMMON_TREE_LIMIT_REACHED"
     COMMON_RESOURCE_CAPACITY_REACHED = "COMMON_RESOURCE_CAPACITY_REACHED"
+    COMMON_GUARD_FALLBACK_BEGIN = "COMMON_GUARD_FALLBACK_BEGIN"
+    COMMON_GUARD_FALLBACK_CANDIDATES = "COMMON_GUARD_FALLBACK_CANDIDATES"
+    COMMON_GUARD_FALLBACK_ROLL = "COMMON_GUARD_FALLBACK_ROLL"
+    COMMON_GUARD_FALLBACK_ASSIGNED = "COMMON_GUARD_FALLBACK_ASSIGNED"
     FAMILY_BEGIN = "FAMILY_BEGIN"
     ROOT_EMITTED = "ROOT_EMITTED"
     DESCENDANT_LEVEL_BEGIN = "DESCENDANT_LEVEL_BEGIN"
@@ -220,6 +224,10 @@ def format_diagnostic_timeline(
                 "occupied_count",
                 "capacity",
                 "rng_consumed",
+                "guard_reason",
+                "candidate_mode",
+                "assignment_mechanism",
+                "selected_family_root",
             }:
                 rendered = _timeline_value(value)
                 details.append(f"{name}={rendered}")

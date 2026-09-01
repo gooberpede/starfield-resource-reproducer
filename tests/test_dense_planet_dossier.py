@@ -6,7 +6,7 @@ from starfield_resource_reproducer.dossier import (
     visible_insertion_cutoffs,
     write_dossier_events_csv,
 )
-from starfield_resource_reproducer.domain import FormId
+from starfield_resource_reproducer.domain import CommonAssignmentMechanism, FormId
 from starfield_resource_reproducer.generation import generate_planet
 
 
@@ -30,10 +30,13 @@ def test_event_and_family_ledgers_are_deterministic(
 
     assert first == second
     assert [item.root.name for item in first.families] == [
-        "Uranium", "Nickel", "Copper"
+        "Uranium", "Nickel", "Copper", "Copper"
     ]
-    assert [item.cache_hit for item in first.families] == [False, False, False]
-    assert [item.generated_family_count_after for item in first.families] == [1, 2, 3]
+    assert [item.cache_hit for item in first.families] == [False, False, False, True]
+    assert [item.generated_family_count_after for item in first.families] == [1, 2, 3, 3]
+    assert first.families[-1].assignment_mechanism is (
+        CommonAssignmentMechanism.GUARD_MATCHED_FALLBACK
+    )
 
 
 def test_resource_insertion_count_is_monotonic_and_first_divergence_is_stable(

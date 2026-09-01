@@ -11,8 +11,9 @@ Boundaries:
 Evidence notes:
     MT19937 seeding and shared state are PROVEN. The probability conversion is
     a STRONG match for Mimas. Runtime traces PROVE that biome shuffle uses an
-    integer rejection/modulo helper while descendant selection uses float32
-    probability scaling. These mechanisms are deliberately not interchangeable.
+    integer rejection/modulo helper while descendant and guarded-family selection
+    use semantically distinct float32 probability scaling operations. These
+    mechanisms are deliberately not interchangeable.
 """
 
 from dataclasses import dataclass
@@ -177,6 +178,30 @@ class StarfieldRng:
         self._record_draw(
             raw_value,
             "scaled_index",
+            converted,
+            upper_bound=upper_bound,
+            probability_value=probability,
+            scaled_value=scaled,
+        )
+        return converted
+
+    def next_fallback_family_index(self, upper_bound: int) -> int:
+        """Return the PROVEN float32-scaled guard-fallback family choice.
+
+        This deliberately has its own semantic operation even though its binary32
+        arithmetic is bit-compatible with descendant candidate selection. Bound
+        one still consumes a raw MT word.
+        """
+
+        _validate_upper_bound(upper_bound)
+        raw_value = self._extract_uint32()
+        self._last_bounded_attempts = ()
+        probability = _probability_from_raw(raw_value)
+        scaled = _float32(probability * _float32(upper_bound))
+        converted = int(scaled)
+        self._record_draw(
+            raw_value,
+            "fallback_family_index",
             converted,
             upper_bound=upper_bound,
             probability_value=probability,

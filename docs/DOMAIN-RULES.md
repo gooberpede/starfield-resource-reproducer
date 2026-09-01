@@ -300,6 +300,18 @@ The per-biome generator performs a category-5 weighted selector pass.
 
 Decaran VII-b directly demonstrated Helium-3 matching category 5.
 
+### Shared-state ordering before Common guards
+
+**PROVEN LIVE**
+
+Within one biome invocation, a selected Special resource is written and recorded
+in shared planet resource state before the five-tree and shared-eight Common
+guards are evaluated. Callisto directly showed Helium-3 appended to shared state
+before Common/Iron selection. Therefore a new Special identity can raise the
+shared count from seven to eight and force Common guard fallback for that biome.
+A duplicate Special FormID records its occurrence without occupying a new slot,
+so it does not independently trigger the shared-eight guard.
+
 ### Category-generic selector and draw consumption
 
 **PROVEN**
@@ -369,9 +381,10 @@ mechanisms.
 
 In `FUN_1415DCFB0`, the shared eight-resource guard is evaluated after the
 five-Common-tree guard and before the Common/category-0 selector. When the shared
-count is at least eight, the branch bypasses the selector entirely. No Common
-probability draw is consumed, no root is selected, and no Common provenance
-occurrence is created for that invocation.
+count is at least eight, the branch bypasses the normal selector entirely. No
+Common weighted-selector probability draw is consumed and no new root identity
+is selected by that path. The earlier interpretation that this ended biome-local
+Common assignment is superseded by the guarded fallback rule below.
 
 **PROVEN LIVE - Indum IV-d:** the observed invocation had Common-tree count `2`
 and shared-resource count `8`. The five-tree branch was inactive, the shared-eight
@@ -382,6 +395,31 @@ prospective Common root already present through ATMO cannot exploit duplicate
 de-duplication semantics because selection never occurs. The rule is specific to
 the recovered main Common path; it does not alter the upstream Everywhere
 occurrence ordering or establish new Special behavior.
+
+### Guarded biome-family fallback assignment
+
+**PROVEN LIVE in the Creation Kit Galaxy View Apply path**
+
+After either the five-tree or shared-eight guard suppresses the normal Common
+selector, `FUN_1415DCFB0` can assign an already-generated planet-scope family
+configuration to the current biome. `FUN_14154C710` scans stored effective-RSGD
+entries in order. Common roots matching cached-family roots form a preferred
+pool. If Common roots exist but none match, all generated families form the pool.
+If the effective RSGD contains no Common roots, no Common family is assigned.
+
+Fallback selection uses `FUN_14015B4A0`, whose probability thunk
+`FUN_1401190CD -> FUN_140924800` uses the recovered binary32 probability. The
+index is the truncation of `float32(probability * float32(candidate_count))`.
+A one-element pool still consumes one RNG draw. The chosen family is not
+regenerated: descendant selection/inclusion consumes no RNG, the cache is not
+changed, and its existing root plus emitted descendants are recorded as
+biome-context occurrences without occupying new resource slots.
+
+Family configuration origin and current assignment mechanism are distinct.
+Biome results identify new generation, normal cache reuse, matched guard
+fallback, general guard fallback, or no assignment, while the cached family
+retains the biome processing context in which that exact configuration originated.
+Everywhere and Special assignments remain independent of this Common-family path.
 
 ## Shared Planet Resource State
 

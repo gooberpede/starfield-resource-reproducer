@@ -292,8 +292,9 @@ def test_five_distinct_common_trees_are_allowed_before_sixth_is_skipped(
         "raw_draws_consumed"
     ]
     # Six Special draws + five Common draws + four empty descendant-level draws
-    # for each of five new families. The guarded sixth Common stage adds zero.
-    assert result.final_draw_count == shuffle_draws + 6 + 5 + (4 * 5)
+    # for each new family. The guarded sixth selector is skipped, then the
+    # recovered one-element general fallback consumes one float-scaled draw.
+    assert result.final_draw_count == shuffle_draws + 6 + 5 + (4 * 5) + 1
 
 
 def test_common_tree_and_shared_resource_limits_remain_independent() -> None:

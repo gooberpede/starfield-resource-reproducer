@@ -13,9 +13,10 @@ Boundaries:
     family layer; ``generate_planet`` exposes the complete prediction boundary.
 Evidence notes:
     The pre-main ordering, selector draw behavior, and five-tree/shared-eight
-    pre-Common guards are PROVEN. Treating duplicate provenance occurrences as one
-    occupied slot is the current STRONG engine-shaped capacity model and remains
-    explicit rather than being upgraded to universal proof.
+    pre-Common guards are PROVEN. Guarded cached-family fallback, including its
+    distinct float32-scaled draw, is PROVEN LIVE. Treating duplicate provenance
+    occurrences as one occupied slot is the current STRONG engine-shaped capacity
+    model and remains explicit rather than being upgraded to universal proof.
 """
 
 from __future__ import annotations
@@ -38,6 +39,9 @@ from .diagnostics import (
 from .domain import (
     AtmosphericResourceRecord,
     Biome,
+    CommonAssignmentMechanism,
+    CommonGuardReason,
+    CommonNoAssignmentReason,
     FormId,
     GenerationRarity,
     IRESNode,
@@ -122,6 +126,7 @@ class ResourceFamilyResult:
     """Immutable generated configuration for one Common root."""
 
     root: ResourceRef
+    origin: FamilyOrigin
     levels: tuple[DescendantLevelResult, ...]
     emitted_descendants: tuple[ResourceRef, ...]
     emitted_resources: tuple[ResourceRef, ...]
@@ -141,11 +146,63 @@ class FamilyAccessResult:
 
 
 @dataclass(frozen=True, slots=True)
+class FamilyOrigin:
+    """Biome-processing context where a cached family was first generated."""
+
+    biome_index: int | None
+    biome_form_id: FormId | None
+    biome_name: str | None
+    processing_position: int | None
+    root_form_id: FormId
+    effective_rsgd_form_id: FormId | None
+    rsgd_source: RSGDSource | None
+
+
+@dataclass(frozen=True, slots=True)
+class CommonFamilyAssignment:
+    """First-class biome-local Common-family assignment and provenance."""
+
+    family: ResourceFamilyResult | None
+    mechanism: CommonAssignmentMechanism
+    guard_reason: CommonGuardReason | None = None
+    no_assignment_reason: CommonNoAssignmentReason | None = None
+    rsgd_common_roots: tuple[ResourceRef, ...] = ()
+    candidate_family_roots: tuple[ResourceRef, ...] = ()
+    rng_draw: RngDraw | None = None
+
+    @property
+    def resources(self) -> tuple[ResourceRef, ...]:
+        """Return the exact cached family configuration assigned to the biome."""
+
+        return self.family.emitted_resources if self.family is not None else ()
+
+
+@dataclass(frozen=True, slots=True)
 class BiomeFamilyGenerationResult:
     """Outer biome selections plus its optional Common-family configuration."""
 
     orchestration: BiomeOrchestrationResult
     family_access: FamilyAccessResult | None
+    common_assignment: CommonFamilyAssignment
+
+
+@dataclass(frozen=True, slots=True)
+class BiomeResourceView:
+    """Biome-centric resource occurrences with explicit Common assignment."""
+
+    biome: Biome
+    everywhere_occurrences: tuple[ResourceOccurrence, ...]
+    special_occurrences: tuple[ResourceOccurrence, ...]
+    common_occurrences: tuple[ResourceOccurrence, ...]
+    common_assignment: CommonFamilyAssignment
+
+    @property
+    def resources(self) -> tuple[ResourceRef, ...]:
+        """Return accepted biome resources in occurrence order without duplicates."""
+
+        return _resources_from_occurrences(
+            (*self.everywhere_occurrences, *self.special_occurrences, *self.common_occurrences)
+        )
 
 
 @dataclass(frozen=True, slots=True)
@@ -211,6 +268,41 @@ class PlanetGenerationResult:
     @property
     def descendant_occurrences(self) -> tuple[ResourceOccurrence, ...]:
         return self.occurrences_for(ResourceProvenance.DESCENDANT)
+
+    def biome_resource_views(self) -> tuple[BiomeResourceView, ...]:
+        """Return biome-local Everywhere, Special, and Common provenance views."""
+
+        views: list[BiomeResourceView] = []
+        for result in self.biome_results:
+            biome = result.orchestration.biome
+            biome_occurrences = tuple(
+                item
+                for item in self.occurrences
+                if item.biome_index == biome.index and item.occupies_state
+            )
+            views.append(
+                BiomeResourceView(
+                    biome=biome,
+                    everywhere_occurrences=tuple(
+                        item
+                        for item in biome_occurrences
+                        if item.provenance is ResourceProvenance.EVERYWHERE
+                    ),
+                    special_occurrences=tuple(
+                        item
+                        for item in biome_occurrences
+                        if item.provenance is ResourceProvenance.SPECIAL
+                    ),
+                    common_occurrences=tuple(
+                        item
+                        for item in biome_occurrences
+                        if item.provenance
+                        in {ResourceProvenance.COMMON, ResourceProvenance.DESCENDANT}
+                    ),
+                    common_assignment=result.common_assignment,
+                )
+            )
+        return tuple(views)
 
 
 class PlanetResourceState:
@@ -369,6 +461,7 @@ def generate_family(
     zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_RAW,
     resource_state: PlanetResourceState | None = None,
     biome: Biome | None = None,
+    processing_position: int | None = None,
 ) -> ResourceFamilyResult:
     """Generate a new Common family using the selected root entry's chances."""
 
@@ -392,6 +485,7 @@ def generate_family(
         effective_rsgd_form_id=(biome.effective_rsgd.form_id if biome is not None else None),
         rsgd_source=(biome.effective_rsgd.source if biome is not None else None),
         root_form_id=root.form_id,
+        common_assignment_mechanism=CommonAssignmentMechanism.NEW_FAMILY,
     )
     events.append(
         event(
@@ -583,6 +677,7 @@ def generate_family(
                 rsgd_source=(biome.effective_rsgd.source if biome is not None else None),
                 root_form_id=root.form_id,
                 descendant_rarity=rarity,
+                common_assignment_mechanism=CommonAssignmentMechanism.NEW_FAMILY,
             )
             emitted = occurrence.occupies_state
             if emitted:
@@ -631,6 +726,17 @@ def generate_family(
     )
     return ResourceFamilyResult(
         root=root,
+        origin=FamilyOrigin(
+            biome_index=(biome.index if biome is not None else None),
+            biome_form_id=(biome.form_id if biome is not None else None),
+            biome_name=(biome.name if biome is not None else None),
+            processing_position=processing_position,
+            root_form_id=root.form_id,
+            effective_rsgd_form_id=(
+                biome.effective_rsgd.form_id if biome is not None else None
+            ),
+            rsgd_source=(biome.effective_rsgd.source if biome is not None else None),
+        ),
         levels=tuple(levels),
         emitted_descendants=tuple(emitted_descendants),
         emitted_resources=emitted_resources,
@@ -648,6 +754,7 @@ def get_or_generate_family(
     zero_candidate_policy: ZeroCandidatePolicy = ZeroCandidatePolicy.CONSUME_RAW,
     resource_state: PlanetResourceState | None = None,
     biome: Biome | None = None,
+    processing_position: int | None = None,
 ) -> FamilyAccessResult:
     """Reuse a planet-scope family or generate and cache it on first selection."""
 
@@ -665,6 +772,8 @@ def get_or_generate_family(
             draw_count_after=rng.draw_count,
             descendant_rng_consumed=False,
             cached_emitted_family=cached.emitted_resources,
+            assignment_mechanism=CommonAssignmentMechanism.NORMAL_CACHE_REUSE,
+            family_origin=cached.origin,
             evidence_status="PROVEN",
         )
         state_events: list[DiagnosticEvent] = []
@@ -682,6 +791,9 @@ def get_or_generate_family(
                     rsgd_source=(biome.effective_rsgd.source if biome is not None else None),
                     root_form_id=cached.root.form_id,
                     descendant_rarity=(None if index == 0 else resource.rarity),
+                    common_assignment_mechanism=(
+                        CommonAssignmentMechanism.NORMAL_CACHE_REUSE
+                    ),
                 )
                 state_events.extend(recorded)
         return FamilyAccessResult(
@@ -699,6 +811,7 @@ def get_or_generate_family(
         zero_candidate_policy=zero_candidate_policy,
         resource_state=resource_state,
         biome=biome,
+        processing_position=processing_position,
     )
     family_cache[root_entry.resource_form_id] = family
     return FamilyAccessResult(
@@ -755,6 +868,156 @@ def generate_planet(
     if not isinstance(result, PlanetGenerationResult):  # pragma: no cover
         raise AssertionError("family generation returned a partial result")
     return result
+
+
+def _assign_guard_fallback_family(
+    *,
+    biome: Biome,
+    guard_reason: CommonGuardReason,
+    family_cache: Mapping[FormId, ResourceFamilyResult],
+    resource_state: PlanetResourceState,
+    rng: StarfieldRng,
+) -> tuple[CommonFamilyAssignment, tuple[DiagnosticEvent, ...]]:
+    """Assign an existing family after a pre-Common guard suppresses selection.
+
+    PROVEN LIVE: stored RSGD Common roots define the preferred root-matching
+    pool. If none match, all cached families form the general pool. Selection is
+    float32-scaled and consumes one draw even for a one-element pool.
+    """
+
+    events: list[DiagnosticEvent] = [
+        event(
+            EventKind.COMMON_GUARD_FALLBACK_BEGIN,
+            operation="begin_guarded_common_family_fallback",
+            biome_index=biome.index,
+            guard_reason=guard_reason,
+            generated_family_count=len(family_cache),
+            occupied_resource_count=len(resource_state.occupied_resource_ids),
+        )
+    ]
+    common_roots = tuple(
+        entry.resource
+        for entry in biome.effective_rsgd.entries
+        if entry.resource_rarity is GenerationRarity.COMMON
+    )
+    preferred = tuple(
+        family
+        for root in common_roots
+        for family in family_cache.values()
+        if family.root.form_id == root.form_id
+    )
+    if not common_roots:
+        candidate_mode = "NONE"
+        candidates: tuple[ResourceFamilyResult, ...] = ()
+    elif preferred:
+        candidate_mode = "MATCHED"
+        candidates = preferred
+    else:
+        candidate_mode = "GENERAL"
+        candidates = tuple(family_cache.values())
+    events.append(
+        event(
+            EventKind.COMMON_GUARD_FALLBACK_CANDIDATES,
+            operation="build_guarded_common_family_candidates",
+            biome_index=biome.index,
+            guard_reason=guard_reason,
+            has_common_entries=bool(common_roots),
+            rsgd_common_roots=common_roots,
+            matching_family_roots=tuple(family.root for family in preferred),
+            candidate_family_roots=tuple(family.root for family in candidates),
+            candidate_mode=candidate_mode,
+            candidate_count=len(candidates),
+        )
+    )
+    if not common_roots:
+        return (
+            CommonFamilyAssignment(
+                family=None,
+                mechanism=CommonAssignmentMechanism.NO_COMMON_ASSIGNMENT,
+                guard_reason=guard_reason,
+                no_assignment_reason=(
+                    CommonNoAssignmentReason.GUARD_RSGD_HAS_NO_COMMON
+                ),
+            ),
+            tuple(events),
+        )
+    if not candidates:
+        # OPEN / defensive: both recovered guards require prior occupied state,
+        # and the five-tree guard necessarily implies a non-empty cache. No live
+        # trace establishes a choice when Common entries coexist with no family.
+        return (
+            CommonFamilyAssignment(
+                family=None,
+                mechanism=CommonAssignmentMechanism.NO_COMMON_ASSIGNMENT,
+                guard_reason=guard_reason,
+                no_assignment_reason=CommonNoAssignmentReason.GUARD_EMPTY_FAMILY_CACHE,
+                rsgd_common_roots=common_roots,
+            ),
+            tuple(events),
+        )
+
+    selected_index = rng.next_fallback_family_index(len(candidates))
+    rng_draw = _required_last_draw(rng)
+    selected = candidates[selected_index]
+    mechanism = (
+        CommonAssignmentMechanism.GUARD_MATCHED_FALLBACK
+        if preferred
+        else CommonAssignmentMechanism.GUARD_GENERAL_FALLBACK
+    )
+    events.append(
+        event(
+            EventKind.COMMON_GUARD_FALLBACK_ROLL,
+            operation="guard_fallback_family_scaled_index",
+            rng_draw=rng_draw,
+            rng_mechanism="float32_scaled_truncation",
+            biome_index=biome.index,
+            guard_reason=guard_reason,
+            candidate_mode=candidate_mode,
+            candidate_count=len(candidates),
+            probability=rng_draw.probability_value,
+            scaled=rng_draw.scaled_value,
+            selected_index=selected_index,
+            selected_family_root=selected.root,
+        )
+    )
+    for index, resource in enumerate((selected.root, *selected.emitted_descendants)):
+        _, recorded = resource_state.record(
+            resource,
+            ResourceProvenance.COMMON if index == 0 else ResourceProvenance.DESCENDANT,
+            biome_index=biome.index,
+            biome_form_id=biome.form_id,
+            effective_rsgd_form_id=biome.effective_rsgd.form_id,
+            rsgd_source=biome.effective_rsgd.source,
+            root_form_id=selected.root.form_id,
+            descendant_rarity=(None if index == 0 else resource.rarity),
+            common_assignment_mechanism=mechanism,
+            common_guard_reason=guard_reason,
+        )
+        events.extend(recorded)
+    events.append(
+        event(
+            EventKind.COMMON_GUARD_FALLBACK_ASSIGNED,
+            operation="assign_guarded_cached_common_family",
+            biome_index=biome.index,
+            guard_reason=guard_reason,
+            assignment_mechanism=mechanism,
+            family_root=selected.root,
+            family_origin=selected.origin,
+            assigned_resources=selected.emitted_resources,
+            descendant_rng_consumed=False,
+        )
+    )
+    return (
+        CommonFamilyAssignment(
+            family=selected,
+            mechanism=mechanism,
+            guard_reason=guard_reason,
+            rsgd_common_roots=common_roots,
+            candidate_family_roots=tuple(family.root for family in candidates),
+            rng_draw=rng_draw,
+        ),
+        tuple(events),
+    )
 
 
 def _run_planet(
@@ -875,13 +1138,43 @@ def _run_planet(
         )
         biome_events.extend(special_events)
 
+        # PROVEN LIVE in FUN_1415DCFB0: Special assignment updates the shared
+        # resource state before either Common guard observes its occupied count.
+        # A new Special identity can therefore fill slot eight and suppress the
+        # normal Common selector; a duplicate occurrence leaves the count intact.
+        if special_entry is not None:
+            special_occurrence, state_events = resource_state.record(
+                special_entry.resource,
+                ResourceProvenance.SPECIAL,
+                biome_index=biome.index,
+                biome_form_id=biome.form_id,
+                effective_rsgd_form_id=effective_rsgd.form_id,
+                rsgd_source=effective_rsgd.source,
+            )
+            if special_occurrence.occupies_state:
+                special_resources.append(special_entry.resource)
+            biome_events.append(
+                event(
+                    EventKind.SPECIAL_EMITTED,
+                    operation="emit_special_resource",
+                    biome_index=biome.index,
+                    emitted_resource=special_entry.resource,
+                    emitted=special_occurrence.occupies_state,
+                    occupied_new_slot=special_occurrence.occupied_new_slot,
+                    rng_consumed=False,
+                )
+            )
+            biome_events.extend(state_events)
+
         # PROVEN STATIC/LIVE in FUN_1415DCFB0: the five-tree guard is evaluated
         # before the shared-eight guard, and both precede the category-0 selector.
         # The cache is keyed by root FormID, so cache hits do not consume another
         # tree slot. A capacity-skipped invocation must not consume selector RNG,
         # even when its prospective root already occupies a provenance-neutral slot.
+        guard_reason: CommonGuardReason | None = None
         if ires_nodes is not None and len(family_cache) >= COMMON_TREE_LIMIT:
             common_entry = None
+            guard_reason = CommonGuardReason.COMMON_TREE_LIMIT
             biome_events.append(
                 event(
                     EventKind.COMMON_TREE_LIMIT_REACHED,
@@ -897,6 +1190,7 @@ def _run_planet(
             )
         elif ires_nodes is not None and resource_state.at_capacity:
             common_entry = None
+            guard_reason = CommonGuardReason.SHARED_RESOURCE_CAPACITY
             biome_events.append(
                 event(
                     EventKind.COMMON_RESOURCE_CAPACITY_REACHED,
@@ -922,39 +1216,22 @@ def _run_planet(
                 biome_index=biome.index,
             )
             biome_events.extend(common_events)
-        biome_events.append(
-            event(
-                EventKind.COMMON_SELECTED,
-                operation="complete_common_root_selector",
-                biome_index=biome.index,
-                selected_resource=(common_entry.resource if common_entry else None),
-            )
-        )
-
-        family_access: FamilyAccessResult | None = None
-        if special_entry is not None:
-            special_occurrence, state_events = resource_state.record(
-                special_entry.resource,
-                ResourceProvenance.SPECIAL,
-                biome_index=biome.index,
-                biome_form_id=biome.form_id,
-                effective_rsgd_form_id=effective_rsgd.form_id,
-                rsgd_source=effective_rsgd.source,
-            )
-            if special_occurrence.occupies_state:
-                special_resources.append(special_entry.resource)
+        if guard_reason is None:
             biome_events.append(
                 event(
-                    EventKind.SPECIAL_EMITTED,
-                    operation="emit_special_resource",
+                    EventKind.COMMON_SELECTED,
+                    operation="complete_common_root_selector",
                     biome_index=biome.index,
-                    emitted_resource=special_entry.resource,
-                    emitted=special_occurrence.occupies_state,
-                    occupied_new_slot=special_occurrence.occupied_new_slot,
-                    rng_consumed=False,
+                    selected_resource=(common_entry.resource if common_entry else None),
                 )
             )
-            biome_events.extend(state_events)
+
+        family_access: FamilyAccessResult | None = None
+        common_assignment = CommonFamilyAssignment(
+            family=None,
+            mechanism=CommonAssignmentMechanism.NO_COMMON_ASSIGNMENT,
+            no_assignment_reason=CommonNoAssignmentReason.NORMAL_SELECTOR_NO_RESULT,
+        )
         if ires_nodes is not None and common_entry is not None:
             family_access = get_or_generate_family(
                 common_entry,
@@ -964,8 +1241,32 @@ def _run_planet(
                 zero_candidate_policy=zero_candidate_policy,
                 resource_state=resource_state,
                 biome=biome,
+                processing_position=processing_position,
             )
             biome_events.extend(family_access.events)
+            common_assignment = CommonFamilyAssignment(
+                family=family_access.family,
+                mechanism=(
+                    CommonAssignmentMechanism.NORMAL_CACHE_REUSE
+                    if family_access.cache_hit
+                    else CommonAssignmentMechanism.NEW_FAMILY
+                ),
+                rsgd_common_roots=tuple(
+                    entry.resource
+                    for entry in effective_rsgd.entries
+                    if entry.resource_rarity is GenerationRarity.COMMON
+                ),
+                candidate_family_roots=(family_access.family.root,),
+            )
+        elif ires_nodes is not None and guard_reason is not None:
+            common_assignment, fallback_events = _assign_guard_fallback_family(
+                biome=biome,
+                guard_reason=guard_reason,
+                family_cache=family_cache,
+                resource_state=resource_state,
+                rng=rng,
+            )
+            biome_events.extend(fallback_events)
         biome_events.append(
             event(
                 EventKind.BIOME_END,
@@ -988,7 +1289,9 @@ def _run_planet(
         biome_results.append(orchestration_result)
         if ires_nodes is not None:
             family_biome_results.append(
-                BiomeFamilyGenerationResult(orchestration_result, family_access)
+                BiomeFamilyGenerationResult(
+                    orchestration_result, family_access, common_assignment
+                )
             )
 
     all_events.append(

@@ -12,10 +12,11 @@ The runtime-proven split between biome-shuffle integer bounded selection and
 descendant float32-scaled selection is implemented. Brief 07B integrates the
 atmospheric export, pre-main Everywhere handling, the recovered category-generic
 Special/Common selector, and a shared eight-unique-FormID state. Brief 08A
-corrects category-6 eligibility from live Fermi VIII-b evidence. Brief 08B adds
-the proven five-distinct-Common-tree guard before the Common selector. The complete
-canonical inorganic intersection now has 1,442 exact matches out of 1,444
-(99.86%), with 2 residual mismatches and no generation errors.
+corrects category-6 eligibility from live Fermi VIII-b evidence. Briefs 08B and
+08C add the proven five-distinct-Common-tree and shared-eight pre-selector guards.
+Brief 08D implements the proven post-guard assignment of an already-generated
+family configuration to the current biome. The complete canonical inorganic
+intersection has 1,444 exact matches out of 1,444 with no generation errors.
 
 The generation engine prepopulates atmosphere occurrences, visits every effective
 RSGD in the Everywhere pre-pass, and then carries one explicitly accounted PRNG
@@ -34,10 +35,10 @@ live Lead trace: scaled descendant selection takes Silver then Mercury and ends
 at draw 22. Empty descendant levels consume one raw MT word, while family-cache
 hits bypass descendant generation without consuming descendant RNG.
 
-The remaining 2 mismatches are retained as research evidence; no compensating
-heuristics are applied. See
-`docs/experiments/08B-five-distinct-common-resource-tree-limit.md` for the
-post-guard metrics and exact residuals.
+The guarded fallback changes biome-local assignment and subsequent RNG state
+without introducing planet-wide identities; the canonical result remains
+1,444 / 1,444 exact. CK-observed biome assignments are covered separately because
+the canonical planet-wide oracle contains no biome-local mapping.
 
 ## Goal
 
@@ -178,10 +179,17 @@ PNDT biome entries -> MT19937 deterministic biome shuffle
              |
              +--> Special pass (5)
              |       e.g. Helium-3
+             |       record selected Special in shared state
+             |       before evaluating either Common guard
              |
              +--> Common/root weighted selection (0)
-                        skipped once five distinct Common trees exist
-                        skipped when shared state already contains eight IDs
+                        normal selector skipped once five Common trees exist
+                        normal selector skipped at eight shared resource IDs
+                         |
+                         +--> guard fallback assignment
+                         |       match cached roots present in effective RSGD
+                         |       otherwise choose from all cached families
+                         |       no Common entries -> no assignment
                          |
                          +--> family already generated
                          |       -> reuse cached family result
@@ -205,9 +213,16 @@ Once five distinct Common tree configurations have been established, the main
 per-biome path skips the Common selector before its probability draw. This guard
 is separate from the shared capacity of eight unique resource FormIDs. PROVEN
 STATIC/LIVE control flow in `FUN_1415DCFB0` checks that shared capacity after the
-five-tree guard and before the Common selector; at eight occupied IDs, selection
-is bypassed without consuming its normal RNG draw. Shared capacity is therefore
-both an insertion constraint and a pre-Common control-flow guard.
+five-tree guard and before the Common selector; at eight occupied IDs, normal
+selection is bypassed without consuming its usual RNG draw. **PROVEN LIVE:** both
+guards then enter a fallback stage. Matching cached roots in the effective RSGD
+form the preferred family pool; otherwise all cached families are eligible. The
+float32-scaled fallback choice consumes one draw even for a one-family pool and
+copies the cached configuration into the biome without creating new identities.
+Within each biome, a selected Special occurrence updates shared resource state
+before the five-tree and shared-eight guards. A new Special identity can therefore
+fill slot eight and cause that biome to enter Common guard fallback; a duplicate
+Special occurrence does not increase the occupied count.
 
 See `docs/DOMAIN-RULES.md` for the detailed rule set and evidence status.
 

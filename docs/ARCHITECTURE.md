@@ -175,6 +175,9 @@ level_2
 level_3
 level_4
 emitted_resources
+origin_biome
+origin_processing_position
+origin_effective_rsgd
 ```
 
 Preserve structural selections even when a level was not emitted.
@@ -184,6 +187,7 @@ Preserve structural selections even when a level was not emitted.
 ```text
 planet
 per_biome_results
+  common_assignment  # mechanism, guard, candidates, selected family, origin
 everywhere_resources
 special_resources
 family_cache
@@ -282,12 +286,20 @@ Responsibilities:
 - deterministic shuffle;
 - iterate shuffled biomes;
 - resolve effective RSGD;
-- run the same recovered ordered cumulative selector for Special then Common;
+- run the recovered ordered cumulative Special selector and immediately record
+  any selected Special in shared state before evaluating either Common guard;
+- then run the same selector shape for Common only when neither guard fires;
 - before Common selection, enforce the five-distinct-tree guard from
   `FUN_1415DCFB0`; a guarded invocation consumes no Common-selector RNG draw;
 - after the five-tree guard and before Common selection, enforce the shared
   eight-resource guard recovered from `FUN_1415DCFB0`; at capacity the selector
-  is bypassed and consumes no RNG;
+  is bypassed and consumes no Common-selector RNG;
+- after either guard, scan stored effective-RSGD Common roots and assign an
+  existing cached family from the preferred matching pool or, when no roots
+  match, from the complete cache; the semantically distinct float32-scaled
+  fallback choice consumes one draw even at bound one;
+- retain each cached family's generation-origin biome/RSGD context and attach an
+  explicit assignment mechanism to every biome result;
 - retain provenance-specific occurrences independently of resource identity;
 - enforce one shared eight-unique-FormID capacity across ATMO, Everywhere,
   Special, Common, and descendants;
@@ -316,6 +328,20 @@ also checks `at_capacity` before invoking the selector. Consequently an already
 occupied prospective root cannot bypass the control-flow guard merely because a
 duplicate occurrence would require no new slot. This pre-Common rule does not
 change the earlier Everywhere occurrence ordering or Special mechanics.
+
+**PROVEN LIVE:** within a biome invocation, selected Special insertion precedes
+the five-tree and shared-eight Common guards. A new Special FormID can raise the
+shared count from seven to eight and force fallback in that same biome. An
+already-occupied Special records another occurrence without changing the count.
+
+The guarded fallback records duplicate biome-context occurrences for the cached
+root and emitted descendants without occupying new slots. It does not mutate the
+cache or run descendant generation. Everywhere and Special assignments remain
+independent channels.
+
+`PlanetGenerationResult.biome_resource_views()` associates occurrence context by
+PNDT biome index. BIOM FormID remains provenance, but is not assumed unique among
+multiple PNDT biome entries on one planet.
 
 No CSV access.
 
@@ -360,6 +386,11 @@ Brief 08C adds a distinct `COMMON_RESOURCE_CAPACITY_REACHED` event for the
 pre-Common shared-eight guard. It records the occupied count, capacity, unchanged
 draw counts, and `rng_consumed=false`, distinguishing selector suppression from a
 later insertion rejection.
+
+Brief 08D adds guarded-fallback begin, candidate, roll, and assignment events.
+They distinguish the guard reason, matched versus general pools, fallback RNG,
+selected cached family, family origin, and target biome. Fallback is never
+reported as `COMMON_SELECTED`, which remains specific to the normal selector.
 
 ### `validation.py`
 

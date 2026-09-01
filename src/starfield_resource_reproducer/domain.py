@@ -77,6 +77,31 @@ class ResourceProvenance(str, Enum):
     DESCENDANT = "DESCENDANT"
 
 
+class CommonAssignmentMechanism(str, Enum):
+    """How a biome obtained its Common-family configuration."""
+
+    NEW_FAMILY = "NEW_FAMILY"
+    NORMAL_CACHE_REUSE = "NORMAL_CACHE_REUSE"
+    GUARD_MATCHED_FALLBACK = "GUARD_MATCHED_FALLBACK"
+    GUARD_GENERAL_FALLBACK = "GUARD_GENERAL_FALLBACK"
+    NO_COMMON_ASSIGNMENT = "NO_COMMON_ASSIGNMENT"
+
+
+class CommonGuardReason(str, Enum):
+    """The distinct pre-selector guard that entered Common fallback."""
+
+    COMMON_TREE_LIMIT = "COMMON_TREE_LIMIT"
+    SHARED_RESOURCE_CAPACITY = "SHARED_RESOURCE_CAPACITY"
+
+
+class CommonNoAssignmentReason(str, Enum):
+    """Why a biome has no Common-family assignment."""
+
+    NORMAL_SELECTOR_NO_RESULT = "NORMAL_SELECTOR_NO_RESULT"
+    GUARD_RSGD_HAS_NO_COMMON = "GUARD_RSGD_HAS_NO_COMMON"
+    GUARD_EMPTY_FAMILY_CACHE = "GUARD_EMPTY_FAMILY_CACHE"
+
+
 @dataclass(frozen=True)
 class ResourceRef:
     """Stable resource identity and authoritative generation metadata."""
@@ -215,6 +240,8 @@ class ResourceOccurrence:
     rsgd_source: RSGDSource | None = None
     root_form_id: FormId | None = None
     descendant_rarity: GenerationRarity | None = None
+    common_assignment_mechanism: CommonAssignmentMechanism | None = None
+    common_guard_reason: CommonGuardReason | None = None
     atmospheric_record: AtmosphericResourceRecord | None = None
 
 
