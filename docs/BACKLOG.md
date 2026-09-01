@@ -196,20 +196,19 @@ coverage-only bodies       0
 The validator compares the RSGD/CK-visible channel with the still-open oracle
 contract and reports atmospheric and final player-facing channels separately.
 
-Brief 08A category-6 correction result:
+Brief 08B five-Common-tree guard result:
 
 ```text
 validation population  1,444
-FINAL_SET_EXACT        1,441 (99.79%)
-mismatches                 3
+FINAL_SET_EXACT        1,442 (99.86%)
+mismatches                 2
 generation errors          0
 coverage-only bodies       0
 ```
 
-All 15 Water-only residuals disappeared after the PROVEN LIVE category-6 rule
-stopped consulting DNAM Everywhere chance. The remaining research targets are
-the two atmospheric/Common Chlorine collisions and Bara VII-d's unexpected
-Nickel, consistent with the unresolved five-family guard investigation.
+Bara VII-d's unexpected Nickel disappeared after the PROVEN STATIC/LIVE guard
+stopped the Common selector once five distinct tree configurations existed. The
+remaining research targets are the two atmospheric/Common Chlorine collisions.
 
 ## Phase 6 - Mismatch-Driven Reverse Engineering
 
@@ -225,7 +224,8 @@ Possible categories:
 - [x] shuffle versus descendant bounded-index path distinction (Brief 05D live
   proof and separate production APIs).
 - [ ] zero/100-percent inclusion draw behavior.
-- [ ] five-family limit.
+- [x] five-distinct-Common-tree limit, before selector RNG consumption (Bara
+  VII-d live proof).
 - [x] shared eight-unique-FormID capacity model (STRONG duplicate-slot semantics).
 - [ ] RSCS = 0 fallback behavior.
 - [ ] duplicate suppression.

@@ -12,9 +12,10 @@ The runtime-proven split between biome-shuffle integer bounded selection and
 descendant float32-scaled selection is implemented. Brief 07B integrates the
 atmospheric export, pre-main Everywhere handling, the recovered category-generic
 Special/Common selector, and a shared eight-unique-FormID state. Brief 08A
-corrects category-6 eligibility from live Fermi VIII-b evidence. The complete
-canonical inorganic intersection now has 1,441 exact matches out of 1,444
-(99.79%), with 3 residual mismatches and no generation errors.
+corrects category-6 eligibility from live Fermi VIII-b evidence. Brief 08B adds
+the proven five-distinct-Common-tree guard before the Common selector. The complete
+canonical inorganic intersection now has 1,442 exact matches out of 1,444
+(99.86%), with 2 residual mismatches and no generation errors.
 
 The generation engine prepopulates atmosphere occurrences, visits every effective
 RSGD in the Everywhere pre-pass, and then carries one explicitly accounted PRNG
@@ -33,10 +34,10 @@ live Lead trace: scaled descendant selection takes Silver then Mercury and ends
 at draw 22. Empty descendant levels consume one raw MT word, while family-cache
 hits bypass descendant generation without consuming descendant RNG.
 
-The remaining 3 mismatches are retained as research evidence; no compensating
+The remaining 2 mismatches are retained as research evidence; no compensating
 heuristics are applied. See
-`docs/experiments/08A-correct-everywhere-category6-and-revalidate.md` for the
-post-correction metrics and exact residuals.
+`docs/experiments/08B-five-distinct-common-resource-tree-limit.md` for the
+post-guard metrics and exact residuals.
 
 ## Goal
 
@@ -179,6 +180,7 @@ PNDT biome entries -> MT19937 deterministic biome shuffle
              |       e.g. Helium-3
              |
              +--> Common/root weighted selection (0)
+                        skipped once five distinct Common trees exist
                          |
                          +--> family already generated
                          |       -> reuse cached family result
@@ -198,6 +200,9 @@ main generation. In the observed Creation Kit Galaxy View Apply path, it emits
 category-6 entries in authored RSGD order without consulting a DNAM chance field
 or consuming RNG. A one-entry Common RSGD still uses the ordinary weighted
 selector and consumes its normal draw; there is no generic one-entry bypass.
+Once five distinct Common tree configurations have been established, the main
+per-biome path skips the Common selector before its probability draw. This guard
+is separate from the shared capacity of eight unique resource FormIDs.
 
 See `docs/DOMAIN-RULES.md` for the detailed rule set and evidence status.
 

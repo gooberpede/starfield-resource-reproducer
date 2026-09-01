@@ -51,6 +51,9 @@ from .domain import (
 from .prng import RngDraw, StarfieldRng
 
 
+COMMON_TREE_LIMIT = 5
+
+
 @dataclass(frozen=True, slots=True)
 class BiomeShuffleResult:
     """The shuffled biome sequence and every random swap decision."""
@@ -871,17 +874,36 @@ def _run_planet(
         )
         biome_events.extend(special_events)
 
-        common_entry, common_events = _select_weighted(
-            rng,
-            effective_rsgd,
-            GenerationRarity.COMMON,
-            lambda entry: float(entry.common_chance),
-            begin_kind=EventKind.COMMON_PASS_BEGIN,
-            roll_kind=EventKind.COMMON_ROLL,
-            operation="common_root_selector",
-            biome_index=biome.index,
-        )
-        biome_events.extend(common_events)
+        # PROVEN STATIC/LIVE in FUN_1415DCFB0: five established Common tree
+        # configurations bypass the category-0 selector entirely. The cache is
+        # keyed by root FormID, so cache hits do not consume another tree slot.
+        if ires_nodes is not None and len(family_cache) >= COMMON_TREE_LIMIT:
+            common_entry = None
+            biome_events.append(
+                event(
+                    EventKind.COMMON_TREE_LIMIT_REACHED,
+                    operation="skip_common_selector_at_tree_limit",
+                    biome_index=biome.index,
+                    established_common_tree_count=len(family_cache),
+                    common_tree_limit=COMMON_TREE_LIMIT,
+                    draw_count_before=rng.draw_count,
+                    draw_count_after=rng.draw_count,
+                    rng_consumed=False,
+                    evidence_status="PROVEN_STATIC_LIVE",
+                )
+            )
+        else:
+            common_entry, common_events = _select_weighted(
+                rng,
+                effective_rsgd,
+                GenerationRarity.COMMON,
+                lambda entry: float(entry.common_chance),
+                begin_kind=EventKind.COMMON_PASS_BEGIN,
+                roll_kind=EventKind.COMMON_ROLL,
+                operation="common_root_selector",
+                biome_index=biome.index,
+            )
+            biome_events.extend(common_events)
         biome_events.append(
             event(
                 EventKind.COMMON_SELECTED,

@@ -283,6 +283,8 @@ Responsibilities:
 - iterate shuffled biomes;
 - resolve effective RSGD;
 - run the same recovered ordered cumulative selector for Special then Common;
+- before Common selection, enforce the five-distinct-tree guard from
+  `FUN_1415DCFB0`; a guarded invocation consumes no Common-selector RNG draw;
 - retain provenance-specific occurrences independently of resource identity;
 - enforce one shared eight-unique-FormID capacity across ATMO, Everywhere,
   Special, Common, and descendants;
@@ -302,6 +304,8 @@ the next biome. `generate_planet_families()` remains a compatibility wrapper.
 The result is a complete prediction, not a canonical validation result. Its
 central invariant is that occurrence count is not slot count: two mechanisms may
 contribute the same FormID while only one unique identity occupies shared state.
+The Common-tree count is independently the number of FormID-keyed family-cache
+entries; it is neither biome count nor shared resource-slot count.
 
 No CSV access.
 

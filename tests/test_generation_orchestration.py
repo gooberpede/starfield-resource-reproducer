@@ -7,9 +7,15 @@ from starfield_resource_reproducer.diagnostics import EventKind
 from starfield_resource_reproducer.domain import (
     FormId,
     GenerationRarity,
+    IRESNode,
     RSGDSource,
 )
-from starfield_resource_reproducer.generation import orchestrate_planet
+from starfield_resource_reproducer.generation import (
+    COMMON_TREE_LIMIT,
+    PlanetResourceState,
+    generate_planet,
+    orchestrate_planet,
+)
 
 
 def _events(result, kind: EventKind):
@@ -183,3 +189,112 @@ def test_partial_result_explicitly_stops_before_descendants(generation_data) -> 
     assert end["descendants_implemented"] is False
     assert not hasattr(result, "predicted_resources")
     assert not hasattr(result, "family_cache")
+
+
+def test_bara_five_common_tree_limit_skips_selector_without_rng(
+    generation_data, ires_nodes, canonical_oracle, atmospheric_resources
+) -> None:
+    bara = FormId("0005E39F")
+    result = generate_planet(
+        generation_data[bara],
+        ires_nodes,
+        atmospheric_records=atmospheric_resources.get(bara, ()),
+    )
+
+    assert len(result.family_cache) == COMMON_TREE_LIMIT
+    assert [family.root.name for family in result.family_results] == [
+        "Uranium",
+        "Chlorine",
+        "Copper",
+        "Aluminum",
+        "Iron",
+    ]
+    assert sum(
+        access.family.root.name == "Uranium" and access.cache_hit
+        for biome in result.biome_results
+        if (access := biome.family_access) is not None
+    ) == 1
+
+    guards = _events(result, EventKind.COMMON_TREE_LIMIT_REACHED)
+    assert len(guards) == 1
+    guard = guards[0]
+    assert guard["established_common_tree_count"] == COMMON_TREE_LIMIT
+    assert guard["rng_consumed"] is False
+    assert guard["draw_count_before"] == guard["draw_count_after"]
+    guarded_biome = next(
+        biome
+        for biome in result.biome_results
+        if biome.orchestration.biome.index == guard["biome_index"]
+    )
+    assert guarded_biome.orchestration.common_root is None
+    assert not any(
+        event.kind is EventKind.COMMON_ROLL for event in guarded_biome.orchestration.events
+    )
+    assert FormId("000057CB") not in result.predicted_form_ids
+    assert result.predicted_form_ids == canonical_oracle[bara].inorganic_resources
+
+
+def test_five_distinct_common_trees_are_allowed_before_sixth_is_skipped(
+    generation_data,
+) -> None:
+    template_planet = generation_data[FormId("0005DEC0")]
+    template_biome = template_planet.biomes[0]
+    template_rsgd = template_biome.effective_rsgd
+    template_entry = next(
+        entry
+        for entry in template_rsgd.entries
+        if entry.resource_rarity is GenerationRarity.COMMON
+    )
+    biomes = []
+    graph = {}
+    for index in range(COMMON_TREE_LIMIT + 1):
+        resource_id = FormId(f"FE10{index:04X}")
+        entry = replace(
+            template_entry,
+            resource_form_id=resource_id,
+            resource_editor_id=f"SyntheticCommon{index}",
+            resource_name=f"Synthetic Common {index}",
+            common_chance=Decimal("100"),
+        )
+        rsgd = replace(
+            template_rsgd,
+            form_id=FormId(f"FE20{index:04X}"),
+            editor_id=f"SyntheticRSGD{index}",
+            entries=(entry,),
+        )
+        biomes.append(
+            replace(
+                template_biome,
+                index=index,
+                form_id=FormId(f"FE30{index:04X}"),
+                editor_id=f"SyntheticBiome{index}",
+                name=f"Synthetic Biome {index}",
+                pndt_rsgd=rsgd,
+                biom_rsgd=None,
+            )
+        )
+        graph[resource_id] = IRESNode(
+            resource_id,
+            entry.resource_editor_id,
+            entry.resource_name,
+            GenerationRarity.COMMON,
+            (),
+        )
+
+    result = generate_planet(replace(template_planet, biomes=tuple(biomes)), graph)
+
+    assert len(result.family_cache) == COMMON_TREE_LIMIT
+    assert len(result.occupied_resource_ids) == COMMON_TREE_LIMIT
+    assert len(_events(result, EventKind.COMMON_ROLL)) == COMMON_TREE_LIMIT
+    assert len(_events(result, EventKind.COMMON_TREE_LIMIT_REACHED)) == 1
+    shuffle_draws = _events(result, EventKind.BIOME_LIST_SHUFFLED)[0][
+        "raw_draws_consumed"
+    ]
+    # Six Special draws + five Common draws + four empty descendant-level draws
+    # for each of five new families. The guarded sixth Common stage adds zero.
+    assert result.final_draw_count == shuffle_draws + 6 + 5 + (4 * 5)
+
+
+def test_common_tree_and_shared_resource_limits_remain_independent() -> None:
+    assert COMMON_TREE_LIMIT == 5
+    assert PlanetResourceState.CAPACITY == 8

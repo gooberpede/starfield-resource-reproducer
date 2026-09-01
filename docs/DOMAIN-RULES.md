@@ -344,6 +344,25 @@ Do not normalize stored weights before selection.
 
 Treat cumulative thresholds using the values as stored.
 
+### Five distinct Common tree limit
+
+**PROVEN STATIC/LIVE in the Creation Kit Galaxy View Apply path**
+
+`FUN_1415DCFB0` contains a hard-coded `cmp ...,5` guard on the established
+Common tree/family state. When the count is at least five, the branch bypasses
+the Common/category-0 selector, so its usual MT19937 probability draw is not
+consumed for that invocation. This is a pre-selector guard; selecting a sixth
+root and discarding it afterward would produce the wrong RNG sequence.
+
+**PROVEN LIVE - Bara VII-d:** the observed state progressed
+`0, 1, 1, 2, 2, 3, 4, 5`. At five, the `jae` branch was taken before the Common
+selector. Repeated values support that the state counts distinct established
+tree configurations rather than biome calls or selector attempts. A repeated
+root reuses its cached configuration and does not occupy another tree slot.
+
+The five-tree guard and the separate shared eight-resource guard are distinct
+mechanisms.
+
 ## Shared Planet Resource State
 
 ### Capacity identity versus occurrence provenance
@@ -610,7 +629,6 @@ The supplied file contains 7,663 total resource rows across 1,445 bodies and inc
 Do not block v0.1 on these unless necessary:
 
 - RSCS = 0 fallback path;
-- five-family limit;
 - exact same-FormID duplicate behavior at every insertion site;
 - fallback/additional RSGD iteration;
 - exact SurveyAggregator contract of `planet-all-resources.csv`.
