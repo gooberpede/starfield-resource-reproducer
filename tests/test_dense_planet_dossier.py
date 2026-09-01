@@ -30,10 +30,10 @@ def test_event_and_family_ledgers_are_deterministic(
 
     assert first == second
     assert [item.root.name for item in first.families] == [
-        "Uranium", "Nickel", "Copper", "Chlorine"
+        "Uranium", "Nickel", "Copper"
     ]
-    assert [item.cache_hit for item in first.families] == [False, False, False, False]
-    assert [item.generated_family_count_after for item in first.families] == [1, 2, 3, 4]
+    assert [item.cache_hit for item in first.families] == [False, False, False]
+    assert [item.generated_family_count_after for item in first.families] == [1, 2, 3]
 
 
 def test_resource_insertion_count_is_monotonic_and_first_divergence_is_stable(

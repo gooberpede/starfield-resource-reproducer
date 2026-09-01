@@ -16,6 +16,7 @@ from starfield_resource_reproducer.generation import (
     generate_planet,
     orchestrate_planet,
 )
+from starfield_resource_reproducer.validation import compare_to_oracle
 
 
 def _events(result, kind: EventKind):
@@ -298,3 +299,60 @@ def test_five_distinct_common_trees_are_allowed_before_sixth_is_skipped(
 def test_common_tree_and_shared_resource_limits_remain_independent() -> None:
     assert COMMON_TREE_LIMIT == 5
     assert PlanetResourceState.CAPACITY == 8
+
+
+def test_shared_count_below_eight_permits_common_selection(
+    generation_data, ires_nodes
+) -> None:
+    result = generate_planet(generation_data[FormId("0005DEBE")], ires_nodes)
+
+    assert _events(result, EventKind.COMMON_ROLL)
+    assert not _events(result, EventKind.COMMON_RESOURCE_CAPACITY_REACHED)
+    assert result.biome_results[0].orchestration.common_root is not None
+
+
+@pytest.mark.parametrize("planet_id", [FormId("0005E151"), FormId("0005E19A")])
+def test_full_shared_state_skips_common_selector_without_rng_or_duplicate_provenance(
+    planet_id,
+    generation_data,
+    ires_nodes,
+    canonical_oracle,
+    atmospheric_resources,
+) -> None:
+    chlorine = FormId("000057D5")
+    result = generate_planet(
+        generation_data[planet_id],
+        ires_nodes,
+        atmospheric_records=atmospheric_resources[planet_id],
+    )
+    guards = _events(result, EventKind.COMMON_RESOURCE_CAPACITY_REACHED)
+
+    assert guards
+    assert all(
+        guard["occupied_count"] == PlanetResourceState.CAPACITY for guard in guards
+    )
+    assert all(guard["rng_consumed"] is False for guard in guards)
+    assert all(
+        guard["draw_count_before"] == guard["draw_count_after"] for guard in guards
+    )
+    for guard in guards:
+        guarded_biome = next(
+            biome
+            for biome in result.biome_results
+            if biome.orchestration.biome.index == guard["biome_index"]
+        )
+        assert guarded_biome.orchestration.common_root is None
+        assert not any(
+            item.kind in {EventKind.COMMON_PASS_BEGIN, EventKind.COMMON_ROLL}
+            for item in guarded_biome.orchestration.events
+        )
+
+    assert [item.resource.form_id for item in result.atmospheric_occurrences].count(
+        chlorine
+    ) == 1
+    assert not any(
+        item.resource.form_id == chlorine for item in result.common_occurrences
+    )
+    assert chlorine in result.predicted_form_ids
+    assert chlorine not in result.rsgd_form_ids
+    assert compare_to_oracle(result, canonical_oracle[planet_id], ires_nodes).exact_match

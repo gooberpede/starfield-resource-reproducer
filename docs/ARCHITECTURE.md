@@ -285,6 +285,9 @@ Responsibilities:
 - run the same recovered ordered cumulative selector for Special then Common;
 - before Common selection, enforce the five-distinct-tree guard from
   `FUN_1415DCFB0`; a guarded invocation consumes no Common-selector RNG draw;
+- after the five-tree guard and before Common selection, enforce the shared
+  eight-resource guard recovered from `FUN_1415DCFB0`; at capacity the selector
+  is bypassed and consumes no RNG;
 - retain provenance-specific occurrences independently of resource identity;
 - enforce one shared eight-unique-FormID capacity across ATMO, Everywhere,
   Special, Common, and descendants;
@@ -306,6 +309,13 @@ central invariant is that occurrence count is not slot count: two mechanisms may
 contribute the same FormID while only one unique identity occupies shared state.
 The Common-tree count is independently the number of FormID-keyed family-cache
 entries; it is neither biome count nor shared resource-slot count.
+
+The shared state has two deliberately separate roles. `PlanetResourceState.record()`
+implements insertion and provenance-aware de-duplication. The main Common path
+also checks `at_capacity` before invoking the selector. Consequently an already
+occupied prospective root cannot bypass the control-flow guard merely because a
+duplicate occurrence would require no new slot. This pre-Common rule does not
+change the earlier Everywhere occurrence ordering or Special mechanics.
 
 No CSV access.
 
@@ -345,6 +355,11 @@ Brief 07B also records atmospheric prepopulation, Everywhere pre-pass boundaries
 provenance occurrences, new-slot occupancy, already-occupied identities, and
 capacity rejection. Occurrences remain first-class result data; diagnostics explain
 state transitions rather than serving as the only provenance API.
+
+Brief 08C adds a distinct `COMMON_RESOURCE_CAPACITY_REACHED` event for the
+pre-Common shared-eight guard. It records the occupied count, capacity, unchanged
+draw counts, and `rng_consumed=false`, distinguishing selector suppression from a
+later insertion rejection.
 
 ### `validation.py`
 

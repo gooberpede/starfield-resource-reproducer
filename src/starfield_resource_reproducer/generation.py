@@ -12,9 +12,10 @@ Boundaries:
     retains the Brief 03 partial boundary; ``generate_planet_families`` adds the
     family layer; ``generate_planet`` exposes the complete prediction boundary.
 Evidence notes:
-    The pre-main ordering and selector draw behavior are PROVEN. Treating duplicate
-    provenance occurrences as one occupied slot is the current STRONG engine-shaped
-    capacity model and remains explicit rather than being upgraded to universal proof.
+    The pre-main ordering, selector draw behavior, and five-tree/shared-eight
+    pre-Common guards are PROVEN. Treating duplicate provenance occurrences as one
+    occupied slot is the current STRONG engine-shaped capacity model and remains
+    explicit rather than being upgraded to universal proof.
 """
 
 from __future__ import annotations
@@ -874,9 +875,11 @@ def _run_planet(
         )
         biome_events.extend(special_events)
 
-        # PROVEN STATIC/LIVE in FUN_1415DCFB0: five established Common tree
-        # configurations bypass the category-0 selector entirely. The cache is
-        # keyed by root FormID, so cache hits do not consume another tree slot.
+        # PROVEN STATIC/LIVE in FUN_1415DCFB0: the five-tree guard is evaluated
+        # before the shared-eight guard, and both precede the category-0 selector.
+        # The cache is keyed by root FormID, so cache hits do not consume another
+        # tree slot. A capacity-skipped invocation must not consume selector RNG,
+        # even when its prospective root already occupies a provenance-neutral slot.
         if ires_nodes is not None and len(family_cache) >= COMMON_TREE_LIMIT:
             common_entry = None
             biome_events.append(
@@ -886,6 +889,21 @@ def _run_planet(
                     biome_index=biome.index,
                     established_common_tree_count=len(family_cache),
                     common_tree_limit=COMMON_TREE_LIMIT,
+                    draw_count_before=rng.draw_count,
+                    draw_count_after=rng.draw_count,
+                    rng_consumed=False,
+                    evidence_status="PROVEN_STATIC_LIVE",
+                )
+            )
+        elif ires_nodes is not None and resource_state.at_capacity:
+            common_entry = None
+            biome_events.append(
+                event(
+                    EventKind.COMMON_RESOURCE_CAPACITY_REACHED,
+                    operation="skip_common_selector_at_resource_capacity",
+                    biome_index=biome.index,
+                    occupied_count=len(resource_state.occupied_resource_ids),
+                    capacity=resource_state.CAPACITY,
                     draw_count_before=rng.draw_count,
                     draw_count_after=rng.draw_count,
                     rng_consumed=False,

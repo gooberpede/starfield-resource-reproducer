@@ -363,6 +363,26 @@ root reuses its cached configuration and does not occupy another tree slot.
 The five-tree guard and the separate shared eight-resource guard are distinct
 mechanisms.
 
+### Pre-Common shared resource-capacity guard
+
+**PROVEN STATIC/LIVE in the Creation Kit Galaxy View Apply path**
+
+In `FUN_1415DCFB0`, the shared eight-resource guard is evaluated after the
+five-Common-tree guard and before the Common/category-0 selector. When the shared
+count is at least eight, the branch bypasses the selector entirely. No Common
+probability draw is consumed, no root is selected, and no Common provenance
+occurrence is created for that invocation.
+
+**PROVEN LIVE - Indum IV-d:** the observed invocation had Common-tree count `2`
+and shared-resource count `8`. The five-tree branch was inactive, the shared-eight
+branch was taken, and the Common selector was skipped.
+
+This is a control-flow constraint as well as an insertion constraint. A
+prospective Common root already present through ATMO cannot exploit duplicate
+de-duplication semantics because selection never occurs. The rule is specific to
+the recovered main Common path; it does not alter the upstream Everywhere
+occurrence ordering or establish new Special behavior.
+
 ## Shared Planet Resource State
 
 ### Capacity identity versus occurrence provenance

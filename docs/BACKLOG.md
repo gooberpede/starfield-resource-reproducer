@@ -210,6 +210,22 @@ Bara VII-d's unexpected Nickel disappeared after the PROVEN STATIC/LIVE guard
 stopped the Common selector once five distinct tree configurations existed. The
 remaining research targets are the two atmospheric/Common Chlorine collisions.
 
+Brief 08C resolved both residuals with the PROVEN STATIC/LIVE pre-Common
+shared-eight guard from `FUN_1415DCFB0`:
+
+```text
+validation population  1,444
+FINAL_SET_EXACT        1,444 (100.00%)
+mismatches                 0
+generation errors          0
+coverage-only bodies       0
+```
+
+At shared count eight, the main generator bypasses the Common selector and
+consumes no selector RNG. This removes the terrestrial/Common Chlorine
+occurrences on Zeta Ophiuchi I and Indum IV-d while retaining atmospheric
+Chlorine in the final player-facing union.
+
 ## Phase 6 - Mismatch-Driven Reverse Engineering
 
 Only investigate branches demonstrated to matter.
@@ -227,6 +243,8 @@ Possible categories:
 - [x] five-distinct-Common-tree limit, before selector RNG consumption (Bara
   VII-d live proof).
 - [x] shared eight-unique-FormID capacity model (STRONG duplicate-slot semantics).
+- [x] pre-Common shared-eight control-flow guard, after the five-tree guard and
+  before selector RNG consumption (Indum IV-d live proof).
 - [ ] RSCS = 0 fallback behavior.
 - [ ] duplicate suppression.
 - [ ] fallback/additional RSGD paths.
@@ -239,6 +257,16 @@ Each discovered behavior should receive:
 2. a domain-rule update;
 3. a focused regression test;
 4. an implementation change.
+
+### Open: biomes reached after the shared-eight guard
+
+If an early biome establishes a Common root plus several descendants while
+atmosphere/Everywhere resources occupy other shared slots, later biomes may reach
+the shared-eight guard before Common generation. Why vanilla planets show few or
+no genuinely empty biomes remains OPEN. Possible explanations include typical
+descendant probabilities leaving spare capacity, later Everywhere or Special
+resources, planet-wide presentation reuse, or unrecovered engine behavior. Do not
+implement an empty-biome fallback without evidence.
 
 ## Phase 7 — Reference Reproducer 1.0
 

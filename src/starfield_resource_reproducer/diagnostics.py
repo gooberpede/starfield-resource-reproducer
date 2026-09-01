@@ -50,6 +50,7 @@ class EventKind(str, Enum):
     COMMON_ROLL = "COMMON_ROLL"
     COMMON_SELECTED = "COMMON_SELECTED"
     COMMON_TREE_LIMIT_REACHED = "COMMON_TREE_LIMIT_REACHED"
+    COMMON_RESOURCE_CAPACITY_REACHED = "COMMON_RESOURCE_CAPACITY_REACHED"
     FAMILY_BEGIN = "FAMILY_BEGIN"
     ROOT_EMITTED = "ROOT_EMITTED"
     DESCENDANT_LEVEL_BEGIN = "DESCENDANT_LEVEL_BEGIN"
@@ -216,7 +217,9 @@ def format_diagnostic_timeline(
                 "occupied_new_slot",
                 "occupied_count_before",
                 "occupied_count_after",
+                "occupied_count",
                 "capacity",
+                "rng_consumed",
             }:
                 rendered = _timeline_value(value)
                 details.append(f"{name}={rendered}")

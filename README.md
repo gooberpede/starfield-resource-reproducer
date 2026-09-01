@@ -181,6 +181,7 @@ PNDT biome entries -> MT19937 deterministic biome shuffle
              |
              +--> Common/root weighted selection (0)
                         skipped once five distinct Common trees exist
+                        skipped when shared state already contains eight IDs
                          |
                          +--> family already generated
                          |       -> reuse cached family result
@@ -202,7 +203,11 @@ or consuming RNG. A one-entry Common RSGD still uses the ordinary weighted
 selector and consumes its normal draw; there is no generic one-entry bypass.
 Once five distinct Common tree configurations have been established, the main
 per-biome path skips the Common selector before its probability draw. This guard
-is separate from the shared capacity of eight unique resource FormIDs.
+is separate from the shared capacity of eight unique resource FormIDs. PROVEN
+STATIC/LIVE control flow in `FUN_1415DCFB0` checks that shared capacity after the
+five-tree guard and before the Common selector; at eight occupied IDs, selection
+is bypassed without consuming its normal RNG draw. Shared capacity is therefore
+both an insertion constraint and a pre-Common control-flow guard.
 
 See `docs/DOMAIN-RULES.md` for the detailed rule set and evidence status.
 
