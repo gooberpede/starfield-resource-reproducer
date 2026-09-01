@@ -180,6 +180,8 @@ When editing Markdown, source, tests, or other text files:
 - prefer ordinary ASCII punctuation when there is any uncertainty about tool/editor encoding;
 - do not "repair" intentionally quoted mojibake when it is present as an example or test fixture;
 - before completion, inspect newly added or modified prose for obvious encoding corruption;
+- run `python scripts/check_mojibake.py` before commit; it reports exact files and
+  lines for prohibited encoding corruption;
 - run `git diff --check`.
 
 If encoding corruption appears in generated or edited text, correct it before reporting the task complete.
