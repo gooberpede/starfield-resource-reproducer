@@ -1015,10 +1015,9 @@ def _discover_everywhere(
     biomes: Sequence[Biome],
     resource_state: PlanetResourceState,
 ) -> tuple[tuple[ResourceRef, ...], tuple[DiagnosticEvent, ...]]:
-    # PROVEN structural ordering: all effective-RSGD work objects are visited in
-    # a category-6 pre-pass before shuffle-driven main generation. The helper's
-    # exact category-6 selection arithmetic remains OPEN, so positive configured
-    # entries are retained without inventing category-5 weighting.
+    # PROVEN LIVE in the observed Creation Kit Galaxy View Apply path:
+    # FUN_141548920 scans effective-RSGD entries in authored order and emits IRES
+    # category 6 without reading a DNAM chance field or consuming RNG.
     resources: list[ResourceRef] = []
     events: list[DiagnosticEvent] = [
         event(
@@ -1042,10 +1041,7 @@ def _discover_everywhere(
             )
         )
         for entry in biome.effective_rsgd.entries:
-            if (
-                entry.resource_rarity is not GenerationRarity.EVERYWHERE
-                or entry.everywhere_chance <= 0
-            ):
+            if entry.resource_rarity is not GenerationRarity.EVERYWHERE:
                 continue
             occurrence, state_events = resource_state.record(
                 entry.resource,
@@ -1064,8 +1060,7 @@ def _discover_everywhere(
                     biome_index=biome.index,
                     rsgd_form_id=biome.effective_rsgd.form_id,
                     resource=entry.resource,
-                    chance_percent=float(entry.everywhere_chance),
-                    evidence_status="PROVEN_STRUCTURE_OPEN_HELPER_SELECTION",
+                    evidence_status="PROVEN_LIVE",
                     occupied=occurrence.occupies_state,
                     occupied_new_slot=occurrence.occupied_new_slot,
                     rng_consumed=False,

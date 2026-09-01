@@ -55,7 +55,7 @@ def test_oberon_everywhere_is_explicit_and_separate(generation_data, ires_nodes)
     assert [resource.name for resource in generation.special_resources] == []
     assert generation.family_results[0].root.name == "Nickel"
     everywhere = [event for event in generation.events if event.kind is EventKind.EVERYWHERE_DISCOVERED]
-    assert everywhere[0]["evidence_status"] == "PROVEN_STRUCTURE_OPEN_HELPER_SELECTION"
+    assert everywhere[0]["evidence_status"] == "PROVEN_LIVE"
 
 
 def test_kreet_trace_zero_candidate_consumption_and_exact_match(

@@ -252,17 +252,23 @@ Oberon showed Water already present in working result state and only read, not w
 
 ### Pre-main-generation handling
 
-**PROVEN structure; OPEN helper selection details**
+**PROVEN LIVE in the observed Creation Kit Galaxy View Apply path**
 
-Before any shuffled per-biome generator call, the planet orchestration visits
-every biome/effective-RSGD work object and handles its category-6 entry. It does
-not stop globally after the first Everywhere resource. The selected FormID enters
-shared planet resource state without consuming RNG.
+Before any shuffled per-biome generator call, `FUN_141548920` visits every
+biome/effective-RSGD work object and scans its ordinary resource-entry array in
+stable authored order. Entries whose referenced IRES category is 6 / Everywhere
+are emitted into shared planet resource state without consulting DNAM Everywhere
+chance, substituting Common chance, or consuming RNG. The traversal does not stop
+globally after the first Everywhere resource.
 
 This proves privileged pre-main handling and biome-work association. It does not
-prove that the resource is physically generated in every biome, nor that the
-category-6 helper uses category-5 weighted selection. The reproducer therefore
-retains a distinct Everywhere pre-pass and does not invent stronger physical claims.
+prove that the resource is physically generated in every biome. The reproducer
+therefore retains a distinct Everywhere pre-pass and does not invent stronger
+physical claims.
+
+**COUNTERFACTUAL / FALSIFIED:** a one-entry effective RSGD is not generically
+auto-selected. Kreet's one-entry Common RSGDs still use the ordinary category-0
+weighted selector and consume its normal RNG draw.
 
 ## Atmospheric Resources
 
@@ -603,7 +609,6 @@ The supplied file contains 7,663 total resource rows across 1,445 bodies and inc
 
 Do not block v0.1 on these unless necessary:
 
-- exact category-6 helper selection arithmetic;
 - RSCS = 0 fallback path;
 - five-family limit;
 - exact same-FormID duplicate behavior at every insertion site;

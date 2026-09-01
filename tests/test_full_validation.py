@@ -126,12 +126,12 @@ def test_complete_corpus_baseline_is_deterministic_and_consistent(
     assert first.oracle_only == ()
     assert len(first.planet_results) == first.intersection_count
     assert len({item.planet_form_id for item in first.planet_results}) == 1444
-    assert first.aggregates.exact_matches == 1426
-    assert first.aggregates.mismatches == 18
+    assert first.aggregates.exact_matches == 1441
+    assert first.aggregates.mismatches == 3
     assert first.aggregates.generation_errors == 0
     assert first.aggregates.provenance_validation_available is False
     assert (
         first.aggregates.exact_matches + first.aggregates.mismatches
         == first.aggregates.total_validation_planets
     )
-    assert sum(count for _, count in first.aggregates.mismatch_status_counts) == 18
+    assert sum(count for _, count in first.aggregates.mismatch_status_counts) == 3

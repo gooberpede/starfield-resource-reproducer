@@ -196,13 +196,30 @@ coverage-only bodies       0
 The validator compares the RSGD/CK-visible channel with the still-open oracle
 contract and reports atmospheric and final player-facing channels separately.
 
-## Phase 6 — Mismatch-Driven Reverse Engineering
+Brief 08A category-6 correction result:
+
+```text
+validation population  1,444
+FINAL_SET_EXACT        1,441 (99.79%)
+mismatches                 3
+generation errors          0
+coverage-only bodies       0
+```
+
+All 15 Water-only residuals disappeared after the PROVEN LIVE category-6 rule
+stopped consulting DNAM Everywhere chance. The remaining research targets are
+the two atmospheric/Common Chlorine collisions and Bara VII-d's unexpected
+Nickel, consistent with the unresolved five-family guard investigation.
+
+## Phase 6 - Mismatch-Driven Reverse Engineering
 
 Only investigate branches demonstrated to matter.
 
 Possible categories:
 
 - [x] Everywhere/Water pre-main ordering and all-biome work-object traversal.
+- [x] category-6 eligibility ignores DNAM Everywhere/Common chance and consumes
+  no RNG (Fermi VIII-b live proof).
 - [x] family-cache RNG consumption on repeated-root biomes (Algorab I live proof).
 - [x] no-candidate RNG consumption (Algorab I live proof: one raw word).
 - [x] shuffle versus descendant bounded-index path distinction (Brief 05D live

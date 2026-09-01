@@ -11,9 +11,10 @@ The reverse-engineering phase has recovered most of the central generation path 
 The runtime-proven split between biome-shuffle integer bounded selection and
 descendant float32-scaled selection is implemented. Brief 07B integrates the
 atmospheric export, pre-main Everywhere handling, the recovered category-generic
-Special/Common selector, and a shared eight-unique-FormID state. The complete
-canonical inorganic intersection now has 1,426 exact matches out of 1,444
-(98.75%), with 18 residual mismatches and no generation errors.
+Special/Common selector, and a shared eight-unique-FormID state. Brief 08A
+corrects category-6 eligibility from live Fermi VIII-b evidence. The complete
+canonical inorganic intersection now has 1,441 exact matches out of 1,444
+(99.79%), with 3 residual mismatches and no generation errors.
 
 The generation engine prepopulates atmosphere occurrences, visits every effective
 RSGD in the Everywhere pre-pass, and then carries one explicitly accounted PRNG
@@ -32,10 +33,10 @@ live Lead trace: scaled descendant selection takes Silver then Mercury and ends
 at draw 22. Empty descendant levels consume one raw MT word, while family-cache
 hits bypass descendant generation without consuming descendant RNG.
 
-The remaining 18 mismatches are retained as research evidence. Brief 07B does not
-apply heuristics to chase them. See
-`docs/experiments/07B-atmosphere-provenance-integration.md` for the post-run
-metrics and residual stratification.
+The remaining 3 mismatches are retained as research evidence; no compensating
+heuristics are applied. See
+`docs/experiments/08A-correct-everywhere-category6-and-revalidate.md` for the
+post-correction metrics and exact residuals.
 
 ## Goal
 
@@ -193,8 +194,10 @@ PNDT biome entries -> MT19937 deterministic biome shuffle
 ```
 
 The Everywhere pre-pass visits all biome/effective-RSGD contexts before shuffled
-main generation. The helper's exact category-6 selection arithmetic remains open;
-the reproducer does not misrepresent it as the category-5 weighted selector.
+main generation. In the observed Creation Kit Galaxy View Apply path, it emits
+category-6 entries in authored RSGD order without consulting a DNAM chance field
+or consuming RNG. A one-entry Common RSGD still uses the ordinary weighted
+selector and consumes its normal draw; there is no generic one-entry bypass.
 
 See `docs/DOMAIN-RULES.md` for the detailed rule set and evidence status.
 

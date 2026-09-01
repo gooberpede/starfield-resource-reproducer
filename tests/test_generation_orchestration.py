@@ -1,7 +1,14 @@
+from dataclasses import replace
+from decimal import Decimal
+
 import pytest
 
 from starfield_resource_reproducer.diagnostics import EventKind
-from starfield_resource_reproducer.domain import FormId, RSGDSource
+from starfield_resource_reproducer.domain import (
+    FormId,
+    GenerationRarity,
+    RSGDSource,
+)
 from starfield_resource_reproducer.generation import orchestrate_planet
 
 
@@ -105,10 +112,68 @@ def test_oberon_discovers_water_upstream_and_selects_nickel(
     assert [resource.name for resource in result.everywhere_resources] == ["Water"]
     everywhere = _events(result, EventKind.EVERYWHERE_DISCOVERED)
     assert len(everywhere) == 1
-    assert everywhere[0]["evidence_status"] == "PROVEN_STRUCTURE_OPEN_HELPER_SELECTION"
+    assert everywhere[0]["evidence_status"] == "PROVEN_LIVE"
     assert everywhere[0]["rng_consumed"] is False
     assert result.biome_results[0].special_selection is None
     assert result.biome_results[0].common_root.name == "Nickel"
+
+
+def test_everywhere_eligibility_ignores_everywhere_chance(generation_data) -> None:
+    planet = generation_data[FormId("0005DECC")]
+    biome = planet.biomes[0]
+    effective_rsgd = biome.effective_rsgd
+    water_entry = next(
+        entry
+        for entry in effective_rsgd.entries
+        if entry.resource_rarity is GenerationRarity.EVERYWHERE
+    )
+
+    results = []
+    for chance in (Decimal("0"), Decimal("37")):
+        entries = tuple(
+            replace(
+                entry,
+                resource_form_id=FormId("00ABCDEF"),
+                resource_editor_id="SyntheticEverywhereResource",
+                resource_name="Synthetic Everywhere",
+                everywhere_chance=chance,
+            )
+            if entry is water_entry
+            else entry
+            for entry in effective_rsgd.entries
+        )
+        changed_rsgd = replace(effective_rsgd, entries=entries)
+        changed_biome = replace(
+            biome,
+            pndt_rsgd=(changed_rsgd if biome.pndt_rsgd is not None else None),
+            biom_rsgd=(changed_rsgd if biome.pndt_rsgd is None else biome.biom_rsgd),
+        )
+        results.append(
+            orchestrate_planet(replace(planet, biomes=(changed_biome,)))
+        )
+
+    assert [
+        [resource.form_id for resource in result.everywhere_resources]
+        for result in results
+    ] == [[FormId("00ABCDEF")], [FormId("00ABCDEF")]]
+    assert results[0].final_draw_count == results[1].final_draw_count
+    assert all(
+        event["rng_consumed"] is False
+        for result in results
+        for event in _events(result, EventKind.EVERYWHERE_DISCOVERED)
+    )
+
+
+def test_fermi_ocean_default_res_emits_water_with_zero_everywhere_chance(
+    generation_data,
+) -> None:
+    result = orchestrate_planet(generation_data[FormId("0005DE3F")])
+
+    assert [resource.name for resource in result.everywhere_resources] == ["Water"]
+    discovered = _events(result, EventKind.EVERYWHERE_DISCOVERED)
+    assert len(discovered) == 1
+    assert discovered[0]["rsgd_form_id"] == FormId("000083ED")
+    assert discovered[0]["rng_consumed"] is False
 
 
 def test_partial_result_explicitly_stops_before_descendants(generation_data) -> None:

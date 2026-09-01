@@ -275,7 +275,9 @@ Keep structural graph logic out of orchestration code.
 Responsibilities:
 
 - prepopulate ordered atmospheric occurrences before RNG-backed work;
-- run the category-6 / Everywhere pre-pass across every biome/effective RSGD;
+- run the category-6 / Everywhere pre-pass across every biome/effective RSGD,
+  accepting category-6 entries in authored order without consulting DNAM chance
+  fields or consuming RNG;
 - construct/copy biome list in PNDT order;
 - deterministic shuffle;
 - iterate shuffled biomes;
