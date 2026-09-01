@@ -9,8 +9,8 @@ Responsibilities:
 Boundaries:
     This module does not shuffle biomes or make resource-generation decisions.
 Evidence notes:
-    MT19937 seeding and shared state are PROVEN. The probability conversion is
-    a STRONG match for Mimas. Runtime traces PROVE that biome shuffle uses an
+    MT19937 seeding, shared state, and the probability conversion are PROVEN.
+    Runtime traces PROVE that biome shuffle uses an
     integer rejection/modulo helper while descendant and guarded-family selection
     use semantically distinct float32 probability scaling operations. These
     mechanisms are deliberately not interchangeable.
@@ -269,7 +269,7 @@ class StarfieldRng:
 def _probability_from_raw(raw_value: int) -> float:
     """Apply the recovered binary32 probability conversion to one MT word."""
 
-    # STRONG: all four Mimas anchors equal this exact binary32 operation order.
+    # PROVEN: recovered selector and scaled-index paths use this binary32 order.
     # Explicit rounding avoids Python double precision changing boundary cases.
     raw_float = _float32(raw_value)
     unit_value = _float32(raw_float * _UINT32_UNIT_FLOAT32)

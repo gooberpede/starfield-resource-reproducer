@@ -6,7 +6,9 @@ This repository is a research-grade reference implementation of Starfield's plan
 
 The immediate goal is to reproduce, from extracted static game data and a planet's Resource Creation Seed (RSCS), the resource distributions observed in the Creation Kit and in verified runtime-derived data.
 
-This is **not yet** the outpost planner, a game mod, or a user-facing application. Keep the reproducer small, transparent, deterministic, testable, and easy to inspect.
+This is not the outpost planner, a game mod, or a user-facing application. The
+algorithm/model is a protected v1.0 baseline within its defined scope. Keep the
+reproducer small, transparent, deterministic, testable, and easy to inspect.
 
 ## Working Relationship
 
@@ -31,9 +33,16 @@ Use these inputs as distinct sources with distinct roles:
 2. `Starfield_IRES_Hierarchy.csv`
    - canonical static IRES rarity and child-resource graph.
 
-3. `planet-all-resources.csv`
-   - **canonical verified planet/resource output oracle**;
-   - sourced from the game/runtime and used to validate reproducer output.
+3. `Starfield_PlanetAtmosphericResources.tsv`
+   - authoritative effective atmospheric inorganic-resource export for the
+     current corpus.
+
+4. `planet-all-resources.csv`
+   - **canonical verified planet/resource output oracle** for the CK/RSGD-visible
+     inorganic channel used by validation;
+   - sourced from the game/runtime and used to validate reproducer output;
+   - not a complete final planetary-resource oracle because it omits at least
+     some atmosphere-derived resources.
 
 `Starfield_InorganicResources_Canonical.csv` is **deprecated**. Do not use it for validation, fixtures, expected results, or implementation decisions.
 
@@ -48,6 +57,33 @@ The project distinguishes:
 Do not silently upgrade a hypothesis to a fact.
 
 If code must implement a provisional rule, document it in code and tests as provisional and make it easy to replace.
+
+## Protected v1.0 Baseline
+
+The model reproduces the full 1,444-body canonical corpus and independent
+Creation Kit/retail holdouts. Preserve these constraints:
+
+1. Do not change the algorithm without preserved evidence and an explicit
+   evidence classification.
+2. Never consult canonical/oracle data during generation. Oracle comparison
+   begins only after an independent prediction exists.
+3. Keep resource identity/capacity, occurrence provenance, family origin, and
+   biome assignment mechanism distinct.
+4. Keep the biome-shuffle integer helper, probability conversion,
+   Special/Common weighted selector, descendant index, and guard-fallback index
+   as distinct RNG primitives/semantics.
+5. Do not guess missing PNDT/biome/effective-RSGD input or translate it into an
+   empty terrestrial result. Independently known channels may still be reported.
+6. Creation Kit function addresses are proven only for the live-traced CK Galaxy
+   View Apply path. Do not silently relabel them as retail `Starfield.exe`
+   addresses.
+7. A future counterexample requires preserved evidence, an evidence
+   classification, a focused regression, and only then an implementation change
+   followed by full revalidation.
+8. Retain all UTF-8 and mojibake safeguards below.
+
+Future contradictory evidence is a falsification/regression to investigate, not
+a reason for a heuristic, oracle patch, or planet-specific exception.
 
 ## Current Proven Core Rules
 
@@ -70,6 +106,18 @@ Implementations must preserve the currently recovered behavior unless a later br
   - 6 Everywhere
 - Water is `Everywhere` and is populated upstream of the per-biome generator observed at `FUN_1415DCFB0`.
 - Helium-3 is `Special` and is handled by the per-biome Special pass.
+- Effective atmosphere resources are recorded before the Everywhere pre-pass.
+- The Everywhere pre-pass scans every effective RSGD before biome shuffle/main
+  generation.
+- A selected Special is recorded before the five-tree and shared-eight Common
+  guards.
+- After five distinct cached Common-family configurations, the five-tree guard
+  suppresses normal Common selection and enters fallback.
+- The shared resource-ID state is guarded at count eight; the shared-eight guard
+  suppresses normal Common selection and enters fallback.
+- **STRONG / validated model:** occupancy is deduplicated by resource FormID
+  across modeled provenance origins. Do not promote this to universal proof for
+  every collision at every engine insertion site without direct evidence.
 - Common-family/root selection is cumulative weighted selection over eligible Common entries in RSGD order.
 - Do not normalize RSGD root weights.
 - A newly selected Common root is emitted unconditionally.
@@ -78,6 +126,9 @@ Implementations must preserve the currently recovered behavior unless a later br
 - Structural traversal continues through the selected candidate even if that resource is not emitted.
 - Candidate selection consumes an RNG draw even when the candidate set contains exactly one element.
 - A previously generated Common family configuration is reused by later biomes that select that family rather than rerolling its descendants.
+- Guard fallback prefers cached roots matching the current effective RSGD,
+  otherwise uses all cached families, and consumes a distinct scaled-index draw
+  even for a one-family pool.
 
 See `docs/DOMAIN-RULES.md` for the maintained domain specification.
 
@@ -155,7 +206,8 @@ Do not add without an explicit brief:
 - multiprocessing;
 - generalized plugin frameworks.
 
-The first milestone is a trustworthy standalone reproducer.
+The achieved v1.0 milestone is a trustworthy standalone reproducer. Future work
+must preserve that baseline unless new evidence falsifies it.
 
 ## Documentation
 

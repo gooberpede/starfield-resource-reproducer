@@ -1,297 +1,87 @@
 # Backlog
 
-## Guiding Rule
+## v1.0 Baseline
 
-Build the smallest implementation that can make falsifiable predictions, then let canonical mismatches direct further reverse engineering.
-
-Do not attempt to implement every theoretical engine edge case before the first full-dataset run.
-
-## Phase 0 — Repository Bootstrap
-
-- [x] Create Python project/environment.
-- [x] Add `AGENTS.md` and documentation.
-- [x] Add `.gitignore`.
-- [x] Add `pyproject.toml`.
-- [x] Establish `src/` package layout.
-- [x] Establish `tests/`.
-- [x] Add canonical data files under an agreed local/data path.
-- [x] Ensure deprecated `Starfield_InorganicResources_Canonical.csv` is absent or clearly excluded.
-
-Acceptance:
-
-- clean install;
-- tests execute;
-- CLI placeholder runs;
-- documentation links are valid.
-
-## Phase 1 — Canonical Data Loading
-
-- [x] Load `PlanetResourceGeneration_v5.csv`.
-- [x] Validate required schema.
-- [x] Reconstruct planets and ordered biome entries.
-- [x] Reconstruct ordered RSGD resource arrays.
-- [x] Load `Starfield_IRES_Hierarchy.csv`.
-- [x] Reconstruct IRES graph.
-- [x] Load `planet-all-resources.csv` as validation oracle.
-- [x] Filter validation oracle to `ResourceCategory == Inorganic`.
-- [x] Add schema/data-integrity tests.
-
-Acceptance:
-
-- Kreet has exactly three PNDT biome entries in indices 0/1/2;
-- Mimas effective RSGD inputs match known worked case;
-- duplicate and conflicting rows fail explicitly;
-- oracle lookup returns verified inorganic sets by PlanetFormID.
-
-## Phase 2 — PRNG Compatibility Harness
-
-Highest risk before broad implementation.
-
-- [x] Implement candidate MT19937 wrapper.
-- [x] Confirm unsigned 32-bit seed handling.
-- [x] Reproduce known live trace random values at known draw positions.
-- [x] Resolve shuffle and descendant selection as distinct bounded conversions.
-- [x] Record draw count in diagnostics.
-- [x] Do not proceed with broad validation if PRNG mismatch remains unexplained.
-
-Known anchors include Mimas:
+The standalone vanilla inorganic resource reproducer is complete within its
+defined scope. The protected baseline is:
 
 ```text
-RSCS 2008989584
-Common selection roll ~= 0.561107993
-L1 inclusion        ~= 0.894184828
-L2 inclusion        ~= 0.686025143
-L3 inclusion        ~= 0.108883217
+canonical planet-wide validation: 1,444 / 1,444 exact
+canonical mismatches:              0
+generation errors:                 0
+fresh CK + retail holdout:          10 / 10 exact
 ```
 
-Exact expected draw positions should be specified in the implementation brief once the current trace model is encoded.
+Completed work includes canonical data loading, exact MT19937 accounting,
+effective-RSGD precedence, atmosphere and Everywhere prepopulation, Special and
+Common selection, descendant traversal, family caching, shared identity
+capacity, five-tree/shared-eight guards, guarded family fallback, occurrence and
+assignment provenance, CK biome regressions, and full-corpus validation.
 
-Brief 02 reproduces all supplied anchors. The Mimas Common roll is raw draw 2;
-the empty Special pass accounts for draw 1. The binary32 probability expression
-remains STRONG. Brief 05D resolves the Brief 05C conflict: shuffle uses a proven
-integer rejection/modulo helper, while descendants use proven float32 scaling
-and truncation.
+The earlier active items for unexplained shared-eight empty biomes, missing
+post-guard reuse, atmosphere insertion ordering, and central-path v0.1 completion
+are **SUPERSEDED / COMPLETED** by the v1.0 model and its regression suite. Their
+historical evidence remains in `docs/experiments/` and
+`docs/implementation-briefs/`.
 
-## Phase 3 — Core Generation v0.1
+## Evidence-Driven Maintenance
 
-- [x] Construct biome list in PNDT `BiomeIndex` order.
-- [x] Implement deterministic shuffle.
-- [x] Implement effective RSGD precedence.
-- [x] Integrate atmospheric prepopulation as a fourth first-class input.
-- [x] Implement the recovered Everywhere/category-6 pre-pass ordering.
-- [x] Preserve ATMO/Everywhere/Special/Common/Descendant provenance occurrences.
-- [x] Enforce the shared eight-unique-FormID state across all mechanisms.
-- [x] Implement Special pass.
-- [x] Implement Common cumulative weighted selector.
-- [x] Preserve RSGD order.
-- [x] Do not normalize weights.
-- [x] Implement IRES descendant candidate builder.
-- [x] Separate structural choice from inclusion/emission.
-- [x] Consume candidate-index RNG with one candidate.
-- [x] Implement family configuration cache.
-- [x] Emit structured orchestration diagnostics.
+Only reopen algorithm work when new evidence falsifies or narrows the baseline.
+A counterexample requires:
 
-## Phase 4 — Worked-Case Regression Tests
+1. preserved trace, static evidence, or independently verified runtime output;
+2. an explicit PROVEN, STRONG, or PROVISIONAL classification;
+3. a focused regression that exposes the discrepancy;
+4. a rule and implementation change that does not consult the oracle during
+   generation;
+5. full canonical and CK-regression revalidation.
 
-### Oberon
+No planet-specific exceptions or output-fitting heuristics.
 
-- [x] Water present in provisional Everywhere result.
-- [x] Nickel selected as Common root.
-- [x] no emitted descendants for observed seed.
-- [x] complete predicted set matches oracle by FormID.
+## Genuine Open Work
 
-### Mimas
+### Version drift detection
 
-- [x] Nickel wins against Lead in outer orchestration.
-- [x] Cobalt structurally chosen but omitted.
-- [x] Platinum structurally chosen but omitted.
-- [x] Palladium emitted.
-- [x] Tasine structurally chosen but omitted.
-- [x] final relevant set matches oracle.
-- [x] exact comparison reports no missing/unexpected FormIDs.
+- Record executable/data-version identity alongside future evidence captures.
+- Detect changes in authoritative exports or recovered call-site behavior.
+- Keep Creation Kit addresses distinct from any independently recovered retail
+  `Starfield.exe` addresses.
 
-### Decaran VII-b
+### New falsifications and counterexamples
 
-- [x] PNDT RSGD replaces BIOM RSGD.
-- [x] Helium-3 selected as Special.
-- [x] Uranium root.
-- [x] Vytinium reached via ordinary IRES traversal.
-- [x] final set matches oracle.
-- [x] exact comparison uses FormID despite Helium-3/Helium3 naming.
+- Investigate RSCS-zero behavior if a body or direct trace makes it relevant.
+- Preserve and investigate any future duplicate-insertion or unusual-data
+  counterexample before changing the current proven corpus behavior.
+- **OPEN, apparently unreachable and non-blocking:** if a Common guard were
+  entered with Common entries present but an empty generated-family cache,
+  current evidence does not define engine fallback behavior. Recovered control
+  flow appears to prevent this state during normal execution.
+- Test future game/DLC data only as a versioned corpus, not as an assumed
+  extension of the current baseline.
 
-### Kreet
+### Consumer and export API hardening
 
-- [x] initial order `[0, 1, 2]`.
-- [x] shuffled processing order `[2, 0, 1]`.
-- [x] Volcanic -> Lead + Silver.
-- [x] Frozen Volcanic -> Argon + Neon.
-- [x] Mountains -> Iron + Alkanes.
-- [x] Water present upstream/provisionally.
-- [x] final set matches oracle.
-- [x] historical deterministic missing-Neon mismatch is preserved diagnostically.
-- [x] Argon/Neon inclusion draw and preceding Lead zero-candidate levels are exposed.
-- [x] diagnostics-only two-draw displacement counterfactual is labeled unproven.
-- [x] compare no-draw, inclusion, index-raw-equivalent, and two-draw policies.
-- [x] reproduce Neon at draw 17 when one raw word is consumed at each empty level.
-- [x] prove one raw MT word is consumed per zero-candidate level by live trace.
+- Stabilize documented result/export shapes for downstream consumers.
+- Add compatibility policy and contract tests if an external consumer appears.
+- Improve explicit reporting for bodies with independently known channels but no
+  PNDT/biome/effective-RSGD input.
 
-Acceptance:
+### Planner integration
 
-Oberon, Mimas, Decaran VII-b, and Kreet match exactly. Kreet's two empty Lead
-levels advance the stream to Argon's passing Neon roll at draw 17.
+- Integrate through the typed generation result API, not CSV or CLI internals.
+- Keep the standalone reproducer available as the regression oracle.
+- Do not add planner behavior to this repository without an explicit brief.
 
-### Worked-case validation infrastructure
+### Optional packaging and release automation
 
-- [x] Complete oracle-independent planet prediction result.
-- [x] Separate FormID-based oracle comparison result.
-- [x] Deterministic structured-event timeline formatter.
-- [x] Missing/unexpected resource diagnostics with readable metadata.
-- [x] Zero-candidate and cache-hit draw accounting.
-- [x] Evidence-qualified mismatch classification.
+- Add distribution or release automation only when an actual release is planned.
+- A Git tag or GitHub release is not part of the v1.0 algorithm designation.
 
-## Phase 5 — Full Canonical Validation
+## Permanently Out of Current Scope
 
-- [x] Run every body in `planet-all-resources.csv` for which static reproducer inputs exist.
-- [x] Compare inorganic predicted vs canonical sets.
-- [x] Produce summary metrics.
-- [x] Produce mismatch report with:
-  - PlanetFormID;
-  - planet/system;
-  - expected;
-  - predicted;
-  - missing;
-  - unexpected;
-  - diagnostic pointer/reason where available.
-- [x] Group mismatches by apparent pattern.
-
-Brief 06 baseline (current canonical files):
-
-```text
-validation population  1,444
-FINAL_SET_EXACT        1,281 (88.71%)
-mismatches               163
-generation errors           0
-coverage-only bodies         0
-```
-
-The dominant mismatch class is unexpected output on resource-dense multi-biome
-planets: 148 are unexpected-only and one mixed mismatch also contains an
-unexpected resource. Separately, all 15 missing occurrences are Water, matching
-the known PROVISIONAL Everywhere boundary. These are research targets, not
-accepted production behavior. The next priority is the resource-slot/family
-limit and insertion-order class; Everywhere insertion remains a separate follow-up.
-
-Do not change rules merely to increase aggregate match rate without evidence.
-
-Brief 07B post-integration result:
-
-```text
-validation population  1,444
-FINAL_SET_EXACT        1,426 (98.75%)
-mismatches                18
-generation errors          0
-coverage-only bodies       0
-```
-
-The validator compares the RSGD/CK-visible channel with the still-open oracle
-contract and reports atmospheric and final player-facing channels separately.
-
-Brief 08B five-Common-tree guard result:
-
-```text
-validation population  1,444
-FINAL_SET_EXACT        1,442 (99.86%)
-mismatches                 2
-generation errors          0
-coverage-only bodies       0
-```
-
-Bara VII-d's unexpected Nickel disappeared after the PROVEN STATIC/LIVE guard
-stopped the Common selector once five distinct tree configurations existed. The
-remaining research targets are the two atmospheric/Common Chlorine collisions.
-
-Brief 08C resolved both residuals with the PROVEN STATIC/LIVE pre-Common
-shared-eight guard from `FUN_1415DCFB0`:
-
-```text
-validation population  1,444
-FINAL_SET_EXACT        1,444 (100.00%)
-mismatches                 0
-generation errors          0
-coverage-only bodies       0
-```
-
-At shared count eight, the main generator bypasses the Common selector and
-consumes no selector RNG. This removes the terrestrial/Common Chlorine
-occurrences on Zeta Ophiuchi I and Indum IV-d while retaining atmospheric
-Chlorine in the final player-facing union.
-
-Brief 08D preserves the 1,444 / 1,444 planet-wide result while implementing the
-PROVEN LIVE guarded biome-family fallback. Both pre-Common guards now scan the
-effective RSGD for cached root matches, fall back to the full family cache when
-needed, and record the assigned configuration with origin and mechanism
-provenance. CK regression observations for Jaffa VII-b, Bara VII-d, Indum IV-d,
-Zeta Ophiuchi I, and Pyraas VIII-a are reproduced.
-
-## Phase 6 - Mismatch-Driven Reverse Engineering
-
-Only investigate branches demonstrated to matter.
-
-Possible categories:
-
-- [x] Everywhere/Water pre-main ordering and all-biome work-object traversal.
-- [x] category-6 eligibility ignores DNAM Everywhere/Common chance and consumes
-  no RNG (Fermi VIII-b live proof).
-- [x] family-cache RNG consumption on repeated-root biomes (Algorab I live proof).
-- [x] no-candidate RNG consumption (Algorab I live proof: one raw word).
-- [x] shuffle versus descendant bounded-index path distinction (Brief 05D live
-  proof and separate production APIs).
-- [ ] zero/100-percent inclusion draw behavior.
-- [x] five-distinct-Common-tree limit, before selector RNG consumption (Bara
-  VII-d live proof).
-- [x] shared eight-unique-FormID capacity model (STRONG duplicate-slot semantics).
-- [x] pre-Common shared-eight control-flow guard, after the five-tree guard and
-  before selector RNG consumption (Indum IV-d live proof).
-- [ ] RSCS = 0 fallback behavior.
-- [ ] duplicate suppression.
-- [x] guarded biome-family fallback after five-tree/shared-eight suppression.
-- [ ] additional RSGD paths.
-- [ ] unusual DLC/plugin data.
-- [x] shared capacity integration for Special/Everywhere/ATMO/families.
-
-Each discovered behavior should receive:
-
-1. evidence;
-2. a domain-rule update;
-3. a focused regression test;
-4. an implementation change.
-
-### Guarded biome assignment after capacity
-
-Resolved by Brief 08D: a guard suppresses new identity generation but does not
-necessarily leave the biome without Common resources. It enters the proven
-cached-family fallback. The defensive state with Common RSGD entries but an empty
-global family cache remains OPEN because no live trace establishes behavior and
-the recovered guards appear to make it unreachable in ordinary control flow.
-
-## Phase 7 — Reference Reproducer 1.0
-
-Target:
-
-- exact or near-exact canonical reproduction with all remaining differences understood;
-- stable diagnostic CLI;
-- documented deterministic algorithm;
-- reusable generation package;
-- reproducible full-dataset validation report.
-
-## Deferred
-
-Not part of the reproducer bootstrap:
-
-- planner UI;
-- outpost logistics solver;
-- game-state ingestion;
-- organic resource generation;
-- surface vein/cell placement;
-- graphical interface;
-- web deployment.
+- organic resources and flora/fauna spawning;
+- surface vein geometry and cell-level placement;
+- extractor placement mechanics;
+- arbitrary mod/plugin behavior beyond current loader semantics;
+- GUI, web server, database, or planner implementation;
+- claims that CK function addresses are retail executable addresses.

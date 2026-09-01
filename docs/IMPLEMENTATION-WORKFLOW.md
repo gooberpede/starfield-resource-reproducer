@@ -259,7 +259,25 @@ Canonical small CSV inputs may be tracked if the repository strategy explicitly 
 
 For decisions that materially change boundaries, add a short note to `docs/ARCHITECTURE.md`.
 
-Do not create an elaborate ADR system during v0.1 unless the project genuinely needs one.
+Do not create an elaborate ADR system unless the project genuinely needs one.
+
+## Implementation History
+
+The chronological implementation briefs and experiments remain the historical
+record; the README presents the current model rather than this sequence.
+
+```text
+00-04     bootstrap, canonical loading, MT19937, orchestration, family generation
+05-05D   worked cases and recovered RNG mechanism split
+06-07B   full-corpus validation, diagnostics, atmosphere provenance
+08A-08D  Everywhere correction, five-tree/shared-eight guards, guarded fallback
+08D.1    Special-before-guards ordering and biome occurrence association
+09A      v1.0 consolidation and evidence baseline
+```
+
+Historical briefs and experiment reports retain the evidence state known at the
+time. Current rules and supersessions belong in `docs/DOMAIN-RULES.md`; the
+durable v1.0 validation result belongs in `docs/V1-VALIDATION-BASELINE.md`.
 
 ## Stop Conditions
 

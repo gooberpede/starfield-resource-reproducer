@@ -4,6 +4,11 @@
 
 This document records the current recovered domain model for Starfield planetary inorganic-resource generation.
 
+This is the protected v1.0 model. It reproduces the 1,444-body canonical corpus
+exactly and is independently corroborated by fresh Creation Kit and retail
+holdout observations within the scope recorded in
+`docs/V1-VALIDATION-BASELINE.md`.
+
 Use explicit evidence states:
 
 - **PROVEN** — directly observed in live execution/static authoritative data or independently verified runtime output.
@@ -76,7 +81,7 @@ conversion/consumption behavior do not reproduce this observable interface.
 
 ### Probability float conversion
 
-**STRONG**
+**PROVEN**
 
 The Mimas values are reproduced, to their recorded nine decimal places, by
 binary32 arithmetic equivalent to:
@@ -86,11 +91,9 @@ float32(float32(raw_uint32) * float32(2^-32))
     * float32(0.99999)
 ```
 
-with the final multiplication rounded to binary32. This reproduces the known
-Common, Uncommon, Rare, and Exotic rolls without weakening trace tolerances.
-The available trace does not distinguish every algebraically equivalent
-binary32 construction, so the exact source-level expression is not labeled
-PROVEN.
+with the final multiplication rounded to binary32. This recovered primitive is
+used for selector probabilities and as the input to the two semantically distinct
+scaled-index operations below.
 
 ### Distinct bounded-choice mechanisms
 
@@ -128,14 +131,18 @@ index = trunc(scaled)
 Algorab I draw 18 (`1826241303`, bound 2) produces probability
 `0.4252006709575653`, scaled value `0.8504013419151306`, and index 0. Modulo
 would produce 1. The discriminating result and scaled/truncation instruction
-path are PROVEN; the exact `0.99999` formulation remains STRONG where nearby
-binary32-equivalent expressions are not distinguished by the trace.
+path and probability conversion are PROVEN.
+
+Guard-fallback family selection uses the same float32-scaled arithmetic shape as
+descendant candidate selection. It remains a separate primitive with distinct
+semantic naming and diagnostic provenance. A fallback pool of one still consumes
+one draw.
 
 ## Biome List Construction
 
 ### Initial list order
 
-**PROVEN for live Kreet case; STRONG as general rule**
+**PROVEN**
 
 The generator constructs the working biome list in PNDT `BiomeIndex` order.
 
@@ -167,7 +174,7 @@ index pairs `(1, 0)` and `(2, 0)`, consuming the first two raw outputs.
 
 ### Biome shuffle RNG consumption
 
-**STRONG**
+**PROVEN**
 
 The recovered loop visits ascending target positions:
 
@@ -187,9 +194,8 @@ N = 2 -> 1 bounded choice, bound 2, at least 1 raw draw
 N = 3 -> 2 bounded choices, bounds 2 then 3, at least 2 raw draws
 ```
 
-Kreet directly proves the `N = 3` swaps. The generalized loop, including the
-zero-draw `N = 1` case, matches the recovered control flow but has not been
-live-traced for every biome count, so it remains STRONG rather than PROVEN.
+Rejected attempts consume additional raw words. The bounded helper remains
+separate from probability-scaled descendant and fallback selection.
 
 ### Sequential processing
 
@@ -309,8 +315,10 @@ in shared planet resource state before the five-tree and shared-eight Common
 guards are evaluated. Callisto directly showed Helium-3 appended to shared state
 before Common/Iron selection. Therefore a new Special identity can raise the
 shared count from seven to eight and force Common guard fallback for that biome.
-A duplicate Special FormID records its occurrence without occupying a new slot,
-so it does not independently trigger the shared-eight guard.
+In the STRONG, full-corpus-validated occupancy model, a duplicate Special FormID
+records its occurrence without occupying a new slot, so it does not independently
+trigger the shared-eight guard. This is not claimed as a universal proof for
+every same-FormID collision at every engine insertion site.
 
 ### Category-generic selector and draw consumption
 
@@ -375,6 +383,10 @@ root reuses its cached configuration and does not occupy another tree slot.
 The five-tree guard and the separate shared eight-resource guard are distinct
 mechanisms.
 
+**SUPERSEDED:** earlier documentation that treated the five-tree limit as a
+provisional interpretation is historical only. Its pre-selector role is PROVEN
+LIVE / STATIC in the CK path.
+
 ### Pre-Common shared resource-capacity guard
 
 **PROVEN STATIC/LIVE in the Creation Kit Galaxy View Apply path**
@@ -395,6 +407,9 @@ prospective Common root already present through ATMO cannot exploit duplicate
 de-duplication semantics because selection never occurs. The rule is specific to
 the recovered main Common path; it does not alter the upstream Everywhere
 occurrence ordering or establish new Special behavior.
+
+**SUPERSEDED:** a shared-eight guard does not imply an empty biome Common result.
+It suppresses the normal selector and enters the fallback assignment path.
 
 ### Guarded biome-family fallback assignment
 
@@ -421,17 +436,35 @@ fallback, general guard fallback, or no assignment, while the cached family
 retains the biome processing context in which that exact configuration originated.
 Everywhere and Special assignments remain independent of this Common-family path.
 
+The exact assignment mechanism values are:
+
+```text
+NEW_FAMILY
+NORMAL_CACHE_REUSE
+GUARD_MATCHED_FALLBACK
+GUARD_GENERAL_FALLBACK
+NO_COMMON_ASSIGNMENT
+```
+
+Preferred provenance wording is: a family configuration was originally generated
+while processing biome X. A later assignment does not copy from a mutable biome
+object; it assigns the existing planet-wide cached configuration.
+
 ## Shared Planet Resource State
 
 ### Capacity identity versus occurrence provenance
 
-**PROVEN:** recovered code guards a shared state at eight resource IDs.
+**PROVEN LIVE / STATIC in the Creation Kit path:** the shared resource-ID state
+is guarded when its count reaches eight.
 
-**STRONG / engine-shaped capacity model:** capacity is modeled as eight unique
-IRES FormIDs across ATMO, Everywhere, Special, Common roots, and emitted
+**STRONG / validated model:** the reproducer models shared occupancy as eight
+unique IRES FormIDs across ATMO, Everywhere, Special, Common roots, and emitted
 descendants. A repeated FormID records another provenance occurrence but does not
-consume a second slot. Exact duplicate behavior at every insertion site remains
-OPEN, so this broader collision model is not labeled universally proven.
+consume a second slot or increment the occupied count. This behavior is supported
+by recovered control flow and exact full-corpus validation, but is not asserted as
+universally traced across every same-FormID collision and insertion site.
+
+Occurrence provenance and unique identity occupancy remain separate.
 
 There is no Water-, Chlorine-, atmosphere-, or vapor-specific capacity exception.
 When the shared state is full, the descendant helper returns the current structural
@@ -680,15 +713,47 @@ ResourceCategory == "Inorganic"
 
 The supplied file contains 7,663 total resource rows across 1,445 bodies and includes both inorganic and organic resources.
 
+This oracle represents the CK/RSGD-visible inorganic channel used by validation.
+It is not a complete final planetary-resource oracle because it is proven to omit
+at least some atmosphere-derived resources. Generation must never consult it.
+
 `Starfield_InorganicResources_Canonical.csv` is deprecated and must not be used as the oracle.
 
-## Known Unresolved / Mismatch-Driven Rules
+## Missing Generation Inputs
 
-Do not block v0.1 on these unless necessary:
+**V1.0 INPUT-BOUNDARY RULE / VALIDATED MODEL BEHAVIOR**
 
-- RSCS = 0 fallback path;
-- exact same-FormID duplicate behavior at every insertion site;
-- fallback/additional RSGD iteration;
-- exact SurveyAggregator contract of `planet-all-resources.csv`.
+When a body has no PNDT/biome/effective-RSGD input, do not fabricate biome
+assignments and do not interpret missing generation input as an empty biome
+result. Biome-local terrestrial generation is unknown or unsupported from the
+current corpus.
 
-The first full canonical run should determine which of these actually matters.
+Independently available origin channels remain reportable. Volii Alpha is absent
+from `PlanetResourceGeneration_v5.csv`, while atmospheric Benzene and Water are
+available independently; the reproducer must report those known facts without
+inventing a biome assignment. This negative control validates the reproducer's
+epistemic boundary; it is not evidence about Volii Alpha's actual terrestrial
+biome allocation or a recovered native engine rule.
+
+## Evidence Boundary and Falsifiability
+
+Creation Kit function addresses and control flow are PROVEN for the live-traced
+CK Galaxy View Apply path. Retail validation independently corroborates predicted
+outputs. The CK addresses have not been independently traced in `Starfield.exe`
+and must not be presented as retail addresses.
+
+v1.0 is considered complete within its defined scope because the model reproduces
+the full canonical corpus and independent CK/retail holdout samples. Future
+contradictory evidence is a falsification/regression to investigate, not something
+to hide with heuristics, oracle patches, or planet-specific exceptions.
+
+## Genuine Open Questions
+
+- RSCS-zero behavior if future evidence makes that path relevant;
+- **OPEN, apparently unreachable:** if a Common guard were entered with Common
+  entries present but no generated family configurations available, current
+  evidence does not define the engine's fallback behavior. Recovered control flow
+  appears to prevent this state during normal execution, so it does not block
+  v1.0;
+- version drift in future executable or data revisions;
+- explicit consumer/export contracts beyond the current research API.

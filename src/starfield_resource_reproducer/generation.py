@@ -14,9 +14,9 @@ Boundaries:
 Evidence notes:
     The pre-main ordering, selector draw behavior, and five-tree/shared-eight
     pre-Common guards are PROVEN. Guarded cached-family fallback, including its
-    distinct float32-scaled draw, is PROVEN LIVE. Treating duplicate provenance
-    occurrences as one occupied slot is the current STRONG engine-shaped capacity
-    model and remains explicit rather than being upgraded to universal proof.
+    distinct float32-scaled draw, is PROVEN LIVE. The runtime-proven shared state
+    is guarded at eight; unique-FormID occupancy across modeled provenance origins
+    is the STRONG, full-corpus-validated reproducer model.
 """
 
 from __future__ import annotations
@@ -308,9 +308,10 @@ class PlanetGenerationResult:
 class PlanetResourceState:
     """Shared eight-slot identity state with independent provenance occurrences.
 
-    STRONG / engine-shaped model: capacity counts unique IRES FormIDs. Repeating
-    a FormID through another provenance records another occurrence but consumes
-    no second slot. New identities are rejected once eight IDs are occupied.
+    PROVEN LIVE / STATIC in the CK path: the shared resource-ID state is guarded
+    at count eight. STRONG / validated model: occupancy is deduplicated by IRES
+    FormID across modeled provenance origins, so a later occurrence consumes no
+    second slot. New identities are rejected once eight IDs are occupied.
     """
 
     CAPACITY = 8
@@ -394,9 +395,8 @@ def shuffle_biomes(
 ) -> BiomeShuffleResult:
     """Run the recovered Starfield biome shuffle with transparent swap events.
 
-    STRONG: the ascending target loop exactly reproduces Kreet's two observed
-    swaps. Its behavior for all biome counts has not been directly live-traced.
-    It executes ``N - 1`` iterations, so a one-biome list consumes no draw.
+    PROVEN: the ascending target loop uses the bounded integer helper and
+    executes ``N - 1`` iterations, so a one-biome list consumes no draw.
     """
 
     working = list(biomes)

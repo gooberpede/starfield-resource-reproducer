@@ -2,479 +2,277 @@
 
 ## Objective
 
-Build a small deterministic reference implementation of Starfield planetary inorganic-resource generation.
+Maintain a small, deterministic reference implementation of vanilla Starfield
+inorganic planetary-resource generation. The v1.0 architecture prioritizes
+correctness, inspectable state transitions, and strict separation between
+prediction and validation.
 
-The design should make it easy to:
+## Boundaries
 
-1. compare implementation behavior with recovered runtime behavior;
-2. inspect every generation decision;
-3. replace provisional rules as new evidence arrives;
-4. reuse the validated generation engine later in the outpost-planner project.
-
-## Design Principles
-
-### Domain logic is independent of file format
-
-CSV files are inputs, not the architecture.
-
-The generation engine should operate on typed domain objects rather than pandas rows or raw dictionaries.
-
-### Prediction and validation are separate
-
-The generator predicts resources.
-
-The validator compares those predictions with `planet-all-resources.csv`.
-
-Do not let canonical expected results leak into generation decisions.
-
-### PRNG is an explicit dependency
-
-Exact reproduction requires exact RNG consumption.
-
-All random operations should flow through one small PRNG abstraction that can:
-
-- reproduce Bethesda's MT19937 behavior;
-- expose the distinct runtime conversion used for each call site;
-- expose draw count/position;
-- optionally record diagnostic events.
-
-### Diagnostics are part of the architecture
-
-This project is a reverse-engineering instrument.
-
-A generation run should be representable as both:
-
-- final predicted resources;
-- an ordered event trace explaining how that result was produced.
-
-## Proposed Repository Layout
+The generator operates only on typed domain objects. CSV/TSV loading, generation,
+diagnostics, and oracle comparison remain separate concerns.
 
 ```text
-.
-├── AGENTS.md
-├── README.md
-├── reproduce.py
-├── pyproject.toml
-├── src/
-│   └── starfield_resource_reproducer/
-│       ├── __init__.py
-│       ├── cli.py
-│       ├── domain.py
-│       ├── load_data.py
-│       ├── prng.py
-│       ├── generation.py
-│       ├── candidates.py
-│       ├── diagnostics.py
-│       └── validation.py
-├── tests/
-│   ├── test_prng.py
-│   ├── test_oberon.py
-│   ├── test_mimas.py
-│   ├── test_decaran_vii_b.py
-│   ├── test_kreet.py
-│   └── test_validation.py
-├── data/
-│   ├── PlanetResourceGeneration_v5.csv
-│   ├── Starfield_IRES_Hierarchy.csv
-│   └── planet-all-resources.csv
-└── docs/
-    ├── ARCHITECTURE.md
-    ├── BACKLOG.md
-    ├── DOMAIN-RULES.md
-    └── IMPLEMENTATION-WORKFLOW.md
+canonical static inputs                  runtime-derived oracle
+          |                                      |
+          v                                      |
+      load_data.py                               |
+          |                                      |
+          v                                      |
+  typed ProjectData                              |
+          |                                      |
+          v                                      |
+     generation.py                               |
+          |                                      |
+          v                                      v
+ independent PlanetGenerationResult ----> validation.py
 ```
 
-The exact package name can change, but maintain these responsibility boundaries.
+The oracle is never passed into generation. Validation begins only after an
+independent prediction exists.
 
-## Core Domain Objects
+## Canonical Data Roles
 
-Suggested conceptual objects:
+- `PlanetResourceGeneration_v5.csv` supplies authoritative PNDT, BIOM,
+  effective-RSGD, RSGD-order, and RSCS inputs.
+- `Starfield_IRES_Hierarchy.csv` supplies the authoritative IRES rarity and
+  ordered child graph.
+- `Starfield_PlanetAtmosphericResources.tsv` supplies authoritative effective
+  atmospheric inorganic-resource records for the current corpus.
+- `planet-all-resources.csv` supplies the validator's canonical planet-wide
+  CK/RSGD-visible inorganic membership.
 
-### `ResourceId`
+The oracle omits at least some atmosphere-derived resources, so it is not a
+complete final planetary-resource oracle. `Starfield_InorganicResources_Canonical.csv`
+is deprecated.
 
-Stable resource identity, centered on FormID.
+## Implemented Domain Objects
 
-Display metadata may include EditorID/name/rarity.
+### Static input model
 
-### `ResourceNode`
+- `FormId` is the stable identity type. Names and EditorIDs are display metadata.
+- `Planet` owns unsigned RSCS and `Biome` values in PNDT `BiomeIndex` order.
+- `Biome` retains both PNDT and BIOM references. Its `effective_rsgd` property
+  implements PNDT-over-BIOM precedence without merging.
+- `RSGDDefinition` retains its source and ordered `RSGDResourceEntry` sequence.
+- `IRESNode` retains rarity and ordered child references.
+- `AtmosphericResourceRecord` retains planet, ATMO, resource, source-file, and
+  inheritance provenance.
+- `CanonicalBodyResources` is validation-only runtime/oracle data.
+- `ProjectData` bundles independently loadable inputs without changing their roles.
 
-An IRES node:
+### Planet-wide identity and capacity
+
+`PlanetResourceState` owns the planet-wide set of occupied resource FormIDs and
+the ordered `ResourceOccurrence` log. The CK path is proven to guard the shared
+resource-ID state at count eight. The reproducer's STRONG, full-corpus-validated
+model treats occupancy as eight unique FormIDs across ATMO, Everywhere, Special,
+Common, and emitted descendants.
+
+A repeated FormID records another provenance occurrence but does not occupy
+another slot in this validated model. This is not asserted as a universal engine
+proof for every same-FormID collision at every insertion site. Identity occupancy
+and occurrence provenance are intentionally separate.
+
+### Resource occurrence and provenance
+
+`ResourceOccurrence` records:
+
+- the resource identity;
+- `ResourceProvenance` (`ATMO`, `EVERYWHERE`, `SPECIAL`, `COMMON`, or
+  `DESCENDANT`);
+- whether the occurrence belongs to shared state and whether it occupied a new
+  slot;
+- biome/effective-RSGD context where applicable;
+- Common-family root, assignment mechanism, and guard reason where applicable;
+- the complete atmosphere record for ATMO occurrences.
+
+This preserves duplicate channel occurrences without conflating them with unique
+capacity occupancy.
+
+### Family cache, origin, and assignment
+
+`ResourceFamilyResult` is the immutable cached configuration for one Common root.
+It stores structural descendant levels, emitted resources, diagnostics, and a
+`FamilyOrigin`.
+
+`FamilyOrigin` means the family configuration was originally generated while
+processing that biome/RSGD context. It does not imply that later assignments copy
+from a biome object.
+
+`CommonFamilyAssignment` describes how the current biome receives a family:
 
 ```text
-form_id
-editor_id
-name
-rarity
-children[]
+NEW_FAMILY
+NORMAL_CACHE_REUSE
+GUARD_MATCHED_FALLBACK
+GUARD_GENERAL_FALLBACK
+NO_COMMON_ASSIGNMENT
 ```
 
-### `RSGDResourceEntry`
+It retains the selected family, guard/no-assignment reason, RSGD Common roots,
+fallback pool, and fallback RNG draw. Family origin and current assignment
+mechanism remain distinct.
 
-One ordered resource entry in an RSGD:
+### Biome and planet result views
+
+`BiomeFamilyGenerationResult` contains the outer biome decisions, optional cache
+access, and explicit Common assignment.
+
+`BiomeResourceView` is a biome-centric view of Everywhere, Special, and
+Common/Descendant occurrences. Association uses PNDT biome index rather than
+assuming a BIOM FormID is unique within a planet.
+
+`PlanetGenerationResult` is the complete oracle-independent prediction. It keeps:
+
+- initial and shuffled biome order;
+- atmosphere and all provenance occurrences;
+- planet-wide occupied identities;
+- family cache and family results;
+- biome assignments;
+- RSGD/CK-visible resources and FormIDs;
+- final player-facing union resources and FormIDs;
+- structured events and final RNG draw count.
+
+`PlanetValidationResult` belongs to `validation.py` and adds expected, missing,
+unexpected, and classification fields. Canonical data never enters
+`PlanetGenerationResult`.
+
+## Generation Pipeline
+
+`generation.py` implements this order:
 
 ```text
-index
-resource
-common_chance
-uncommon_chance
-rare_chance
-exotic_chance
-unique_chance
-special_chance
-everywhere_chance
+effective atmosphere resources
+    -> record ATMO occurrences and identities
+    -> Everywhere/category-6 pre-pass over every effective RSGD
+    -> build PNDT biome work list in BiomeIndex order
+    -> shuffle with the RSCS-seeded MT19937
+    -> for each shuffled biome:
+         resolve effective RSGD
+         -> Special/category-5 selector
+         -> record Special immediately in shared state
+         -> five-tree guard
+         -> shared-eight guard
+         -> normal Common selector if unguarded
+            -> NEW_FAMILY or NORMAL_CACHE_REUSE
+         -> guarded family fallback otherwise
+            -> matching cached roots preferred
+            -> otherwise all cached families
+            -> no RSGD Common roots means NO_COMMON_ASSIGNMENT
 ```
 
-Do not discard original order.
+The Special insertion occurs before either Common guard. A new Special can fill
+slot eight and force fallback in the same biome; a duplicate Special records an
+occurrence without increasing occupied identity count.
 
-### `EffectiveRSGD`
+The five-tree guard suppresses normal Common selection after five distinct
+cached family configurations. The shared-eight guard suppresses it at eight
+unique occupied resource identities. Both are pre-selector controls and consume
+no Common-selector draw when they fire.
 
-Resolved RSGD definition used for one planet-biome entry.
+Guard fallback assigns an existing immutable cached family. It records new
+biome-context occurrences but does not mutate the family cache or rerun descendant
+generation.
 
-Retain provenance for diagnostics:
+New-family descendant traversal processes Uncommon, Rare, Exotic, then Unique.
+Structural selection and emission are separate; traversal continues through an
+omitted selected candidate.
+
+## PRNG Architecture
+
+`StarfieldRng` owns the unsigned-RSCS-seeded MT19937 state and draw accounting.
+The APIs remain semantically distinct:
 
 ```text
-source = PNDT | BIOM | PNDT+BIOM
+next_bounded_integer
+    rejection/modulo; biome shuffle; rejected attempts consume words
+
+next_probability
+    binary32(raw) * binary32(2^-32), then binary32 * binary32(0.99999)
+
+Special/Common weighted selector
+    one probability draw before category enumeration; stored order; cumulative;
+    no normalization; draw still occurs for zero/one/100-percent candidates
+
+next_scaled_index
+    descendant candidate index from float32-scaled probability
+
+next_fallback_family_index
+    guard-fallback family index with distinct semantic/event provenance
 ```
 
-Runtime generation should resolve the effective source using the recovered precedence rule.
+The last two share an arithmetic shape but must not be consolidated. A fallback
+pool of one still consumes its fallback draw.
 
-### `Biome`
-
-```text
-biome_index
-form_id
-editor_id
-name
-chance
-pndt_rsgd
-biom_rsgd
-effective_rsgd
-```
-
-### `Planet`
-
-```text
-form_id
-editor_id
-name
-system
-rscs
-biomes[]  # in PNDT BiomeIndex order
-```
-
-### `FamilyConfiguration`
-
-Planet-wide cached result for a selected Common root.
-
-Conceptually:
-
-```text
-root
-level_1
-level_2
-level_3
-level_4
-emitted_resources
-origin_biome
-origin_processing_position
-origin_effective_rsgd
-```
-
-Preserve structural selections even when a level was not emitted.
-
-### `PlanetGenerationResult`
-
-```text
-planet
-per_biome_results
-  common_assignment  # mechanism, guard, candidates, selected family, origin
-everywhere_resources
-special_resources
-family_cache
-predicted_resources
-predicted_form_ids
-events
-final_draw_count
-```
-
-This is the complete prediction boundary. It contains no canonical-oracle data.
-
-### `PlanetValidationResult`
-
-```text
-planet_form_id
-predicted_form_ids
-expected_form_ids
-missing_form_ids
-unexpected_form_ids
-exact_match
-suspected_cause
-first_plausible_divergence
-```
-
-Readable resource metadata is retained alongside FormID membership, but identity
-and comparison semantics remain FormID-based.
-
-## Modules
+## Module Responsibilities
 
 ### `load_data.py`
 
-Responsibilities:
-
-- parse canonical CSV inputs;
-- validate schema;
-- convert FormIDs consistently;
-- group flat PNDT/RSGD rows into domain objects;
-- load IRES graph;
-- load runtime oracle separately.
-
-No generation decisions.
+Parses and validates the four canonical datasets, reconstructs ordered immutable
+domain objects, and fails loudly on malformed or conflicting source data. It
+makes no generation decisions.
 
 ### `prng.py`
 
-Responsibilities:
-
-- exact 32-bit MT19937 seeding;
-- shared game-compatible probability conversion;
-- rejection-sampled integer bounded selection for biome shuffle;
-- float32-scaled and truncated index selection for descendants;
-- draw accounting;
-- optional event logging.
-
-The two bounded-choice APIs are intentionally separate:
-
-```text
-MT19937 raw uint32
-        |
-        +--> next_bounded_integer
-        |       rejection sampling -> modulo -> biome shuffle
-        |
-        +--> probability float32
-                +--> inclusion rolls
-                +--> next_scaled_index -> scale/truncate -> descendants
-```
-
-Runtime traces PROVE that these call sites use different mechanisms. A rejected
-integer-bounded attempt consumes an additional raw word; a normal descendant
-scaled choice consumes exactly one. Do not collapse the APIs into a generic
-bounded-index helper without new runtime evidence.
-
-Do not assume Python's `random.Random` is compatible until verified against known trace values.
+Implements MT19937, the recovered probability conversion, integer bounded helper,
+descendant scaled-index helper, fallback scaled-index helper, and exact draw
+records.
 
 ### `candidates.py`
 
-Responsibilities:
-
-- rarity filtering;
-- Common root candidate construction;
-- descendant candidate construction from:
-  - children(root);
-  - children(current structural node);
-- deterministic de-duplication preserving runtime order.
-
-Keep structural graph logic out of orchestration code.
+Builds rarity-specific structural candidates from root and current-node children,
+preserving runtime order and first-occurrence de-duplication.
 
 ### `generation.py`
 
-Responsibilities:
+Owns the pipeline, shared identity state, family cache, assignments, provenance,
+and result assembly. It performs no file or oracle access.
 
-- prepopulate ordered atmospheric occurrences before RNG-backed work;
-- run the category-6 / Everywhere pre-pass across every biome/effective RSGD,
-  accepting category-6 entries in authored order without consulting DNAM chance
-  fields or consuming RNG;
-- construct/copy biome list in PNDT order;
-- deterministic shuffle;
-- iterate shuffled biomes;
-- resolve effective RSGD;
-- run the recovered ordered cumulative Special selector and immediately record
-  any selected Special in shared state before evaluating either Common guard;
-- then run the same selector shape for Common only when neither guard fires;
-- before Common selection, enforce the five-distinct-tree guard from
-  `FUN_1415DCFB0`; a guarded invocation consumes no Common-selector RNG draw;
-- after the five-tree guard and before Common selection, enforce the shared
-  eight-resource guard recovered from `FUN_1415DCFB0`; at capacity the selector
-  is bypassed and consumes no Common-selector RNG;
-- after either guard, scan stored effective-RSGD Common roots and assign an
-  existing cached family from the preferred matching pool or, when no roots
-  match, from the complete cache; the semantically distinct float32-scaled
-  fallback choice consumes one draw even at bound one;
-- retain each cached family's generation-origin biome/RSGD context and attach an
-  explicit assignment mechanism to every biome result;
-- retain provenance-specific occurrences independently of resource identity;
-- enforce one shared eight-unique-FormID capacity across ATMO, Everywhere,
-  Special, Common, and descendants;
-- preserve an explicitly partial orchestration result for Brief 03 diagnostics;
-- generate immutable Common-family configurations;
-- process descendant levels in rarity order with exact draw accounting;
-- consume one raw MT word when a descendant level has no candidates while
-  retaining the structural node;
-- maintain the planet-scope FormID-keyed family cache, reusing cached results
-  without invoking descendant generation or consuming descendant RNG;
-- expose atmospheric, RSGD/CK-visible, and final player-facing resource channels.
-
-`orchestrate_planet()` stops after Common-root selection. The separate
-`generate_planet()` pipeline uses the same outer control flow but runs a new
-family immediately after its root is selected, before the shared RNG advances to
-the next biome. `generate_planet_families()` remains a compatibility wrapper.
-The result is a complete prediction, not a canonical validation result. Its
-central invariant is that occurrence count is not slot count: two mechanisms may
-contribute the same FormID while only one unique identity occupies shared state.
-The Common-tree count is independently the number of FormID-keyed family-cache
-entries; it is neither biome count nor shared resource-slot count.
-
-The shared state has two deliberately separate roles. `PlanetResourceState.record()`
-implements insertion and provenance-aware de-duplication. The main Common path
-also checks `at_capacity` before invoking the selector. Consequently an already
-occupied prospective root cannot bypass the control-flow guard merely because a
-duplicate occurrence would require no new slot. This pre-Common rule does not
-change the earlier Everywhere occurrence ordering or Special mechanics.
-
-**PROVEN LIVE:** within a biome invocation, selected Special insertion precedes
-the five-tree and shared-eight Common guards. A new Special FormID can raise the
-shared count from seven to eight and force fallback in that same biome. An
-already-occupied Special records another occurrence without changing the count.
-
-The guarded fallback records duplicate biome-context occurrences for the cached
-root and emitted descendants without occupying new slots. It does not mutate the
-cache or run descendant generation. Everywhere and Special assignments remain
-independent channels.
-
-`PlanetGenerationResult.biome_resource_views()` associates occurrence context by
-PNDT biome index. BIOM FormID remains provenance, but is not assumed unique among
-multiple PNDT biome entries on one planet.
-
-No CSV access.
+`orchestrate_planet()` retains the earlier partial boundary for diagnostic
+research. `generate_planet()` is the complete prediction boundary, and
+`generate_planet_families()` is a compatibility wrapper.
 
 ### `diagnostics.py`
 
-Responsibilities:
-
-Represent significant orchestration events as immutable named records with an
-optional exact `RngDraw`. Current events include:
-
-```text
-PRNG_SEEDED
-BIOME_LIST_INITIAL
-BIOME_SWAP
-BIOME_LIST_SHUFFLED
-BIOME_BEGIN
-RSGD_RESOLVED
-EVERYWHERE_ADDED
-SPECIAL_SELECTED
-COMMON_CANDIDATE
-COMMON_ROLL
-COMMON_SELECTED
-BIOME_END
-PLANET_END
-```
-
-Prefer structured events that the deterministic timeline formatter can render
-rather than ad-hoc print statements throughout generation code. Diagnostics-only
-counterfactual draws use an independent RNG and are explicitly labeled
-`COUNTERFACTUAL / NOT RUNTIME-PROVEN`.
-
-Descendant, cache, and emission events are added only with their corresponding
-generation stages. Brief 04 adds family begin/end, root emission, per-level
-candidate/inclusion/selection/emission, and cache-hit events.
-
-Brief 07B also records atmospheric prepopulation, Everywhere pre-pass boundaries,
-provenance occurrences, new-slot occupancy, already-occupied identities, and
-capacity rejection. Occurrences remain first-class result data; diagnostics explain
-state transitions rather than serving as the only provenance API.
-
-Brief 08C adds a distinct `COMMON_RESOURCE_CAPACITY_REACHED` event for the
-pre-Common shared-eight guard. It records the occupied count, capacity, unchanged
-draw counts, and `rng_consumed=false`, distinguishing selector suppression from a
-later insertion rejection.
-
-Brief 08D adds guarded-fallback begin, candidate, roll, and assignment events.
-They distinguish the guard reason, matched versus general pools, fallback RNG,
-selected cached family, family origin, and target biome. Fallback is never
-reported as `COMMON_SELECTED`, which remains specific to the normal selector.
+Defines immutable structured events and deterministic formatting. Diagnostics
+explain state changes; they do not substitute for result/provenance APIs.
 
 ### `validation.py`
 
-Responsibilities:
+Compares the completed RSGD/CK-visible prediction against the filtered inorganic
+oracle by FormID. It retains atmospheric and final player-facing channels
+separately, aggregates all bodies, classifies mismatches/errors, and writes a
+deterministic mismatch CSV.
 
-- compare the independent RSGD/CK-visible channel with an inorganic canonical body;
-- retain atmospheric and final player-facing union channels without treating
-  ATMO-only oracle omissions as generation failures;
-- compare expected/predicted resource membership by FormID;
-- derive the generation/oracle-inorganic intersection and report coverage gaps;
-- retain exact, missing-only, unexpected-only, mixed, and generation-error status;
-- classify family-, biome-, RSGD-, override-, cache-, and RSCS-aware dimensions;
-- aggregate the complete corpus without aborting on one planet error;
-- export deterministic machine-readable mismatch rows;
-- identify an evidence-qualified first plausible mismatch region.
+### `cli.py` and `reproduce.py`
 
-`validate_all_planets()` owns batch comparison, not generation. The oracle is
-supplied only after each independent prediction is complete. Final-set exactness
-is reported separately from trace exactness because the corpus oracle does not
-contain per-operation RNG traces.
+Provide the thin command-line boundary for full validation and output paths.
 
-Validation must never alter generator behavior.
+## Missing-Input Semantics
 
-### `cli.py` / `reproduce.py`
+A body without PNDT/biome/effective-RSGD input cannot be passed through
+biome-local generation. The architecture must not synthesize a `Planet`, fabricate
+assignments, or reinterpret missing input as an empty terrestrial result.
+Independently loaded channels, such as atmosphere, may still be reported as known.
+Volii Alpha is the v1.0 negative control for this model/input boundary, not
+evidence about its actual terrestrial biome allocation or a recovered engine rule.
 
-Thin orchestration layer.
+## Validation and Evidence Boundaries
 
-Initial commands:
+Creation Kit function addresses and control flow are PROVEN only for the
+live-traced CK Galaxy View Apply path. Retail validation independently
+corroborates outputs; it does not relabel those addresses as `Starfield.exe`
+addresses.
 
-```text
---planet <name|editorid|formid>
---all
---diagnostic
---mismatches <path>
-```
+The v1.0 evidence baseline is recorded in `docs/V1-VALIDATION-BASELINE.md`.
+Future contradictory evidence is a falsification/regression to preserve and
+investigate, not a reason to add an oracle patch or planet-specific exception.
 
-Avoid building a complex CLI framework in v0.1.
+## Out of Scope
 
-## Algorithm Boundary
-
-The reproducer models **planetary resource membership/allocation**, not downstream surface placement.
-
-Do not implement:
-
-- vein geometry;
-- cell-level placement;
-- extractor placement;
-- biome terrain generation;
-- flora/fauna generation.
-
-`Cell` generation probabilities from RSGD are outside current scope unless future evidence requires them.
-
-## Canonical Oracle Boundary
-
-`planet-all-resources.csv` contains both inorganic and organic resources.
-
-For current validation:
-
-```text
-ResourceCategory == "Inorganic"
-```
-
-Only those rows belong to reproducer expected output.
-
-Organic rows are retained in the source dataset but out of scope.
-
-## Error Handling
-
-Fail loudly for malformed canonical static input.
-
-Examples:
-
-- duplicate `BiomeIndex` within a planet;
-- conflicting RSCS for one planet;
-- missing referenced IRES node;
-- duplicate RSGD resource index;
-- ambiguous effective RSGD construction.
-
-Do not silently "repair" extraction data.
-
-## Future Integration
-
-Once validated, the core generation package may later be consumed by the outpost planner.
-
-That future integration should depend on the domain API, not on CLI or CSV internals.
-
-The standalone reproducer should remain available as a regression oracle even after integration.
+- organic resources and flora/fauna generation;
+- terrain, cell, vein, or extractor placement;
+- arbitrary mod/plugin or future-executable behavior;
+- GUI, web server, database, planner, or packaging machinery without an explicit
+  brief.

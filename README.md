@@ -1,379 +1,207 @@
 # Starfield Resource Reproducer
 
-A standalone reference implementation of Starfield's deterministic planetary resource-generation algorithm.
+A deterministic reference implementation of vanilla Starfield's inorganic
+planetary-resource generation algorithm.
 
 ## Status
 
-**Research / pre-v0.1**
+**Algorithm/model status: v1.0**
 
-The reverse-engineering phase has recovered most of the central generation path from Creation Kit live traces, Ghidra analysis, xEdit extraction, and verified game/runtime observations.
-
-The runtime-proven split between biome-shuffle integer bounded selection and
-descendant float32-scaled selection is implemented. Brief 07B integrates the
-atmospheric export, pre-main Everywhere handling, the recovered category-generic
-Special/Common selector, and a shared eight-unique-FormID state. Brief 08A
-corrects category-6 eligibility from live Fermi VIII-b evidence. Briefs 08B and
-08C add the proven five-distinct-Common-tree and shared-eight pre-selector guards.
-Brief 08D implements the proven post-guard assignment of an already-generated
-family configuration to the current biome. The complete canonical inorganic
-intersection has 1,444 exact matches out of 1,444 with no generation errors.
-
-The generation engine prepopulates atmosphere occurrences, visits every effective
-RSGD in the Everywhere pre-pass, and then carries one explicitly accounted PRNG
-stream through biome shuffle and per-biome generation. Resource identity/capacity
-is separate from occurrence provenance: ATMO, Everywhere, Special, Common, and
-Descendant occurrences may share one occupied FormID slot. The
-Brief 03 partial orchestration API remains available for outer-decision research;
-the family API adds structural descendant paths, independent inclusion/emission,
-and FormID-keyed cache reuse. A complete `generate_planet()` prediction API now
-assembles final player-facing, RSGD/CK-visible, and atmospheric channels without
-consulting the oracle. The validator compares the RSGD/CK-visible channel because
-`planet-all-resources.csv` is proven to omit at least some atmospheric resources;
-its exact SurveyAggregator contract remains open. It reproduces Oberon, Mimas, Decaran
-VII-b, Kreet, and Algorab I exactly. Algorab also agrees internally with its
-live Lead trace: scaled descendant selection takes Silver then Mercury and ends
-at draw 22. Empty descendant levels consume one raw MT word, while family-cache
-hits bypass descendant generation without consuming descendant RNG.
-
-The guarded fallback changes biome-local assignment and subsequent RNG state
-without introducing planet-wide identities; the canonical result remains
-1,444 / 1,444 exact. CK-observed biome assignments are covered separately because
-the canonical planet-wide oracle contains no biome-local mapping.
-
-## Goal
-
-Given authoritative static inputs for a planet:
-
-- PNDT resource seed and biome entries;
-- effective per-biome RSGD data;
-- IRES resource hierarchy;
-- effective atmospheric inorganic-resource records;
-
-the reproducer should independently predict the resources assigned by the game.
-
-Conceptually:
+Within its defined scope, the model reproduces the complete canonical corpus:
 
 ```text
-PNDT / BIOM / RSGD + ATMO + IRES hierarchy + RSCS
-                     |
-                     v
-              deterministic model
-                     |
-                     v
-            predicted resources
-                     |
-                     v
-       compare with verified game output
+1,444 / 1,444 exact
+0 mismatches
+0 errors
 ```
 
-The long-term target is exact reproducibility, not merely statistically similar output.
+It also reproduces all established Creation Kit biome regressions and a fresh
+ten-body holdout checked independently in the Creation Kit and retail game. The
+durable evidence record is [docs/V1-VALIDATION-BASELINE.md](docs/V1-VALIDATION-BASELINE.md).
 
-## What This Repository Is Not
+This status describes the validated algorithm and model. It does not imply that
+a Git tag or GitHub release exists.
 
-At this stage it is not:
+## Scope
 
-- the Starfield outpost planner;
-- an in-game mod;
-- a GUI application;
-- a general-purpose Starfield data extractor.
+The v1.0 reproducer covers:
 
-It is a deliberately small research tool and future regression oracle.
+- PNDT resource seeds and ordered biome entries;
+- BIOM and effective per-biome RSGD selection;
+- the IRES rarity and child-resource hierarchy;
+- effective atmospheric inorganic resources;
+- MT19937 state evolution and deterministic biome shuffle;
+- Everywhere, Special, Common-root, and descendant generation;
+- planet-wide family caching and biome-local family assignment;
+- the five-tree and shared-eight guards, including guarded fallback;
+- resource identity, occurrence provenance, and family-origin provenance;
+- planet-wide final membership and biome-centric reporting.
 
-## Canonical Data Inputs
+It does not model organic resources, flora/fauna spawning, resource-vein
+geometry, extractor placement, arbitrary mod/plugin behavior, or arbitrary
+future executable versions. Creation Kit function addresses in the evidence are
+specific to the live-traced CK Galaxy View Apply path; retail results corroborate
+the outputs but do not establish address equivalence in `Starfield.exe`.
 
-### `PlanetResourceGeneration_v5.csv`
+This repository remains a small research-grade reference implementation and
+regression oracle, not an outpost planner, game mod, GUI, or web service.
 
-Static PNDT -> biome -> RSGD extraction.
+## Canonical v1.0 Inputs
 
-Expected content includes:
+The four inputs have deliberately different roles:
 
-- planet identity;
-- unsigned 32-bit `RSCS`;
-- original `BiomeIndex`;
-- biome identity and chance;
-- PNDT and BIOM RSGD provenance;
-- ordered RSGD resource entries;
-- IRES rarity/category;
-- Common / Uncommon / Rare / Exotic / Unique / Special / Everywhere generation percentages.
+- `data/PlanetResourceGeneration_v5.csv` is the authoritative
+  PNDT/BIOM/effective-RSGD/RSCS input. It preserves PNDT biome order, RSGD
+  provenance, RSGD resource order, and generation percentages.
+- `data/Starfield_IRES_Hierarchy.csv` is the authoritative IRES rarity and
+  child-resource graph.
+- `data/Starfield_PlanetAtmosphericResources.tsv` is the authoritative effective
+  atmospheric inorganic-resource export for the current corpus.
+- `data/planet-all-resources.csv` is the canonical planet-wide validation oracle
+  for the CK/RSGD-visible inorganic channel used by the validator. It is not a
+  complete final planetary-resource oracle because it omits at least some
+  atmosphere-derived resources.
 
-### `Starfield_IRES_Hierarchy.csv`
+`Starfield_InorganicResources_Canonical.csv` is deprecated and must not be used
+for validation, fixtures, expected results, or generation decisions.
 
-Canonical static IRES graph:
+The generator never consults canonical/oracle output. Validation compares the
+independently generated RSGD/CK-visible channel with the filtered inorganic
+oracle only after generation is complete.
 
-- resource identity;
-- rarity;
-- parent -> child relationships.
+## Effective RSGD Rule
 
-This is the authoritative resource-tree input.
-
-### `Starfield_PlanetAtmosphericResources.tsv`
-
-First-class atmospheric inorganic-resource input. This TSV preserves ordered
-planet/resource rows, atmosphere identity, the defining ATMO record, source files,
-and inheritance depth. Absence means the export contains no atmospheric resource
-row for that planet; it is not a malformed generation record.
-
-### `planet-all-resources.csv`
-
-**Canonical validation oracle.**
-
-This file was sourced from within the game/runtime and verified independently.
-
-Current supplied dataset:
-
-- 7,663 body/resource rows;
-- 1,445 distinct bodies;
-- 121 systems;
-- 6,040 inorganic rows;
-- 1,623 organic rows;
-- no null fields;
-- no duplicate `(PlanetFormID, ResourceFormID)` pairs.
-
-Columns:
+The sources are selected, never merged:
 
 ```text
-SystemName
-PlanetName
-BodyType
-PlanetFormID
-PlanetEditorID
-StarSystemID
-ParentPlanetID
-PlanetID
-ResourceCategory
-ResourceFormID
-ResourceEditorID
-ResourceName
-Rarity
+if PNDT biome Resource Generation != NULL:
+    EffectiveRSGD = PNDT override
+else:
+    EffectiveRSGD = BIOM.RNAM
 ```
 
-The reproducer's initial scope is inorganic generation, so validation should filter this oracle to `ResourceCategory == "Inorganic"`.
-
-### Deprecated dataset
-
-`Starfield_InorganicResources_Canonical.csv` is deprecated.
-
-Do not use it as the expected-output source. In particular, it predates the current verified runtime-derived dataset and does not provide the desired Shattered Space coverage.
-
-## Recovered Algorithm: Current Core Model
-
-At a high level, all mechanisms share capacity for eight unique resource FormIDs
-while retaining separate provenance occurrences:
+## Generation Order
 
 ```text
-Atmospheric resource prepopulation (no RNG)
-             |
-             v
-Everywhere/category-6 pre-pass over every effective RSGD (no RNG)
-             |
-             v
-PNDT biome entries -> MT19937 deterministic biome shuffle
- integer rejection + modulo
-             |
-             v
-   process shuffled biomes
-             |
-             +--> effective RSGD
-             |       PNDT override if present
-             |       otherwise BIOM RNAM
-             |
-             +--> Special pass (5)
-             |       e.g. Helium-3
-             |       record selected Special in shared state
-             |       before evaluating either Common guard
-             |
-             +--> Common/root weighted selection (0)
-                        normal selector skipped once five Common trees exist
-                        normal selector skipped at eight shared resource IDs
-                         |
-                         +--> guard fallback assignment
-                         |       match cached roots present in effective RSGD
-                         |       otherwise choose from all cached families
-                         |       no Common entries -> no assignment
-                         |
-                         +--> family already generated
-                         |       -> reuse cached family result
-                         |
-                         +--> new family
-                                 |
-                                 +--> emit root
-                                 +--> descendants use float32 scaled indices
-                                 +--> Uncommon (1)
-                                 +--> Rare (2)
-                                 +--> Exotic (3)
-                                 +--> Unique (4)
+effective atmosphere resources
+    -> record atmospheric identities in shared planet state
+    -> Everywhere/category-6 pre-pass over all effective RSGDs
+    -> construct biome work objects in PNDT BiomeIndex order
+    -> deterministic MT19937 biome shuffle
+    -> process each shuffled biome:
+         Special/category-5 selector
+         -> record selected Special immediately
+         -> five-Common-tree guard
+         -> shared-eight guard
+         -> normal Common/category-0 selector when neither guard fires
+            or guarded cached-family fallback when a guard fires
 ```
 
-The Everywhere pre-pass visits all biome/effective-RSGD contexts before shuffled
-main generation. In the observed Creation Kit Galaxy View Apply path, it emits
-category-6 entries in authored RSGD order without consulting a DNAM chance field
-or consuming RNG. A one-entry Common RSGD still uses the ordinary weighted
-selector and consumes its normal draw; there is no generic one-entry bypass.
-Once five distinct Common tree configurations have been established, the main
-per-biome path skips the Common selector before its probability draw. This guard
-is separate from the shared capacity of eight unique resource FormIDs. PROVEN
-STATIC/LIVE control flow in `FUN_1415DCFB0` checks that shared capacity after the
-five-tree guard and before the Common selector; at eight occupied IDs, normal
-selection is bypassed without consuming its usual RNG draw. **PROVEN LIVE:** both
-guards then enter a fallback stage. Matching cached roots in the effective RSGD
-form the preferred family pool; otherwise all cached families are eligible. The
-float32-scaled fallback choice consumes one draw even for a one-family pool and
-copies the cached configuration into the biome without creating new identities.
-Within each biome, a selected Special occurrence updates shared resource state
-before the five-tree and shared-eight guards. A new Special identity can therefore
-fill slot eight and cause that biome to enter Common guard fallback; a duplicate
-Special occurrence does not increase the occupied count.
+Normal Common selection either creates a new family configuration or reuses the
+planet-wide cached configuration for that root. Guard fallback prefers cached
+families whose roots occur in the current effective RSGD; otherwise it selects
+from all cached families. An RSGD with no Common roots receives no Common-family
+assignment.
 
-See `docs/DOMAIN-RULES.md` for the detailed rule set and evidence status.
+Descendants are processed Uncommon -> Rare -> Exotic -> Unique. Structural
+traversal continues through an omitted selected candidate. Resource identity and
+occurrence provenance remain separate, as do family-configuration origin and the
+mechanism by which a later biome receives that family.
 
-## Known Worked Cases
-
-The initial implementation should reproduce these before attempting full-dataset validation.
-
-### Oberon
-
-Purpose:
-
-- simple root-only control;
-- proves category `6 = Everywhere = Water`;
-- demonstrates Water is not selected by the per-biome Common/Special selector.
-
-Expected inorganic result includes:
+The five assignment mechanisms are:
 
 ```text
-Water
-Nickel
+NEW_FAMILY
+NORMAL_CACHE_REUSE
+GUARD_MATCHED_FALLBACK
+GUARD_GENERAL_FALLBACK
+NO_COMMON_ASSIGNMENT
 ```
 
-### Mimas
+See [docs/DOMAIN-RULES.md](docs/DOMAIN-RULES.md) for evidence classifications and
+the complete recovered rules.
 
-Purpose:
+## RNG Primitives
 
-- weighted Common/root selection;
-- descendant RNG consumption;
-- structural traversal through omitted resources.
+The implementation preserves separate semantic operations even when arithmetic
+is shared:
 
-Observed family path:
+1. biome-shuffle bounded integer: rejection/modulo, with rejected attempts
+   consuming MT words;
+2. probability float: binary32 conversion and `0.99999` scale;
+3. Special/Common weighted selector: one probability draw before category
+   enumeration, including zero/one/100-percent candidate cases;
+4. descendant candidate index: float32-scaled index from one probability draw;
+5. guard-fallback family index: the same arithmetic shape as descendant indexing,
+   but separate API and event provenance, including a draw at bound one.
 
-```text
-Nickel
-  -> Cobalt      omitted
-  -> Platinum    omitted
-  -> Palladium   emitted
-  -> Tasine      omitted
-```
+## Missing Generation Inputs
 
-Expected relevant result:
+**V1.0 input-boundary rule / validated model behavior:**
 
-```text
-Water
-Nickel
-Palladium
-```
+The reproducer does not fabricate biome assignments. A body absent from the
+PNDT/biome/effective-RSGD corpus has unknown or unsupported biome-local
+generation, not an empty terrestrial result. Independently available origin
+channels can still be reported; Volii Alpha, for example, has atmospheric
+Benzene and Water but no fabricated biome assignment. This validates the
+reproducer's epistemic/input boundary, not Volii Alpha's actual terrestrial
+biome allocation or a native engine rule.
 
-### Decaran VII-b
+## Usage
 
-Purpose:
-
-- PNDT RSGD override;
-- `Special = Helium-3`;
-- unique-resource generation through normal IRES traversal.
-
-Observed relevant result:
-
-```text
-Uranium
-Iridium
-Vytinium
-Helium-3
-```
-
-### Kreet
-
-Purpose:
-
-- multi-biome processing;
-- PNDT-order construction;
-- deterministic shuffle;
-- ordinary PNDT RSGD overrides.
-
-Initial PNDT biome order:
-
-```text
-0 Frozen Volcanic
-1 Mountains
-2 Volcanic
-```
-
-Observed shuffled processing order:
-
-```text
-2 Volcanic
-0 Frozen Volcanic
-1 Mountains
-```
-
-Observed inorganic result:
-
-```text
-Water
-Lead
-Silver
-Argon
-Neon
-Iron
-Alkanes
-```
-
-## Proposed CLI
-
-The first version should support a diagnostic single-body mode:
+Create a Python 3.12 environment and install the project with its test tools:
 
 ```bash
-python reproduce.py --planet "Mimas"
+python -m pip install -e ".[dev]"
 ```
 
-and eventually whole-dataset validation:
+Run the complete canonical validation:
 
 ```bash
-python reproduce.py --all
+python reproduce.py --validate-all
 ```
 
-Single-body mode should prioritize transparent diagnostics over pretty output.
+The command prints summary metrics and writes
+`validation/full-canonical-mismatches.csv` by default. An exact run produces a
+header-only mismatch report.
 
-Whole-dataset mode should report:
+Run the test suite:
 
-- bodies tested;
-- exact matches;
-- mismatches;
-- match percentage;
-- missing resources;
-- unexpected resources;
+```bash
+python -m pytest
+```
 
-and write a machine-readable mismatch report.
+The v1.0 evidence run recorded 138 passing tests. That number is a historical
+baseline, not a contractual assertion; the suite may grow.
 
-## First Milestone
+## Worked Regression Cases
 
-**v0.1**
+- Oberon: Nickel root-only control plus Water/Everywhere behavior.
+- Mimas: Nickel and Palladium, with omitted Cobalt and Platinum retained in the
+  structural traversal.
+- Decaran VII-b: PNDT override, Uranium family, Vytinium, and Special/Helium-3.
+- Kreet: PNDT-order construction, deterministic three-biome shuffle, and exact
+  biome-local family outputs.
+- Algorab I and the guarded fallback cases: precise descendant, capacity,
+  assignment, origin, and RNG regressions.
 
-1. establish repository structure and tests;
-2. load the four canonical input datasets;
-3. validate the exact MT19937 behavior used by the game;
-4. implement the recovered central generation path;
-5. reproduce Oberon, Mimas, Decaran VII-b, and Kreet;
-6. run the complete inorganic validation set;
-7. use mismatches to identify only the remaining edge cases that matter.
+## Project Documentation
 
-## Development Workflow
+- [AGENTS.md](AGENTS.md): protected-baseline instructions for coding agents.
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): implemented decomposition and
+  data boundaries.
+- [docs/DOMAIN-RULES.md](docs/DOMAIN-RULES.md): recovered behavior and evidence
+  status.
+- [docs/V1-VALIDATION-BASELINE.md](docs/V1-VALIDATION-BASELINE.md): v1.0 evidence
+  baseline.
+- [docs/BACKLOG.md](docs/BACKLOG.md): genuine post-v1.0 work.
+- [docs/IMPLEMENTATION-WORKFLOW.md](docs/IMPLEMENTATION-WORKFLOW.md): brief-driven
+  workflow and implementation history.
 
-Architecture and reverse-engineering specifications are developed in discussion and handed to Codex as scoped Markdown implementation briefs.
+## Falsifiability
 
-Codex should follow `AGENTS.md` and `docs/IMPLEMENTATION-WORKFLOW.md`.
-
-## Documentation
-
-- `AGENTS.md` — instructions and guardrails for coding agents
-- `docs/ARCHITECTURE.md` — intended software decomposition
-- `docs/DOMAIN-RULES.md` — recovered Starfield generation rules and evidence status
-- `docs/BACKLOG.md` — staged implementation/research backlog
-- `docs/IMPLEMENTATION-WORKFLOW.md` — ChatGPT / Codex / user collaboration process
+v1.0 is considered complete within its defined scope because the model
+reproduces the full canonical corpus and independent CK/retail holdout samples.
+Future contradictory evidence should be treated as a falsification/regression to
+investigate, not hidden by heuristics or oracle patches. Planet-specific
+algorithm exceptions are not acceptable.
