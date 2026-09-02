@@ -159,8 +159,9 @@ RSGD precedence remains a loader/domain concern.
 
 ## Repository roles
 
-The four outputs above are canonical production source inputs. The current
-reproducer loads generation, IRES, and atmosphere data; Planet Directory is
-staged for later ingestion and must not be added to the model as part of Brief
-10B. `planet-all-resources.csv` remains a validation-only oracle and is never a
+The four outputs above are canonical production source inputs. Brief 10C loads
+all four, retains their file-wide extraction timestamps, and validates compatible
+body/resource identities across them. Planet Directory metadata remains distinct
+from evidence that a body has terrestrial or atmospheric occurrence input.
+`planet-all-resources.csv` remains a validation-only oracle and is never a
 production input.

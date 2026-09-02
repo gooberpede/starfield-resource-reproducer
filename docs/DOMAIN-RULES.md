@@ -290,6 +290,29 @@ retain their defining ATMO identity, source file, and inheritance depth.
 The same IRES FormID may occur through ATMO and an RSGD mechanism. These are two
 provenance occurrences, not two resource identities.
 
+### Canonical accepted-occurrence projection
+
+Brief 10C freezes the domain-level resource-origin vocabulary as
+`ATMOSPHERE`, `EVERYWHERE`, `SPECIAL`, `COMMON_ROOT`, and `DESCENDANT`.
+`COMMON_ROOT` identifies the accepted family root occurrence; it is independent
+of `NEW_FAMILY`, normal cache reuse, and the two guard fallback mechanisms.
+
+Effective-RSGD source relationship evidence remains lossless: `BIOM`, `PNDT`,
+and the typed `PNDT_AND_BIOM` case corresponding to source export value
+`PNDT+BIOM`. The combined case is not collapsed into an override label.
+
+Only occurrences whose shared-state insertion is accepted are included in the
+enriched product view. Rejected capacity attempts, failed candidates,
+`NO_COMMON_ASSIGNMENT`, and structural diagnostic events remain diagnostics.
+For Common root and descendant occurrences, family root and origin biome come
+directly from the cached `ResourceFamilyResult.origin`; later reuse or fallback
+does not replace that original generation context.
+
+The directory is metadata, not channel evidence. In particular, Volii Alpha's
+directory and atmosphere records produce two atmosphere occurrences without a
+synthetic empty terrestrial result. `ResourceCategory = Inorganic` is reserved
+as a deterministic future export constant rather than a generation rule.
+
 ## Special / Helium-3
 
 ### Classification

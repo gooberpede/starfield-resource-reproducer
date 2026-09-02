@@ -55,11 +55,12 @@ roles:
   PNDT/BIOM/effective-RSGD/RSCS input. It preserves PNDT biome order, RSGD
   provenance, RSGD resource order, and generation percentages.
 - `data/ires-hierarchy.csv` is the authoritative IRES rarity and
-  child-resource graph.
+  child-resource graph, including parent and child source-plugin provenance.
 - `data/planet-atmospheric-resources.csv` is the authoritative effective
   atmospheric inorganic-resource export for the current corpus.
 - `data/planet-directory.csv` is the canonical PNDT body directory. It is
-  staged as a source input but is not yet ingested by the v1.0 reproducer.
+  ingested independently and indexed by Planet FormID; directory presence does
+  not imply that either generation channel exists.
 - `data/planet-all-resources.csv` is the canonical planet-wide validation oracle
   for the CK/RSGD-visible inorganic channel used by the validator. It is not a
   complete final planetary-resource oracle because it omits at least some
@@ -75,6 +76,18 @@ oracle only after generation is complete.
 The extraction paths and exporter-derived classifications for the maintained
 source files are documented in
 [docs/CANONICAL-XEDIT-EXPORTS.md](docs/CANONICAL-XEDIT-EXPORTS.md).
+
+`ProjectData` retains each production input's extraction timestamp and row
+count outside row-level domain objects. Loading also validates body and resource
+identity coherence across the four production inputs before generation begins.
+
+After generation, `build_enriched_occurrences` projects accepted state into a
+typed body/location/resource/origin view. The stable resource origins are
+`ATMOSPHERE`, `EVERYWHERE`, `SPECIAL`, `COMMON_ROOT`, and `DESCENDANT`; effective
+RSGD relationship evidence remains `BIOM`, `PNDT`, or `PNDT_AND_BIOM` (the typed
+name for source value `PNDT+BIOM`). Common-family rows expose their root and the
+original family-generation biome independently of the current assignment
+mechanism. This is an in-memory model only; no occurrence CSV exporter exists yet.
 
 ## Effective RSGD Rule
 

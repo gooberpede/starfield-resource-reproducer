@@ -8,12 +8,16 @@ from starfield_resource_reproducer.domain import (
     FormId,
     IRESNode,
     Planet,
+    PlanetDirectoryRecord,
+    ProjectData,
 )
 from starfield_resource_reproducer.load_data import (
     load_atmospheric_resources,
     load_canonical_oracle,
     load_generation_data,
     load_ires_hierarchy,
+    load_planet_directory,
+    load_project_data,
 )
 
 
@@ -42,3 +46,13 @@ def atmospheric_resources() -> dict[
     return load_atmospheric_resources(
         DATA_DIR / "planet-atmospheric-resources.csv"
     )
+
+
+@pytest.fixture(scope="session")
+def planet_directory() -> dict[FormId, PlanetDirectoryRecord]:
+    return load_planet_directory(DATA_DIR / "planet-directory.csv")
+
+
+@pytest.fixture(scope="session")
+def project_data() -> ProjectData:
+    return load_project_data(DATA_DIR)

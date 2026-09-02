@@ -26,6 +26,9 @@ canonical static inputs                  runtime-derived oracle
           |                                      |
           v                                      v
  independent PlanetGenerationResult ----> validation.py
+          |
+          v
+ occurrences.py (typed accepted-occurrence projection)
 ```
 
 The oracle is never passed into generation. Validation begins only after an
@@ -36,11 +39,11 @@ independent prediction exists.
 - `planet-resource-generation.csv` supplies authoritative PNDT, BIOM,
   effective-RSGD, RSGD-order, and RSCS inputs.
 - `ires-hierarchy.csv` supplies the authoritative IRES rarity and
-  ordered child graph.
+  ordered child graph with parent/child source-plugin provenance.
 - `planet-atmospheric-resources.csv` supplies authoritative effective
   atmospheric inorganic-resource records for the current corpus.
 - `planet-directory.csv` supplies the canonical PNDT body directory. It is
-  staged in `data/` but intentionally has no 10B loader or domain-model path.
+  loaded as independent body metadata keyed by Planet FormID.
 - `planet-all-resources.csv` supplies the validator's canonical planet-wide
   CK/RSGD-visible inorganic membership.
 
@@ -60,11 +63,16 @@ fallbacks, and deterministic exporter-derived fields in all four source exports.
 - `Biome` retains both PNDT and BIOM references. Its `effective_rsgd` property
   implements PNDT-over-BIOM precedence without merging.
 - `RSGDDefinition` retains its source and ordered `RSGDResourceEntry` sequence.
-- `IRESNode` retains rarity and ordered child references.
+- `IRESNode` retains rarity, its source file, and ordered child references; each
+  child `ResourceRef` retains its own source rather than inheriting the parent.
 - `AtmosphericResourceRecord` retains planet, ATMO, resource, source-file, and
   inheritance provenance.
+- `PlanetDirectoryRecord` retains body identity, hierarchy, and canonical flags.
+- `CanonicalDatasetMetadata` retains dataset identity, filename, extraction
+  timestamp, and row count outside row domain objects.
 - `CanonicalBodyResources` is validation-only runtime/oracle data.
-- `ProjectData` bundles independently loadable inputs without changing their roles.
+- `ProjectData` bundles independently loadable inputs without changing their roles
+  and validates compatible body/resource identities across production sources.
 
 ### Planet-wide identity and capacity
 
@@ -84,7 +92,7 @@ and occurrence provenance are intentionally separate.
 `ResourceOccurrence` records:
 
 - the resource identity;
-- `ResourceProvenance` (`ATMO`, `EVERYWHERE`, `SPECIAL`, `COMMON`, or
+- `ResourceProvenance` (`ATMOSPHERE`, `EVERYWHERE`, `SPECIAL`, `COMMON_ROOT`, or
   `DESCENDANT`);
 - whether the occurrence belongs to shared state and whether it occupied a new
   slot;
@@ -94,6 +102,21 @@ and occurrence provenance are intentionally separate.
 
 This preserves duplicate channel occurrences without conflating them with unique
 capacity occupancy.
+
+### Enriched accepted-occurrence view
+
+`occurrences.py` joins independently generated accepted occurrences to the body
+directory, biome/effective-RSGD definitions, cached-family origins, and defining
+ATMO records. `EnrichedResourceOccurrence` contains the typed context required by
+the later serializer while excluding rejected attempts and diagnostics. Biome
+identity is planet-local `(PlanetFormID, BiomeIndex, BiomeFormID)`, and resource
+origin remains part of occurrence identity.
+
+Atmosphere-only bodies are projected directly from directory plus atmosphere
+records. They do not receive a fabricated empty `PlanetGenerationResult`; Volii
+Alpha therefore produces two atmosphere occurrences and no biome occurrences.
+The projection never reads `ProjectData.oracle`. `ResourceCategory = Inorganic`
+remains a future serialization constant rather than redundant in-memory state.
 
 ### Family cache, origin, and assignment
 

@@ -17,6 +17,9 @@ effective-RSGD precedence, atmosphere and Everywhere prepopulation, Special and
 Common selection, descendant traversal, family caching, shared identity
 capacity, five-tree/shared-eight guards, guarded family fallback, occurrence and
 assignment provenance, CK biome regressions, and full-corpus validation.
+Brief 10C additionally completed Planet Directory ingestion, canonical extraction
+metadata retention, cross-input coherence validation, IRES source provenance,
+and the typed enriched accepted-occurrence view without changing generation.
 
 The earlier active items for unexplained shared-eight empty biomes, missing
 post-guard reuse, atmosphere insertion ordering, and central-path v0.1 completion
@@ -61,9 +64,10 @@ No planet-specific exceptions or output-fitting heuristics.
 
 ### Consumer and export API hardening
 
-- Add Planet Directory ingestion only under the later canonical-occurrence brief;
-  its canonical CSV is present but deliberately outside the v1.0 model today.
-- Stabilize documented result/export shapes for downstream consumers.
+- Serialize the enriched occurrence model under Brief 10D, including stable sort,
+  schema validation, the `Inorganic` product constant, and any manifest requested
+  by that later brief.
+- Stabilize documented serialized shapes for downstream consumers.
 - Add compatibility policy and contract tests if an external consumer appears.
 - Improve explicit reporting for bodies with independently known channels but no
   PNDT/biome/effective-RSGD input.

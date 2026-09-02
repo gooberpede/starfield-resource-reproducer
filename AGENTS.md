@@ -194,8 +194,7 @@ Use these inputs as distinct sources with distinct roles:
 
 4. `planet-directory.csv`
    - canonical PNDT body-directory source export;
-   - present as a production source input but not yet ingested by the v1.0
-     reproducer.
+   - ingested as independent canonical body metadata keyed by Planet FormID.
 
 5. `planet-all-resources.csv`
    - **canonical verified planet/resource output oracle** for the CK/RSGD-visible

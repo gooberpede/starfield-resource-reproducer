@@ -1585,7 +1585,9 @@ def _resource_from_graph(
         node = ires_nodes[form_id]
     except KeyError as error:
         raise ValueError(f"IRES graph has no node for resource {form_id}") from error
-    return ResourceRef(node.form_id, node.editor_id, node.name, node.rarity)
+    return ResourceRef(
+        node.form_id, node.editor_id, node.name, node.rarity, node.source_file
+    )
 
 
 def _required_last_draw(rng: StarfieldRng) -> RngDraw:

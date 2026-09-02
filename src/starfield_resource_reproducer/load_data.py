@@ -19,12 +19,14 @@ from typing import TypeVar
 from starfield_resource_reproducer.domain import (
     AtmosphericResourceRecord,
     Biome,
+    CanonicalDatasetMetadata,
     CanonicalBodyResources,
     CanonicalResource,
     FormId,
     GenerationRarity,
     IRESNode,
     Planet,
+    PlanetDirectoryRecord,
     ProjectData,
     ResourceRef,
     RSGDDefinition,
@@ -71,6 +73,8 @@ GENERATION_COLUMNS = frozenset(
 
 IRES_COLUMNS = frozenset(
     {
+        "SourceFile",
+        "ExtractTimestamp",
         "FormID",
         "EditorID",
         "Name",
@@ -79,6 +83,15 @@ IRES_COLUMNS = frozenset(
         "ChildEditorID",
         "ChildName",
         "ChildRarity",
+        "ChildSourceFile",
+    }
+)
+
+PLANET_DIRECTORY_COLUMNS = frozenset(
+    {
+        "SourceFile", "ExtractTimestamp", "PlanetFormID", "PlanetEditorID",
+        "PlanetName", "BodyType", "StarSystemID", "SystemName",
+        "ParentPlanetID", "PlanetID", "PlanetNotLandable", "OceanWorld",
     }
 )
 
@@ -209,6 +222,28 @@ def _constant(rows: list[tuple[int, dict[str, str]]], field: str, context: str) 
     return next(iter(values))
 
 
+def _extract_timestamp(rows: list[dict[str, str]], path: Path) -> str:
+    """Validate and return the one file-wide source extraction timestamp."""
+
+    values = {row["ExtractTimestamp"] for row in rows}
+    if len(values) != 1 or "" in values:
+        raise DataValidationError(
+            f"{path}: expected exactly one nonblank ExtractTimestamp; "
+            f"found {sorted(values)!r}"
+        )
+    return next(iter(values))
+
+
+def _flag(value: str, context: str, field: str) -> bool:
+    """Parse the canonical xEdit numeric flag representation without guessing."""
+
+    if value not in {"0", "1"}:
+        raise DataValidationError(
+            f"{context}: invalid boolean flag {field}={value!r}; expected '0' or '1'"
+        )
+    return value == "1"
+
+
 def _check_resource_metadata(
     registry: dict[FormId, tuple[str, str, GenerationRarity]],
     form_id: FormId,
@@ -231,6 +266,7 @@ def load_generation_data(path: Path) -> dict[FormId, Planet]:
 
     path = Path(path)
     raw_rows = _read_rows(path, GENERATION_COLUMNS)
+    _extract_timestamp(raw_rows, path)
     grouped_planets: dict[FormId, list[tuple[int, dict[str, str]]]] = defaultdict(list)
     resource_metadata: dict[FormId, tuple[str, str, GenerationRarity]] = {}
 
@@ -450,14 +486,16 @@ def load_ires_hierarchy(path: Path) -> dict[FormId, IRESNode]:
 
     path = Path(path)
     raw_rows = _read_rows(path, IRES_COLUMNS)
-    metadata: dict[FormId, tuple[str, str, GenerationRarity]] = {}
+    _extract_timestamp(raw_rows, path)
+    metadata: dict[FormId, tuple[str, str, GenerationRarity, str]] = {}
     child_ids: dict[FormId, list[FormId]] = defaultdict(list)
     seen_edges: set[tuple[FormId, FormId]] = set()
 
     for row_number, row in enumerate(raw_rows, start=2):
         context = _context(path, row_number)
         blank_parent_fields = [
-            field for field in ("FormID", "EditorID", "Name", "Rarity") if not row[field]
+            field for field in ("SourceFile", "FormID", "EditorID", "Name", "Rarity")
+            if not row[field]
         ]
         if blank_parent_fields:
             raise DataValidationError(
@@ -467,17 +505,19 @@ def load_ires_hierarchy(path: Path) -> dict[FormId, IRESNode]:
         parent_rarity = _enum_value(
             GenerationRarity, row["Rarity"], context, "Rarity"
         )
-        _check_resource_metadata(
-            metadata,
-            parent_id,
-            row["EditorID"],
-            row["Name"],
-            parent_rarity,
-            context,
+        parent_metadata = (
+            row["EditorID"], row["Name"], parent_rarity, row["SourceFile"]
         )
+        previous = metadata.setdefault(parent_id, parent_metadata)
+        if previous != parent_metadata:
+            raise DataValidationError(
+                f"{context}: conflicting resource metadata for {parent_id}: "
+                f"{previous!r} versus {parent_metadata!r}"
+            )
         child_ids.setdefault(parent_id, [])
 
         child_fields = (
+            row["ChildSourceFile"],
             row["ChildFormID"],
             row["ChildEditorID"],
             row["ChildName"],
@@ -493,14 +533,16 @@ def load_ires_hierarchy(path: Path) -> dict[FormId, IRESNode]:
         child_rarity = _enum_value(
             GenerationRarity, row["ChildRarity"], context, "ChildRarity"
         )
-        _check_resource_metadata(
-            metadata,
-            child_id,
-            row["ChildEditorID"],
-            row["ChildName"],
-            child_rarity,
-            context,
+        child_metadata = (
+            row["ChildEditorID"], row["ChildName"], child_rarity,
+            row["ChildSourceFile"],
         )
+        previous = metadata.setdefault(child_id, child_metadata)
+        if previous != child_metadata:
+            raise DataValidationError(
+                f"{context}: conflicting resource metadata for {child_id}: "
+                f"{previous!r} versus {child_metadata!r}"
+            )
         edge = (parent_id, child_id)
         if edge in seen_edges:
             raise DataValidationError(
@@ -511,11 +553,20 @@ def load_ires_hierarchy(path: Path) -> dict[FormId, IRESNode]:
         child_ids.setdefault(child_id, [])
 
     nodes: dict[FormId, IRESNode] = {}
-    for form_id, (editor_id, name, rarity) in metadata.items():
+    for form_id, (editor_id, name, rarity, source_file) in metadata.items():
         children = tuple(
-            ResourceRef(child_id, *metadata[child_id]) for child_id in child_ids[form_id]
+            ResourceRef(
+                child_id,
+                metadata[child_id][0],
+                metadata[child_id][1],
+                metadata[child_id][2],
+                metadata[child_id][3],
+            )
+            for child_id in child_ids[form_id]
         )
-        nodes[form_id] = IRESNode(form_id, editor_id, name, rarity, children)
+        nodes[form_id] = IRESNode(
+            form_id, editor_id, name, rarity, children, source_file=source_file
+        )
     return nodes
 
 
@@ -598,6 +649,67 @@ def load_canonical_oracle(path: Path) -> dict[FormId, CanonicalBodyResources]:
     return oracle
 
 
+def load_planet_directory(path: Path) -> dict[FormId, PlanetDirectoryRecord]:
+    """Load canonical body-directory metadata keyed only by Planet FormID."""
+
+    path = Path(path)
+    raw_rows = _read_rows(path, PLANET_DIRECTORY_COLUMNS)
+    _extract_timestamp(raw_rows, path)
+    directory: dict[FormId, PlanetDirectoryRecord] = {}
+    required_identity = (
+        "SourceFile", "PlanetFormID", "PlanetEditorID", "PlanetName", "BodyType",
+        "StarSystemID", "SystemName", "ParentPlanetID", "PlanetID",
+        "PlanetNotLandable", "OceanWorld",
+    )
+    for row_number, row in enumerate(raw_rows, start=2):
+        context = _context(path, row_number)
+        blanks = sorted(field for field in required_identity if not row[field])
+        if blanks:
+            raise DataValidationError(
+                f"{context}: blank required value(s): {', '.join(blanks)}"
+            )
+        planet_form_id = _form_id(row["PlanetFormID"], context, "PlanetFormID")
+        if planet_form_id in directory:
+            raise DataValidationError(
+                f"{context}: duplicate PlanetFormID {planet_form_id}"
+            )
+        directory[planet_form_id] = PlanetDirectoryRecord(
+            source_file=row["SourceFile"],
+            extract_timestamp=row["ExtractTimestamp"],
+            planet_form_id=planet_form_id,
+            planet_editor_id=row["PlanetEditorID"],
+            planet_name=row["PlanetName"],
+            body_type=row["BodyType"],
+            star_system_id=_integer(
+                row["StarSystemID"], context, "StarSystemID", minimum=0
+            ),
+            system_name=row["SystemName"],
+            parent_planet_id=_integer(
+                row["ParentPlanetID"], context, "ParentPlanetID", minimum=0
+            ),
+            planet_id=_integer(row["PlanetID"], context, "PlanetID", minimum=0),
+            planet_not_landable=_flag(
+                row["PlanetNotLandable"], context, "PlanetNotLandable"
+            ),
+            ocean_world=_flag(row["OceanWorld"], context, "OceanWorld"),
+        )
+    return directory
+
+
+def _dataset_metadata(
+    path: Path, required_columns: frozenset[str], dataset_name: str
+) -> CanonicalDatasetMetadata:
+    """Read only file-level production metadata for the project aggregate."""
+
+    rows = _read_rows(path, required_columns)
+    return CanonicalDatasetMetadata(
+        dataset_name=dataset_name,
+        filename=path.name,
+        extract_timestamp=_extract_timestamp(rows, path),
+        row_count=len(rows),
+    )
+
+
 def load_atmospheric_resources(
     path: Path,
 ) -> dict[FormId, tuple[AtmosphericResourceRecord, ...]]:
@@ -605,6 +717,7 @@ def load_atmospheric_resources(
 
     path = Path(path)
     raw_rows = _read_rows(path, ATMOSPHERIC_COLUMNS)
+    _extract_timestamp(raw_rows, path)
     grouped: dict[FormId, list[tuple[int, AtmosphericResourceRecord]]] = defaultdict(list)
     seen_pairs: dict[tuple[FormId, FormId], AtmosphericResourceRecord] = {}
 
@@ -696,7 +809,9 @@ def load_atmospheric_resources(
                 f"from zero; found {indices!r}"
             )
         identity_fields = (
-            "planet_editor_id", "planet_name", "atmosphere_form_id",
+            "source_file", "extract_timestamp", "planet_editor_id", "planet_name",
+            "body_type", "star_system_id", "system_name", "parent_planet_id",
+            "planet_id", "atmosphere_form_id",
             "atmosphere_editor_id", "atmosphere_source_file",
         )
         for field_name in identity_fields:
@@ -711,14 +826,71 @@ def load_atmospheric_resources(
     return result
 
 
-def _validate_atmospheric_coherence(
+def validate_canonical_input_coherence(
     planets: dict[FormId, Planet],
     ires_nodes: dict[FormId, IRESNode],
     atmospheric: dict[FormId, tuple[AtmosphericResourceRecord, ...]],
+    directory: dict[FormId, PlanetDirectoryRecord],
 ) -> None:
-    """Validate identity overlap without assigning RSGD rarity to ATMO records."""
+    """Fail fast when independently exported canonical identities drift."""
+
+    for planet_form_id, planet in planets.items():
+        body = directory.get(planet_form_id)
+        if body is None:
+            raise DataValidationError(
+                f"generation PlanetFormID {planet_form_id} is absent from planet directory"
+            )
+        generation_identity = (planet.editor_id, planet.name, planet.source_file)
+        directory_identity = (
+            body.planet_editor_id, body.planet_name, body.source_file
+        )
+        if generation_identity != directory_identity:
+            raise DataValidationError(
+                f"generation/directory identity conflicts for {planet_form_id}: "
+                f"{generation_identity!r} versus {directory_identity!r}"
+            )
+
+        for biome in planet.biomes:
+            for definition in filter(None, (biome.pndt_rsgd, biome.biom_rsgd)):
+                for entry in definition.entries:
+                    node = ires_nodes.get(entry.resource_form_id)
+                    if node is None:
+                        raise DataValidationError(
+                            f"generation resource {entry.resource_form_id} has no IRES node"
+                        )
+                    generated = (
+                        entry.resource_editor_id, entry.resource_name,
+                        entry.resource_rarity, entry.resource_source_file,
+                    )
+                    graph = (node.editor_id, node.name, node.rarity, node.source_file)
+                    if generated != graph:
+                        raise DataValidationError(
+                            f"generation/IRES resource identity conflicts for "
+                            f"{entry.resource_form_id}: {generated!r} versus {graph!r}"
+                        )
 
     for planet_form_id, records in atmospheric.items():
+        body = directory.get(planet_form_id)
+        if body is None:
+            raise DataValidationError(
+                f"atmosphere PlanetFormID {planet_form_id} is absent from planet directory"
+            )
+        first = records[0]
+        atmospheric_body_identity = (
+            first.planet_editor_id, first.planet_name, first.body_type,
+            first.star_system_id, first.system_name, first.parent_planet_id,
+            first.planet_id, first.source_file,
+        )
+        directory_identity = (
+            body.planet_editor_id, body.planet_name, body.body_type,
+            body.star_system_id, body.system_name, body.parent_planet_id,
+            body.planet_id, body.source_file,
+        )
+        if atmospheric_body_identity != directory_identity:
+            raise DataValidationError(
+                f"atmosphere/directory identity conflicts for {planet_form_id}: "
+                f"{atmospheric_body_identity!r} versus {directory_identity!r}"
+            )
         planet = planets.get(planet_form_id)
         # The atmospheric export may cover bodies outside the current PNDT
         # intersection. Retain them; validate planet identity only on overlap.
@@ -736,20 +908,21 @@ def _validate_atmospheric_coherence(
                 raise DataValidationError(
                     f"atmospheric resource {record.resource_form_id} has no IRES node"
                 )
-            if (record.resource_editor_id, record.resource_name) != (
-                node.editor_id, node.name
-            ):
+            if (
+                record.resource_editor_id, record.resource_name,
+                record.resource_source_file,
+            ) != (node.editor_id, node.name, node.source_file):
                 raise DataValidationError(
                     f"atmospheric resource metadata conflicts for {record.resource_form_id}: "
-                    f"{(record.resource_editor_id, record.resource_name)!r} versus "
-                    f"{(node.editor_id, node.name)!r}"
+                    f"{(record.resource_editor_id, record.resource_name, record.resource_source_file)!r} "
+                    f"versus {(node.editor_id, node.name, node.source_file)!r}"
                 )
 
 
 def load_project_data(
     data_dir: Path, *, atmospheric_path: Path | None = None
 ) -> ProjectData:
-    """Load all four datasets from explicit project paths."""
+    """Load four production inputs plus the isolated validation-only oracle."""
 
     data_dir = Path(data_dir)
     planets = load_generation_data(data_dir / "planet-resource-generation.csv")
@@ -757,10 +930,27 @@ def load_project_data(
     atmospheric = load_atmospheric_resources(
         atmospheric_path or data_dir / "planet-atmospheric-resources.csv"
     )
-    _validate_atmospheric_coherence(planets, ires_nodes, atmospheric)
+    directory = load_planet_directory(data_dir / "planet-directory.csv")
+    validate_canonical_input_coherence(planets, ires_nodes, atmospheric, directory)
+    production_paths = {
+        "planet_resource_generation": (
+            data_dir / "planet-resource-generation.csv", GENERATION_COLUMNS
+        ),
+        "ires_hierarchy": (data_dir / "ires-hierarchy.csv", IRES_COLUMNS),
+        "planet_atmospheric_resources": (
+            atmospheric_path or data_dir / "planet-atmospheric-resources.csv",
+            ATMOSPHERIC_COLUMNS,
+        ),
+        "planet_directory": (data_dir / "planet-directory.csv", PLANET_DIRECTORY_COLUMNS),
+    }
     return ProjectData(
         planets=planets,
         ires_nodes=ires_nodes,
         oracle=load_canonical_oracle(data_dir / "planet-all-resources.csv"),
         atmospheric_resources=atmospheric,
+        planet_directory=directory,
+        dataset_metadata={
+            name: _dataset_metadata(Path(path), columns, name)
+            for name, (path, columns) in production_paths.items()
+        },
     )

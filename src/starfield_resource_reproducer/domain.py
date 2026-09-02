@@ -2,9 +2,9 @@
 
 Purpose: provide immutable domain objects at the boundary between CSV loading and
 later resource-generation work. Responsibilities include stable FormID identity,
-static generation categories, ordered biome/RSGD and atmospheric data, the direct
-IRES graph, and separate runtime-oracle records. Parsing, PRNG behavior, generation, and
-prediction validation deliberately live elsewhere. The PNDT-over-BIOM property is
+static generation categories, ordered biome/RSGD and atmospheric data, the body
+directory, the direct IRES graph, and separate runtime-oracle records. Parsing,
+PRNG behavior, generation, and prediction validation deliberately live elsewhere. The PNDT-over-BIOM property is
 the only recovered runtime rule represented here because its precedence is PROVEN.
 """
 
@@ -68,12 +68,14 @@ class RSGDSource(str, Enum):
 
 
 class ResourceProvenance(str, Enum):
-    """Mechanism that contributed one planet resource occurrence."""
+    """Stable resource-origin vocabulary for accepted occurrence products."""
 
-    ATMO = "ATMO"
+    ATMOSPHERE = "ATMOSPHERE"
+    ATMO = "ATMOSPHERE"  # Compatibility alias for the pre-10C internal name.
     EVERYWHERE = "EVERYWHERE"
     SPECIAL = "SPECIAL"
-    COMMON = "COMMON"
+    COMMON_ROOT = "COMMON_ROOT"
+    COMMON = "COMMON_ROOT"  # Compatibility alias for the pre-10C internal name.
     DESCENDANT = "DESCENDANT"
 
 
@@ -222,6 +224,34 @@ class AtmosphericResourceRecord:
 
 
 @dataclass(frozen=True, slots=True)
+class PlanetDirectoryRecord:
+    """Canonical body identity and hierarchy metadata keyed by Planet FormID."""
+
+    source_file: str
+    extract_timestamp: str
+    planet_form_id: FormId
+    planet_editor_id: str
+    planet_name: str
+    body_type: str
+    star_system_id: int
+    system_name: str
+    parent_planet_id: int
+    planet_id: int
+    planet_not_landable: bool
+    ocean_world: bool
+
+
+@dataclass(frozen=True, slots=True)
+class CanonicalDatasetMetadata:
+    """Small file-production descriptor retained outside row domain objects."""
+
+    dataset_name: str
+    filename: str
+    extract_timestamp: str
+    row_count: int
+
+
+@dataclass(frozen=True, slots=True)
 class ResourceOccurrence:
     """One provenance-specific resource contribution or rejected insertion.
 
@@ -254,6 +284,7 @@ class IRESNode:
     name: str
     rarity: GenerationRarity
     children: tuple[ResourceRef, ...]
+    source_file: str | None = None
 
 
 @dataclass(frozen=True)
@@ -291,3 +322,5 @@ class ProjectData:
     atmospheric_resources: dict[
         FormId, tuple[AtmosphericResourceRecord, ...]
     ] = field(default_factory=dict)
+    planet_directory: dict[FormId, PlanetDirectoryRecord] = field(default_factory=dict)
+    dataset_metadata: dict[str, CanonicalDatasetMetadata] = field(default_factory=dict)
