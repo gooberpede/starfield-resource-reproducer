@@ -1,7 +1,9 @@
 unit UserScript;
 
 {
-  Starfield_ExportPlanetResourceGeneration_v5.pas
+  Starfield - Export Planet Resource Generation.pas
+  
+  Version: 5
 
   Purpose:
     Export the PNDT -> BIOM -> RSGD -> IRES resource-generation inputs
@@ -25,7 +27,7 @@ unit UserScript;
     xEdit / SF1Edit 4.1.5p
 
   Output:
-    PlanetResourceGeneration.csv
+    planet-resource-generation.csv
 
   Notes:
     - Read-only. The script does not modify records.
@@ -607,7 +609,7 @@ begin
     'BiomeEverywhereChance'
   );
 
-  OutPath := ScriptsPath + 'PlanetResourceGeneration.csv';
+  OutPath := ScriptsPath + 'planet-resource-generation.csv';
 
   AddMessage('Planet resource-generation export started.');
 end;

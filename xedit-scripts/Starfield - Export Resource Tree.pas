@@ -1,13 +1,21 @@
 unit Starfield_ExportIRESHierarchy;
 
 {
-  Exports selected Starfield IRES records to CSV.
+  Starfield - Export Resource Tree.pas
+  
+  Version: 2
+  
+  Purpose:
+	Exports selected Starfield IRES records to CSV.
 
   Columns:
+    SourceFile
+    ExtractTimestamp
     FormID
     EditorID
     Name
     Rarity
+    ChildSourceFile
     ChildFormID
     ChildEditorID
     ChildName
@@ -19,10 +27,17 @@ unit Starfield_ExportIRESHierarchy;
   - If a parent has multiple child resources, the parent fields are repeated.
   - If a parent has no child resources, one row is emitted with blank child fields.
   - Output is read-only and written to the xEdit Edit Scripts folder.
+  
+  Intended target:
+    xEdit / SF1Edit 4.1.5p
+
+  Output:
+	ires-hierarchy.csv
 }
 
 var
   sl: TStringList;
+  extractTimestamp: string;
   outputPath: string;
 
 function CsvEscape(const s: string): string;
@@ -41,6 +56,19 @@ begin
 
   try
     Result := IntToHex(FixedFormID(e), 8);
+  except
+    Result := '';
+  end;
+end;
+
+function SafeSourceFile(e: IInterface): string;
+begin
+  Result := '';
+  if not Assigned(e) then
+    Exit;
+
+  try
+    Result := GetFileName(GetFile(e));
   except
     Result := '';
   end;
@@ -94,20 +122,24 @@ end;
 
 procedure AddRow(parentRec, childRec: IInterface);
 var
-  formIDValue, editorIDValue, nameValue, rarityValue: string;
-  childFormIDValue, childEditorIDValue, childNameValue, childRarityValue: string;
+  sourceFileValue, formIDValue, editorIDValue, nameValue, rarityValue: string;
+  childSourceFileValue, childFormIDValue, childEditorIDValue: string;
+  childNameValue, childRarityValue: string;
 begin
+  sourceFileValue := SafeSourceFile(parentRec);
   formIDValue := HexFormID(parentRec);
   editorIDValue := SafeEditorID(parentRec);
   nameValue := SafeName(parentRec);
   rarityValue := SafeRarity(parentRec);
 
+  childSourceFileValue := '';
   childFormIDValue := '';
   childEditorIDValue := '';
   childNameValue := '';
   childRarityValue := '';
 
   if Assigned(childRec) then begin
+    childSourceFileValue := SafeSourceFile(childRec);
     childFormIDValue := HexFormID(childRec);
     childEditorIDValue := SafeEditorID(childRec);
     childNameValue := SafeName(childRec);
@@ -115,10 +147,13 @@ begin
   end;
 
   sl.Add(
+    CsvEscape(sourceFileValue) + ',' +
+    CsvEscape(extractTimestamp) + ',' +
     CsvEscape(formIDValue) + ',' +
     CsvEscape(editorIDValue) + ',' +
     CsvEscape(nameValue) + ',' +
     CsvEscape(rarityValue) + ',' +
+    CsvEscape(childSourceFileValue) + ',' +
     CsvEscape(childFormIDValue) + ',' +
     CsvEscape(childEditorIDValue) + ',' +
     CsvEscape(childNameValue) + ',' +
@@ -131,18 +166,22 @@ begin
   Result := 0;
 
   sl := TStringList.Create;
+  extractTimestamp := FormatDateTime('yyyy-mm-dd hh:nn:ss', Now);
   sl.Add(
+    'SourceFile,' +
+    'ExtractTimestamp,' +
     'FormID,' +
     'EditorID,' +
     'Name,' +
     'Rarity,' +
+    'ChildSourceFile,' +
     'ChildFormID,' +
     'ChildEditorID,' +
     'ChildName,' +
     'ChildRarity'
   );
 
-  outputPath := ScriptsPath + 'Starfield_IRES_Hierarchy.csv';
+  outputPath := ScriptsPath + 'ires-hierarchy.csv';
 
   AddMessage('Starfield IRES hierarchy export started.');
 end;
