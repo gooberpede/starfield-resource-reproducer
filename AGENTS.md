@@ -47,6 +47,136 @@ requests a change. Reading or comparing the scripts does not authorize edits.
 Do not assume that editing the repository copy alone updates the active xEdit
 installation.
 
+## xEdit Script and Output Standards
+
+These standards apply to newly created xEdit scripts and newly introduced output
+files. Existing script and output filenames are legacy names and must not be
+changed merely to conform to these standards. Rename an existing file only when
+the user explicitly directs it.
+
+### Script Filenames
+
+A new script specific to a game or utility must use:
+
+```text
+<Game or Utility> - <Description>.pas
+```
+
+Examples:
+
+```text
+Starfield - Export Planet Atmospheric Resources.pas
+Skyrim - Tree LOD files patcher.pas
+NIF - Convert OBJ to NIF.pas
+Oblivion - Export all scripts in xml format.pas
+Fallout4 - Filter for precombined statics.pas
+```
+
+Use the established name or identifier for the game or utility as the prefix.
+The spaced ` - ` between the prefix and description is the required structural
+separator. Within the prefix and description, separate words with spaces rather
+than hyphens or underscores.
+
+A genuinely generic script that is not specific to a game or utility may omit
+the prefix. Examples:
+
+```text
+Put master references in the same cell as overriding references.pas
+Report masters.pas
+Worldspace copy landscape area to another worldspace.pas
+```
+
+Do not use underscore-separated or hyphen-separated words. Do not encode a
+version or revision number in the filename. For example, do not create:
+
+```text
+Starfield_ExportDomesticableNPCs.pas
+Starfield_ExportPlanetBiomeOrganics_Enhanced.pas
+Starfield_ExportPlanetDirectory_PNDTResourceGeneration.pas
+Dump_Selected_Records_to_TSV_v2.pas
+```
+
+Version history belongs in Git or in appropriate internal metadata, not in the
+script filename.
+
+New installed scripts must also be retained under the repository's
+`xedit-scripts\` directory using exactly the same filename. Follow the
+byte-for-byte synchronization requirements in **xEdit Script Working Copies**.
+
+### Output Location
+
+By default, a new xEdit script must write generated output into the active
+xEdit script directory:
+
+```text
+D:\tools\xEdit.4.1.5p\Edit Scripts\
+```
+
+Resolve the active `Edit Scripts` directory through the xEdit runtime where
+practical; do not unnecessarily hard-code this workstation-specific absolute
+path into a portable script.
+
+Use another output location only when the user or an authoritative
+implementation brief explicitly directs it.
+
+Generated output remains in the active `Edit Scripts` directory by default. Do
+not copy it into the repository unless the user or an authoritative brief
+explicitly requires a repository copy.
+
+### Output Filenames
+
+New output filenames must:
+
+- use lowercase;
+- separate words with a single hyphen;
+- contain no spaces or underscores;
+- omit game or utility prefixes unless one is needed for clarity;
+- contain no version or revision number; and
+- use an extension that accurately represents the content.
+
+The filename stem should follow this form:
+
+```text
+lowercase-words-separated-by-hyphens
+```
+
+Acceptable examples:
+
+```text
+planet-all-resources.csv
+inorganic-resource-dictionary.csv
+abbreviations.csv
+```
+
+Do not create names such as:
+
+```text
+PlanetResourceGeneration_v5.csv
+Starfield_PlanetBiomeOrganics_Enhanced.csv
+Akila-v5_PlanetResourceGeneration.csv
+```
+
+Numbers that are intrinsic to the subject may be used when necessary, but do
+not use numbers as filename versions or revisions.
+
+Use content-appropriate extensions:
+
+- `.csv` for comma-separated tabular data;
+- `.tsv` for tab-separated tabular data;
+- `.txt` for unstructured plain text; and
+- another established extension when the output has another defined format.
+
+Choose the output structure and field formatting appropriate to the task unless
+the user or an authoritative implementation brief specifies them.
+
+Use a stable output filename. The user or implementation brief should determine
+whether an existing output is replaced, rejected, or confirmed before overwrite.
+
+Do not rename an existing output merely to make it conform to this standard.
+When extending an existing script, preserve its established output filenames
+unless the user explicitly directs a rename. Any genuinely new output introduced
+by that change should follow this standard.
+
 ## Source of Truth
 
 Use these inputs as distinct sources with distinct roles:
