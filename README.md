@@ -48,15 +48,18 @@ regression oracle, not an outpost planner, game mod, GUI, or web service.
 
 ## Canonical v1.0 Inputs
 
-The four inputs have deliberately different roles:
+The canonical source inputs and validation oracle have deliberately different
+roles:
 
-- `data/PlanetResourceGeneration_v5.csv` is the authoritative
+- `data/planet-resource-generation.csv` is the authoritative
   PNDT/BIOM/effective-RSGD/RSCS input. It preserves PNDT biome order, RSGD
   provenance, RSGD resource order, and generation percentages.
-- `data/Starfield_IRES_Hierarchy.csv` is the authoritative IRES rarity and
+- `data/ires-hierarchy.csv` is the authoritative IRES rarity and
   child-resource graph.
-- `data/Starfield_PlanetAtmosphericResources.tsv` is the authoritative effective
+- `data/planet-atmospheric-resources.csv` is the authoritative effective
   atmospheric inorganic-resource export for the current corpus.
+- `data/planet-directory.csv` is the canonical PNDT body directory. It is
+  staged as a source input but is not yet ingested by the v1.0 reproducer.
 - `data/planet-all-resources.csv` is the canonical planet-wide validation oracle
   for the CK/RSGD-visible inorganic channel used by the validator. It is not a
   complete final planetary-resource oracle because it omits at least some
@@ -68,6 +71,10 @@ for validation, fixtures, expected results, or generation decisions.
 The generator never consults canonical/oracle output. Validation compares the
 independently generated RSGD/CK-visible channel with the filtered inorganic
 oracle only after generation is complete.
+
+The extraction paths and exporter-derived classifications for the maintained
+source files are documented in
+[docs/CANONICAL-XEDIT-EXPORTS.md](docs/CANONICAL-XEDIT-EXPORTS.md).
 
 ## Effective RSGD Rule
 
@@ -192,6 +199,8 @@ baseline, not a contractual assertion; the suite may grow.
   data boundaries.
 - [docs/DOMAIN-RULES.md](docs/DOMAIN-RULES.md): recovered behavior and evidence
   status.
+- [docs/CANONICAL-XEDIT-EXPORTS.md](docs/CANONICAL-XEDIT-EXPORTS.md): maintained
+  source-export provenance contracts.
 - [docs/V1-VALIDATION-BASELINE.md](docs/V1-VALIDATION-BASELINE.md): v1.0 evidence
   baseline.
 - [docs/BACKLOG.md](docs/BACKLOG.md): genuine post-v1.0 work.

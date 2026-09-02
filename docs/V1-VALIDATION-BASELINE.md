@@ -21,11 +21,13 @@ address equivalence with Creation Kit addresses.
 
 ## Canonical Inputs and Oracle Boundary
 
-- `PlanetResourceGeneration_v5.csv`: authoritative
+- `planet-resource-generation.csv`: authoritative
   PNDT/BIOM/effective-RSGD/RSCS input.
-- `Starfield_IRES_Hierarchy.csv`: authoritative IRES rarity and child graph.
-- `Starfield_PlanetAtmosphericResources.tsv`: authoritative effective
+- `ires-hierarchy.csv`: authoritative IRES rarity and child graph.
+- `planet-atmospheric-resources.csv`: authoritative effective
   atmospheric inorganic-resource export for this corpus.
+- `planet-directory.csv`: canonical PNDT body-directory source export, staged
+  for later ingestion and not used by the v1.0 model.
 - `planet-all-resources.csv`: canonical planet-wide validation oracle for the
   CK/RSGD-visible inorganic channel used by the validator.
 
@@ -114,7 +116,7 @@ No untracked per-body values are inferred here.
 **V1.0 INPUT-BOUNDARY RULE / VALIDATED MODEL BEHAVIOR**
 
 ```text
-Volii Alpha is absent from PlanetResourceGeneration_v5.csv
+Volii Alpha is absent from planet-resource-generation.csv
 atmospheric Benzene + Water are available independently
 no biome assignment is fabricated
 ```

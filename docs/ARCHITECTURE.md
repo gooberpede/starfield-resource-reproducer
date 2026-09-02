@@ -9,7 +9,7 @@ prediction and validation.
 
 ## Boundaries
 
-The generator operates only on typed domain objects. CSV/TSV loading, generation,
+The generator operates only on typed domain objects. CSV loading, generation,
 diagnostics, and oracle comparison remain separate concerns.
 
 ```text
@@ -33,18 +33,23 @@ independent prediction exists.
 
 ## Canonical Data Roles
 
-- `PlanetResourceGeneration_v5.csv` supplies authoritative PNDT, BIOM,
+- `planet-resource-generation.csv` supplies authoritative PNDT, BIOM,
   effective-RSGD, RSGD-order, and RSCS inputs.
-- `Starfield_IRES_Hierarchy.csv` supplies the authoritative IRES rarity and
+- `ires-hierarchy.csv` supplies the authoritative IRES rarity and
   ordered child graph.
-- `Starfield_PlanetAtmosphericResources.tsv` supplies authoritative effective
+- `planet-atmospheric-resources.csv` supplies authoritative effective
   atmospheric inorganic-resource records for the current corpus.
+- `planet-directory.csv` supplies the canonical PNDT body directory. It is
+  staged in `data/` but intentionally has no 10B loader or domain-model path.
 - `planet-all-resources.csv` supplies the validator's canonical planet-wide
   CK/RSGD-visible inorganic membership.
 
 The oracle omits at least some atmosphere-derived resources, so it is not a
 complete final planetary-resource oracle. `Starfield_InorganicResources_Canonical.csv`
 is deprecated.
+
+See `docs/CANONICAL-XEDIT-EXPORTS.md` for the source-record paths, provenance,
+fallbacks, and deterministic exporter-derived fields in all four source exports.
 
 ## Implemented Domain Objects
 

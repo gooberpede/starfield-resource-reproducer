@@ -54,7 +54,7 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         default=None,
         help=(
-            "path to Starfield_PlanetAtmosphericResources.tsv "
+            "path to planet-atmospheric-resources.csv "
             "(defaults to the named file in --data-dir)"
         ),
     )

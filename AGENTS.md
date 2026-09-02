@@ -181,18 +181,23 @@ by that change should follow this standard.
 
 Use these inputs as distinct sources with distinct roles:
 
-1. `PlanetResourceGeneration_v5.csv`
+1. `planet-resource-generation.csv`
    - canonical static PNDT -> biome -> effective-RSGD input data;
    - preserves unsigned RSCS, PNDT biome order, RSGD provenance, RSGD resource order, and generation percentages.
 
-2. `Starfield_IRES_Hierarchy.csv`
+2. `ires-hierarchy.csv`
    - canonical static IRES rarity and child-resource graph.
 
-3. `Starfield_PlanetAtmosphericResources.tsv`
+3. `planet-atmospheric-resources.csv`
    - authoritative effective atmospheric inorganic-resource export for the
      current corpus.
 
-4. `planet-all-resources.csv`
+4. `planet-directory.csv`
+   - canonical PNDT body-directory source export;
+   - present as a production source input but not yet ingested by the v1.0
+     reproducer.
+
+5. `planet-all-resources.csv`
    - **canonical verified planet/resource output oracle** for the CK/RSGD-visible
      inorganic channel used by validation;
    - sourced from the game/runtime and used to validate reproducer output;

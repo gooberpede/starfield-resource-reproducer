@@ -44,7 +44,7 @@ def test_ires_leaf_has_no_fake_child(ires_nodes) -> None:
 
 
 def test_ires_integrity_counts(ires_nodes) -> None:
-    with (DATA_DIR / "Starfield_IRES_Hierarchy.csv").open(
+    with (DATA_DIR / "ires-hierarchy.csv").open(
         encoding="utf-8-sig", newline=""
     ) as source:
         assert sum(1 for _ in csv.DictReader(source)) == 56
@@ -68,7 +68,7 @@ def test_ires_reconciles_child_and_parent_identity(ires_nodes) -> None:
 
 def test_ires_rejects_half_populated_child(tmp_path: Path) -> None:
     path = tmp_path / "ires.csv"
-    with (DATA_DIR / "Starfield_IRES_Hierarchy.csv").open(
+    with (DATA_DIR / "ires-hierarchy.csv").open(
         encoding="utf-8-sig", newline=""
     ) as source:
         row = next(csv.DictReader(source))

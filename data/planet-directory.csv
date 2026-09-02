@@ -1,0 +1,1777 @@
+SourceFile,ExtractTimestamp,PlanetFormID,PlanetEditorID,PlanetName,BodyType,StarSystemID,SystemName,ParentPlanetID,PlanetID,PlanetNotLandable,OceanWorld
+ShatteredSpace.esm,2026-09-02 22:57:08,0102BA29,_SFBGS001_LC01OrbitPlanetData,The Oracle,Orbital,119226,Kavnyk,21,30,0,0
+ShatteredSpace.esm,2026-09-02 22:57:08,010026C5,KavnykII-ePlanetData,Kavnyk II-e,Moon,119226,Kavnyk,20,29,0,0
+ShatteredSpace.esm,2026-09-02 22:57:08,010026C4,KavnykII-dPlanetData,Kavnyk II-d,Moon,119226,Kavnyk,20,28,0,0
+ShatteredSpace.esm,2026-09-02 22:57:08,010026C3,KavnykII-cPlanetData,Kavnyk II-c,Moon,119226,Kavnyk,20,27,0,0
+ShatteredSpace.esm,2026-09-02 22:57:08,010026C2,KavnykII-bPlanetData,Kavnyk II-b,Moon,119226,Kavnyk,20,26,0,0
+ShatteredSpace.esm,2026-09-02 22:57:08,010026C1,KavnykII-aPlanetData,Kavnyk II-a,Moon,119226,Kavnyk,20,25,0,0
+ShatteredSpace.esm,2026-09-02 22:57:08,010026C0,KavnykI-cPlanetData,Kavnyk I-c,Moon,119226,Kavnyk,19,24,0,0
+ShatteredSpace.esm,2026-09-02 22:57:08,010026BF,KavnykI-aPlanetData,Kavnyk I-a,Moon,119226,Kavnyk,19,23,0,0
+ShatteredSpace.esm,2026-09-02 22:57:08,010026BD,KavnykIIPlanetData,Kavnyk II,Planet,119226,Kavnyk,0,20,1,0
+ShatteredSpace.esm,2026-09-02 22:57:08,010026BC,KavnykIPlanetData,Kavnyk I,Planet,119226,Kavnyk,0,19,1,0
+ShatteredSpace.esm,2026-09-02 22:57:08,01000801,VaruunkaiPlanetData,Va'ruun'kai,Moon,119226,Kavnyk,19,21,0,0
+Starfield.esm,2026-09-02 22:57:08,003E5E41,_scDebugStartOrbitalPlanetData,_scDebugStartOrbital,Orbital,77022,Kryx,1,17,0,0
+Starfield.esm,2026-09-02 22:57:08,003E2B43,_SValoPPolvoMMiathaOrbitPlanetData,_SValoPPolvoMMiathaOrbit,Orbital,119198,Valo,8,15,0,0
+Starfield.esm,2026-09-02 22:57:08,00331891,_PolvoStationOrbitalPlanetData,PolvoStationOrbital,Orbital,119198,Valo,1,13,0,0
+Starfield.esm,2026-09-02 22:57:08,002D5F53,_LC175StationRE939PlanetData,_LC175StationRE939,Orbital,71456,Alpha Centauri,11,28,0,0
+Starfield.esm,2026-09-02 22:57:08,002CF271,_LC018BattlePlanetData,LC018Battle,Orbital,0,SOL,3,39,0,0
+Starfield.esm,2026-09-02 22:57:08,002C890A,KapteynIIPlanetData,Kapteyn II,Planet,24129,Kapteyn's Star,0,3,1,0
+Starfield.esm,2026-09-02 22:57:08,002C88FA,KapteynIPlanetData,Kapteyn I,Planet,24129,Kapteyn's Star,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,002C7831,SaganIPlanetData,Sagan I,Planet,72717,Sagan,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,002BAD1E,_AkilaArrivalCellPlanetData,AkilaArrivalCell,Orbital,72432,Cheyenne,2,38,0,0
+Starfield.esm,2026-09-02 22:57:08,002BA5DF,_UC01PilotingSimulationPlanetData,UC01PilotingSimulation,Orbital,24129,Kapteyn's Star,2,4,0,0
+Starfield.esm,2026-09-02 22:57:08,00290FC8,ChthoniaPlanetData,Chthonia,Planet,118720,Wolf,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,00290FC7,EthereaPlanetData,Etherea,Planet,118720,Wolf,0,2,1,0
+Starfield.esm,2026-09-02 22:57:08,00290FC6,PontemPlanetData,Pontem,Moon,118720,Wolf,2,3,0,0
+Starfield.esm,2026-09-02 22:57:08,002900AC,_TheEyePlanetData,TheEye,Orbital,71456,Alpha Centauri,3,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0026B3F5,_LC053SatellitePlanetData,LC053Satellite,Orbital,69451,Arcturus,2,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0024CAFC,_scMS02TheBlakePlanetData,_scMS02TheBeagle,Orbital,59092,Zelazny,1,20,0,0
+Starfield.esm,2026-09-02 22:57:08,002494E1,_LC056OrbitalPlanetData,_LC056Orbital2,Orbital,85264,Sakharov,1,5,0,0
+Starfield.esm,2026-09-02 22:57:08,00246B8A,_UC06ShipBattlePlanetData,_UC06ShipBattle,Orbital,118720,Wolf,2,4,0,0
+Starfield.esm,2026-09-02 22:57:08,002373D8,_LC012ScowOrbitalPlanetData,Debris Field,Orbital,37173,Procyon A,11,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0022EEDD,_NaevasShipPlanetData,The Astraea,Orbital,0,SOL,16,42,0,0
+Starfield.esm,2026-09-02 22:57:08,0022880E,_LC107LegacyOrbitalPlanetData,_LC107LegacyOrbital,Orbital,69793,Bannoc,4,9,0,0
+Starfield.esm,2026-09-02 22:57:08,00227699,_DR033StationPlanetData,_DR033Station,Orbital,72957,Olympus,1,22,0,0
+Starfield.esm,2026-09-02 22:57:08,002262E6,_StationUCN-48PlanetData,_StationUCN-48,Orbital,67711,Muphrid,4,31,0,0
+Starfield.esm,2026-09-02 22:57:08,002239DD,_StationTheKeyOrbitalPlanetData,The Key,Orbital,77022,Kryx,1,10,0,0
+Starfield.esm,2026-09-02 22:57:08,002239DC,_LC043SYOrbitalPlanetData,_LC043SYOrbital,Orbital,36107,Luyten's Star,1,2,0,0
+Starfield.esm,2026-09-02 22:57:08,00223320,_TridentLuxuryLinesOrbitalPlanetData,_TridentLuxuryLinesOrbital,Orbital,72432,Cheyenne,2,39,0,0
+Starfield.esm,2026-09-02 22:57:08,00220E5D,_EarthGravJumpArrivalPlanetData,EarthGravJumpArrival,Orbital,0,SOL,3,43,0,0
+Starfield.esm,2026-09-02 22:57:08,0021E061,PupIPlanetData,Pup I,Planet,119224,The Pup,0,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0021E060,Procyon-BIPlanetData,Procyon-B I,Planet,118493,Procyon B,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0021E05F,VanMaanenIPlanetData,Van Maanen I,Planet,3820,Van Maanen's Star,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0021A8B2,_SaturnGravJumpArrivalPlanetData,SaturnGravJumpArrival,Orbital,0,SOL,6,44,0,0
+Starfield.esm,2026-09-02 22:57:08,0021A8B1,_JupiterGravJumpArrivalPlanetData,JupiterGravJumpArrival,Orbital,0,SOL,5,45,0,0
+Starfield.esm,2026-09-02 22:57:08,0021951D,_LC099NovaShipyardPlanetData,_LC099NovaShipyard,Orbital,0,SOL,11,46,0,0
+Starfield.esm,2026-09-02 22:57:08,00216D2E,_TitanStationPlanetData,Titan Orbit,Orbital,0,SOL,24,47,0,0
+Starfield.esm,2026-09-02 22:57:08,00216D23,_VoliiAlphaStationPlanetData,Volii Station,Orbital,64720,Volii,2,13,0,0
+Starfield.esm,2026-09-02 22:57:08,00216D21,_GagarinStationPlanetData,Gagarin Station,Orbital,71456,Alpha Centauri,2,16,0,0
+Starfield.esm,2026-09-02 22:57:08,00216D1A,_MontaraLunaStationPlanetData,Montara Luna Station,Orbital,72432,Cheyenne,18,41,0,0
+Starfield.esm,2026-09-02 22:57:08,00216169,_JaffaStationPlanetData,Jaffa Station,Orbital,79431,Jaffa,4,22,0,0
+Starfield.esm,2026-09-02 22:57:08,00214659,_TheDenOrbitalPlanetData,The Den,Orbital,118720,Wolf,1,5,0,0
+Starfield.esm,2026-09-02 22:57:08,00212B50,_DeimosStaryardPlanetData,_DeimosStaryard,Orbital,0,SOL,13,49,0,0
+Starfield.esm,2026-09-02 22:57:08,002101AB,_StroudEklundStaryardPlanetData,Stroud-Eklund Staryard,Orbital,88327,Narion,12,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0020E33C,_MaalVIIGravJumpArrivalPlanetData,MaalVIIGravJumpArrival,Orbital,74746,Maal,7,25,0,0
+Starfield.esm,2026-09-02 22:57:08,00208E7E,_ArchimedesIIArrivalOrbitalPlanetData,_ArchimedesIIArrivalOrbital,Orbital,75150,Archimedes,2,14,0,0
+Starfield.esm,2026-09-02 22:57:08,00206366,_EthereaRuinsPlanetData,_EthereaRuins,Orbital,118720,Wolf,2,6,0,0
+Starfield.esm,2026-09-02 22:57:08,001EDF4A,_scLC130_OrbitalPlanetData,_City_CY_StartUp01_scLC130_Orbital,Orbital,0,SOL,31,52,0,0
+Starfield.esm,2026-09-02 22:57:08,001EC02D,_DR032DerelictStationOrbitalPlanetData,_DR032DerelictStationOrbital,Orbital,103883,Bessel,2,7,0,0
+Starfield.esm,2026-09-02 22:57:08,001D9530,_COM_Quest_Andreja_Q01_OrbitalPlanetData,Battlefield Wreckage,Orbital,57767,Groombridge,2,28,0,0
+Starfield.esm,2026-09-02 22:57:08,001C7764,_scDefensiveBatteryAlphaOrbitalPlanetData,_scDefensiveBatteryAlphaOrbital,Orbital,77022,Kryx,1,12,0,0
+Starfield.esm,2026-09-02 22:57:08,001C7763,_scDefensiveBatteryBetaOrbitalPlanetData,_scDefensiveBatteryBetaOrbital,Orbital,77022,Kryx,1,13,0,0
+Starfield.esm,2026-09-02 22:57:08,001C7762,_scDefensiveBatteryGammaOrbitalPlanetData,_scDefensiveBatteryGammaOrbital,Orbital,77022,Kryx,1,14,0,0
+Starfield.esm,2026-09-02 22:57:08,001BB7FF,_LC130PlanetData,LC130,Orbital,0,SOL,4,53,0,0
+Starfield.esm,2026-09-02 22:57:08,001BB7FD,_LC137_HankFerrarosShipPlanetData,LC137_HankFerrarosShip,Orbital,0,SOL,4,54,0,0
+Starfield.esm,2026-09-02 22:57:08,001B832E,MS02Beacon01PlanetData,MS02Beacon01,Orbital,69192,Bel,5,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0019E263,_LC129_City_CY_RedTape02OrbitalPlanetData,Governor Hurst's Ship,Orbital,0,SOL,28,55,0,0
+Starfield.esm,2026-09-02 22:57:08,001941CE,_IndumIIArrivalOrbitalPlanetData,IndumIIGravJumpArrival,Orbital,119135,Indum,2,18,0,0
+Starfield.esm,2026-09-02 22:57:08,001933D6,_SettleECSConstantOrbitalPlanetData,_SettleECSConstantOrbital,Orbital,61748,Porrima,2,27,0,0
+Starfield.esm,2026-09-02 22:57:08,0018334F,_RL048DerelictShipOrbitalPlanetData,_RL048DerelictShipOrbital,Orbital,89684,Leviathan,4,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0017176B,_tempbetaPlanetData,_tempbeta,Orbital,667,_Test2,2,11,0,0
+Starfield.esm,2026-09-02 22:57:08,00155994,_OborumIIIJumpArrivalPlanetData,OborumIIIJumpArrival,Orbital,119220,Oborum Prime,41,46,0,0
+Starfield.esm,2026-09-02 22:57:08,0014EAA4,_RL088GrissomOrbitalPlanetData,_RL088GrissomOrbital,Orbital,71456,Alpha Centauri,6,26,0,0
+Starfield.esm,2026-09-02 22:57:08,0014A7B3,_LC102SirenoftheStarsOrbitalPlanetData,_LC102SirenoftheStarsOrbital,Orbital,72955,Aranae,4,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0013B5B4,_scLC165PlanetData,_scLC165,Orbital,83021,Masada,3,19,0,0
+Starfield.esm,2026-09-02 22:57:08,001388E8,_DR019OrbitalPlanetData,_DR019Orbital,Orbital,103883,Bessel,5,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0012DEE3,_NeptuneGravJumpArrivalPlanetData,NeptuneGravJumpArrival,Orbital,0,SOL,8,57,0,0
+Starfield.esm,2026-09-02 22:57:08,0011F78E,_scAsteroidCaveTest01PlanetData,scAsteroidCaveTest01,Orbital,666,_Test1,6,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0011F78D,_scasteroidcavetest02PlanetData,AutoPickupTest,Orbital,666,_Test1,6,8,0,0
+Starfield.esm,2026-09-02 22:57:08,000B023E,_RL048DerelictResearchShipPlanetData,_RL048DerelictResearchShip,Orbital,87902,Schrodinger,3,24,0,0
+Starfield.esm,2026-09-02 22:57:08,0008D897,_TolimanIIArrivalCellPlanetData,_TolimanIIArrivalCell,Orbital,119223,Toliman,29,33,0,0
+Starfield.esm,2026-09-02 22:57:08,0007D46F,_LC043SYEmptyOrbitalPlanetData,_LC043SYEmptyOrbital,Orbital,36107,Luyten's Star,1,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0007C6A7,_SettleTheClinicOrbitalPlanetData,_SettleTheClinicOrbital,Orbital,88327,Narion,5,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0007BCC6,_VenusGravJumpArrivalPlanetData,VenusGravJumpArrival,Orbital,0,SOL,2,37,0,0
+Starfield.esm,2026-09-02 22:57:08,000753EB,_MarsGravJumpArrivalPlanetData,MarsGravJumpArrival,Orbital,0,SOL,4,36,0,0
+Starfield.esm,2026-09-02 22:57:08,000638EC,_JemisonGravJumpArrivalPlanetData,JemisonGravJumpArrival,Orbital,71456,Alpha Centauri,3,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E816,_SEAC01OrbitalPlanetData,_SEAC01Orbital,Orbital,71731,Heinlein,1,25,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E5A2,OphionI-aPlanetData,Ophion I-a,Moon,74309,Ophion,1,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E5A1,OphionIPlanetData,Ophion I,Planet,74309,Ophion,0,1,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E59E,UmanahPlanetData,Umanah,Planet,77172,Nirah,0,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E59D,NraalPlanetData,N'raal,Moon,77172,Nirah,6,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E59C,NirahPrimePlanetData,Nirah Prime,Planet,77172,Nirah,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E59B,KazaalPlanetData,Ka'zaal,Moon,77172,Nirah,4,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E59A,KazarahPlanetData,Kazarah,Planet,77172,Nirah,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E599,DelahPlanetData,Delah,Planet,77172,Nirah,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E598,LontrahPlanetData,Lontrah,Planet,77172,Nirah,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E595,SiriusIII-aPlanetData,Sirius III-a,Moon,32263,Sirius,3,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E594,SiriusIII-bPlanetData,Sirius III-b,Moon,32263,Sirius,3,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E593,SiriusIIIPlanetData,Sirius III,Planet,32263,Sirius,0,3,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E592,SiriusII-aPlanetData,Sirius II-a,Moon,32263,Sirius,2,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E591,SiriusIIPlanetData,Sirius II,Planet,32263,Sirius,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E590,SiriusIPlanetData,Sirius I,Planet,32263,Sirius,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E58A,TolimanII-cPlanetData,Toliman II-c,Moon,119223,Toliman,29,32,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E589,TolimanII-aPlanetData,Toliman II-a,Moon,119223,Toliman,29,31,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E588,TolimanII-bPlanetData,Toliman II-b,Moon,119223,Toliman,29,30,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E587,TolimanIIPlanetData,Toliman II,Planet,119223,Toliman,0,29,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E586,TolimanIPlanetData,Toliman I,Planet,119223,Toliman,0,28,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E583,RevasWorldPlanetData,Reva's World,Planet,83865,Lunara,0,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E582,NyarlothPlanetData,Nyarloth,Moon,83865,Lunara,7,24,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E581,UvhanPlanetData,Uvhan,Moon,83865,Lunara,7,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E580,Az-ValokPlanetData,Az-Valok,Moon,83865,Lunara,7,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E57F,CtholPlanetData,Cthol,Planet,83865,Lunara,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E57A,OkoroDeltaPlanetData,Okoro Delta,Moon,83865,Lunara,6,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E577,OkoroEpsilonPlanetData,Okoro Epsilon,Moon,83865,Lunara,6,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E576,OkoroBetaPlanetData,Okoro Beta,Moon,83865,Lunara,6,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E575,OkoroAlphaPlanetData,Okoro Alpha,Moon,83865,Lunara,6,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E574,OkoroGammaPlanetData,Okoro Gamma,Moon,83865,Lunara,6,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E573,OkoroPlanetData,Okoro,Planet,83865,Lunara,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E572,GasparisPlanetData,Gasparis,Moon,83865,Lunara,5,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E571,LilliusPlanetData,Lillius,Moon,83865,Lunara,5,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E570,AbettiPlanetData,Abetti,Moon,83865,Lunara,5,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E56F,CassiniPlanetData,Cassini,Planet,83865,Lunara,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E56E,CriusPlanetData,Crius,Moon,83865,Lunara,4,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E56D,CoeusPlanetData,Coeus,Moon,83865,Lunara,4,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E56C,GaeaPlanetData,Gaea,Planet,83865,Lunara,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E56B,EarrachPlanetData,Earrach,Moon,83865,Lunara,3,26,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E56A,PetriaPlanetData,Petria,Planet,83865,Lunara,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E569,VestaLunarisPlanetData,Vesta Lunaris,Moon,83865,Lunara,2,25,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E568,VestaPlanetData,Vesta,Planet,83865,Lunara,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E567,RemusPlanetData,Remus,Moon,83865,Lunara,1,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E565,RomulusPlanetData,Romulus,Moon,83865,Lunara,1,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E564,NumitorPlanetData,Numitor,Planet,83865,Lunara,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E561,CruthPlanetData,Cruth,Planet,88327,Narion,0,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E560,_NewGameQuickStartPlanetData,NewGameQuickStart,Orbital,88327,Narion,14,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E55F,AnselonPlanetData,Anselon,Planet,88327,Narion,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E55E,XandarPlanetData,Grimsey,Moon,88327,Narion,5,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E55D,DalvikPlanetData,Dalvik,Moon,88327,Narion,5,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E55C,DeepalaPlanetData,Deepala,Planet,88327,Narion,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E55B,HyperiaPlanetData,Hyperia,Moon,88327,Narion,4,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E55A,MagrethPlanetData,Magreth,Planet,88327,Narion,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E559,GryphusPlanetData,Gryphus,Moon,88327,Narion,3,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E558,DanraPlanetData,Danra,Planet,88327,Narion,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E557,AndraphonPlanetData,Andraphon,Moon,88327,Narion,2,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E556,SumatiPlanetData,Sumati,Planet,88327,Narion,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E555,NiiraPlanetData,Niira,Planet,88327,Narion,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E552,VirumPlanetData,Virum,Moon,119198,Valo,5,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E551,KindiPlanetData,Kindi,Moon,119198,Valo,5,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E550,GolgaPlanetData,Golga,Moon,119198,Valo,5,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E54F,ShorunPlanetData,Shorun,Moon,119198,Valo,5,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E54E,LumosPlanetData,Lumos,Planet,119198,Valo,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E54D,HillexPlanetData,Hillex,Planet,119198,Valo,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E54C,PraxPlanetData,Prax,Planet,119198,Valo,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E54B,CantraPlanetData,Cantra,Planet,119198,Valo,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E54A,MiathaPlanetData,Miatha,Moon,119198,Valo,1,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E547,BolivarIPlanetData,Bolivar I,Planet,118818,Bolivar,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E543,RiveraV-aPlanetData,Rivera V-a,Moon,118819,Rivera,5,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E542,RiveraVPlanetData,Rivera V,Planet,118819,Rivera,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E541,RiveraIV-aPlanetData,Rivera IV-a,Moon,118819,Rivera,4,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E540,RiveraIVPlanetData,Rivera IV,Planet,118819,Rivera,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E53F,RiveraIIIPlanetData,Rivera III,Planet,118819,Rivera,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E53E,RiveraII-cPlanetData,Rivera II-c,Moon,118819,Rivera,2,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E53D,RiveraII-bPlanetData,Rivera II-b,Moon,118819,Rivera,2,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E53C,RiveraII-aPlanetData,Rivera II-a,Moon,118819,Rivera,2,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E53B,RiveraIIPlanetData,Rivera II,Planet,118819,Rivera,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E53A,RiveraI-aPlanetData,Rivera I-a,Moon,118819,Rivera,1,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E539,RiveraIPlanetData,Rivera I,Planet,118819,Rivera,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E536,BardeenVII-aPlanetData,Bardeen VII-a,Moon,90582,Bardeen,7,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E535,BardeenVIIPlanetData,Bardeen VII,Planet,90582,Bardeen,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E534,BardeenVI-bPlanetData,Bardeen VI-b,Moon,90582,Bardeen,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E533,BardeenVI-aPlanetData,Bardeen VI-a,Moon,90582,Bardeen,6,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E532,BardeenVIPlanetData,Bardeen VI,Planet,90582,Bardeen,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E531,BardeenV-fPlanetData,Bardeen V-f,Moon,90582,Bardeen,5,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E530,BardeenV-cPlanetData,Bardeen V-c,Moon,90582,Bardeen,5,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E52F,BardeenV-ePlanetData,Bardeen V-e,Moon,90582,Bardeen,5,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E52E,BardeenV-aPlanetData,Bardeen V-a,Moon,90582,Bardeen,5,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E52D,BardeenV-bPlanetData,Bardeen V-b,Moon,90582,Bardeen,5,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E52C,BardeenV-dPlanetData,Bardeen V-d,Moon,90582,Bardeen,5,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E52B,BardeenVPlanetData,Bardeen V,Planet,90582,Bardeen,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E52A,BardeenIV-aPlanetData,Bardeen IV-a,Moon,90582,Bardeen,4,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E529,BardeenIVPlanetData,Bardeen IV,Planet,90582,Bardeen,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E528,BardeenIII-bPlanetData,Bardeen III-b,Moon,90582,Bardeen,3,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E527,BardeenIII-aPlanetData,Bardeen III-a,Moon,90582,Bardeen,3,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E526,BardeenIIIPlanetData,Bardeen III,Planet,90582,Bardeen,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E525,BardeenIIPlanetData,Bardeen II,Planet,90582,Bardeen,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E524,BardeenI-aPlanetData,Bardeen I-a,Moon,90582,Bardeen,1,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E523,BardeenIPlanetData,Bardeen I,Planet,90582,Bardeen,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E51F,EridaniIXPlanetData,Eridani IX,Planet,15471,Eridani,0,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E51E,EridaniVIII-bPlanetData,Eridani VIII-b,Moon,15471,Eridani,8,26,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E51D,EridaniVIII-aPlanetData,Eridani VIII-a,Moon,15471,Eridani,8,25,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E51C,EridaniVIII-dPlanetData,Eridani VIII-d,Moon,15471,Eridani,8,24,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E51B,EridaniVIII-cPlanetData,Eridani VIII-c,Moon,15471,Eridani,8,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E51A,EridaniVIIIPlanetData,Eridani VIII,Planet,15471,Eridani,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E519,EridaniVII-bPlanetData,Eridani VII-b,Moon,15471,Eridani,7,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E518,EridaniVII-aPlanetData,Eridani VII-a,Moon,15471,Eridani,7,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E517,EridaniVII-cPlanetData,Eridani VII-c,Moon,15471,Eridani,7,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E516,EridaniVIIPlanetData,Eridani VII,Planet,15471,Eridani,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E515,EridaniVI-aPlanetData,Eridani VI-a,Moon,15471,Eridani,6,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E514,EridaniVIPlanetData,Eridani VI,Planet,15471,Eridani,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E513,EridaniVPlanetData,Eridani V,Planet,15471,Eridani,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E512,EridaniIV-cPlanetData,Eridani IV-c,Moon,15471,Eridani,4,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E511,EridaniIV-bPlanetData,Eridani IV-b,Moon,15471,Eridani,4,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E510,EridaniIV-aPlanetData,Eridani IV-a,Moon,15471,Eridani,4,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E50F,EridaniIVPlanetData,Eridani IV,Planet,15471,Eridani,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E50E,EridaniIII-aPlanetData,Eridani III-a,Moon,15471,Eridani,3,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E50D,EridaniIII-cPlanetData,Eridani III-c,Moon,15471,Eridani,3,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E50C,EridaniIII-bPlanetData,Eridani III-b,Moon,15471,Eridani,3,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E50B,EridaniIIIPlanetData,Eridani III,Planet,15471,Eridani,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E50A,EridaniIIPlanetData,Eridani II,Planet,15471,Eridani,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E509,EridaniIPlanetData,Eridani I,Planet,15471,Eridani,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E504,LuytensRockPlanetData,Luyten's Rock,Planet,36107,Luyten's Star,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E501,ProcyonVI-aPlanetData,Procyon VI-a,Moon,37173,Procyon A,6,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E500,ProcyonVI-cPlanetData,Procyon VI-c,Moon,37173,Procyon A,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4FF,ProcyonVI-bPlanetData,Procyon VI-b,Moon,37173,Procyon A,6,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4FE,ProcyonVIPlanetData,Procyon VI,Planet,37173,Procyon A,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E4FD,ProcyonV-aPlanetData,Procyon V-a,Moon,37173,Procyon A,5,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4FC,ProcyonV-bPlanetData,Procyon V-b,Moon,37173,Procyon A,5,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4FB,ProcyonV-cPlanetData,Procyon V-c,Moon,37173,Procyon A,5,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4FA,ProcyonVPlanetData,Procyon V,Planet,37173,Procyon A,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E4F9,ProcyonIV-aPlanetData,Procyon IV-a,Moon,37173,Procyon A,4,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4F8,ProcyonIVPlanetData,Procyon IV,Planet,37173,Procyon A,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4F7,ProcyonIII-aPlanetData,Procyon III-a,Moon,37173,Procyon A,3,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4F6,ProcyonIIIPlanetData,Procyon III,Planet,37173,Procyon A,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4F5,ProcyonIIPlanetData,Procyon II,Planet,37173,Procyon A,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4F4,ProcyonI-aPlanetData,Procyon I-a,Moon,37173,Procyon A,1,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E4F3,ProcyonIPlanetData,Procyon I,Planet,37173,Procyon A,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4EE,CassiopeiaIV-cPlanetData,Cassiopeia IV-c,Moon,3814,Eta Cassiopeia,4,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4ED,CassiopeiaIV-aPlanetData,Cassiopeia IV-a,Moon,3814,Eta Cassiopeia,4,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4EC,CassiopeiaIV-bPlanetData,Cassiopeia IV-b,Moon,3814,Eta Cassiopeia,4,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4EB,CassiopeiaIVPlanetData,Cassiopeia IV,Planet,3814,Eta Cassiopeia,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E4EA,CassiopeiaIII-aPlanetData,Cassiopeia III-a,Moon,3814,Eta Cassiopeia,3,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4E9,CassiopeiaIIIPlanetData,Cassiopeia III,Planet,3814,Eta Cassiopeia,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4E8,CassiopeiaII-aPlanetData,Cassiopeia II-a,Moon,3814,Eta Cassiopeia,2,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4E7,CassiopeiaIIPlanetData,Cassiopeia II,Planet,3814,Eta Cassiopeia,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4E6,CassiopeiaIPlanetData,Cassiopeia I,Planet,3814,Eta Cassiopeia,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4E3,CarinaeV-bPlanetData,Carinae V-b,Moon,118021,Carinae,5,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4E2,CarinaeV-aPlanetData,Carinae V-a,Moon,118021,Carinae,5,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4E1,CarinaeV-cPlanetData,Carinae V-c,Moon,118021,Carinae,5,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4E0,CarinaeVPlanetData,Carinae V,Planet,118021,Carinae,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E4DF,CarinaeIV-aPlanetData,Carinae IV-a,Moon,118021,Carinae,4,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4DE,CarinaeIVPlanetData,Carinae IV,Planet,118021,Carinae,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E4DD,CarinaeIII-cPlanetData,Carinae III-c,Moon,118021,Carinae,3,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4DC,CarinaeIII-dPlanetData,Carinae III-d,Moon,118021,Carinae,3,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4DB,CarinaeIII-bPlanetData,Carinae III-b,Moon,118021,Carinae,3,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4DA,CarinaeIII-aPlanetData,Carinae III-a,Moon,118021,Carinae,3,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4D9,CarinaeIIIPlanetData,Carinae III,Planet,118021,Carinae,0,3,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E4D8,CarinaeIIPlanetData,Carinae II,Planet,118021,Carinae,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4D7,CarinaeII-aPlanetData,Carinae II-a,Moon,118021,Carinae,2,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4D6,CarinaeIPlanetData,Carinae I,Planet,118021,Carinae,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4D1,ZosmaV-bPlanetData,Zosma V-b,Moon,54712,Zosma,5,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4D0,ZosmaV-cPlanetData,Zosma V-c,Moon,54712,Zosma,5,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4CF,ZosmaV-aPlanetData,Zosma V-a,Moon,54712,Zosma,5,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4CE,ZosmaVPlanetData,Zosma V,Planet,54712,Zosma,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E4CD,ZosmaIV-aPlanetData,Zosma IV-a,Moon,54712,Zosma,4,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4CC,ZosmaIV-bPlanetData,Zosma IV-b,Moon,54712,Zosma,4,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4CB,ZosmaIV-cPlanetData,Zosma IV-c,Moon,54712,Zosma,4,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4CA,ZosmaIVPlanetData,Zosma IV,Planet,54712,Zosma,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E4C9,ZosmaIII-aPlanetData,Zosma III-a,Moon,54712,Zosma,3,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4C8,ZosmaIIIPlanetData,Zosma III,Planet,54712,Zosma,0,3,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E4C7,ZosmaIIPlanetData,Zosma II,Planet,54712,Zosma,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4C6,ZosmaI-aPlanetData,Zosma I-a,Moon,54712,Zosma,1,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4C5,ZosmaIPlanetData,Zosma I,Planet,54712,Zosma,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4C2,UrsaMajorIIIPlanetData,Ursa Major III,Planet,118742,Ursae Majoris,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4C1,UrsaMajorIIPlanetData,Ursa Major II,Planet,118742,Ursae Majoris,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4C0,UrsaMajorI-cPlanetData,Ursa Major I-c,Moon,118742,Ursae Majoris,1,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4BF,UrsaMajorI-bPlanetData,Ursa Major I-b,Moon,118742,Ursae Majoris,1,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4BE,UrsaMajorI-aPlanetData,Ursa Major I-a,Moon,118742,Ursae Majoris,1,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4BD,UrsaMajorIPlanetData,Ursa Major I,Planet,118742,Ursae Majoris,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4BA,UrsaMinorIIIPlanetData,Ursa Minor III,Planet,119222,Ursae Minoris,0,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4B9,UrsaMinorII-aPlanetData,Ursa Minor II-a,Moon,119222,Ursae Minoris,21,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4B8,UrsaMinorIIPlanetData,Ursa Minor II,Planet,119222,Ursae Minoris,0,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4B7,UrsaMinorI-bPlanetData,Ursa Minor I-b,Moon,119222,Ursae Minoris,18,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4B6,UrsaMinorI-aPlanetData,Ursa Minor I-a,Moon,119222,Ursae Minoris,18,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4B5,UrsaMinorIPlanetData,Ursa Minor I,Planet,119222,Ursae Minoris,0,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4B1,KumasiIX-aPlanetData,Kumasi IX-a,Moon,56828,Kumasi,9,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4B0,KumasiIXPlanetData,Kumasi IX,Planet,56828,Kumasi,0,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4AF,KumasiVIII-aPlanetData,Kumasi VIII-a,Moon,56828,Kumasi,8,30,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4AE,KumasiVIII-cPlanetData,Kumasi VIII-c,Moon,56828,Kumasi,8,29,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4AD,KumasiVIII-bPlanetData,Kumasi VIII-b,Moon,56828,Kumasi,8,28,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4AC,KumasiVIII-dPlanetData,Kumasi VIII-d,Moon,56828,Kumasi,8,27,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4AB,KumasiVIIIPlanetData,Kumasi VIII,Planet,56828,Kumasi,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E4AA,KumasiVII-cPlanetData,Kumasi VII-c,Moon,56828,Kumasi,7,26,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4A9,KumasiVII-aPlanetData,Kumasi VII-a,Moon,56828,Kumasi,7,25,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4A8,KumasiVII-bPlanetData,Kumasi VII-b,Moon,56828,Kumasi,7,24,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4A7,KumasiVII-dPlanetData,Kumasi VII-d,Moon,56828,Kumasi,7,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4A6,KumasiVIIPlanetData,Kumasi VII,Planet,56828,Kumasi,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E4A5,KumasiVI-aPlanetData,Kumasi VI-a,Moon,56828,Kumasi,6,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4A4,KumasiVIPlanetData,Kumasi VI,Planet,56828,Kumasi,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4A3,KumasiV-aPlanetData,Kumasi V-a,Moon,56828,Kumasi,5,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4A2,KumasiV-dPlanetData,Kumasi V-d,Moon,56828,Kumasi,5,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4A1,KumasiV-cPlanetData,Kumasi V-c,Moon,56828,Kumasi,5,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E4A0,KumasiV-bPlanetData,Kumasi V-b,Moon,56828,Kumasi,5,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E49F,KumasiV-ePlanetData,Kumasi V-e,Moon,56828,Kumasi,5,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E49E,KumasiVPlanetData,Kumasi V,Planet,56828,Kumasi,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E49D,KumasiIV-aPlanetData,Kumasi IV-a,Moon,56828,Kumasi,4,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E49C,KumasiIVPlanetData,Kumasi IV,Planet,56828,Kumasi,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E49B,KumasiIII-aPlanetData,Kumasi III-a,Moon,56828,Kumasi,3,14,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E49A,KumasiIIIPlanetData,Kumasi III,Planet,56828,Kumasi,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E499,KumasiII-aPlanetData,Kumasi II-a,Moon,56828,Kumasi,2,13,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E498,KumasiIIPlanetData,Kumasi II,Planet,56828,Kumasi,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E497,KumasiI-aPlanetData,Kumasi I-a,Moon,56828,Kumasi,1,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E496,KumasiIPlanetData,Kumasi I,Planet,56828,Kumasi,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E493,TirnaX-aPlanetData,Tirna X-a,Moon,57270,Alpha Tirna,10,32,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E492,TirnaX-cPlanetData,Tirna X-c,Moon,57270,Alpha Tirna,10,31,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E491,TirnaX-bPlanetData,Tirna X-b,Moon,57270,Alpha Tirna,10,30,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E490,TirnaXPlanetData,Tirna X,Planet,57270,Alpha Tirna,0,10,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E48F,TirnaIXPlanetData,Tirna IX,Planet,57270,Alpha Tirna,0,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E48E,TirnaVIII-ePlanetData,Tirna VIII-e,Moon,57270,Alpha Tirna,8,29,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E48D,TirnaVIII-dPlanetData,Tirna VIII-d,Moon,57270,Alpha Tirna,8,28,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E48C,TirnaVIII-aPlanetData,Tirna VIII-a,Moon,57270,Alpha Tirna,8,27,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E48B,TirnaVIII-bPlanetData,Tirna VIII-b,Moon,57270,Alpha Tirna,8,26,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E48A,TirnaVIII-cPlanetData,Tirna VIII-c,Moon,57270,Alpha Tirna,8,25,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E489,TirnaVIIIPlanetData,Tirna VIII,Planet,57270,Alpha Tirna,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E488,TirnaVII-bPlanetData,Tirna VII-b,Moon,57270,Alpha Tirna,7,24,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E487,TirnaVII-cPlanetData,Tirna VII-c,Moon,57270,Alpha Tirna,7,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E486,TirnaVII-aPlanetData,Tirna VII-a,Moon,57270,Alpha Tirna,7,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E485,TirnaVIIPlanetData,Tirna VII,Planet,57270,Alpha Tirna,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E484,TirnaVI-cPlanetData,Tirna VI-c,Moon,57270,Alpha Tirna,6,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E483,TirnaVI-aPlanetData,Tirna VI-a,Moon,57270,Alpha Tirna,6,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E482,TirnaVI-bPlanetData,Tirna VI-b,Moon,57270,Alpha Tirna,6,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E481,TirnaVI-ePlanetData,Tirna VI-e,Moon,57270,Alpha Tirna,6,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E480,TirnaVI-dPlanetData,Tirna VI-d,Moon,57270,Alpha Tirna,6,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E47F,TirnaVIPlanetData,Tirna VI,Planet,57270,Alpha Tirna,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E47E,TirnaVPlanetData,Tirna V,Planet,57270,Alpha Tirna,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E47D,TirnaIV-aPlanetData,Tirna IV-a,Moon,57270,Alpha Tirna,4,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E47C,TirnaIVPlanetData,Tirna IV,Planet,57270,Alpha Tirna,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E47B,TirnaIII-aPlanetData,Tirna III-a,Moon,57270,Alpha Tirna,3,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E47A,TirnaIII-bPlanetData,Tirna III-b,Moon,57270,Alpha Tirna,3,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E479,TirnaIII-cPlanetData,Tirna III-c,Moon,57270,Alpha Tirna,3,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E478,TirnaIIIPlanetData,Tirna III,Planet,57270,Alpha Tirna,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E477,TirnaII-aPlanetData,Tirna II-a,Moon,57270,Alpha Tirna,2,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E476,TirnaIIPlanetData,Tirna II,Planet,57270,Alpha Tirna,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E475,TirnaIPlanetData,Tirna I,Planet,57270,Alpha Tirna,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E473,TirnaBPlanetData,Tirna B,Planet,118771,Beta Tirna,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E46F,DenebolaIII-bPlanetData,Denebola III-b,Moon,57459,Denebola,3,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E46E,DenebolaIII-aPlanetData,Denebola III-a,Moon,57459,Denebola,3,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E46D,DenebolaIIIPlanetData,Denebola III,Planet,57459,Denebola,0,3,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E46C,DenebolaII-aPlanetData,Denebola II-a,Moon,57459,Denebola,2,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E46B,DenebolaIIPlanetData,Denebola II,Planet,57459,Denebola,0,2,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E46A,DenebolaI-bPlanetData,Denebola I-b,Moon,57459,Denebola,1,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E469,DenebolaI-aPlanetData,Denebola I-a,Moon,57459,Denebola,1,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E468,DenebolaIPlanetData,Denebola I,Planet,57459,Denebola,0,1,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E465,LantanaIX-bPlanetData,Lantana IX-b,Moon,57584,Lantana,9,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E464,LantanaIX-dPlanetData,Lantana IX-d,Moon,57584,Lantana,9,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E463,LantanaIX-aPlanetData,Lantana IX-a,Moon,57584,Lantana,9,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E462,LantanaIX-ePlanetData,Lantana IX-e,Moon,57584,Lantana,9,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E461,LantanaIX-cPlanetData,Lantana IX-c,Moon,57584,Lantana,9,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E460,LantanaIXPlanetData,Lantana IX,Planet,57584,Lantana,0,9,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E45F,LantanaVIII-bPlanetData,Lantana VIII-b,Moon,57584,Lantana,8,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E45E,LantanaVIII-aPlanetData,Lantana VIII-a,Moon,57584,Lantana,8,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E45C,LantanaVIII-dPlanetData,Lantana VIII-d,Moon,57584,Lantana,8,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E45B,LantanaVIII-cPlanetData,Lantana VIII-c,Moon,57584,Lantana,8,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E45A,LantanaVIIIPlanetData,Lantana VIII,Planet,57584,Lantana,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E459,LantanaVIIPlanetData,Lantana VII,Planet,57584,Lantana,0,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E458,LantanaVIPlanetData,Lantana VI,Planet,57584,Lantana,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E457,LantanaV-bPlanetData,Lantana V-b,Moon,57584,Lantana,5,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E456,LantanaV-aPlanetData,Lantana V-a,Moon,57584,Lantana,5,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E455,LantanaVPlanetData,Lantana V,Planet,57584,Lantana,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E454,LantanaIVPlanetData,Lantana IV,Planet,57584,Lantana,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E453,LantanaIII-aPlanetData,Lantana III-a,Moon,57584,Lantana,3,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E452,LantanaIIIPlanetData,Lantana III,Planet,57584,Lantana,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E451,LantanaIIPlanetData,Lantana II,Planet,57584,Lantana,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E450,LantanaIPlanetData,Lantana I,Planet,57584,Lantana,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E44D,GroombridgeVIII-cPlanetData,Groombridge VIII-c,Moon,57767,Groombridge,8,26,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E44C,GroombridgeVIII-dPlanetData,Groombridge VIII-d,Moon,57767,Groombridge,8,25,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E44B,GroombridgeVIII-aPlanetData,Groombridge VIII-a,Moon,57767,Groombridge,8,24,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E44A,GroombridgeVIII-bPlanetData,Groombridge VIII-b,Moon,57767,Groombridge,8,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E449,GroombridgeVIIIPlanetData,Groombridge VIII,Planet,57767,Groombridge,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E448,GroombridgeVII-bPlanetData,Groombridge VII-b,Moon,57767,Groombridge,7,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E447,GroombridgeVII-aPlanetData,Groombridge VII-a,Moon,57767,Groombridge,7,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E446,GroombridgeVIIPlanetData,Groombridge VII,Planet,57767,Groombridge,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E445,GroombridgeVI-aPlanetData,Groombridge VI-a,Moon,57767,Groombridge,6,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E444,GroombridgeVI-bPlanetData,Groombridge VI-b,Moon,57767,Groombridge,6,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E443,GroombridgeVIPlanetData,Groombridge VI,Planet,57767,Groombridge,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E442,GroombridgeV-dPlanetData,Groombridge V-d,Moon,57767,Groombridge,5,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E441,GroombridgeV-aPlanetData,Groombridge V-a,Moon,57767,Groombridge,5,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E440,GroombridgeV-ePlanetData,Groombridge V-e,Moon,57767,Groombridge,5,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E43F,GroombridgeV-cPlanetData,Groombridge V-c,Moon,57767,Groombridge,5,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E43E,GroombridgeV-bPlanetData,Groombridge V-b,Moon,57767,Groombridge,5,27,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E43D,GroombridgeVPlanetData,Groombridge V,Planet,57767,Groombridge,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E43C,GroombridgeIV-aPlanetData,Groombridge IV-a,Moon,57767,Groombridge,4,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E43B,GroombridgeIVPlanetData,Groombridge IV,Planet,57767,Groombridge,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E43A,GroombridgeIII-aPlanetData,Groombridge III-a,Moon,57767,Groombridge,3,13,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E439,GroombridgeIIIPlanetData,Groombridge III,Planet,57767,Groombridge,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E438,GroombridgeII-aPlanetData,Groombridge II-a,Moon,57767,Groombridge,2,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E437,GroombridgeII-bPlanetData,Groombridge II-b,Moon,57767,Groombridge,2,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E436,GroombridgeII-cPlanetData,Groombridge II-c,Moon,57767,Groombridge,2,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E435,GroombridgeIPlanetData,Groombridge I,Planet,57767,Groombridge,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E432,NirvanaIV-aPlanetData,Nirvana IV-a,Moon,58401,Nirvana,4,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E431,NirvanaIVPlanetData,Nirvana IV,Planet,58401,Nirvana,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E430,NirvanaIII-aPlanetData,Nirvana III-a,Moon,58401,Nirvana,3,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E42F,NirvanaIIIPlanetData,Nirvana III,Planet,58401,Nirvana,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E42E,NirvanaII-aPlanetData,Nirvana II-a,Moon,58401,Nirvana,2,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E42D,NirvanaIIPlanetData,Nirvana II,Planet,58401,Nirvana,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E42C,NirvanaIPlanetData,Nirvana I,Planet,58401,Nirvana,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E429,AlchibaX-aPlanetData,Alchiba X-a,Moon,59020,Alchiba,10,26,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E428,AlchibaX-bPlanetData,Alchiba X-b,Moon,59020,Alchiba,10,25,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E427,AlchibaXPlanetData,Alchiba X,Planet,59020,Alchiba,0,10,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E426,AlchibaIX-aPlanetData,Alchiba IX-a,Moon,59020,Alchiba,9,24,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E425,AlchibaIXPlanetData,Alchiba IX,Planet,59020,Alchiba,0,9,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E424,AlchibaVIII-aPlanetData,Alchiba VIII-a,Moon,59020,Alchiba,8,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E423,AlchibaVIII-bPlanetData,Alchiba VIII-b,Moon,59020,Alchiba,8,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E422,AlchibaVIIIPlanetData,Alchiba VIII,Planet,59020,Alchiba,0,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E421,AlchibaVII-bPlanetData,Alchiba VII-b,Moon,59020,Alchiba,7,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E420,AlchibaVII-aPlanetData,Alchiba VII-a,Moon,59020,Alchiba,7,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E41F,AlchibaVII-dPlanetData,Alchiba VII-d,Moon,59020,Alchiba,7,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E41E,AlchibaVII-cPlanetData,Alchiba VII-c,Moon,59020,Alchiba,7,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E41D,AlchibaVIIPlanetData,Alchiba VII,Planet,59020,Alchiba,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E41C,AlchibaVI-cPlanetData,Alchiba VI-c,Moon,59020,Alchiba,6,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E41B,AlchibaVI-aPlanetData,Alchiba VI-a,Moon,59020,Alchiba,6,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E41A,AlchibaVI-bPlanetData,Alchiba VI-b,Moon,59020,Alchiba,6,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E419,AlchibaVIPlanetData,Alchiba VI,Planet,59020,Alchiba,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E418,AlchibaV-aPlanetData,Alchiba V-a,Moon,59020,Alchiba,5,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E417,AlchibaVPlanetData,Alchiba V,Planet,59020,Alchiba,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E416,AlchibaIV-aPlanetData,Alchiba IV-a,Moon,59020,Alchiba,4,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E415,AlchibaIVPlanetData,Alchiba IV,Planet,59020,Alchiba,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E414,AlchibaIII-cPlanetData,Alchiba III-c,Moon,59020,Alchiba,3,29,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E413,AlchibaIII-aPlanetData,Alchiba III-a,Moon,59020,Alchiba,3,28,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E412,AlchibaIII-bPlanetData,Alchiba III-b,Moon,59020,Alchiba,3,27,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E411,AlchibaIIIPlanetData,Alchiba III,Planet,59020,Alchiba,0,3,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E410,AlchibaII-aPlanetData,Alchiba II-a,Moon,59020,Alchiba,2,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E40F,AlchibaIIPlanetData,Alchiba II,Planet,59020,Alchiba,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E40E,AlchibaIPlanetData,Alchiba I,Planet,59020,Alchiba,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E40B,MardukIX-bPlanetData,Marduk IX-b,Moon,60805,Marduk,9,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E40A,MardukIX-aPlanetData,Marduk IX-a,Moon,60805,Marduk,9,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E409,MardukIXPlanetData,Marduk IX,Planet,60805,Marduk,0,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E408,MardukVIIIPlanetData,Marduk VIII,Planet,60805,Marduk,0,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E407,MardukVII-cPlanetData,Marduk VII-c,Moon,60805,Marduk,7,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E406,MardukVII-dPlanetData,Marduk VII-d,Moon,60805,Marduk,7,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E405,MardukVII-aPlanetData,Marduk VII-a,Moon,60805,Marduk,7,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E404,MardukVII-bPlanetData,Marduk VII-b,Moon,60805,Marduk,7,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E403,MardukVIIPlanetData,Marduk VII,Planet,60805,Marduk,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E402,MardukVIPlanetData,Marduk VI,Planet,60805,Marduk,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E401,MardukV-aPlanetData,Marduk V-a,Moon,60805,Marduk,5,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E400,MardukVPlanetData,Marduk V,Planet,60805,Marduk,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3FF,MardukIVPlanetData,Marduk IV,Planet,60805,Marduk,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3FE,MardukIII-aPlanetData,Marduk III-a,Moon,60805,Marduk,3,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3FD,MardukIIIPlanetData,Marduk III,Planet,60805,Marduk,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3FC,MardukIIPlanetData,Marduk II,Planet,60805,Marduk,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3FB,MardukI-aPlanetData,Marduk I-a,Moon,60805,Marduk,1,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3FA,MardukIPlanetData,Marduk I,Planet,60805,Marduk,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3F7,PorrimaVI-aPlanetData,Porrima VI-a,Moon,61748,Porrima,6,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3F6,PorrimaVIPlanetData,Porrima VI,Planet,61748,Porrima,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3F5,PorrimaV-aPlanetData,Porrima V-a,Moon,61748,Porrima,5,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3F4,PorrimaV-bPlanetData,Porrima V-b,Moon,61748,Porrima,5,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3F3,PorrimaV-cPlanetData,Porrima V-c,Moon,61748,Porrima,5,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3F2,PorrimaVPlanetData,Porrima V,Planet,61748,Porrima,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E3F1,PorrimaIV-bPlanetData,Porrima IV-b,Moon,61748,Porrima,4,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3F0,PorrimaIV-dPlanetData,Porrima IV-d,Moon,61748,Porrima,4,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3EF,PorrimaIV-cPlanetData,Porrima IV-c,Moon,61748,Porrima,4,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3EE,PorrimaIV-aPlanetData,Porrima IV-a,Moon,61748,Porrima,4,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3ED,PorrimaIVPlanetData,Porrima IV,Planet,61748,Porrima,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E3EC,PorrimaIII-bPlanetData,Porrima III-b,Moon,61748,Porrima,3,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3EB,PorrimaIII-aPlanetData,Porrima III-a,Moon,61748,Porrima,3,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3EA,PorrimaIIIPlanetData,Porrima III,Planet,61748,Porrima,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3E9,PorrimaII-bPlanetData,Porrima II-b,Moon,61748,Porrima,2,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3E8,PorrimaII-aPlanetData,Porrima II-a,Moon,61748,Porrima,2,11,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E3E7,PorrimaII-cPlanetData,Porrima II-c,Moon,61748,Porrima,2,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3E6,PorrimaIIPlanetData,Porrima II,Planet,61748,Porrima,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3E5,PorrimaI-bPlanetData,Porrima I-b,Moon,61748,Porrima,1,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3E4,PorrimaI-aPlanetData,Porrima I-a,Moon,61748,Porrima,1,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3E3,PorrimaIPlanetData,Porrima I,Planet,61748,Porrima,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3E0,IxyllIX-cPlanetData,Ixyll IX-c,Moon,62328,Ixyll,9,27,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3DF,IxyllIX-aPlanetData,Ixyll IX-a,Moon,62328,Ixyll,9,26,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3DE,IxyllIX-dPlanetData,Ixyll IX-d,Moon,62328,Ixyll,9,25,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3DD,IxyllIX-bPlanetData,Ixyll IX-b,Moon,62328,Ixyll,9,24,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3DC,IxyllIXPlanetData,Ixyll IX,Planet,62328,Ixyll,0,9,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E3DB,IxyllVIII-bPlanetData,Ixyll VIII-b,Moon,62328,Ixyll,8,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3DA,IxyllVIII-aPlanetData,Ixyll VIII-a,Moon,62328,Ixyll,8,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3D9,IxyllVIIIPlanetData,Ixyll VIII,Planet,62328,Ixyll,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E3D8,IxyllVII-bPlanetData,Ixyll VII-b,Moon,62328,Ixyll,7,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3D7,IxyllVII-cPlanetData,Ixyll VII-c,Moon,62328,Ixyll,7,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3D6,IxyllVII-aPlanetData,Ixyll VII-a,Moon,62328,Ixyll,7,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3D5,IxyllVIIPlanetData,Ixyll VII,Planet,62328,Ixyll,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E3D4,IxyllVI-dPlanetData,Ixyll VI-d,Moon,62328,Ixyll,6,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3D3,IxyllVI-bPlanetData,Ixyll VI-b,Moon,62328,Ixyll,6,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3D2,IxyllVI-cPlanetData,Ixyll VI-c,Moon,62328,Ixyll,6,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3D1,IxyllVI-ePlanetData,Ixyll VI-e,Moon,62328,Ixyll,6,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3D0,IxyllVI-aPlanetData,Ixyll VI-a,Moon,62328,Ixyll,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3CF,IxyllVIPlanetData,Ixyll VI,Planet,62328,Ixyll,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E3CE,IxyllVPlanetData,Ixyll V,Planet,62328,Ixyll,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3CD,IxyllIVPlanetData,Ixyll IV,Planet,62328,Ixyll,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3CC,IxyllIII-aPlanetData,Ixyll III-a,Moon,62328,Ixyll,3,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3CB,IxyllIII-bPlanetData,Ixyll III-b,Moon,62328,Ixyll,3,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3CA,IxyllIIIPlanetData,Ixyll III,Planet,62328,Ixyll,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3C9,IxyllII-aPlanetData,Ixyll II-a,Moon,62328,Ixyll,2,11,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E3C8,IxyllIIPlanetData,Ixyll II,Planet,62328,Ixyll,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3C7,IxyllIPlanetData,Ixyll I,Planet,62328,Ixyll,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3C4,RutherfordVI-cPlanetData,Rutherford VI-c,Moon,64587,Rutherford,6,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3C3,RutherfordVI-bPlanetData,Rutherford VI-b,Moon,64587,Rutherford,6,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3C2,RutherfordVI-dPlanetData,Rutherford VI-d,Moon,64587,Rutherford,6,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3C1,RutherfordVI-aPlanetData,Rutherford VI-a,Moon,64587,Rutherford,6,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3C0,RutherfordVIPlanetData,Rutherford VI,Planet,64587,Rutherford,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E3BF,RutherfordV-aPlanetData,Rutherford V-a,Moon,64587,Rutherford,5,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3BE,RutherfordV-bPlanetData,Rutherford V-b,Moon,64587,Rutherford,5,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3BD,RutherfordVPlanetData,Rutherford V,Planet,64587,Rutherford,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E3BC,RutherfordIV-ePlanetData,Rutherford IV-e,Moon,64587,Rutherford,4,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3BB,RutherfordIV-aPlanetData,Rutherford IV-a,Moon,64587,Rutherford,4,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3BA,RutherfordIV-cPlanetData,Rutherford IV-c,Moon,64587,Rutherford,4,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3B9,RutherfordIV-dPlanetData,Rutherford IV-d,Moon,64587,Rutherford,4,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3B8,RutherfordIV-bPlanetData,Rutherford IV-b,Moon,64587,Rutherford,4,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3B7,RutherfordIVPlanetData,Rutherford IV,Planet,64587,Rutherford,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E3B6,RutherfordIII-aPlanetData,Rutherford III-a,Moon,64587,Rutherford,3,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3B5,RutherfordIIIPlanetData,Rutherford III,Planet,64587,Rutherford,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3B4,RutherfordII-aPlanetData,Rutherford II-a,Moon,64587,Rutherford,2,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3B3,RutherfordIIPlanetData,Rutherford II,Planet,64587,Rutherford,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3B2,RutherfordI-bPlanetData,Rutherford I-b,Moon,64587,Rutherford,1,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3B1,RutherfordI-aPlanetData,Rutherford I-a,Moon,64587,Rutherford,1,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3B0,RutherfordIPlanetData,Rutherford I,Planet,64587,Rutherford,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3AD,VoliiChiPlanetData,Volii Chi,Planet,64720,Volii,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3AC,VoliiUpsilonPlanetData,Volii Upsilon,Moon,64720,Volii,5,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3AB,VoliiOmegaPlanetData,Volii Omega,Planet,64720,Volii,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E3AA,VoliiPhiPlanetData,Volii Phi,Moon,64720,Volii,4,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3A9,VoliiPsiPlanetData,Volii Psi,Moon,64720,Volii,4,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3A8,VoliiTauPlanetData,Volii Tau,Planet,64720,Volii,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3A7,VoliiGammaPlanetData,Volii Gamma,Moon,64720,Volii,3,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3A6,VoliiEpsilonPlanetData,Volii Epsilon,Planet,64720,Volii,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3A5,VoliiAlphaPlanetData,Volii Alpha,Planet,64720,Volii,0,2,0,1
+Starfield.esm,2026-09-02 22:57:08,0005E3A4,VoliiDeltaPlanetData,Volii Delta,Moon,64720,Volii,1,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E3A3,VoliiBetaPlanetData,Volii Beta,Planet,64720,Volii,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E3A0,BaraVII-cPlanetData,Bara VII-c,Moon,65515,Bara,7,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E39F,BaraVII-dPlanetData,Bara VII-d,Moon,65515,Bara,7,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E39E,BaraVII-aPlanetData,Bara VII-a,Moon,65515,Bara,7,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E39D,BaraVII-bPlanetData,Bara VII-b,Moon,65515,Bara,7,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E39C,BaraVIIPlanetData,Bara VII,Planet,65515,Bara,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E39B,BaraVI-bPlanetData,Bara VI-b,Moon,65515,Bara,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E39A,BaraVI-aPlanetData,Bara VI-a,Moon,65515,Bara,6,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E399,BaraVI-cPlanetData,Bara VI-c,Moon,65515,Bara,6,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E398,BaraVIPlanetData,Bara VI,Planet,65515,Bara,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E397,BaraV-aPlanetData,Bara V-a,Moon,65515,Bara,5,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E396,BaraVPlanetData,Bara V,Planet,65515,Bara,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E395,BaraIVPlanetData,Bara IV,Planet,65515,Bara,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E394,BaraIII-aPlanetData,Bara III-a,Moon,65515,Bara,3,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E393,BaraIIIPlanetData,Bara III,Planet,65515,Bara,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E392,BaraII-aPlanetData,Bara II-a,Moon,65515,Bara,2,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E391,BaraIIPlanetData,Bara II,Planet,65515,Bara,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E390,BaraIPlanetData,Bara I,Planet,65515,Bara,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E38D,ShozaIXPlanetData,Shoza IX,Planet,67063,Shoza,0,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E38C,ShozaVIII-aPlanetData,Shoza VIII-a,Moon,67063,Shoza,8,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E38B,ShozaVIII-cPlanetData,Shoza VIII-c,Moon,67063,Shoza,8,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E38A,ShozaVIII-bPlanetData,Shoza VIII-b,Moon,67063,Shoza,8,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E389,ShozaVIII-dPlanetData,Shoza VIII-d,Moon,67063,Shoza,8,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E388,ShozaVIIIPlanetData,Shoza VIII,Planet,67063,Shoza,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E387,ShozaVII-aPlanetData,Shoza VII-a,Moon,67063,Shoza,7,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E386,ShozaVII-bPlanetData,Shoza VII-b,Moon,67063,Shoza,7,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E385,ShozaVII-cPlanetData,Shoza VII-c,Moon,67063,Shoza,7,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E384,ShozaVIIPlanetData,Shoza VII,Planet,67063,Shoza,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E383,ShozaVI-aPlanetData,Shoza VI-a,Moon,67063,Shoza,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E382,ShozaVIPlanetData,Shoza VI,Planet,67063,Shoza,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E381,ShozaVPlanetData,Shoza V,Planet,67063,Shoza,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E380,ShozaIVPlanetData,Shoza IV,Planet,67063,Shoza,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E37F,ShozaIII-aPlanetData,Shoza III-a,Moon,67063,Shoza,3,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E37E,ShozaIIIPlanetData,Shoza III,Planet,67063,Shoza,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E37D,ShozaII-aPlanetData,Shoza II-a,Moon,67063,Shoza,2,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E37C,ShozaIIPlanetData,Shoza II,Planet,67063,Shoza,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E37B,ShozaI-aPlanetData,Shoza I-a,Moon,67063,Shoza,1,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E37A,ShozaIPlanetData,Shoza I,Planet,67063,Shoza,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E377,MuphridVIII-dPlanetData,Muphrid VIII-d,Moon,67711,Muphrid,8,30,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E376,MuphridVIII-aPlanetData,Muphrid VIII-a,Moon,67711,Muphrid,8,29,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E375,MuphridVIII-bPlanetData,Muphrid VIII-b,Moon,67711,Muphrid,8,28,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E374,MuphridVIII-cPlanetData,Muphrid VIII-c,Moon,67711,Muphrid,8,27,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E373,MuphridVIIIPlanetData,Muphrid VIII,Planet,67711,Muphrid,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E372,MuphridVII-aPlanetData,Muphrid VII-a,Moon,67711,Muphrid,7,26,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E371,MuphridVII-bPlanetData,Muphrid VII-b,Moon,67711,Muphrid,7,25,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E370,MuphridVII-cPlanetData,Muphrid VII-c,Moon,67711,Muphrid,7,24,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E36F,MuphridVIIPlanetData,Muphrid VII,Planet,67711,Muphrid,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E36E,MuphridVI-aPlanetData,Muphrid VI-a,Moon,67711,Muphrid,6,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E36D,MuphridVI-dPlanetData,Muphrid VI-d,Moon,67711,Muphrid,6,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E36C,MuphridVI-cPlanetData,Muphrid VI-c,Moon,67711,Muphrid,6,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E36B,MuphridVI-bPlanetData,Muphrid VI-b,Moon,67711,Muphrid,6,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E36A,MuphridVIPlanetData,Muphrid VI,Planet,67711,Muphrid,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E369,MuphridV-bPlanetData,Muphrid V-b,Moon,67711,Muphrid,5,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E368,MuphridV-cPlanetData,Muphrid V-c,Moon,67711,Muphrid,5,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E367,MuphridV-aPlanetData,Muphrid V-a,Moon,67711,Muphrid,5,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E366,MuphridV-dPlanetData,Muphrid V-d,Moon,67711,Muphrid,5,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E365,MuphridVPlanetData,Muphrid V,Planet,67711,Muphrid,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E364,MuphridIVPlanetData,Muphrid IV,Planet,67711,Muphrid,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E363,MuphridIII-cPlanetData,Muphrid III-c,Moon,67711,Muphrid,3,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E362,MuphridIII-bPlanetData,Muphrid III-b,Moon,67711,Muphrid,3,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E361,MuphridIII-aPlanetData,Muphrid III-a,Moon,67711,Muphrid,3,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E360,MuphridIIIPlanetData,Muphrid III,Planet,67711,Muphrid,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E35F,MuphridII-aPlanetData,Muphrid II-a,Moon,67711,Muphrid,2,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E35E,MuphridIIPlanetData,Muphrid II,Planet,67711,Muphrid,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E35D,MuphridI-bPlanetData,Muphrid I-b,Moon,67711,Muphrid,1,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E35C,MuphridI-aPlanetData,Muphrid I-a,Moon,67711,Muphrid,1,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E35B,MuphridIPlanetData,Muphrid I,Planet,67711,Muphrid,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E358,MolochVIIPlanetData,Moloch VII,Planet,68463,Moloch,0,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E357,MolochVI-aPlanetData,Moloch VI-a,Moon,68463,Moloch,6,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E356,MolochVI-bPlanetData,Moloch VI-b,Moon,68463,Moloch,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E355,MolochVIPlanetData,Moloch VI,Planet,68463,Moloch,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E354,MolochV-dPlanetData,Moloch V-d,Moon,68463,Moloch,5,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E353,MolochV-cPlanetData,Moloch V-c,Moon,68463,Moloch,5,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E352,MolochV-aPlanetData,Moloch V-a,Moon,68463,Moloch,5,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E351,MolochV-bPlanetData,Moloch V-b,Moon,68463,Moloch,5,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E350,MolochVPlanetData,Moloch V,Planet,68463,Moloch,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E34F,MolochIVPlanetData,Moloch IV,Planet,68463,Moloch,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E34E,MolochIIIPlanetData,Moloch III,Planet,68463,Moloch,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E34D,MolochIIPlanetData,Moloch II,Planet,68463,Moloch,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E34C,MolochI-aPlanetData,Moloch I-a,Moon,68463,Moloch,1,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E34B,MolochIPlanetData,Moloch I,Planet,68463,Moloch,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E348,AlphaAndrasteVIPlanetData,Alpha Andraste VI,Planet,5325,Alpha Andraste,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E347,AlphaAndrasteVPlanetData,Alpha Andraste V,Planet,5325,Alpha Andraste,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E346,AlphaAndrasteIVPlanetData,Alpha Andraste IV,Planet,5325,Alpha Andraste,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E345,AlphaAndrasteIIIPlanetData,Alpha Andraste III,Planet,5325,Alpha Andraste,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E344,AlphaAndrasteIIPlanetData,Alpha Andraste II,Planet,5325,Alpha Andraste,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E343,AlphaAndrasteI-aPlanetData,Alpha Andraste I-a,Moon,5325,Alpha Andraste,1,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E342,AlphaAndrasteIPlanetData,Alpha Andraste I,Planet,5325,Alpha Andraste,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E340,BetaAndrasteI-aPlanetData,Beta Andraste I-a,Moon,119221,Beta Andraste,16,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E33F,BetaAndrasteI-dPlanetData,Beta Andraste I-d,Moon,119221,Beta Andraste,16,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E33E,BetaAndrasteI-cPlanetData,Beta Andraste I-c,Moon,119221,Beta Andraste,16,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E33D,BetaAndrasteI-bPlanetData,Beta Andraste I-b,Moon,119221,Beta Andraste,16,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E33C,BetaAndrasteIPlanetData,Beta Andraste I,Planet,119221,Beta Andraste,0,16,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E339,ArcturusIII-aPlanetData,Arcturus III-a,Moon,69451,Arcturus,3,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E338,ArcturusIIIPlanetData,Arcturus III,Planet,69451,Arcturus,0,3,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E337,ArcturusIIPlanetData,Arcturus II,Planet,69451,Arcturus,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E336,ArcturusIPlanetData,Arcturus I,Planet,69451,Arcturus,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E333,BannocSecondusIPlanetData,Bannoc Secondus I,Planet,118959,Bannoc Secondus,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E330,HylaVIII-aPlanetData,Hyla VIII-a,Moon,70096,Hyla,8,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E32F,HylaVIII-ePlanetData,Hyla VIII-e,Moon,70096,Hyla,8,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E32E,HylaVIII-cPlanetData,Hyla VIII-c,Moon,70096,Hyla,8,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E32D,HylaVIII-dPlanetData,Hyla VIII-d,Moon,70096,Hyla,8,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E32C,HylaVIII-bPlanetData,Hyla VIII-b,Moon,70096,Hyla,8,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E32B,HylaVIIIPlanetData,Hyla VIII,Planet,70096,Hyla,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E32A,HylaVII-aPlanetData,Hyla VII-a,Moon,70096,Hyla,7,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E329,HylaVIIPlanetData,Hyla VII,Planet,70096,Hyla,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E328,HylaVI-bPlanetData,Hyla VI-b,Moon,70096,Hyla,6,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E327,HylaVI-aPlanetData,Hyla VI-a,Moon,70096,Hyla,6,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E326,HylaVIPlanetData,Hyla VI,Planet,70096,Hyla,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E325,HylaV-aPlanetData,Hyla V-a,Moon,70096,Hyla,5,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E324,HylaVPlanetData,Hyla V,Planet,70096,Hyla,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E323,HylaIV-aPlanetData,Hyla IV-a,Moon,70096,Hyla,4,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E322,HylaIV-bPlanetData,Hyla IV-b,Moon,70096,Hyla,4,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E321,HylaIVPlanetData,Hyla IV,Planet,70096,Hyla,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E320,HylaIIIPlanetData,Hyla III,Planet,70096,Hyla,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E31F,HylaII-bPlanetData,Hyla II-b,Moon,70096,Hyla,2,11,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E31E,HylaII-aPlanetData,Hyla II-a,Moon,70096,Hyla,2,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E31D,HylaIIPlanetData,Hyla II,Planet,70096,Hyla,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E31C,HylaI-aPlanetData,Hyla I-a,Moon,70096,Hyla,1,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E31B,HylaIPlanetData,Hyla I,Planet,70096,Hyla,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E318,LovellPlanetData,Lovell,Moon,71456,Alpha Centauri,4,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E317,HawleyPlanetData,Hawley,Moon,71456,Alpha Centauri,4,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E316,VossPlanetData,Voss,Moon,71456,Alpha Centauri,4,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E315,ChawlaPlanetData,Chawla,Moon,71456,Alpha Centauri,4,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E314,ZamkaPlanetData,Zamka,Moon,71456,Alpha Centauri,4,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E313,OlivasPlanetData,Olivas,Planet,71456,Alpha Centauri,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E312,KurtzPlanetData,Kurtz,Moon,71456,Alpha Centauri,3,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E311,GagarinPlanetData,Gagarin,Planet,71456,Alpha Centauri,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E310,CurbeamPlanetData,Curbeam,Moon,71456,Alpha Centauri,1,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E30F,GrissomPlanetData,Grissom,Moon,71456,Alpha Centauri,1,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E30E,BondarPlanetData,Bondar,Planet,71456,Alpha Centauri,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E30A,FoucaultVIII-aPlanetData,Foucault VIII-a,Moon,72377,Foucault,8,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E309,FoucaultVIIIPlanetData,Foucault VIII,Planet,72377,Foucault,0,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E308,FoucaultVII-cPlanetData,Foucault VII-c,Moon,72377,Foucault,7,31,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E307,FoucaultVII-bPlanetData,Foucault VII-b,Moon,72377,Foucault,7,30,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E306,FoucaultVII-dPlanetData,Foucault VII-d,Moon,72377,Foucault,7,29,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E305,FoucaultVII-ePlanetData,Foucault VII-e,Moon,72377,Foucault,7,28,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E304,FoucaultVII-aPlanetData,Foucault VII-a,Moon,72377,Foucault,7,27,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E303,FoucaultVIIPlanetData,Foucault VII,Planet,72377,Foucault,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E302,FoucaultVI-ePlanetData,Foucault VI-e,Moon,72377,Foucault,6,26,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E301,FoucaultVI-dPlanetData,Foucault VI-d,Moon,72377,Foucault,6,25,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E300,FoucaultVI-bPlanetData,Foucault VI-b,Moon,72377,Foucault,6,24,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2FF,FoucaultVI-aPlanetData,Foucault VI-a,Moon,72377,Foucault,6,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2FE,FoucaultVI-cPlanetData,Foucault VI-c,Moon,72377,Foucault,6,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2FD,FoucaultVIPlanetData,Foucault VI,Planet,72377,Foucault,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E2FC,FoucaultV-bPlanetData,Foucault V-b,Moon,72377,Foucault,5,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2FB,FoucaultV-cPlanetData,Foucault V-c,Moon,72377,Foucault,5,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2FA,FoucaultV-dPlanetData,Foucault V-d,Moon,72377,Foucault,5,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2F9,FoucaultV-aPlanetData,Foucault V-a,Moon,72377,Foucault,5,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2F8,FoucaultVPlanetData,Foucault V,Planet,72377,Foucault,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E2F7,FoucaultIVPlanetData,Foucault IV,Planet,72377,Foucault,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2F6,FoucaultIII-aPlanetData,Foucault III-a,Moon,72377,Foucault,3,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2F5,FoucaultIII-bPlanetData,Foucault III-b,Moon,72377,Foucault,3,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2F4,FoucaultIIIPlanetData,Foucault III,Planet,72377,Foucault,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2F3,FoucaultII-aPlanetData,Foucault II-a,Moon,72377,Foucault,2,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2F2,FoucaultII-bPlanetData,Foucault II-b,Moon,72377,Foucault,2,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2F1,FoucaultIIPlanetData,Foucault II,Planet,72377,Foucault,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2F0,FoucaultI-bPlanetData,Foucault I-b,Moon,72377,Foucault,1,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2EF,FoucaultI-aPlanetData,Foucault I-a,Moon,72377,Foucault,1,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2EE,FoucaultIPlanetData,Foucault I,Planet,72377,Foucault,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2EB,FreyaIX-bPlanetData,Freya IX-b,Moon,72341,Freya,9,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2EA,FreyaIX-aPlanetData,Freya IX-a,Moon,72341,Freya,9,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2E9,FreyaIX-cPlanetData,Freya IX-c,Moon,72341,Freya,9,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2E8,FreyaIXPlanetData,Freya IX,Planet,72341,Freya,0,9,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E2E7,FreyaVIII-aPlanetData,Freya VIII-a,Moon,72341,Freya,8,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2E6,FreyaVIIIPlanetData,Freya VIII,Planet,72341,Freya,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E2E5,FreyaVII-aPlanetData,Freya VII-a,Moon,72341,Freya,7,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2E4,FreyaVIIPlanetData,Freya VII,Planet,72341,Freya,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E2E3,FreyaVIPlanetData,Freya VI,Planet,72341,Freya,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2E2,FreyaVPlanetData,Freya V,Planet,72341,Freya,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2E1,FreyaIV-cPlanetData,Freya IV-c,Moon,72341,Freya,4,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2E0,FreyaIV-bPlanetData,Freya IV-b,Moon,72341,Freya,4,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2DF,FreyaIV-aPlanetData,Freya IV-a,Moon,72341,Freya,4,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2DE,FreyaIVPlanetData,Freya IV,Planet,72341,Freya,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2DD,FreyaIIIPlanetData,Freya III,Planet,72341,Freya,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2DC,FreyaIIPlanetData,Freya II,Planet,72341,Freya,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2DB,FreyaIPlanetData,Freya I,Planet,72341,Freya,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2D7,OlaranPlanetData,Olaran,Moon,72432,Cheyenne,9,33,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2D6,BelwahPlanetData,Belwah,Moon,72432,Cheyenne,9,32,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2D5,HardpointPlanetData,Hardpoint,Moon,72432,Cheyenne,9,31,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2D4,LaramiePlanetData,Laramie,Moon,72432,Cheyenne,9,30,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2D3,BismarkPlanetData,Bismark,Moon,72432,Cheyenne,9,29,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2D2,NavahaPlanetData,Navaha,Planet,72432,Cheyenne,0,9,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E2D1,TahrnisPlanetData,Tahrnis,Moon,72432,Cheyenne,8,28,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2D0,CraggPlanetData,Cragg,Moon,72432,Cheyenne,8,27,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2CF,FennPlanetData,Fenn,Planet,72432,Cheyenne,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E2CE,StellisAPlanetData,Stellis A,Moon,72432,Cheyenne,7,26,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2CD,StellisBPlanetData,Stellis B,Moon,72432,Cheyenne,7,25,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2CC,StellisCPlanetData,Stellis C,Moon,72432,Cheyenne,7,24,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2CB,StellisDPlanetData,Stellis D,Moon,72432,Cheyenne,7,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2CA,StellisPlanetData,Stellis,Planet,72432,Cheyenne,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E2C9,AgamonAPlanetData,Agamon A,Moon,72432,Cheyenne,6,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2C8,AgamonBPlanetData,Agamon B,Moon,72432,Cheyenne,6,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2C7,AgamonCPlanetData,Agamon C,Moon,72432,Cheyenne,6,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2C6,AgamonDPlanetData,Agamon D,Moon,72432,Cheyenne,6,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2C5,AgamonPlanetData,Agamon,Planet,72432,Cheyenne,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E2C4,MontaraLunaPlanetData,Montara Luna,Moon,72432,Cheyenne,5,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2C3,KaliraPlanetData,Kalira,Moon,72432,Cheyenne,5,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2C2,ThrenPlanetData,Thren,Moon,72432,Cheyenne,5,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2C1,WellishPlanetData,Wellish,Moon,72432,Cheyenne,5,37,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2C0,HeiloPlanetData,Heilo,Moon,72432,Cheyenne,5,36,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2BF,MontaraPlanetData,Montara,Planet,72432,Cheyenne,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E2BE,GrizzitPlanetData,Grizzit,Moon,72432,Cheyenne,4,35,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2BD,RellPlanetData,Rell,Moon,72432,Cheyenne,4,34,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2BC,BurranPlanetData,Burran,Planet,72432,Cheyenne,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2BB,SmetPlanetData,Smet,Moon,72432,Cheyenne,3,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2BA,WashakiePlanetData,Washakie,Planet,72432,Cheyenne,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2B9,CodosPlanetData,Codos,Moon,72432,Cheyenne,2,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2B8,AntharumPlanetData,Antharum,Moon,72432,Cheyenne,2,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2B7,BindiPlanetData,Bindi,Moon,72432,Cheyenne,2,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2B6,AkilaPlanetData,Akila,Planet,72432,Cheyenne,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2B5,SkinkPlanetData,Skink,Planet,72432,Cheyenne,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2B2,MaheoVII-aPlanetData,Maheo VII-a,Moon,118988,Maheo,7,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2B1,MaheoVIIPlanetData,Maheo VII,Planet,118988,Maheo,0,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2B0,MaheoVI-aPlanetData,Maheo VI-a,Moon,118988,Maheo,6,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2AF,MaheoVIPlanetData,Maheo VI,Planet,118988,Maheo,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2AE,MaheoV-aPlanetData,Maheo V-a,Moon,118988,Maheo,5,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2AD,MaheoVPlanetData,Maheo V,Planet,118988,Maheo,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E2AC,MaheoIV-bPlanetData,Maheo IV-b,Moon,118988,Maheo,4,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2AB,MaheoIV-dPlanetData,Maheo IV-d,Moon,118988,Maheo,4,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2AA,MaheoIV-aPlanetData,Maheo IV-a,Moon,118988,Maheo,4,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2A9,MaheoIV-cPlanetData,Maheo IV-c,Moon,118988,Maheo,4,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2A8,MaheoIVPlanetData,Maheo IV,Planet,118988,Maheo,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E2A7,MaheoIII-bPlanetData,Maheo III-b,Moon,118988,Maheo,3,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2A6,MaheoIII-aPlanetData,Maheo III-a,Moon,118988,Maheo,3,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2A5,MaheoIIIPlanetData,Maheo III,Planet,118988,Maheo,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2A4,MaheoIIPlanetData,Maheo II,Planet,118988,Maheo,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2A3,MaheoIPlanetData,Maheo I,Planet,118988,Maheo,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E2A0,OrphiusPlanetData,Orphius,Moon,72957,Olympus,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E29F,CybelePlanetData,Cybele,Moon,72957,Olympus,6,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E29E,MithrasPlanetData,Mithras,Moon,72957,Olympus,6,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E29D,DionysusPlanetData,Dionysus,Moon,72957,Olympus,6,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E29C,AionPlanetData,Aion,Planet,72957,Olympus,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E29B,HypnosPlanetData,Hypnos,Moon,72957,Olympus,5,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E29A,ThanatosPlanetData,Thanatos,Planet,72957,Olympus,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E299,AnankePlanetData,Ananke,Planet,72957,Olympus,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E298,ThalassaPlanetData,Thalassa,Moon,72957,Olympus,3,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E297,PontusPlanetData,Pontus,Moon,72957,Olympus,3,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E296,ErebusPlanetData,Erebus,Planet,72957,Olympus,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E295,OureaPlanetData,Ourea,Planet,72957,Olympus,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E294,NesoiPlanetData,Nesoi,Planet,72957,Olympus,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E291,AranaeVPlanetData,Aranae V,Planet,72955,Aranae,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E290,AranaeIV-cPlanetData,Aranae IV-c,Moon,72955,Aranae,4,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E28F,AranaeIV-aPlanetData,Aranae IV-a,Moon,72955,Aranae,4,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E28E,AranaeIV-dPlanetData,Aranae IV-d,Moon,72955,Aranae,4,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E28D,AranaeIV-bPlanetData,Aranae IV-b,Moon,72955,Aranae,4,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E28C,AranaeIVPlanetData,Aranae IV,Planet,72955,Aranae,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E28B,AranaeIIIPlanetData,Aranae III,Planet,72955,Aranae,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E28A,AranaeII-aPlanetData,Aranae II-a,Moon,72955,Aranae,2,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E289,AranaeII-bPlanetData,Aranae II-b,Moon,72955,Aranae,2,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E288,AranaeIIPlanetData,Aranae II,Planet,72955,Aranae,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E287,AranaeIPlanetData,Aranae I,Planet,72955,Aranae,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E284,GammaVulpesIV-aPlanetData,Gamma Vulpes IV-a,Moon,75489,Gamma Vulpes,4,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E283,GammaVulpesIV-dPlanetData,Gamma Vulpes IV-d,Moon,75489,Gamma Vulpes,4,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E282,GammaVulpesIV-cPlanetData,Gamma Vulpes IV-c,Moon,75489,Gamma Vulpes,4,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E281,GammaVulpesIV-bPlanetData,Gamma Vulpes IV-b,Moon,75489,Gamma Vulpes,4,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E280,GammaVulpesIVPlanetData,Gamma Vulpes IV,Planet,75489,Gamma Vulpes,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E27F,GammaVulpesIII-aPlanetData,Gamma Vulpes III-a,Moon,75489,Gamma Vulpes,3,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E27E,GammaVulpesIIIPlanetData,Gamma Vulpes III,Planet,75489,Gamma Vulpes,0,3,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E27D,GammaVulpesII-dPlanetData,Gamma Vulpes II-d,Moon,75489,Gamma Vulpes,2,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E27C,GammaVulpesII-cPlanetData,Gamma Vulpes II-c,Moon,75489,Gamma Vulpes,2,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E27B,GammaVulpesII-aPlanetData,Gamma Vulpes II-a,Moon,75489,Gamma Vulpes,2,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E27A,GammaVulpesII-bPlanetData,Gamma Vulpes II-b,Moon,75489,Gamma Vulpes,2,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E279,GammaVulpesIIPlanetData,Gamma Vulpes II,Planet,75489,Gamma Vulpes,0,2,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E278,GammaVulpesIPlanetData,Gamma Vulpes I,Planet,75489,Gamma Vulpes,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E274,DeltaVulpesVIIPlanetData,Delta Vulpes VII,Planet,75493,Delta Vulpes,0,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E273,DeltaVulpesVI-aPlanetData,Delta Vulpes VI-a,Moon,75493,Delta Vulpes,6,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E272,DeltaVulpesVIPlanetData,Delta Vulpes VI,Planet,75493,Delta Vulpes,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E271,DeltaVulpesV-aPlanetData,Delta Vulpes V-a,Moon,75493,Delta Vulpes,5,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E270,DeltaVulpesV-bPlanetData,Delta Vulpes V-b,Moon,75493,Delta Vulpes,5,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E26F,DeltaVulpesV-dPlanetData,Delta Vulpes V-d,Moon,75493,Delta Vulpes,5,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E26E,DeltaVulpesV-cPlanetData,Delta Vulpes V-c,Moon,75493,Delta Vulpes,5,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E26D,DeltaVulpesV-ePlanetData,Delta Vulpes V-e,Moon,75493,Delta Vulpes,5,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E26C,DeltaVulpesVPlanetData,Delta Vulpes V,Planet,75493,Delta Vulpes,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E26B,DeltaVulpesIV-aPlanetData,Delta Vulpes IV-a,Moon,75493,Delta Vulpes,4,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E26A,DeltaVulpesIVPlanetData,Delta Vulpes IV,Planet,75493,Delta Vulpes,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E269,DeltaVulpesIII-aPlanetData,Delta Vulpes III-a,Moon,75493,Delta Vulpes,3,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E268,DeltaVulpesIIIPlanetData,Delta Vulpes III,Planet,75493,Delta Vulpes,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E267,DeltaVulpesIIPlanetData,Delta Vulpes II,Planet,75493,Delta Vulpes,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E266,DeltaVulpesIPlanetData,Delta Vulpes I,Planet,75493,Delta Vulpes,0,1,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E263,CopernicusVIII-dPlanetData,Copernicus VIII-d,Moon,76816,Copernicus,8,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E262,CopernicusVIII-aPlanetData,Copernicus VIII-a,Moon,76816,Copernicus,8,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E261,CopernicusVIII-cPlanetData,Copernicus VIII-c,Moon,76816,Copernicus,8,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E260,CopernicusVIII-bPlanetData,Copernicus VIII-b,Moon,76816,Copernicus,8,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E25F,CopernicusVIIIPlanetData,Copernicus VIII,Planet,76816,Copernicus,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E25E,CopernicusVII-aPlanetData,Copernicus VII-a,Moon,76816,Copernicus,7,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E25D,CopernicusVII-bPlanetData,Copernicus VII-b,Moon,76816,Copernicus,7,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E25C,CopernicusVIIPlanetData,Copernicus VII,Planet,76816,Copernicus,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E25B,CopernicusVIPlanetData,Copernicus VI,Planet,76816,Copernicus,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E25A,CopernicusVPlanetData,Copernicus V,Planet,76816,Copernicus,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E259,CopernicusIVPlanetData,Copernicus IV,Planet,76816,Copernicus,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E258,CopernicusIII-aPlanetData,Copernicus III-a,Moon,76816,Copernicus,3,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E257,CopernicusIIIPlanetData,Copernicus III,Planet,76816,Copernicus,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E256,CopernicusIIPlanetData,Copernicus II,Planet,76816,Copernicus,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E255,CopernicusIPlanetData,Copernicus I,Planet,76816,Copernicus,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E252,CopernicusMinorI-aPlanetData,Copernicus Minor I-a,Moon,119039,Copernicus Minor,1,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E251,CopernicusMinorI-bPlanetData,Copernicus Minor I-b,Moon,119039,Copernicus Minor,1,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E250,CopernicusMinorIPlanetData,Copernicus Minor I,Planet,119039,Copernicus Minor,0,1,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E24D,SerpentisVI-bPlanetData,Serpentis VI-b,Moon,76835,Serpentis,6,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E24C,SerpentisVI-aPlanetData,Serpentis VI-a,Moon,76835,Serpentis,6,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E24B,SerpentisVIPlanetData,Serpentis VI,Planet,76835,Serpentis,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E24A,SerpentisV-bPlanetData,Serpentis V-b,Moon,76835,Serpentis,5,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E249,SerpentisV-aPlanetData,Serpentis V-a,Moon,76835,Serpentis,5,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E248,SerpentisV-dPlanetData,Serpentis V-d,Moon,76835,Serpentis,5,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E247,SerpentisV-cPlanetData,Serpentis V-c,Moon,76835,Serpentis,5,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E246,SerpentisVPlanetData,Serpentis V,Planet,76835,Serpentis,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E245,SerpentisIV-aPlanetData,Serpentis IV-a,Moon,76835,Serpentis,4,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E244,SerpentisIVPlanetData,Serpentis IV,Planet,76835,Serpentis,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E243,SerpentisIIIPlanetData,Serpentis III,Planet,76835,Serpentis,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E242,SerpentisII-bPlanetData,Serpentis II-b,Moon,76835,Serpentis,2,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E241,SerpentisII-aPlanetData,Serpentis II-a,Moon,76835,Serpentis,2,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E240,SerpentisIIPlanetData,Serpentis II,Planet,76835,Serpentis,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E23F,SerpentisIPlanetData,Serpentis I,Planet,76835,Serpentis,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E23C,MAXPlanetData,Max,Moon,77022,Kryx,1,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E23B,NoxPlanetData,Nox,Moon,77022,Kryx,1,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E23A,RocklockPlanetData,Rocklock,Moon,77022,Kryx,1,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E239,BoronPlanetData,Boron,Moon,77022,Kryx,1,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E238,CandorePlanetData,Candore,Moon,77022,Kryx,1,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E237,NeebasPlanetData,Neebas,Moon,77022,Kryx,1,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E236,IcePlanetData,Ice,Moon,77022,Kryx,1,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E235,SuvorovPlanetData,Suvorov,Planet,77022,Kryx,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E232,SpartaVIII-bPlanetData,Sparta VIII-b,Moon,79252,Sparta,8,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E231,SpartaVIII-aPlanetData,Sparta VIII-a,Moon,79252,Sparta,8,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E230,SpartaVIII-cPlanetData,Sparta VIII-c,Moon,79252,Sparta,8,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E22F,SpartaVIIIPlanetData,Sparta VIII,Planet,79252,Sparta,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E22E,SpartaVII-bPlanetData,Sparta VII-b,Moon,79252,Sparta,7,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E22D,SpartaVII-cPlanetData,Sparta VII-c,Moon,79252,Sparta,7,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E22C,SpartaVII-aPlanetData,Sparta VII-a,Moon,79252,Sparta,7,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E22B,SpartaVIIPlanetData,Sparta VII,Planet,79252,Sparta,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E22A,SpartaVI-cPlanetData,Sparta VI-c,Moon,79252,Sparta,6,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E229,SpartaVI-bPlanetData,Sparta VI-b,Moon,79252,Sparta,6,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E228,SpartaVI-aPlanetData,Sparta VI-a,Moon,79252,Sparta,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E227,SpartaVIPlanetData,Sparta VI,Planet,79252,Sparta,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E226,SpartaV-aPlanetData,Sparta V-a,Moon,79252,Sparta,5,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E225,SpartaVPlanetData,Sparta V,Planet,79252,Sparta,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E224,SpartaIVPlanetData,Sparta IV,Planet,79252,Sparta,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E223,SpartaIII-aPlanetData,Sparta III-a,Moon,79252,Sparta,3,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E222,SpartaIIIPlanetData,Sparta III,Planet,79252,Sparta,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E221,SpartaII-aPlanetData,Sparta II-a,Moon,79252,Sparta,2,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E220,SpartaII-bPlanetData,Sparta II-b,Moon,79252,Sparta,2,10,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E21F,SpartaIIPlanetData,Sparta II,Planet,79252,Sparta,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E21E,SpartaIPlanetData,Sparta I,Planet,79252,Sparta,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E21B,JaffaVIIIPlanetData,Jaffa VIII,Planet,79431,Jaffa,0,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E21A,JaffaVII-aPlanetData,Jaffa VII-a,Moon,79431,Jaffa,7,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E219,JaffaVII-dPlanetData,Jaffa VII-d,Moon,79431,Jaffa,7,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E218,JaffaVII-ePlanetData,Jaffa VII-e,Moon,79431,Jaffa,7,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E217,JaffaVII-cPlanetData,Jaffa VII-c,Moon,79431,Jaffa,7,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E216,JaffaVII-bPlanetData,Jaffa VII-b,Moon,79431,Jaffa,7,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E215,JaffaVIIPlanetData,Jaffa VII,Planet,79431,Jaffa,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E214,JaffaVI-bPlanetData,Jaffa VI-b,Moon,79431,Jaffa,6,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E213,JaffaVI-cPlanetData,Jaffa VI-c,Moon,79431,Jaffa,6,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E212,JaffaVI-aPlanetData,Jaffa VI-a,Moon,79431,Jaffa,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E211,JaffaVIPlanetData,Jaffa VI,Planet,79431,Jaffa,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E210,JaffaV-aPlanetData,Jaffa V-a,Moon,79431,Jaffa,5,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E20F,JaffaVPlanetData,Jaffa V,Planet,79431,Jaffa,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E20E,JaffaIV-aPlanetData,Jaffa IV-a,Moon,79431,Jaffa,4,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E20D,JaffaIVPlanetData,Jaffa IV,Planet,79431,Jaffa,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E20C,JaffaIIIPlanetData,Jaffa III,Planet,79431,Jaffa,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E20B,JaffaII-aPlanetData,Jaffa II-a,Moon,79431,Jaffa,2,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E20A,JaffaIIPlanetData,Jaffa II,Planet,79431,Jaffa,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E209,JaffaI-aPlanetData,Jaffa I-a,Moon,79431,Jaffa,1,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E208,JaffaIPlanetData,Jaffa I,Planet,79431,Jaffa,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E205,BradburyV-aPlanetData,Bradbury V-a,Moon,81444,Bradbury,5,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E204,BradburyVPlanetData,Bradbury V,Planet,81444,Bradbury,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E203,BradburyIV-aPlanetData,Bradbury IV-a,Moon,81444,Bradbury,4,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E202,BradburyIVPlanetData,Bradbury IV,Planet,81444,Bradbury,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E201,BradburyIIIPlanetData,Bradbury III,Planet,81444,Bradbury,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E200,BradburyIIPlanetData,Bradbury II,Planet,81444,Bradbury,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1FF,BradburyI-aPlanetData,Bradbury I-a,Moon,81444,Bradbury,1,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1FE,BradburyI-bPlanetData,Bradbury I-b,Moon,81444,Bradbury,1,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1FD,BradburyIPlanetData,Bradbury I,Planet,81444,Bradbury,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1FA,McClureIIIPlanetData,McClure III,Planet,119106,McClure,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1F9,McClureII-cPlanetData,McClure II-c,Moon,119106,McClure,2,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E1F7,McClureII-aPlanetData,McClure II-a,Moon,119106,McClure,2,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1F6,McClureII-bPlanetData,McClure II-b,Moon,119106,McClure,2,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1F5,McClureIIPlanetData,McClure II,Planet,119106,McClure,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1F4,McClureI-aPlanetData,McClure I-a,Moon,119106,McClure,1,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1F3,McClureIPlanetData,McClure I,Planet,119106,McClure,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1F0,TidachaI-bPlanetData,Tidacha I-b,Moon,82337,Tidacha,1,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1EF,TidachaI-cPlanetData,Tidacha I-c,Moon,82337,Tidacha,1,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1EE,TidachaI-aPlanetData,Tidacha I-a,Moon,82337,Tidacha,1,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1ED,TidachaIPlanetData,Tidacha I,Planet,82337,Tidacha,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1EA,MasadaIXPlanetData,Masada IX,Planet,83021,Masada,0,9,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E1E9,MasadaVIII-aPlanetData,Masada VIII-a,Moon,83021,Masada,8,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1E8,MasadaVIIIPlanetData,Masada VIII,Planet,83021,Masada,0,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1E7,MasadaVII-bPlanetData,Masada VII-b,Moon,83021,Masada,7,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1E6,MasadaVII-aPlanetData,Masada VII-a,Moon,83021,Masada,7,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1E5,MasadaVIIPlanetData,Masada VII,Planet,83021,Masada,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E1E4,MasadaVI-aPlanetData,Masada VI-a,Moon,83021,Masada,6,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1E3,MasadaVIPlanetData,Masada VI,Planet,83021,Masada,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E1E2,MasadaV-cPlanetData,Masada V-c,Moon,83021,Masada,5,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1E1,MasadaV-aPlanetData,Masada V-a,Moon,83021,Masada,5,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1E0,MasadaV-bPlanetData,Masada V-b,Moon,83021,Masada,5,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1DF,MasadaVPlanetData,Masada V,Planet,83021,Masada,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E1DE,MasadaIV-aPlanetData,Masada IV-a,Moon,83021,Masada,4,11,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E1DD,MasadaIVPlanetData,Masada IV,Planet,83021,Masada,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1DC,MasadaIIIPlanetData,Masada III,Planet,83021,Masada,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1DB,MasadaIIPlanetData,Masada II,Planet,83021,Masada,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1DA,MasadaIPlanetData,Masada I,Planet,83021,Masada,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1D7,HeisenbergXPlanetData,Heisenberg X,Planet,83344,Heisenberg,0,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1D6,HeisenbergIXPlanetData,Heisenberg IX,Planet,83344,Heisenberg,0,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1D5,HeisenbergVIII-bPlanetData,Heisenberg VIII-b,Moon,83344,Heisenberg,8,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1D4,HeisenbergVIII-aPlanetData,Heisenberg VIII-a,Moon,83344,Heisenberg,8,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1D3,HeisenbergVIII-cPlanetData,Heisenberg VIII-c,Moon,83344,Heisenberg,8,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1D2,HeisenbergVIII-dPlanetData,Heisenberg VIII-d,Moon,83344,Heisenberg,8,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1D1,HeisenbergVIIIPlanetData,Heisenberg VIII,Planet,83344,Heisenberg,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E1D0,HeisenbergVII-aPlanetData,Heisenberg VII-a,Moon,83344,Heisenberg,7,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1CF,HeisenbergVIIPlanetData,Heisenberg VII,Planet,83344,Heisenberg,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E1CE,HeisenbergVI-aPlanetData,Heisenberg VI-a,Moon,83344,Heisenberg,6,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1CD,HeisenbergVI-cPlanetData,Heisenberg VI-c,Moon,83344,Heisenberg,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1CC,HeisenbergVI-bPlanetData,Heisenberg VI-b,Moon,83344,Heisenberg,6,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1CB,HeisenbergVIPlanetData,Heisenberg VI,Planet,83344,Heisenberg,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E1CA,HeisenbergV-aPlanetData,Heisenberg V-a,Moon,83344,Heisenberg,5,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1C9,HeisenbergVPlanetData,Heisenberg V,Planet,83344,Heisenberg,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1C8,HeisenbergIVPlanetData,Heisenberg IV,Planet,83344,Heisenberg,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1C7,HeisenbergIIIPlanetData,Heisenberg III,Planet,83344,Heisenberg,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1C6,HeisenbergIIPlanetData,Heisenberg II,Planet,83344,Heisenberg,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1C5,HeisenbergIPlanetData,Heisenberg I,Planet,83344,Heisenberg,0,1,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E1C1,GuniibuuVII-bPlanetData,Guniibuu VII-b,Moon,84147,Guniibuu,7,29,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1C0,GuniibuuVII-cPlanetData,Guniibuu VII-c,Moon,84147,Guniibuu,7,28,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1BF,GuniibuuVII-aPlanetData,Guniibuu VII-a,Moon,84147,Guniibuu,7,27,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1BE,GuniibuuVIIPlanetData,Guniibuu VII,Planet,84147,Guniibuu,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E1BD,GuniibuuVI-dPlanetData,Guniibuu VI-d,Moon,84147,Guniibuu,6,26,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1BC,GuniibuuVI-cPlanetData,Guniibuu VI-c,Moon,84147,Guniibuu,6,25,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1BB,GuniibuuVI-aPlanetData,Guniibuu VI-a,Moon,84147,Guniibuu,6,24,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1BA,GuniibuuVI-bPlanetData,Guniibuu VI-b,Moon,84147,Guniibuu,6,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1B9,GuniibuuVI-ePlanetData,Guniibuu VI-e,Moon,84147,Guniibuu,6,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1B8,GuniibuuVIPlanetData,Guniibuu VI,Planet,84147,Guniibuu,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E1B7,GuniibuuV-bPlanetData,Guniibuu V-b,Moon,84147,Guniibuu,5,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1B6,GuniibuuV-cPlanetData,Guniibuu V-c,Moon,84147,Guniibuu,5,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1B5,GuniibuuV-dPlanetData,Guniibuu V-d,Moon,84147,Guniibuu,5,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1B4,GuniibuuV-ePlanetData,Guniibuu V-e,Moon,84147,Guniibuu,5,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1B3,GuniibuuV-aPlanetData,Guniibuu V-a,Moon,84147,Guniibuu,5,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1B2,GuniibuuVPlanetData,Guniibuu V,Planet,84147,Guniibuu,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E1B1,GuniibuuIV-aPlanetData,Guniibuu IV-a,Moon,84147,Guniibuu,4,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1B0,GuniibuuIV-bPlanetData,Guniibuu IV-b,Moon,84147,Guniibuu,4,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1AF,GuniibuuIVPlanetData,Guniibuu IV,Planet,84147,Guniibuu,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1AE,GuniibuuIII-aPlanetData,Guniibuu III-a,Moon,84147,Guniibuu,3,14,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E1AD,GuniibuuIII-cPlanetData,Guniibuu III-c,Moon,84147,Guniibuu,3,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1A7,GuniibuuIII-bPlanetData,Guniibuu III-b,Moon,84147,Guniibuu,3,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1A6,GuniibuuIIIPlanetData,Guniibuu III,Planet,84147,Guniibuu,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1A5,GuniibuuIIPlanetData,Guniibuu II,Planet,84147,Guniibuu,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1A4,GuniibuuI-bPlanetData,Guniibuu I-b,Moon,84147,Guniibuu,1,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1A3,GuniibuuI-aPlanetData,Guniibuu I-a,Moon,84147,Guniibuu,1,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E1A2,GuniibuuIPlanetData,Guniibuu I,Planet,84147,Guniibuu,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E19F,IndumV-aPlanetData,Indum V-a,Moon,119135,Indum,5,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E19E,IndumVPlanetData,Indum V,Planet,119135,Indum,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E19D,IndumIV-aPlanetData,Indum IV-a,Moon,119135,Indum,4,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E19C,IndumIV-cPlanetData,Indum IV-c,Moon,119135,Indum,4,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E19B,IndumIV-bPlanetData,Indum IV-b,Moon,119135,Indum,4,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E19A,IndumIV-dPlanetData,Indum IV-d,Moon,119135,Indum,4,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E199,IndumIVPlanetData,Indum IV,Planet,119135,Indum,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E198,IndumIII-bPlanetData,Indum III-b,Moon,119135,Indum,3,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E197,IndumIII-cPlanetData,Indum III-c,Moon,119135,Indum,3,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E196,IndumIII-aPlanetData,Indum III-a,Moon,119135,Indum,3,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E195,IndumIII-dPlanetData,Indum III-d,Moon,119135,Indum,3,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E194,IndumIIIPlanetData,Indum III,Planet,119135,Indum,0,3,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E192,IndumIIPlanetData,Indum II,Planet,119135,Indum,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E191,IndumI-aPlanetData,Indum I-a,Moon,119135,Indum,1,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E190,IndumIPlanetData,Indum I,Planet,119135,Indum,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E18D,OborumII-bPlanetData,Oborum II-b,Moon,119220,Oborum Prime,38,40,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E18B,OborumIVPlanetData,Oborum IV,Planet,119220,Oborum Prime,0,47,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E18A,OborumIII-dPlanetData,Oborum III-d,Moon,119220,Oborum Prime,41,45,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E189,OborumIII-bPlanetData,Oborum III-b,Moon,119220,Oborum Prime,41,44,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E188,OborumIII-cPlanetData,Oborum III-c,Moon,119220,Oborum Prime,41,43,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E187,OborumIII-aPlanetData,Oborum III-a,Moon,119220,Oborum Prime,41,42,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E186,OborumIIIPlanetData,Oborum III,Planet,119220,Oborum Prime,0,41,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E184,OborumII-aPlanetData,Oborum II-a,Moon,119220,Oborum Prime,38,39,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E183,OborumIIPlanetData,Oborum II,Planet,119220,Oborum Prime,0,38,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E182,OborumIPlanetData,Oborum I,Planet,119220,Oborum Prime,0,37,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E17F,OborumProximaIPlanetData,Oborum Proxima I,Planet,119144,Oborum Proxima,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E17C,XiOphiuchiIXPlanetData,Xi Ophiuchi IX,Planet,84636,Xi Ophiuchi,0,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E17B,XiOphiuchiVIII-bPlanetData,Xi Ophiuchi VIII-b,Moon,84636,Xi Ophiuchi,8,24,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E17A,XiOphiuchiVIII-ePlanetData,Xi Ophiuchi VIII-e,Moon,84636,Xi Ophiuchi,8,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E179,XiOphiuchiVIII-cPlanetData,Xi Ophiuchi VIII-c,Moon,84636,Xi Ophiuchi,8,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E178,XiOphiuchiVIII-aPlanetData,Xi Ophiuchi VIII-a,Moon,84636,Xi Ophiuchi,8,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E177,XiOphiuchiVIII-dPlanetData,Xi Ophiuchi VIII-d,Moon,84636,Xi Ophiuchi,8,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E176,XiOphiuchiVIIIPlanetData,Xi Ophiuchi VIII,Planet,84636,Xi Ophiuchi,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E175,XiOphiuchiVII-aPlanetData,Xi Ophiuchi VII-a,Moon,84636,Xi Ophiuchi,7,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E174,XiOphiuchiVII-bPlanetData,Xi Ophiuchi VII-b,Moon,84636,Xi Ophiuchi,7,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E173,XiOphiuchiVIIPlanetData,Xi Ophiuchi VII,Planet,84636,Xi Ophiuchi,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E172,XiOphiuchiVI-dPlanetData,Xi Ophiuchi VI-d,Moon,84636,Xi Ophiuchi,6,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E171,XiOphiuchiVI-ePlanetData,Xi Ophiuchi VI-e,Moon,84636,Xi Ophiuchi,6,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E170,XiOphiuchiVI-bPlanetData,Xi Ophiuchi VI-b,Moon,84636,Xi Ophiuchi,6,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E16F,XiOphiuchiVI-aPlanetData,Xi Ophiuchi VI-a,Moon,84636,Xi Ophiuchi,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E16E,XiOphiuchiVI-cPlanetData,Xi Ophiuchi VI-c,Moon,84636,Xi Ophiuchi,6,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E16D,XiOphiuchiVIPlanetData,Xi Ophiuchi VI,Planet,84636,Xi Ophiuchi,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E16C,XiOphiuchiV-aPlanetData,Xi Ophiuchi V-a,Moon,84636,Xi Ophiuchi,5,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E16B,XiOphiuchiVPlanetData,Xi Ophiuchi V,Planet,84636,Xi Ophiuchi,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E16A,XiOphiuchiIVPlanetData,Xi Ophiuchi IV,Planet,84636,Xi Ophiuchi,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E169,XiOphiuchiIII-aPlanetData,Xi Ophiuchi III-a,Moon,84636,Xi Ophiuchi,3,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E168,XiOphiuchiIIIPlanetData,Xi Ophiuchi III,Planet,84636,Xi Ophiuchi,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E167,XiOphiuchiIIPlanetData,Xi Ophiuchi II,Planet,84636,Xi Ophiuchi,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E166,XiOphiuchiIPlanetData,Xi Ophiuchi I,Planet,84636,Xi Ophiuchi,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E163,ZetaOphiuchiVI-bPlanetData,Zeta Ophiuchi VI-b,Moon,119147,Zeta Ophiuchi,6,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E162,ZetaOphiuchiVI-cPlanetData,Zeta Ophiuchi VI-c,Moon,119147,Zeta Ophiuchi,6,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E161,ZetaOphiuchiVI-dPlanetData,Zeta Ophiuchi VI-d,Moon,119147,Zeta Ophiuchi,6,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E160,ZetaOphiuchiVI-ePlanetData,Zeta Ophiuchi VI-e,Moon,119147,Zeta Ophiuchi,6,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E15F,ZetaOphiuchiVI-aPlanetData,Zeta Ophiuchi VI-a,Moon,119147,Zeta Ophiuchi,6,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E15E,ZetaOphiuchiVIPlanetData,Zeta Ophiuchi VI,Planet,119147,Zeta Ophiuchi,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E15D,ZetaOphiuchiV-aPlanetData,Zeta Ophiuchi V-a,Moon,119147,Zeta Ophiuchi,5,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E15C,ZetaOphiuchiV-bPlanetData,Zeta Ophiuchi V-b,Moon,119147,Zeta Ophiuchi,5,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E15B,ZetaOphiuchiVPlanetData,Zeta Ophiuchi V,Planet,119147,Zeta Ophiuchi,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E15A,ZetaOphiuchiIV-dPlanetData,Zeta Ophiuchi IV-d,Moon,119147,Zeta Ophiuchi,4,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E159,ZetaOphiuchiIV-bPlanetData,Zeta Ophiuchi IV-b,Moon,119147,Zeta Ophiuchi,4,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E158,ZetaOphiuchiIV-aPlanetData,Zeta Ophiuchi IV-a,Moon,119147,Zeta Ophiuchi,4,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E157,ZetaOphiuchiIV-cPlanetData,Zeta Ophiuchi IV-c,Moon,119147,Zeta Ophiuchi,4,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E156,ZetaOphiuchiIV-ePlanetData,Zeta Ophiuchi IV-e,Moon,119147,Zeta Ophiuchi,4,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E155,ZetaOphiuchiIVPlanetData,Zeta Ophiuchi IV,Planet,119147,Zeta Ophiuchi,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E154,ZetaOphiuchiIII-aPlanetData,Zeta Ophiuchi III-a,Moon,119147,Zeta Ophiuchi,3,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E153,ZetaOphiuchiIIIPlanetData,Zeta Ophiuchi III,Planet,119147,Zeta Ophiuchi,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E152,ZetaOphiuchiIIPlanetData,Zeta Ophiuchi II,Planet,119147,Zeta Ophiuchi,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E151,ZetaOphiuchiIPlanetData,Zeta Ophiuchi I,Planet,119147,Zeta Ophiuchi,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E14E,NemeriaVIIPlanetData,Nemeria VII,Planet,84604,Nemeria,0,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E14D,NemeriaVI-cPlanetData,Nemeria VI-c,Moon,84604,Nemeria,6,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E14C,NemeriaVI-aPlanetData,Nemeria VI-a,Moon,84604,Nemeria,6,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E14B,NemeriaVI-bPlanetData,Nemeria VI-b,Moon,84604,Nemeria,6,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E14A,NemeriaVI-dPlanetData,Nemeria VI-d,Moon,84604,Nemeria,6,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E149,NemeriaVIPlanetData,Nemeria VI,Planet,84604,Nemeria,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E148,NemeriaV-bPlanetData,Nemeria V-b,Moon,84604,Nemeria,5,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E147,NemeriaV-aPlanetData,Nemeria V-a,Moon,84604,Nemeria,5,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E13F,NemeriaV-cPlanetData,Nemeria V-c,Moon,84604,Nemeria,5,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E13E,NemeriaVPlanetData,Nemeria V,Planet,84604,Nemeria,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E13D,NemeriaIV-bPlanetData,Nemeria IV-b,Moon,84604,Nemeria,4,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E13C,NemeriaIV-aPlanetData,Nemeria IV-a,Moon,84604,Nemeria,4,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E13B,NemeriaIVPlanetData,Nemeria IV,Planet,84604,Nemeria,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E13A,NemeriaIII-aPlanetData,Nemeria III-a,Moon,84604,Nemeria,3,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E139,NemeriaIIIPlanetData,Nemeria III,Planet,84604,Nemeria,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E138,NemeriaII-bPlanetData,Nemeria II-b,Moon,84604,Nemeria,2,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E137,NemeriaII-aPlanetData,Nemeria II-a,Moon,84604,Nemeria,2,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E136,NemeriaIIPlanetData,Nemeria II,Planet,84604,Nemeria,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E135,NemeriaIPlanetData,Nemeria I,Planet,84604,Nemeria,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E132,MirIIPlanetData,Mir II,Moon,85264,Sakharov,1,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E131,BonnerPlanetData,Bonner,Planet,85264,Sakharov,0,1,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E12E,AlphaMaraeVPlanetData,Alpha Marae V,Planet,85407,Alpha Marae,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E12D,AlphaMaraeIV-bPlanetData,Alpha Marae IV-b,Moon,85407,Alpha Marae,4,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E12C,AlphaMaraeIV-aPlanetData,Alpha Marae IV-a,Moon,85407,Alpha Marae,4,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E12B,AlphaMaraeIVPlanetData,Alpha Marae IV,Planet,85407,Alpha Marae,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E12A,AlphaMaraeIII-bPlanetData,Alpha Marae III-b,Moon,85407,Alpha Marae,3,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E129,AlphaMaraeIII-aPlanetData,Alpha Marae III-a,Moon,85407,Alpha Marae,3,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E128,AlphaMaraeIII-cPlanetData,Alpha Marae III-c,Moon,85407,Alpha Marae,3,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E127,AlphaMaraeIII-dPlanetData,Alpha Marae III-d,Moon,85407,Alpha Marae,3,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E126,AlphaMaraeIIIPlanetData,Alpha Marae III,Planet,85407,Alpha Marae,0,3,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E125,AlphaMaraeII-aPlanetData,Alpha Marae II-a,Moon,85407,Alpha Marae,2,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E124,AlphaMaraeIIPlanetData,Alpha Marae II,Planet,85407,Alpha Marae,0,2,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E123,AlphaMaraeIPlanetData,Alpha Marae I,Planet,85407,Alpha Marae,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E120,BetaMaraeVI-aPlanetData,Beta Marae VI-a,Moon,119159,Beta Marae,6,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E11F,BetaMaraeVI-bPlanetData,Beta Marae VI-b,Moon,119159,Beta Marae,6,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E11E,BetaMaraeVI-cPlanetData,Beta Marae VI-c,Moon,119159,Beta Marae,6,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E11D,BetaMaraeVIPlanetData,Beta Marae VI,Planet,119159,Beta Marae,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E11C,BetaMaraeV-cPlanetData,Beta Marae V-c,Moon,119159,Beta Marae,5,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E11B,BetaMaraeV-aPlanetData,Beta Marae V-a,Moon,119159,Beta Marae,5,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E11A,BetaMaraeV-dPlanetData,Beta Marae V-d,Moon,119159,Beta Marae,5,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E119,BetaMaraeV-bPlanetData,Beta Marae V-b,Moon,119159,Beta Marae,5,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E118,BetaMaraeVPlanetData,Beta Marae V,Planet,119159,Beta Marae,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E117,BetaMaraeIV-aPlanetData,Beta Marae IV-a,Moon,119159,Beta Marae,4,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E116,BetaMaraeIV-bPlanetData,Beta Marae IV-b,Moon,119159,Beta Marae,4,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E115,BetaMaraeIV-cPlanetData,Beta Marae IV-c,Moon,119159,Beta Marae,4,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E114,BetaMaraeIV-dPlanetData,Beta Marae IV-d,Moon,119159,Beta Marae,4,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E113,BetaMaraeIVPlanetData,Beta Marae IV,Planet,119159,Beta Marae,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E112,BetaMaraeIII-aPlanetData,Beta Marae III-a,Moon,119159,Beta Marae,3,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E111,BetaMaraeIIIPlanetData,Beta Marae III,Planet,119159,Beta Marae,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E110,BetaMaraeII-bPlanetData,Beta Marae II-b,Moon,119159,Beta Marae,2,9,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E10F,BetaMaraeII-aPlanetData,Beta Marae II-a,Moon,119159,Beta Marae,2,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E10E,BetaMaraeIIPlanetData,Beta Marae II,Planet,119159,Beta Marae,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E10D,BetaMaraeI-aPlanetData,Beta Marae I-a,Moon,119159,Beta Marae,1,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E10C,BetaMaraeIPlanetData,Beta Marae I,Planet,119159,Beta Marae,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E108,RasalhagueIVPlanetData,Rasalhague IV,Planet,85769,Rasalhague,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E107,RasalhagueIII-bPlanetData,Rasalhague III-b,Moon,85769,Rasalhague,3,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E106,RasalhagueIII-aPlanetData,Rasalhague III-a,Moon,85769,Rasalhague,3,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E105,RasalhagueIIIPlanetData,Rasalhague III,Planet,85769,Rasalhague,0,3,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E104,RasalhagueIIPlanetData,Rasalhague II,Planet,85769,Rasalhague,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E103,RasalhagueI-aPlanetData,Rasalhague I-a,Moon,85769,Rasalhague,1,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0F3,RasalhagueIPlanetData,Rasalhague I,Planet,85769,Rasalhague,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0F0,FeynmanIX-aPlanetData,Feynman IX-a,Moon,86469,Feynman,9,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0EF,FeynmanIXPlanetData,Feynman IX,Planet,86469,Feynman,0,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0EE,FeynmanVIII-bPlanetData,Feynman VIII-b,Moon,86469,Feynman,8,24,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0ED,FeynmanVIII-cPlanetData,Feynman VIII-c,Moon,86469,Feynman,8,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0EC,FeynmanVIII-ePlanetData,Feynman VIII-e,Moon,86469,Feynman,8,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0EB,FeynmanVIII-dPlanetData,Feynman VIII-d,Moon,86469,Feynman,8,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0EA,FeynmanVIII-aPlanetData,Feynman VIII-a,Moon,86469,Feynman,8,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0E9,FeynmanVIIIPlanetData,Feynman VIII,Planet,86469,Feynman,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E0E8,FeynmanVII-cPlanetData,Feynman VII-c,Moon,86469,Feynman,7,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0E7,FeynmanVII-bPlanetData,Feynman VII-b,Moon,86469,Feynman,7,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0E6,FeynmanVII-aPlanetData,Feynman VII-a,Moon,86469,Feynman,7,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0E5,FeynmanVIIPlanetData,Feynman VII,Planet,86469,Feynman,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E0E4,FeynmanVI-aPlanetData,Feynman VI-a,Moon,86469,Feynman,6,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0E3,FeynmanVI-bPlanetData,Feynman VI-b,Moon,86469,Feynman,6,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0E2,FeynmanVI-cPlanetData,Feynman VI-c,Moon,86469,Feynman,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0E1,FeynmanVIPlanetData,Feynman VI,Planet,86469,Feynman,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E0E0,FeynmanV-aPlanetData,Feynman V-a,Moon,86469,Feynman,5,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0DF,FeynmanV-bPlanetData,Feynman V-b,Moon,86469,Feynman,5,11,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E0DE,FeynmanVPlanetData,Feynman V,Planet,86469,Feynman,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0DD,FeynmanIVPlanetData,Feynman IV,Planet,86469,Feynman,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0DC,FeynmanIIIPlanetData,Feynman III,Planet,86469,Feynman,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0DB,FeynmanIIPlanetData,Feynman II,Planet,86469,Feynman,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0DA,FeynmanIPlanetData,Feynman I,Planet,86469,Feynman,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0D7,AndromasVI-bPlanetData,Andromas VI-b,Moon,86705,Andromas,6,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0D6,AndromasVI-aPlanetData,Andromas VI-a,Moon,86705,Andromas,6,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0D5,AndromasVIPlanetData,Andromas VI,Planet,86705,Andromas,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E0D4,AndromasV-aPlanetData,Andromas V-a,Moon,86705,Andromas,5,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0D3,AndromasV-bPlanetData,Andromas V-b,Moon,86705,Andromas,5,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0D2,AndromasVPlanetData,Andromas V,Planet,86705,Andromas,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E0D1,AndromasIV-aPlanetData,Andromas IV-a,Moon,86705,Andromas,4,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0D0,AndromasIVPlanetData,Andromas IV,Planet,86705,Andromas,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E0CF,AndromasIIIPlanetData,Andromas III,Planet,86705,Andromas,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0CE,AndromasIIPlanetData,Andromas II,Planet,86705,Andromas,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0CD,AndromasIPlanetData,Andromas I,Planet,86705,Andromas,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0CB,FrostPlanetData,Frost,Planet,87665,Barnard's Star,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0C8,SchrodingerVIII-ePlanetData,Schrodinger VIII-e,Moon,87902,Schrodinger,8,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0C7,SchrodingerVIII-dPlanetData,Schrodinger VIII-d,Moon,87902,Schrodinger,8,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0C6,SchrodingerVIII-bPlanetData,Schrodinger VIII-b,Moon,87902,Schrodinger,8,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0C5,SchrodingerVIII-aPlanetData,Schrodinger VIII-a,Moon,87902,Schrodinger,8,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0C4,SchrodingerVIII-cPlanetData,Schrodinger VIII-c,Moon,87902,Schrodinger,8,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0C3,SchrodingerVIIIPlanetData,Schrodinger VIII,Planet,87902,Schrodinger,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E0C2,SchrodingerVII-cPlanetData,Schrodinger VII-c,Moon,87902,Schrodinger,7,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0C1,SchrodingerVII-aPlanetData,Schrodinger VII-a,Moon,87902,Schrodinger,7,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0C0,SchrodingerVII-bPlanetData,Schrodinger VII-b,Moon,87902,Schrodinger,7,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0BF,SchrodingerVIIPlanetData,Schrodinger VII,Planet,87902,Schrodinger,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E0BE,SchrodingerVI-cPlanetData,Schrodinger VI-c,Moon,87902,Schrodinger,6,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0BD,SchrodingerVI-bPlanetData,Schrodinger VI-b,Moon,87902,Schrodinger,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0BC,SchrodingerVI-aPlanetData,Schrodinger VI-a,Moon,87902,Schrodinger,6,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0BB,SchrodingerVIPlanetData,Schrodinger VI,Planet,87902,Schrodinger,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E0BA,SchrodingerV-aPlanetData,Schrodinger V-a,Moon,87902,Schrodinger,5,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0B9,SchrodingerVPlanetData,Schrodinger V,Planet,87902,Schrodinger,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0B8,SchrodingerIVPlanetData,Schrodinger IV,Planet,87902,Schrodinger,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0B7,SchrodingerIII-aPlanetData,Schrodinger III-a,Moon,87902,Schrodinger,3,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0B6,SchrodingerIIIPlanetData,Schrodinger III,Planet,87902,Schrodinger,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0B5,SchrodingerIIPlanetData,Schrodinger II,Planet,87902,Schrodinger,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0B4,SchrodingerI-aPlanetData,Schrodinger I-a,Moon,87902,Schrodinger,1,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0B3,SchrodingerIPlanetData,Schrodinger I,Planet,87902,Schrodinger,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0B0,TauCetiVIII-bPlanetData,Tau Ceti VIII-b,Moon,8087,Tau Ceti,8,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0AF,TauCetiIXPlanetData,Tau Ceti IX,Planet,8087,Tau Ceti,0,9,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E0AE,TauCetiVIII-dPlanetData,Tau Ceti VIII-d,Moon,8087,Tau Ceti,8,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0AD,TauCetiVIII-cPlanetData,Tau Ceti VIII-c,Moon,8087,Tau Ceti,8,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0AC,TauCetiVIII-aPlanetData,Tau Ceti VIII-a,Moon,8087,Tau Ceti,8,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0AB,TauCetiVIIIPlanetData,Tau Ceti VIII,Planet,8087,Tau Ceti,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E0AA,TauCetiVII-aPlanetData,Tau Ceti VII-a,Moon,8087,Tau Ceti,7,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0A9,TauCetiVIIPlanetData,Tau Ceti VII,Planet,8087,Tau Ceti,0,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0A8,TauCetiVI-aPlanetData,Tau Ceti VI-a,Moon,8087,Tau Ceti,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0A7,TauCetiVIPlanetData,Tau Ceti VI,Planet,8087,Tau Ceti,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0A6,TauCetiVPlanetData,Tau Ceti V,Planet,8087,Tau Ceti,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0A5,TauCetiIV-aPlanetData,Tau Ceti IV-a,Moon,8087,Tau Ceti,4,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0A4,TauCetiIV-bPlanetData,Tau Ceti IV-b,Moon,8087,Tau Ceti,4,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0A3,TauCetiIVPlanetData,Tau Ceti IV,Planet,8087,Tau Ceti,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0A2,TauCetiIIIPlanetData,Tau Ceti III,Planet,8087,Tau Ceti,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0A1,TauCetiII-aPlanetData,Tau Ceti II-a,Moon,8087,Tau Ceti,2,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E0A0,TauCetiIIPlanetData,Tau Ceti II,Planet,8087,Tau Ceti,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E09F,TauCetiIPlanetData,Tau Ceti I,Planet,8087,Tau Ceti,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E09C,LeviathanVIIPlanetData,Leviathan VII,Planet,89684,Leviathan,0,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E09B,LeviathanVI-bPlanetData,Leviathan VI-b,Moon,89684,Leviathan,6,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E09A,LeviathanVI-aPlanetData,Leviathan VI-a,Moon,89684,Leviathan,6,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E099,LeviathanVIPlanetData,Leviathan VI,Planet,89684,Leviathan,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E098,LeviathanV-aPlanetData,Leviathan V-a,Moon,89684,Leviathan,5,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E097,LeviathanVPlanetData,Leviathan V,Planet,89684,Leviathan,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E096,LeviathanIVPlanetData,Leviathan IV,Planet,89684,Leviathan,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E095,LeviathanIIIPlanetData,Leviathan III,Planet,89684,Leviathan,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E094,LeviathanIIPlanetData,Leviathan II,Planet,89684,Leviathan,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E093,LeviathanIPlanetData,Leviathan I,Planet,89684,Leviathan,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E090,VegaII-bPlanetData,Vega II-b,Moon,90979,Vega,2,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E08F,VegaII-aPlanetData,Vega II-a,Moon,90979,Vega,2,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E08E,VegaII-dPlanetData,Vega II-d,Moon,90979,Vega,2,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E08D,VegaII-ePlanetData,Vega II-e,Moon,90979,Vega,2,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E08C,VegaII-cPlanetData,Vega II-c,Moon,90979,Vega,2,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E08B,VegaIIPlanetData,Vega II,Planet,90979,Vega,0,2,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E08A,VegaI-aPlanetData,Vega I-a,Moon,90979,Vega,1,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E089,VegaI-cPlanetData,Vega I-c,Moon,90979,Vega,1,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E088,VegaI-bPlanetData,Vega I-b,Moon,90979,Vega,1,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E087,VegaIPlanetData,Vega I,Planet,90979,Vega,0,1,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E083,LinnaeusVIIPlanetData,Linnaeus VII,Planet,91156,Linnaeus,0,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E082,LinnaeusVIPlanetData,Linnaeus VI,Planet,91156,Linnaeus,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E081,LinnaeusVPlanetData,Linnaeus V,Planet,91156,Linnaeus,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E080,LinnaeusIV-bPlanetData,Linnaeus IV-b,Moon,91156,Linnaeus,4,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E07F,LinnaeusIV-cPlanetData,Linnaeus IV-c,Moon,91156,Linnaeus,4,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E07E,LinnaeusIV-aPlanetData,Linnaeus IV-a,Moon,91156,Linnaeus,4,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E07D,LinnaeusIVPlanetData,Linnaeus IV,Planet,91156,Linnaeus,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E07C,LinnaeusIII-aPlanetData,Linnaeus III-a,Moon,91156,Linnaeus,3,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E07B,LinnaeusIIIPlanetData,Linnaeus III,Planet,91156,Linnaeus,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E07A,LinnaeusII-aPlanetData,Linnaeus II-a,Moon,91156,Linnaeus,2,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E079,LinnaeusIIPlanetData,Linnaeus II,Planet,91156,Linnaeus,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E078,LinnaeusIPlanetData,Linnaeus I,Planet,91156,Linnaeus,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E075,NewtonVIPlanetData,Newton VI,Planet,91756,Newton,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E074,NewtonV-aPlanetData,Newton V-a,Moon,91756,Newton,5,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E073,NewtonV-bPlanetData,Newton V-b,Moon,91756,Newton,5,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E072,NewtonV-cPlanetData,Newton V-c,Moon,91756,Newton,5,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E071,NewtonVPlanetData,Newton V,Planet,91756,Newton,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E070,NewtonIVPlanetData,Newton IV,Planet,91756,Newton,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E06F,NewtonIIIPlanetData,Newton III,Planet,91756,Newton,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E06E,NewtonII-bPlanetData,Newton II-b,Moon,91756,Newton,2,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E06D,NewtonII-aPlanetData,Newton II-a,Moon,91756,Newton,2,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E06C,NewtonIIPlanetData,Newton II,Planet,91756,Newton,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E06B,NewtonI-aPlanetData,Newton I-a,Moon,91756,Newton,1,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E06A,NewtonIPlanetData,Newton I,Planet,91756,Newton,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E067,AltairV-aPlanetData,Altair V-a,Moon,97338,Altair,5,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E066,AltairVPlanetData,Altair V,Planet,97338,Altair,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E065,AltairIV-bPlanetData,Altair IV-b,Moon,97338,Altair,4,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E064,AltairIV-cPlanetData,Altair IV-c,Moon,97338,Altair,4,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E063,AltairIV-aPlanetData,Altair IV-a,Moon,97338,Altair,4,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E062,AltairIV-dPlanetData,Altair IV-d,Moon,97338,Altair,4,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E061,AltairIVPlanetData,Altair IV,Planet,97338,Altair,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E060,AltairIII-aPlanetData,Altair III-a,Moon,97338,Altair,3,9,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E05F,AltairIII-bPlanetData,Altair III-b,Moon,97338,Altair,3,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E05E,AltairIII-cPlanetData,Altair III-c,Moon,97338,Altair,3,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E05D,AltairIIIPlanetData,Altair III,Planet,97338,Altair,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E05C,AltairIIPlanetData,Altair II,Planet,97338,Altair,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E05B,AltairIPlanetData,Altair I,Planet,97338,Altair,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E056,OhmPlanetData,Ohm,Moon,98924,Delta Pavonis,7,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E055,CoulombPlanetData,Coulomb,Moon,98924,Delta Pavonis,7,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E054,VoltPlanetData,Volt,Moon,98924,Delta Pavonis,7,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E053,AmperePlanetData,Ampere,Moon,98924,Delta Pavonis,7,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E052,FaradayPlanetData,Faraday,Planet,98924,Delta Pavonis,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E051,HeraldPlanetData,Herald,Moon,98924,Delta Pavonis,6,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E050,AugurPlanetData,Augur,Moon,98924,Delta Pavonis,6,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E04F,BodePlanetData,Bode,Planet,98924,Delta Pavonis,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E04E,FundamentPlanetData,Fundament,Moon,98924,Delta Pavonis,5,15,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E04D,RudimentPlanetData,Rudiment,Moon,98924,Delta Pavonis,5,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E04C,NascentPlanetData,Nascent,Planet,98924,Delta Pavonis,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E04B,BosePlanetData,Bose,Moon,98924,Delta Pavonis,4,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E04A,GamowPlanetData,Gamow,Planet,98924,Delta Pavonis,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E049,BitsyPlanetData,Bitsy,Moon,98924,Delta Pavonis,3,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E048,WorthlessPlanetData,Worthless,Moon,98924,Delta Pavonis,3,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E047,ItsyPlanetData,Itsy,Moon,98924,Delta Pavonis,3,10,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E046,ArachnaPlanetData,Arachna,Planet,98924,Delta Pavonis,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E045,MagnarPlanetData,Magnar,Planet,98924,Delta Pavonis,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E044,CuriePlanetData,Curie,Planet,98924,Delta Pavonis,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E041,BannocIV-aPlanetData,Bannoc IV-a,Moon,69793,Bannoc,4,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E040,BannocIV-bPlanetData,Bannoc IV-b,Moon,69793,Bannoc,4,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E03F,BannocIVPlanetData,Bannoc IV,Planet,69793,Bannoc,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E03E,BannocIII-aPlanetData,Bannoc III-a,Moon,69793,Bannoc,3,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E03D,BannocIIIPlanetData,Bannoc III,Planet,69793,Bannoc,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E03C,BannocIIPlanetData,Bannoc II,Planet,69793,Bannoc,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E03B,BannocIPlanetData,Bannoc I,Planet,69793,Bannoc,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E037,PiazziVII-bPlanetData,Piazzi VII-b,Moon,103879,Piazzi,7,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E036,PiazziVII-cPlanetData,Piazzi VII-c,Moon,103879,Piazzi,7,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E035,PiazziVII-aPlanetData,Piazzi VII-a,Moon,103879,Piazzi,7,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E034,PiazziVIIPlanetData,Piazzi VII,Planet,103879,Piazzi,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E033,PiazziVI-cPlanetData,Piazzi VI-c,Moon,103879,Piazzi,6,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E032,PiazziVI-aPlanetData,Piazzi VI-a,Moon,103879,Piazzi,6,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E031,PiazziVI-bPlanetData,Piazzi VI-b,Moon,103879,Piazzi,6,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E030,PiazziVIPlanetData,Piazzi VI,Planet,103879,Piazzi,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E02F,PiazziV-cPlanetData,Piazzi V-c,Moon,103879,Piazzi,5,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E02E,PiazziV-bPlanetData,Piazzi V-b,Moon,103879,Piazzi,5,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E02D,PiazziV-aPlanetData,Piazzi V-a,Moon,103879,Piazzi,5,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E02C,PiazziVPlanetData,Piazzi V,Planet,103879,Piazzi,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E02B,PiazziIV-bPlanetData,Piazzi IV-b,Moon,103879,Piazzi,4,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E02A,PiazziIV-aPlanetData,Piazzi IV-a,Moon,103879,Piazzi,4,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E029,PiazziIV-cPlanetData,Piazzi IV-c,Moon,103879,Piazzi,4,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E028,PiazziIVPlanetData,Piazzi IV,Planet,103879,Piazzi,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E027,PiazziIII-bPlanetData,Piazzi III-b,Moon,103879,Piazzi,3,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E026,PiazziIII-aPlanetData,Piazzi III-a,Moon,103879,Piazzi,3,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E025,PiazziIIIPlanetData,Piazzi III,Planet,103879,Piazzi,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E024,PiazziIIPlanetData,Piazzi II,Planet,103879,Piazzi,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E023,PiazziIPlanetData,Piazzi I,Planet,103879,Piazzi,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E020,BesselIII-bPlanetData,Bessel III-b,Moon,103883,Bessel,3,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E01F,BesselIII-aPlanetData,Bessel III-a,Moon,103883,Bessel,3,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E01E,BesselIIIPlanetData,Bessel III,Planet,103883,Bessel,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E01D,BesselIIPlanetData,Bessel II,Planet,103883,Bessel,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E01C,BesselIPlanetData,Bessel I,Planet,103883,Bessel,0,1,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E019,CharybdisIXPlanetData,Charybdis IX,Planet,56075,Charybdis,0,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E018,CharybdisVIII-bPlanetData,Charybdis VIII-b,Moon,56075,Charybdis,8,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E017,CharybdisVIII-aPlanetData,Charybdis VIII-a,Moon,56075,Charybdis,8,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E016,CharybdisVIIIPlanetData,Charybdis VIII,Planet,56075,Charybdis,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E015,CharybdisVII-dPlanetData,Charybdis VII-d,Moon,56075,Charybdis,7,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E014,CharybdisVII-aPlanetData,Charybdis VII-a,Moon,56075,Charybdis,7,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E013,CharybdisVII-cPlanetData,Charybdis VII-c,Moon,56075,Charybdis,7,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E012,CharybdisVII-bPlanetData,Charybdis VII-b,Moon,56075,Charybdis,7,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E011,CharybdisVIIPlanetData,Charybdis VII,Planet,56075,Charybdis,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E010,CharybdisVI-bPlanetData,Charybdis VI-b,Moon,56075,Charybdis,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E00F,CharybdisVI-aPlanetData,Charybdis VI-a,Moon,56075,Charybdis,6,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E00E,CharybdisVIPlanetData,Charybdis VI,Planet,56075,Charybdis,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E00D,CharybdisV-aPlanetData,Charybdis V-a,Moon,56075,Charybdis,5,12,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E00C,CharybdisVPlanetData,Charybdis V,Planet,56075,Charybdis,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E00B,CharybdisIV-aPlanetData,Charybdis IV-a,Moon,56075,Charybdis,4,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E00A,CharybdisIVPlanetData,Charybdis IV,Planet,56075,Charybdis,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E009,CharybdisIIIPlanetData,Charybdis III,Planet,56075,Charybdis,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E008,CharybdisIIPlanetData,Charybdis II,Planet,56075,Charybdis,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E007,CharybdisIPlanetData,Charybdis I,Planet,56075,Charybdis,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E004,Al-BattaniVIII-aPlanetData,Al-Battani VIII-a,Moon,65147,Al-Battani,8,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E003,Al-BattaniVIIIPlanetData,Al-Battani VIII,Planet,65147,Al-Battani,0,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E002,Al-BattaniVII-aPlanetData,Al-Battani VII-a,Moon,65147,Al-Battani,7,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005E001,Al-BattaniVIIPlanetData,Al-Battani VII,Planet,65147,Al-Battani,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005E000,Al-BattaniVI-aPlanetData,Al-Battani VI-a,Moon,65147,Al-Battani,6,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFFF,Al-BattaniVI-bPlanetData,Al-Battani VI-b,Moon,65147,Al-Battani,6,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFFE,Al-BattaniVIPlanetData,Al-Battani VI,Planet,65147,Al-Battani,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DFFD,Al-BattaniV-aPlanetData,Al-Battani V-a,Moon,65147,Al-Battani,5,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFFC,Al-BattaniVPlanetData,Al-Battani V,Planet,65147,Al-Battani,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFFB,Al-BattaniIV-aPlanetData,Al-Battani IV-a,Moon,65147,Al-Battani,4,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFFA,Al-BattaniIV-bPlanetData,Al-Battani IV-b,Moon,65147,Al-Battani,4,15,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DFF9,Al-BattaniIVPlanetData,Al-Battani IV,Planet,65147,Al-Battani,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFF8,Al-BattaniIII-bPlanetData,Al-Battani III-b,Moon,65147,Al-Battani,3,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFF7,Al-BattaniIII-aPlanetData,Al-Battani III-a,Moon,65147,Al-Battani,3,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFF6,Al-BattaniIIIPlanetData,Al-Battani III,Planet,65147,Al-Battani,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFF5,Al-BattaniIIPlanetData,Al-Battani II,Planet,65147,Al-Battani,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFF4,Al-BattaniI-cPlanetData,Al-Battani I-c,Moon,65147,Al-Battani,1,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFF3,Al-BattaniI-bPlanetData,Al-Battani I-b,Moon,65147,Al-Battani,1,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFF2,Al-BattaniI-aPlanetData,Al-Battani I-a,Moon,65147,Al-Battani,1,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFF1,Al-BattaniIPlanetData,Al-Battani I,Planet,65147,Al-Battani,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFEE,KhayyamVI-bPlanetData,Khayyam VI-b,Moon,65150,Khayyam,6,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFED,KhayyamVI-cPlanetData,Khayyam VI-c,Moon,65150,Khayyam,6,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFEC,KhayyamVI-aPlanetData,Khayyam VI-a,Moon,65150,Khayyam,6,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFEB,KhayyamVI-ePlanetData,Khayyam VI-e,Moon,65150,Khayyam,6,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFEA,KhayyamVI-dPlanetData,Khayyam VI-d,Moon,65150,Khayyam,6,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFE9,KhayyamVIPlanetData,Khayyam VI,Planet,65150,Khayyam,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DFE8,KhayyamV-aPlanetData,Khayyam V-a,Moon,65150,Khayyam,5,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFE7,KhayyamVPlanetData,Khayyam V,Planet,65150,Khayyam,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DFE6,KhayyamIV-aPlanetData,Khayyam IV-a,Moon,65150,Khayyam,4,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFE5,KhayyamIVPlanetData,Khayyam IV,Planet,65150,Khayyam,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFE4,KhayyamIII-cPlanetData,Khayyam III-c,Moon,65150,Khayyam,3,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFE3,KhayyamIII-aPlanetData,Khayyam III-a,Moon,65150,Khayyam,3,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFE2,KhayyamIII-bPlanetData,Khayyam III-b,Moon,65150,Khayyam,3,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFE1,KhayyamIIIPlanetData,Khayyam III,Planet,65150,Khayyam,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFE0,KhayyamII-aPlanetData,Khayyam II-a,Moon,65150,Khayyam,2,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFDF,KhayyamIIPlanetData,Khayyam II,Planet,65150,Khayyam,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFDE,KhayyamI-aPlanetData,Khayyam I-a,Moon,65150,Khayyam,1,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DFDD,KhayyamIPlanetData,Khayyam I,Planet,65150,Khayyam,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFD9,PyraasVIII-aPlanetData,Pyraas VIII-a,Moon,68415,Pyraas,8,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFD8,PyraasVIII-bPlanetData,Pyraas VIII-b,Moon,68415,Pyraas,8,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFD7,PyraasVIII-dPlanetData,Pyraas VIII-d,Moon,68415,Pyraas,8,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFD6,PyraasVIII-cPlanetData,Pyraas VIII-c,Moon,68415,Pyraas,8,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFD5,PyraasVIIIPlanetData,Pyraas VIII,Planet,68415,Pyraas,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DFD4,PyraasVII-bPlanetData,Pyraas VII-b,Moon,68415,Pyraas,7,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFD3,PyraasVII-aPlanetData,Pyraas VII-a,Moon,68415,Pyraas,7,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFD2,PyraasVIIPlanetData,Pyraas VII,Planet,68415,Pyraas,0,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFD1,PyraasVI-bPlanetData,Pyraas VI-b,Moon,68415,Pyraas,6,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFD0,PyraasVI-dPlanetData,Pyraas VI-d,Moon,68415,Pyraas,6,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFCF,PyraasVI-cPlanetData,Pyraas VI-c,Moon,68415,Pyraas,6,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFCE,PyraasVI-aPlanetData,Pyraas VI-a,Moon,68415,Pyraas,6,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFCD,PyraasVIPlanetData,Pyraas VI,Planet,68415,Pyraas,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DFCC,PyraasVPlanetData,Pyraas V,Planet,68415,Pyraas,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFCB,PyraasIVPlanetData,Pyraas IV,Planet,68415,Pyraas,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFCA,PyraasIII-aPlanetData,Pyraas III-a,Moon,68415,Pyraas,3,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFC9,PyraasIII-bPlanetData,Pyraas III-b,Moon,68415,Pyraas,3,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFC8,PyraasIIIPlanetData,Pyraas III,Planet,68415,Pyraas,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFC7,PyraasII-aPlanetData,Pyraas II-a,Moon,68415,Pyraas,2,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFC6,PyraasIIPlanetData,Pyraas II,Planet,68415,Pyraas,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFC5,PyraasIPlanetData,Pyraas I,Planet,68415,Pyraas,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFC2,BelVIIPlanetData,Bel VII,Planet,69192,Bel,0,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFC1,BelVIPlanetData,Bel VI,Planet,69192,Bel,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DFC0,BelV-aPlanetData,Bel V-a,Moon,69192,Bel,5,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFBF,BelVPlanetData,Bel V,Planet,69192,Bel,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFBE,BelIV-ePlanetData,Bel IV-e,Moon,69192,Bel,4,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFBD,BelIV-aPlanetData,Bel IV-a,Moon,69192,Bel,4,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFBC,BelIV-dPlanetData,Bel IV-d,Moon,69192,Bel,4,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFBB,BelIV-bPlanetData,Bel IV-b,Moon,69192,Bel,4,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFBA,BelIV-cPlanetData,Bel IV-c,Moon,69192,Bel,4,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFB9,BelIVPlanetData,Bel IV,Planet,69192,Bel,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DFB8,BelIII-cPlanetData,Bel III-c,Moon,69192,Bel,3,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFB7,BelIII-bPlanetData,Bel III-b,Moon,69192,Bel,3,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFB6,BelIII-aPlanetData,Bel III-a,Moon,69192,Bel,3,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFB5,BelIIIPlanetData,Bel III,Planet,69192,Bel,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFB4,BelII-aPlanetData,Bel II-a,Moon,69192,Bel,2,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFB3,BelIIPlanetData,Bel II,Planet,69192,Bel,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFB2,BelI-aPlanetData,Bel I-a,Moon,69192,Bel,1,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFB1,BelIPlanetData,Bel I,Planet,69192,Bel,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFAE,RanaIX-aPlanetData,Rana IX-a,Moon,69766,Rana,9,25,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFAD,RanaIX-bPlanetData,Rana IX-b,Moon,69766,Rana,9,24,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFAC,RanaIXPlanetData,Rana IX,Planet,69766,Rana,0,9,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DFAB,RanaVIIIPlanetData,Rana VIII,Planet,69766,Rana,0,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFAA,RanaVII-aPlanetData,Rana VII-a,Moon,69766,Rana,7,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFA9,RanaVII-bPlanetData,Rana VII-b,Moon,69766,Rana,7,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFA8,RanaVIIPlanetData,Rana VII,Planet,69766,Rana,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DFA7,RanaVI-dPlanetData,Rana VI-d,Moon,69766,Rana,6,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFA6,RanaVI-ePlanetData,Rana VI-e,Moon,69766,Rana,6,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFA5,RanaVI-cPlanetData,Rana VI-c,Moon,69766,Rana,6,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFA4,RanaVI-bPlanetData,Rana VI-b,Moon,69766,Rana,6,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFA3,RanaVI-aPlanetData,Rana VI-a,Moon,69766,Rana,6,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFA2,RanaVIPlanetData,Rana VI,Planet,69766,Rana,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DFA1,RanaV-aPlanetData,Rana V-a,Moon,69766,Rana,5,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DFA0,RanaVPlanetData,Rana V,Planet,69766,Rana,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF9F,RanaIVPlanetData,Rana IV,Planet,69766,Rana,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF9E,RanaIII-aPlanetData,Rana III-a,Moon,69766,Rana,3,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF9D,RanaIIIPlanetData,Rana III,Planet,69766,Rana,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF9C,RanaII-aPlanetData,Rana II-a,Moon,69766,Rana,2,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF9B,RanaIIPlanetData,Rana II,Planet,69766,Rana,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF9A,RanaI-aPlanetData,Rana I-a,Moon,69766,Rana,1,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF99,RanaI-cPlanetData,Rana I-c,Moon,69766,Rana,1,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF98,RanaI-bPlanetData,Rana I-b,Moon,69766,Rana,1,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF97,RanaIPlanetData,Rana I,Planet,69766,Rana,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF94,StrixVI-bPlanetData,Strix VI-b,Moon,72407,Strix,6,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF93,StrixVI-cPlanetData,Strix VI-c,Moon,72407,Strix,6,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF92,StrixVI-aPlanetData,Strix VI-a,Moon,72407,Strix,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF91,StrixVIPlanetData,Strix VI,Planet,72407,Strix,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DF90,StrixVPlanetData,Strix V,Planet,72407,Strix,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF8F,StrixIV-aPlanetData,Strix IV-a,Moon,72407,Strix,4,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF8E,StrixIVPlanetData,Strix IV,Planet,72407,Strix,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF8D,StrixIII-bPlanetData,Strix III-b,Moon,72407,Strix,3,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF8C,StrixIII-aPlanetData,Strix III-a,Moon,72407,Strix,3,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF8B,StrixIII-cPlanetData,Strix III-c,Moon,72407,Strix,3,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF8A,StrixIII-dPlanetData,Strix III-d,Moon,72407,Strix,3,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF89,StrixIIIPlanetData,Strix III,Planet,72407,Strix,0,3,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DF88,StrixIIPlanetData,Strix II,Planet,72407,Strix,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF87,StrixI-aPlanetData,Strix I-a,Moon,72407,Strix,1,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF86,StrixIPlanetData,Strix I,Planet,72407,Strix,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF83,DecaranIXPlanetData,Decaran IX,Planet,119105,Decaran,0,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF82,DecaranVIII-bPlanetData,Decaran VIII-b,Moon,119105,Decaran,8,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF81,DecaranVIII-aPlanetData,Decaran VIII-a,Moon,119105,Decaran,8,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF80,DecaranVIIIPlanetData,Decaran VIII,Planet,119105,Decaran,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DF7F,DecaranVII-bPlanetData,Decaran VII-b,Moon,119105,Decaran,7,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF7E,DecaranVII-aPlanetData,Decaran VII-a,Moon,119105,Decaran,7,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF7D,DecaranVIIPlanetData,Decaran VII,Planet,119105,Decaran,0,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF7C,DecaranVI-aPlanetData,Decaran VI-a,Moon,119105,Decaran,6,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF7B,DecaranVIPlanetData,Decaran VI,Planet,119105,Decaran,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DF7A,DecaranV-bPlanetData,Decaran V-b,Moon,119105,Decaran,5,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF79,DecaranV-aPlanetData,Decaran V-a,Moon,119105,Decaran,5,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF78,DecaranVPlanetData,Decaran V,Planet,119105,Decaran,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF77,DecaranIVPlanetData,Decaran IV,Planet,119105,Decaran,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF76,DecaranIIIPlanetData,Decaran III,Planet,119105,Decaran,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF75,DecaranIIPlanetData,Decaran II,Planet,119105,Decaran,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF74,DecaranIPlanetData,Decaran I,Planet,119105,Decaran,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF71,NikolaX-aPlanetData,Nikola X-a,Moon,119217,Nikola,10,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF70,NikolaXPlanetData,Nikola X,Planet,119217,Nikola,0,10,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DF6F,NikolaIXPlanetData,Nikola IX,Planet,119217,Nikola,0,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF6E,NikolaVIII-aPlanetData,Nikola VIII-a,Moon,119217,Nikola,8,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF6D,NikolaVIIIPlanetData,Nikola VIII,Planet,119217,Nikola,0,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF6C,NikolaVII-aPlanetData,Nikola VII-a,Moon,119217,Nikola,7,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF6B,NikolaVIIPlanetData,Nikola VII,Planet,119217,Nikola,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DF6A,NikolaVI-bPlanetData,Nikola VI-b,Moon,119217,Nikola,6,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF69,NikolaVI-aPlanetData,Nikola VI-a,Moon,119217,Nikola,6,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF68,NikolaVIPlanetData,Nikola VI,Planet,119217,Nikola,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF67,NikolaVPlanetData,Nikola V,Planet,119217,Nikola,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF66,NikolaIV-aPlanetData,Nikola IV-a,Moon,119217,Nikola,4,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF65,NikolaIVPlanetData,Nikola IV,Planet,119217,Nikola,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF64,NikolaIII-bPlanetData,Nikola III-b,Moon,119217,Nikola,3,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF63,NikolaIII-aPlanetData,Nikola III-a,Moon,119217,Nikola,3,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF62,NikolaIIIPlanetData,Nikola III,Planet,119217,Nikola,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF61,NikolaII-aPlanetData,Nikola II-a,Moon,119217,Nikola,2,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF60,NikolaIIPlanetData,Nikola II,Planet,119217,Nikola,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF5F,NikolaIPlanetData,Nikola I,Planet,119217,Nikola,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF5C,ZelaznyVIII-dPlanetData,Zelazny VIII-d,Moon,59092,Zelazny,8,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF5B,ZelaznyVIII-aPlanetData,Zelazny VIII-a,Moon,59092,Zelazny,8,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF5A,ZelaznyVIII-cPlanetData,Zelazny VIII-c,Moon,59092,Zelazny,8,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF59,ZelaznyVIII-bPlanetData,Zelazny VIII-b,Moon,59092,Zelazny,8,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF58,ZelaznyVIII-ePlanetData,Zelazny VIII-e,Moon,59092,Zelazny,8,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF57,ZelaznyVIIIPlanetData,Zelazny VIII,Planet,59092,Zelazny,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DF56,ZelaznyVII-bPlanetData,Zelazny VII-b,Moon,59092,Zelazny,7,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF55,ZelaznyVII-aPlanetData,Zelazny VII-a,Moon,59092,Zelazny,7,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF54,ZelaznyVII-cPlanetData,Zelazny VII-c,Moon,59092,Zelazny,7,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF53,ZelaznyVII-dPlanetData,Zelazny VII-d,Moon,59092,Zelazny,7,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF52,ZelaznyVIIPlanetData,Zelazny VII,Planet,59092,Zelazny,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DF51,ZelaznyVIPlanetData,Zelazny VI,Planet,59092,Zelazny,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF50,ZelaznyVPlanetData,Zelazny V,Planet,59092,Zelazny,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF4F,ZelaznyIVPlanetData,Zelazny IV,Planet,59092,Zelazny,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF4E,ZelaznyIIIPlanetData,Zelazny III,Planet,59092,Zelazny,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF4D,ZelaznyII-aPlanetData,Zelazny II-a,Moon,59092,Zelazny,2,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF4C,ZelaznyIIPlanetData,Zelazny II,Planet,59092,Zelazny,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF4B,ZelaznyIPlanetData,Zelazny I,Planet,59092,Zelazny,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF48,VerneVII-bPlanetData,Verne VII-b,Moon,63947,Verne,7,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF47,VerneVII-aPlanetData,Verne VII-a,Moon,63947,Verne,7,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF46,VerneVII-cPlanetData,Verne VII-c,Moon,63947,Verne,7,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF45,VerneVII-ePlanetData,Verne VII-e,Moon,63947,Verne,7,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF44,VerneVII-dPlanetData,Verne VII-d,Moon,63947,Verne,7,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF43,VerneVIIPlanetData,Verne VII,Planet,63947,Verne,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DF42,VerneVI-aPlanetData,Verne VI-a,Moon,63947,Verne,6,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF41,VerneVI-bPlanetData,Verne VI-b,Moon,63947,Verne,6,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF40,VerneVIPlanetData,Verne VI,Planet,63947,Verne,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DF3F,VerneVPlanetData,Verne V,Planet,63947,Verne,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF3E,VerneIVPlanetData,Verne IV,Planet,63947,Verne,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF3D,VerneIII-aPlanetData,Verne III-a,Moon,63947,Verne,3,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF3C,VerneIIIPlanetData,Verne III,Planet,63947,Verne,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF3B,VerneII-aPlanetData,Verne II-a,Moon,63947,Verne,2,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF3A,VerneIIPlanetData,Verne II,Planet,63947,Verne,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF39,VerneI-aPlanetData,Verne I-a,Moon,63947,Verne,1,9,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DF38,VerneIPlanetData,Verne I,Planet,63947,Verne,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF35,SyrmaVII-bPlanetData,Syrma VII-b,Moon,69479,Syrma,7,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF34,SyrmaVII-aPlanetData,Syrma VII-a,Moon,69479,Syrma,7,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF33,SyrmaVIIPlanetData,Syrma VII,Planet,69479,Syrma,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DF32,SyrmaVI-aPlanetData,Syrma VI-a,Moon,69479,Syrma,6,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF31,SyrmaVI-cPlanetData,Syrma VI-c,Moon,69479,Syrma,6,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF30,SyrmaVI-bPlanetData,Syrma VI-b,Moon,69479,Syrma,6,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF2F,SyrmaVI-dPlanetData,Syrma VI-d,Moon,69479,Syrma,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF2E,SyrmaVIPlanetData,Syrma VI,Planet,69479,Syrma,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DF2D,SyrmaV-aPlanetData,Syrma V-a,Moon,69479,Syrma,5,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF2C,SyrmaVPlanetData,Syrma V,Planet,69479,Syrma,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF2B,SyrmaIV-aPlanetData,Syrma IV-a,Moon,69479,Syrma,4,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF2A,SyrmaIVPlanetData,Syrma IV,Planet,69479,Syrma,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF29,SyrmaIIIPlanetData,Syrma III,Planet,69479,Syrma,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF28,SyrmaII-aPlanetData,Syrma II-a,Moon,69479,Syrma,2,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF27,SyrmaIIPlanetData,Syrma II,Planet,69479,Syrma,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF26,SyrmaI-aPlanetData,Syrma I-a,Moon,69479,Syrma,1,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF25,SyrmaI-bPlanetData,Syrma I-b,Moon,69479,Syrma,1,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF24,SyrmaIPlanetData,Syrma I,Planet,69479,Syrma,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF21,HeinleinVIIPlanetData,Heinlein VII,Planet,71731,Heinlein,0,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF20,HeinleinVI-aPlanetData,Heinlein VI-a,Moon,71731,Heinlein,6,24,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF1F,HeinleinVI-dPlanetData,Heinlein VI-d,Moon,71731,Heinlein,6,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF1E,HeinleinVI-ePlanetData,Heinlein VI-e,Moon,71731,Heinlein,6,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF1D,HeinleinVI-bPlanetData,Heinlein VI-b,Moon,71731,Heinlein,6,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF1C,HeinleinVI-cPlanetData,Heinlein VI-c,Moon,71731,Heinlein,6,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF1B,HeinleinVIPlanetData,Heinlein VI,Planet,71731,Heinlein,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DF1A,HeinleinV-cPlanetData,Heinlein V-c,Moon,71731,Heinlein,5,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF19,HeinleinV-aPlanetData,Heinlein V-a,Moon,71731,Heinlein,5,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF18,HeinleinV-bPlanetData,Heinlein V-b,Moon,71731,Heinlein,5,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF17,HeinleinVPlanetData,Heinlein V,Planet,71731,Heinlein,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF16,HeinleinIV-ePlanetData,Heinlein IV-e,Moon,71731,Heinlein,4,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF15,HeinleinIV-cPlanetData,Heinlein IV-c,Moon,71731,Heinlein,4,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF14,HeinleinIV-dPlanetData,Heinlein IV-d,Moon,71731,Heinlein,4,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF13,HeinleinIV-bPlanetData,Heinlein IV-b,Moon,71731,Heinlein,4,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF12,HeinleinIV-aPlanetData,Heinlein IV-a,Moon,71731,Heinlein,4,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF11,HeinleinIVPlanetData,Heinlein IV,Planet,71731,Heinlein,0,4,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DF10,HeinleinIII-aPlanetData,Heinlein III-a,Moon,71731,Heinlein,3,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF0F,HeinleinIIIPlanetData,Heinlein III,Planet,71731,Heinlein,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF0E,HeinleinII-aPlanetData,Heinlein II-a,Moon,71731,Heinlein,2,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF0D,HeinleinII-bPlanetData,Heinlein II-b,Moon,71731,Heinlein,2,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF0C,HeinleinIIPlanetData,Heinlein II,Planet,71731,Heinlein,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF0B,HeinleinIPlanetData,Heinlein I,Planet,71731,Heinlein,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF08,BetaTernionIII-aPlanetData,Beta Ternion III-a,Moon,119225,Beta Ternion,28,29,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF07,BetaTernionIIIPlanetData,Beta Ternion III,Planet,119225,Beta Ternion,0,28,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF06,BetaTernionIIPlanetData,Beta Ternion II,Planet,119225,Beta Ternion,0,27,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF05,BetaTernionI-aPlanetData,Beta Ternion I-a,Moon,119225,Beta Ternion,25,26,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DF04,BetaTernionIPlanetData,Beta Ternion I,Planet,119225,Beta Ternion,0,25,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF01,ProximaTernionIV-aPlanetData,Proxima Ternion IV-a,Moon,119059,Proxima Ternion,4,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DF00,ProximaTernionIVPlanetData,Proxima Ternion IV,Planet,119059,Proxima Ternion,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEFF,ProximaTernionIIIPlanetData,Proxima Ternion III,Planet,119059,Proxima Ternion,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEFE,ProximaTernionIIPlanetData,Proxima Ternion II,Planet,119059,Proxima Ternion,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEFD,ProximaTernionI-bPlanetData,Proxima Ternion I-b,Moon,119059,Proxima Ternion,1,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEFC,ProximaTernionI-aPlanetData,Proxima Ternion I-a,Moon,119059,Proxima Ternion,1,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEFB,ProximaTernionI-cPlanetData,Proxima Ternion I-c,Moon,119059,Proxima Ternion,1,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEFA,ProximaTernionIPlanetData,Proxima Ternion I,Planet,119059,Proxima Ternion,0,1,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DEF7,TernionIX-cPlanetData,Ternion IX-c,Moon,119060,Alpha Ternion,9,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEF6,TernionIX-bPlanetData,Ternion IX-b,Moon,119060,Alpha Ternion,9,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEF5,TernionIX-aPlanetData,Ternion IX-a,Moon,119060,Alpha Ternion,9,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEF4,TernionIX-dPlanetData,Ternion IX-d,Moon,119060,Alpha Ternion,9,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEF3,TernionIXPlanetData,Ternion IX,Planet,119060,Alpha Ternion,0,9,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DEF2,TernionVIIIPlanetData,Ternion VIII,Planet,119060,Alpha Ternion,0,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEF1,TernionVIIPlanetData,Ternion VII,Planet,119060,Alpha Ternion,0,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEF0,TernionVI-aPlanetData,Ternion VI-a,Moon,119060,Alpha Ternion,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEEF,TernionVIPlanetData,Ternion VI,Planet,119060,Alpha Ternion,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEEE,TernionV-bPlanetData,Ternion V-b,Moon,119060,Alpha Ternion,5,13,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DEED,TernionV-aPlanetData,Ternion V-a,Moon,119060,Alpha Ternion,5,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEEC,TernionVPlanetData,Ternion V,Planet,119060,Alpha Ternion,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEEB,TernionIVPlanetData,Ternion IV,Planet,119060,Alpha Ternion,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEEA,TernionIII-aPlanetData,Ternion III-a,Moon,119060,Alpha Ternion,3,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEE9,TernionIIIPlanetData,Ternion III,Planet,119060,Alpha Ternion,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEE8,TernionIIPlanetData,Ternion II,Planet,119060,Alpha Ternion,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEE7,TernionIPlanetData,Ternion I,Planet,119060,Alpha Ternion,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEE4,EnlilVII-aPlanetData,Enlil VII-a,Moon,78498,Enlil,7,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEE3,EnlilVIIPlanetData,Enlil VII,Planet,78498,Enlil,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DEE2,EnlilVI-bPlanetData,Enlil VI-b,Moon,78498,Enlil,6,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEE1,EnlilVI-aPlanetData,Enlil VI-a,Moon,78498,Enlil,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEE0,EnlilVI-cPlanetData,Enlil VI-c,Moon,78498,Enlil,6,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEDF,EnlilVI-dPlanetData,Enlil VI-d,Moon,78498,Enlil,6,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEDE,EnlilVIPlanetData,Enlil VI,Planet,78498,Enlil,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DEDC,EnlilVPlanetData,Enlil V,Planet,78498,Enlil,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEDB,EnlilIV-aPlanetData,Enlil IV-a,Moon,78498,Enlil,4,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEDA,EnlilIVPlanetData,Enlil IV,Planet,78498,Enlil,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DED9,EnlilIIIPlanetData,Enlil III,Planet,78498,Enlil,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DED8,EnlilII-aPlanetData,Enlil II-a,Moon,78498,Enlil,2,10,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DED7,EnlilIIPlanetData,Enlil II,Planet,78498,Enlil,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DED6,EnlilI-aPlanetData,Enlil I-a,Moon,78498,Enlil,1,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DED5,EnlilIPlanetData,Enlil I,Planet,78498,Enlil,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DED0,CharonPlanetData,Charon,Moon,0,SOL,9,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DECF,PlutoPlanetData,Pluto,Planet,0,SOL,0,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DECE,TritonPlanetData,Triton,Moon,0,SOL,8,31,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DECD,NeptunePlanetData,Neptune,Planet,0,SOL,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DECC,OberonPlanetData,Oberon,Moon,0,SOL,7,30,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DECB,TitaniaPlanetData,Titania,Moon,0,SOL,7,29,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DECA,UmbrielPlanetData,Umbriel,Moon,0,SOL,7,28,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEC9,ArielPlanetData,Ariel,Moon,0,SOL,7,27,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEC8,MirandaPlanetData,Miranda,Moon,0,SOL,7,26,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEC7,UranusPlanetData,Uranus,Planet,0,SOL,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DEC6,IapetusPlanetData,Iapetus,Moon,0,SOL,6,25,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEC5,TitanPlanetData,Titan,Moon,0,SOL,6,24,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEC4,RheaPlanetData,Rhea,Moon,0,SOL,6,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEC3,DionePlanetData,Dione,Moon,0,SOL,6,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEC2,TethysPlanetData,Tethys,Moon,0,SOL,6,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEC1,EnceladusPlanetData,Enceladus,Moon,0,SOL,6,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEC0,MimasPlanetData,Mimas,Moon,0,SOL,6,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEBF,SaturnPlanetData,Saturn,Planet,0,SOL,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DEBE,CallistoPlanetData,Callisto,Moon,0,SOL,5,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEBD,GanymedePlanetData,Ganymede,Moon,0,SOL,5,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEBC,EuropaPlanetData,Europa,Moon,0,SOL,5,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEBB,IoPlanetData,Io,Moon,0,SOL,5,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEBA,JupiterPlanetData,Jupiter,Planet,0,SOL,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DEB8,DeimosPlanetData,Deimos,Moon,0,SOL,4,13,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DEB7,PhobosPlanetData,Phobos,Moon,0,SOL,4,12,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DEB6,LunaPlanetData,Luna,Moon,0,SOL,3,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEB5,EarthPlanetData,Earth,Planet,0,SOL,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEB3,VenusPlanetData,Venus,Planet,0,SOL,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEB2,MercuryPlanetData,Mercury,Planet,0,SOL,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEAF,LeonisIXPlanetData,Leonis IX,Planet,55476,Leonis,0,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEAE,LeonisVIII-cPlanetData,Leonis VIII-c,Moon,55476,Leonis,8,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEAD,LeonisVIII-aPlanetData,Leonis VIII-a,Moon,55476,Leonis,8,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEAC,LeonisVIII-bPlanetData,Leonis VIII-b,Moon,55476,Leonis,8,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEAB,LeonisVIIIPlanetData,Leonis VIII,Planet,55476,Leonis,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DEAA,LeonisVIIPlanetData,Leonis VII,Planet,55476,Leonis,0,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEA9,LeonisVI-aPlanetData,Leonis VI-a,Moon,55476,Leonis,6,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEA8,LeonisVIPlanetData,Leonis VI,Planet,55476,Leonis,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DEA7,LeonisV-aPlanetData,Leonis V-a,Moon,55476,Leonis,5,14,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DEA6,LeonisVPlanetData,Leonis V,Planet,55476,Leonis,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEA5,LeonisIVPlanetData,Leonis IV,Planet,55476,Leonis,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEA4,LeonisIIIPlanetData,Leonis III,Planet,55476,Leonis,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEA3,LeonisII-aPlanetData,Leonis II-a,Moon,55476,Leonis,2,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEA2,LeonisIIPlanetData,Leonis II,Planet,55476,Leonis,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEA1,LeonisI-bPlanetData,Leonis I-b,Moon,55476,Leonis,1,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DEA0,LeonisI-aPlanetData,Leonis I-a,Moon,55476,Leonis,1,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE9F,LeonisIPlanetData,Leonis I,Planet,55476,Leonis,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE9C,KangVIII-dPlanetData,Kang VIII-d,Moon,71517,Kang,8,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE9B,KangVIII-aPlanetData,Kang VIII-a,Moon,71517,Kang,8,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE9A,KangVIII-cPlanetData,Kang VIII-c,Moon,71517,Kang,8,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE99,KangVIII-bPlanetData,Kang VIII-b,Moon,71517,Kang,8,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE98,KangVIIIPlanetData,Kang VIII,Planet,71517,Kang,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DE97,KangVII-dPlanetData,Kang VII-d,Moon,71517,Kang,7,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE96,KangVII-bPlanetData,Kang VII-b,Moon,71517,Kang,7,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE95,KangVII-aPlanetData,Kang VII-a,Moon,71517,Kang,7,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE94,KangVII-cPlanetData,Kang VII-c,Moon,71517,Kang,7,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE93,KangVIIPlanetData,Kang VII,Planet,71517,Kang,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DE92,KangVI-aPlanetData,Kang VI-a,Moon,71517,Kang,6,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE91,KangVIPlanetData,Kang VI,Planet,71517,Kang,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE90,KangVPlanetData,Kang V,Planet,71517,Kang,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE8F,KangIV-bPlanetData,Kang IV-b,Moon,71517,Kang,4,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE8E,KangIV-aPlanetData,Kang IV-a,Moon,71517,Kang,4,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE8D,KangIV-cPlanetData,Kang IV-c,Moon,71517,Kang,4,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE8C,KangIVPlanetData,Kang IV,Planet,71517,Kang,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE8B,KangIIIPlanetData,Kang III,Planet,71517,Kang,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE8A,KangIIPlanetData,Kang II,Planet,71517,Kang,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE89,KangIPlanetData,Kang I,Planet,71517,Kang,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE86,CelabraiIVPlanetData,Celebrai IV,Planet,86475,Celebrai,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE85,CelabraiIII-cPlanetData,Celebrai III-c,Moon,86475,Celebrai,3,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE84,CelabraiIII-bPlanetData,Celebrai III-b,Moon,86475,Celebrai,3,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE83,CelabraiIII-aPlanetData,Celebrai III-a,Moon,86475,Celebrai,3,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE82,CelabraiIIIPlanetData,Celebrai III,Planet,86475,Celebrai,0,3,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DE81,CelabraiIIPlanetData,Celebrai II,Planet,86475,Celebrai,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE80,CelabraiIPlanetData,Celebrai I,Planet,86475,Celebrai,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE7D,KatydidIIIPlanetData,Katydid III,Planet,55539,Katydid,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE7C,KatydidIIPlanetData,Katydid II,Planet,55539,Katydid,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE7B,KatydidI-bPlanetData,Katydid I-b,Moon,55539,Katydid,1,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE7A,KatydidI-aPlanetData,Katydid I-a,Moon,55539,Katydid,1,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE79,KatydidIPlanetData,Katydid I,Planet,55539,Katydid,0,1,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DE76,MaalXPlanetData,Maal X,Planet,74746,Maal,0,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE75,MaalIX-cPlanetData,Maal IX-c,Moon,74746,Maal,9,24,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE74,MaalIX-bPlanetData,Maal IX-b,Moon,74746,Maal,9,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE73,MaalIX-dPlanetData,Maal IX-d,Moon,74746,Maal,9,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE72,MaalIX-aPlanetData,Maal IX-a,Moon,74746,Maal,9,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE71,MaalIXPlanetData,Maal IX,Planet,74746,Maal,0,9,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DE70,MaalVIII-aPlanetData,Maal VIII-a,Moon,74746,Maal,8,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE6F,MaalVIIIPlanetData,Maal VIII,Planet,74746,Maal,0,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE6E,MaalVIIPlanetData,Maal VII,Planet,74746,Maal,0,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE6D,MaalVI-bPlanetData,Maal VI-b,Moon,74746,Maal,6,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE6C,MaalVI-cPlanetData,Maal VI-c,Moon,74746,Maal,6,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE6B,MaalVI-aPlanetData,Maal VI-a,Moon,74746,Maal,6,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE6A,MaalVIPlanetData,Maal VI,Planet,74746,Maal,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DE69,MaalV-aPlanetData,Maal V-a,Moon,74746,Maal,5,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE68,MaalVPlanetData,Maal V,Planet,74746,Maal,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE67,MaalIVPlanetData,Maal IV,Planet,74746,Maal,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE66,MaalIII-aPlanetData,Maal III-a,Moon,74746,Maal,3,15,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DE65,MaalIIIPlanetData,Maal III,Planet,74746,Maal,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE64,MaalII-aPlanetData,Maal II-a,Moon,74746,Maal,2,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE63,MaalIIPlanetData,Maal II,Planet,74746,Maal,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE62,MaalI-aPlanetData,Maal I-a,Moon,74746,Maal,1,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE61,MaalI-bPlanetData,Maal I-b,Moon,74746,Maal,1,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE60,MaalIPlanetData,Maal I,Planet,74746,Maal,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE5D,AlgorabIII-bPlanetData,Algorab III-b,Moon,60776,Algorab,3,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE5C,AlgorabIII-cPlanetData,Algorab III-c,Moon,60776,Algorab,3,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE5B,AlgorabIII-aPlanetData,Algorab III-a,Moon,60776,Algorab,3,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE5A,AlgorabIII-dPlanetData,Algorab III-d,Moon,60776,Algorab,3,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE59,AlgorabIII-ePlanetData,Algorab III-e,Moon,60776,Algorab,3,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE58,AlgorabIIIPlanetData,Algorab III,Planet,60776,Algorab,0,3,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DE57,AlgorabIIPlanetData,Algorab II,Planet,60776,Algorab,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE54,ArchimedesVI-bPlanetData,Archimedes VI-b,Moon,75150,Archimedes,6,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE53,ArchimedesVI-aPlanetData,Archimedes VI-a,Moon,75150,Archimedes,6,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE52,ArchimedesVIPlanetData,Archimedes VI,Planet,75150,Archimedes,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE51,ArchimedesV-aPlanetData,Archimedes V-a,Moon,75150,Archimedes,5,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE50,ArchimedesV-bPlanetData,Archimedes V-b,Moon,75150,Archimedes,5,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE4F,ArchimedesVPlanetData,Archimedes V,Planet,75150,Archimedes,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DE4E,ArchimedesIV-aPlanetData,Archimedes IV-a,Moon,75150,Archimedes,4,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE4D,ArchimedesIVPlanetData,Archimedes IV,Planet,75150,Archimedes,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE4C,ArchimedesIIIPlanetData,Archimedes III,Planet,75150,Archimedes,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE4B,ArchimedesIIPlanetData,Archimedes II,Planet,75150,Archimedes,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE4A,ArchimedesI-aPlanetData,Archimedes I-a,Moon,75150,Archimedes,1,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE49,ArchimedesIPlanetData,Archimedes I,Planet,75150,Archimedes,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE46,FermiXPlanetData,Fermi X,Planet,73788,Fermi,0,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE45,FermiIX-aPlanetData,Fermi IX-a,Moon,73788,Fermi,9,29,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE44,FermiIX-ePlanetData,Fermi IX-e,Moon,73788,Fermi,9,28,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE43,FermiIX-cPlanetData,Fermi IX-c,Moon,73788,Fermi,9,27,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE42,FermiIX-bPlanetData,Fermi IX-b,Moon,73788,Fermi,9,26,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE41,FermiIX-dPlanetData,Fermi IX-d,Moon,73788,Fermi,9,25,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE40,FermiIXPlanetData,Fermi IX,Planet,73788,Fermi,0,9,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DE3F,FermiVIII-bPlanetData,Fermi VIII-b,Moon,73788,Fermi,8,24,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE3E,FermiVIII-cPlanetData,Fermi VIII-c,Moon,73788,Fermi,8,23,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE3D,FermiVIII-dPlanetData,Fermi VIII-d,Moon,73788,Fermi,8,22,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE3C,FermiVIII-aPlanetData,Fermi VIII-a,Moon,73788,Fermi,8,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE3B,FermiVIIIPlanetData,Fermi VIII,Planet,73788,Fermi,0,8,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DE3A,FermiVII-aPlanetData,Fermi VII-a,Moon,73788,Fermi,7,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE39,FermiVII-bPlanetData,Fermi VII-b,Moon,73788,Fermi,7,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE38,FermiVII-cPlanetData,Fermi VII-c,Moon,73788,Fermi,7,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE37,FermiVIIPlanetData,Fermi VII,Planet,73788,Fermi,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DE36,FermiVI-aPlanetData,Fermi VI-a,Moon,73788,Fermi,6,30,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE35,FermiVIPlanetData,Fermi VI,Planet,73788,Fermi,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE34,FermiV-aPlanetData,Fermi V-a,Moon,73788,Fermi,5,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE33,FermiVPlanetData,Fermi V,Planet,73788,Fermi,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE32,FermiIV-aPlanetData,Fermi IV-a,Moon,73788,Fermi,4,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE31,FermiIV-bPlanetData,Fermi IV-b,Moon,73788,Fermi,4,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE30,FermiIVPlanetData,Fermi IV,Planet,73788,Fermi,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE2F,FermiIII-bPlanetData,Fermi III-b,Moon,73788,Fermi,3,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE2E,FermiIII-aPlanetData,Fermi III-a,Moon,73788,Fermi,3,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE2D,FermiIIIPlanetData,Fermi III,Planet,73788,Fermi,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE2C,FermiII-aPlanetData,Fermi II-a,Moon,73788,Fermi,2,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE2B,FermiIIPlanetData,Fermi II,Planet,73788,Fermi,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE2A,FermiIPlanetData,Fermi I,Planet,73788,Fermi,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE27,HawkingVI-aPlanetData,Hawking VI-a,Moon,73489,Hawking,6,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE26,HawkingVI-bPlanetData,Hawking VI-b,Moon,73489,Hawking,6,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE25,HawkingVIPlanetData,Hawking VI,Planet,73489,Hawking,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DE24,HawkingV-aPlanetData,Hawking V-a,Moon,73489,Hawking,5,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE23,HawkingVPlanetData,Hawking V,Planet,73489,Hawking,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DE22,HawkingIV-aPlanetData,Hawking IV-a,Moon,73489,Hawking,4,9,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE21,HawkingIVPlanetData,Hawking IV,Planet,73489,Hawking,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE20,HawkingIIIPlanetData,Hawking III,Planet,73489,Hawking,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE1F,HawkingIIPlanetData,Hawking II,Planet,73489,Hawking,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE1E,HawkingI-aPlanetData,Hawking I-a,Moon,73489,Hawking,1,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE1D,HawkingIPlanetData,Hawking I,Planet,73489,Hawking,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE1A,HuygensVIIIPlanetData,Huygens VIII,Planet,73082,Huygens,0,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE19,HuygensVII-dPlanetData,Huygens VII-d,Moon,73082,Huygens,7,21,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE18,HuygensVII-ePlanetData,Huygens VII-e,Moon,73082,Huygens,7,20,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE17,HuygensVII-cPlanetData,Huygens VII-c,Moon,73082,Huygens,7,19,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE16,HuygensVII-aPlanetData,Huygens VII-a,Moon,73082,Huygens,7,18,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE15,HuygensVII-bPlanetData,Huygens VII-b,Moon,73082,Huygens,7,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE14,HuygensVIIPlanetData,Huygens VII,Planet,73082,Huygens,0,7,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DE13,HuygensVI-aPlanetData,Huygens VI-a,Moon,73082,Huygens,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE12,HuygensVIPlanetData,Huygens VI,Planet,73082,Huygens,0,6,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE11,HuygensV-bPlanetData,Huygens V-b,Moon,73082,Huygens,5,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE10,HuygensV-aPlanetData,Huygens V-a,Moon,73082,Huygens,5,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE0F,HuygensVPlanetData,Huygens V,Planet,73082,Huygens,0,5,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DE0E,HuygensIVPlanetData,Huygens IV,Planet,73082,Huygens,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE0D,HuygensIIIPlanetData,Huygens III,Planet,73082,Huygens,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE0C,HuygensII-bPlanetData,Huygens II-b,Moon,73082,Huygens,2,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE0B,HuygensII-aPlanetData,Huygens II-a,Moon,73082,Huygens,2,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE0A,HuygensIIPlanetData,Huygens II,Planet,73082,Huygens,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE05,HuygensI-bPlanetData,Huygens I-b,Moon,73082,Huygens,1,11,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DE03,HuygensI-aPlanetData,Huygens I-a,Moon,73082,Huygens,1,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DE02,HuygensIPlanetData,Huygens I,Planet,73082,Huygens,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DDFD,BohrVIIIPlanetData,Bohr VIII,Planet,73018,Bohr,0,8,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DDFC,BohrVIIPlanetData,Bohr VII,Planet,73018,Bohr,0,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DDFB,BohrVI-dPlanetData,Bohr VI-d,Moon,73018,Bohr,6,17,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DDFA,BohrVI-cPlanetData,Bohr VI-c,Moon,73018,Bohr,6,16,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DDF9,BohrVI-aPlanetData,Bohr VI-a,Moon,73018,Bohr,6,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DDF8,BohrVI-bPlanetData,Bohr VI-b,Moon,73018,Bohr,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DDF7,BohrVIPlanetData,Bohr VI,Planet,73018,Bohr,0,6,1,0
+Starfield.esm,2026-09-02 22:57:08,0005DDF6,BohrVPlanetData,Bohr V,Planet,73018,Bohr,0,5,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DDF5,BohrIVPlanetData,Bohr IV,Planet,73018,Bohr,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DDF4,BohrIII-bPlanetData,Bohr III-b,Moon,73018,Bohr,3,13,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DDF3,BohrIII-aPlanetData,Bohr III-a,Moon,73018,Bohr,3,12,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DDF2,BohrIIIPlanetData,Bohr III,Planet,73018,Bohr,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DDF1,BohrI-aPlanetData,Bohr I-a,Moon,73018,Bohr,1,11,0,0
+Starfield.esm,2026-09-02 22:57:08,0005DDF0,BohrIPlanetData,Bohr I,Planet,73018,Bohr,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0003F5A2,GroombridgeIIPlanetData,Groombridge II,Planet,57767,Groombridge,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,0003F5A1,JemisonPlanetData,Jemison,Planet,71456,Alpha Centauri,0,3,0,0
+Starfield.esm,2026-09-02 22:57:08,0003F59F,KreetPlanetData,Kreet,Moon,88327,Narion,6,15,0,0
+Starfield.esm,2026-09-02 22:57:08,0003F59E,VecteraPlanetData,Vectera,Moon,88327,Narion,6,14,0,0
+Starfield.esm,2026-09-02 22:57:08,0003F59D,PodiusPlanetData,Podius,Moon,88327,Narion,3,10,0,0
+Starfield.esm,2026-09-02 22:57:08,0003F59C,NavacciPlanetData,Navacci,Moon,119198,Valo,1,7,0,0
+Starfield.esm,2026-09-02 22:57:08,0003F59B,PolvoPlanetData,Polvo,Planet,119198,Valo,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0003F59A,MarsPlanetData,Mars,Planet,0,SOL,0,4,0,0
+Starfield.esm,2026-09-02 22:57:08,0003F599,AlgorabIPlanetData,Algorab I,Planet,60776,Algorab,0,1,0,0
+Starfield.esm,2026-09-02 22:57:08,0003F598,BohrIIPlanetData,Bohr II,Planet,73018,Bohr,0,2,0,0
+Starfield.esm,2026-09-02 22:57:08,00026E9A,_scLC082VigilanceCF07PlanetData,_scLC082VigilanceCF07,Orbital,72717,Sagan,1,2,0,0
+Starfield.esm,2026-09-02 22:57:08,00026E99,_scLC082VigilanceCF06PlanetData,_scLC082VigilanceCF06,Orbital,118818,Bolivar,1,2,0,0
+Starfield.esm,2026-09-02 22:57:08,00026E98,_scLC082VigilanceCF05PlanetData,_scLC082VigilanceCF05,Orbital,118493,Procyon B,1,2,0,0
+Starfield.esm,2026-09-02 22:57:08,00026E97,_scLC082VigilanceCF04PlanetData,_scLC082VigilanceCF04,Orbital,72955,Aranae,8,16,0,0
+Starfield.esm,2026-09-02 22:57:08,00026E96,_scLC082VigilanceCF01PlanetData,_scLC082VigilanceCF01,Orbital,0,SOL,12,58,0,0
+Starfield.esm,2026-09-02 22:57:08,00017FED,_RL083OrbitalPlanetData,_RL083Orbital,Orbital,64720,Volii,10,14,0,0
+Starfield.esm,2026-09-02 22:57:08,000116C1,_RL082OrbitalPlanetData,_RL082Orbital,Orbital,119198,Valo,3,14,0,0

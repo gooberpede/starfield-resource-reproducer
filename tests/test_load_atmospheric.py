@@ -16,7 +16,7 @@ MAAL_VIII = FormId("0005DE6F")
 VESTA = FormId("0005E568")
 
 
-def test_real_atmospheric_tsv_preserves_order_and_provenance(
+def test_real_atmospheric_csv_preserves_order_and_provenance(
     atmospheric_resources,
 ) -> None:
     assert sum(len(records) for records in atmospheric_resources.values()) == 335
@@ -38,11 +38,9 @@ def test_project_data_includes_atmospheric_records() -> None:
     assert project.atmospheric_resources[MAAL_VIII][0].resource_name == "Chlorine"
 
 
-def _write_tsv(path, rows) -> None:
+def _write_csv(path, rows) -> None:
     with path.open("w", encoding="utf-8", newline="") as destination:
-        writer = csv.DictWriter(
-            destination, fieldnames=sorted(ATMOSPHERIC_COLUMNS), delimiter="\t"
-        )
+        writer = csv.DictWriter(destination, fieldnames=sorted(ATMOSPHERIC_COLUMNS))
         writer.writeheader()
         writer.writerows(rows)
 
@@ -68,8 +66,8 @@ def _row() -> dict[str, str]:
 def test_malformed_atmospheric_form_id_fails(tmp_path) -> None:
     row = _row()
     row["ResourceFormID"] = "bad"
-    path = tmp_path / "atmo.tsv"
-    _write_tsv(path, [row])
+    path = tmp_path / "atmo.csv"
+    _write_csv(path, [row])
     with pytest.raises(DataValidationError, match="invalid ResourceFormID"):
         load_atmospheric_resources(path)
 
@@ -78,7 +76,7 @@ def test_contradictory_duplicate_atmospheric_row_fails(tmp_path) -> None:
     first = _row()
     second = dict(first)
     second["ResourceName"] = "Wrong"
-    path = tmp_path / "atmo.tsv"
-    _write_tsv(path, [first, second])
+    path = tmp_path / "atmo.csv"
+    _write_csv(path, [first, second])
     with pytest.raises(DataValidationError, match="contradictory duplicate"):
         load_atmospheric_resources(path)

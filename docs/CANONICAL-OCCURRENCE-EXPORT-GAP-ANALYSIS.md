@@ -163,6 +163,12 @@ exposing incidental production order.
 
 ## 3. Current input inventory
 
+This section records the pre-10B audit snapshot and therefore retains the legacy
+filenames actually inspected at that time. The current canonical source exports
+are `planet-resource-generation.csv`, `ires-hierarchy.csv`,
+`planet-atmospheric-resources.csv`, and `planet-directory.csv`; their maintained
+provenance contract is in `docs/CANONICAL-XEDIT-EXPORTS.md`.
+
 ### `data/PlanetResourceGeneration_v5.csv`
 
 | Property | Audit result |

@@ -139,7 +139,7 @@ def test_combined_pndt_biom_provenance_is_preserved(generation_data) -> None:
 
 
 def test_generation_integrity_counts(generation_data) -> None:
-    with (DATA_DIR / "PlanetResourceGeneration_v5.csv").open(
+    with (DATA_DIR / "planet-resource-generation.csv").open(
         encoding="utf-8-sig", newline=""
     ) as source:
         assert sum(1 for _ in csv.DictReader(source)) == 7920
@@ -165,7 +165,7 @@ def _write_rows(path: Path, rows: list[dict[str, str]]) -> None:
 
 
 def _first_generation_row() -> dict[str, str]:
-    with (DATA_DIR / "PlanetResourceGeneration_v5.csv").open(
+    with (DATA_DIR / "planet-resource-generation.csv").open(
         encoding="utf-8-sig", newline=""
     ) as source:
         return next(csv.DictReader(source))

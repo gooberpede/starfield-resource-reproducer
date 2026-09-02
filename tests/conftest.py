@@ -22,12 +22,12 @@ DATA_DIR = Path(__file__).resolve().parents[1] / "data"
 
 @pytest.fixture(scope="session")
 def generation_data() -> dict[FormId, Planet]:
-    return load_generation_data(DATA_DIR / "PlanetResourceGeneration_v5.csv")
+    return load_generation_data(DATA_DIR / "planet-resource-generation.csv")
 
 
 @pytest.fixture(scope="session")
 def ires_nodes() -> dict[FormId, IRESNode]:
-    return load_ires_hierarchy(DATA_DIR / "Starfield_IRES_Hierarchy.csv")
+    return load_ires_hierarchy(DATA_DIR / "ires-hierarchy.csv")
 
 
 @pytest.fixture(scope="session")
@@ -40,5 +40,5 @@ def atmospheric_resources() -> dict[
     FormId, tuple[AtmosphericResourceRecord, ...]
 ]:
     return load_atmospheric_resources(
-        DATA_DIR / "Starfield_PlanetAtmosphericResources.tsv"
+        DATA_DIR / "planet-atmospheric-resources.csv"
     )

@@ -284,7 +284,7 @@ weighted selector and consume its normal RNG draw.
 
 Effective inorganic atmospheric resources are prepopulated before Everywhere and
 before shuffled main generation. Atmospheric insertion consumes no RNG and is not
-an RSGD result. Ordered records from `Starfield_PlanetAtmosphericResources.tsv`
+an RSGD result. Ordered records from `planet-atmospheric-resources.csv`
 retain their defining ATMO identity, source file, and inheritance depth.
 
 The same IRES FormID may occur through ATMO and an RSGD mechanism. These are two
@@ -493,7 +493,7 @@ IRES
 └── Child Resources
 ```
 
-Use `Starfield_IRES_Hierarchy.csv`.
+Use `ires-hierarchy.csv`.
 
 ### Serialized graph vs effective candidate path
 
@@ -729,7 +729,7 @@ result. Biome-local terrestrial generation is unknown or unsupported from the
 current corpus.
 
 Independently available origin channels remain reportable. Volii Alpha is absent
-from `PlanetResourceGeneration_v5.csv`, while atmospheric Benzene and Water are
+from `planet-resource-generation.csv`, while atmospheric Benzene and Water are
 available independently; the reproducer must report those known facts without
 inventing a biome assignment. This negative control validates the reproducer's
 epistemic boundary; it is not evidence about Volii Alpha's actual terrestrial

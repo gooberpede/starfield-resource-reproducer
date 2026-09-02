@@ -61,6 +61,8 @@ No planet-specific exceptions or output-fitting heuristics.
 
 ### Consumer and export API hardening
 
+- Add Planet Directory ingestion only under the later canonical-occurrence brief;
+  its canonical CSV is present but deliberately outside the v1.0 model today.
 - Stabilize documented result/export shapes for downstream consumers.
 - Add compatibility policy and contract tests if an external consumer appears.
 - Improve explicit reporting for bodies with independently known channels but no

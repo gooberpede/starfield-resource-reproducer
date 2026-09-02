@@ -1,4 +1,4 @@
-"""Load and validate the canonical Starfield CSV and atmospheric TSV datasets.
+"""Load and validate the canonical Starfield CSV datasets.
 
 Purpose: translate flat canonical exports into the immutable objects in ``domain``.
 Responsibilities include schema and consistency checks, numeric parsing, grouping,
@@ -601,10 +601,10 @@ def load_canonical_oracle(path: Path) -> dict[FormId, CanonicalBodyResources]:
 def load_atmospheric_resources(
     path: Path,
 ) -> dict[FormId, tuple[AtmosphericResourceRecord, ...]]:
-    """Load ordered atmospheric occurrences from the explicit TSV export."""
+    """Load ordered atmospheric occurrences from the explicit CSV export."""
 
     path = Path(path)
-    raw_rows = _read_rows(path, ATMOSPHERIC_COLUMNS, delimiter="\t")
+    raw_rows = _read_rows(path, ATMOSPHERIC_COLUMNS)
     grouped: dict[FormId, list[tuple[int, AtmosphericResourceRecord]]] = defaultdict(list)
     seen_pairs: dict[tuple[FormId, FormId], AtmosphericResourceRecord] = {}
 
@@ -752,10 +752,10 @@ def load_project_data(
     """Load all four datasets from explicit project paths."""
 
     data_dir = Path(data_dir)
-    planets = load_generation_data(data_dir / "PlanetResourceGeneration_v5.csv")
-    ires_nodes = load_ires_hierarchy(data_dir / "Starfield_IRES_Hierarchy.csv")
+    planets = load_generation_data(data_dir / "planet-resource-generation.csv")
+    ires_nodes = load_ires_hierarchy(data_dir / "ires-hierarchy.csv")
     atmospheric = load_atmospheric_resources(
-        atmospheric_path or data_dir / "Starfield_PlanetAtmosphericResources.tsv"
+        atmospheric_path or data_dir / "planet-atmospheric-resources.csv"
     )
     _validate_atmospheric_coherence(planets, ires_nodes, atmospheric)
     return ProjectData(
