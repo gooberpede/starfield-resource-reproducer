@@ -238,6 +238,18 @@ When editing Markdown, source, tests, or other text files:
 
 If encoding corruption appears in generated or edited text, correct it before reporting the task complete.
 
+### Diff export encoding
+
+When producing a diff for external review, do not pipe `git diff` through PowerShell `Out-File`, `Set-Content`, or similar text commands. Use Git's native `--output=<path>` option so patch bytes are written directly without PowerShell transcoding.
+
+```text
+# Do not use:
+git diff --cached | Out-File -Encoding utf8 "myDiff.diff"
+
+# Use:
+git diff --cached --output="myDiff.diff"
+```
+
 ## Code Documentation and Comments
 
 Implementation files containing substantive project logic should include a concise module-level header describing the file's intent.
