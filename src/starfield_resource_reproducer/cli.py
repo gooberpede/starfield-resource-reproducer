@@ -11,6 +11,7 @@ from pathlib import Path
 
 from starfield_resource_reproducer import __version__
 from starfield_resource_reproducer.load_data import load_project_data
+from starfield_resource_reproducer.product import export_default_product
 from starfield_resource_reproducer.validation import (
     format_full_validation_summary,
     validate_all_planets,
@@ -36,6 +37,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--all",
         action="store_true",
         help="validate the complete generation/oracle inorganic intersection",
+    )
+    parser.add_argument(
+        "--export-biome-resources",
+        action="store_true",
+        help="write the default biome inorganic-resource CSV and manifest",
     )
     parser.add_argument(
         "--output",
@@ -78,4 +84,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         write_mismatch_csv(result, parsed.output)
         print(format_full_validation_summary(result))
         print(f"Mismatch report: {parsed.output}")
+    if parsed.export_biome_resources:
+        result = export_default_product(_PROJECT_ROOT)
+        print(
+            f"Exported {len(result.rows)} rows "
+            f"({result.biome_row_count} BIOME, "
+            f"{result.atmosphere_row_count} ATMOSPHERE)"
+        )
+        print(f"Output: {_PROJECT_ROOT / 'output' / 'biome-inorganic-resources.csv'}")
     return 0

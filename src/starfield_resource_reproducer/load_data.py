@@ -924,6 +924,28 @@ def load_project_data(
 ) -> ProjectData:
     """Load four production inputs plus the isolated validation-only oracle."""
 
+    production = load_production_data(
+        data_dir, atmospheric_path=atmospheric_path
+    )
+    return ProjectData(
+        planets=production.planets,
+        ires_nodes=production.ires_nodes,
+        oracle=load_canonical_oracle(Path(data_dir) / "planet-all-resources.csv"),
+        atmospheric_resources=production.atmospheric_resources,
+        planet_directory=production.planet_directory,
+        dataset_metadata=production.dataset_metadata,
+    )
+
+
+def load_production_data(
+    data_dir: Path, *, atmospheric_path: Path | None = None
+) -> ProjectData:
+    """Load and cohere only the four canonical production inputs.
+
+    The returned project's oracle mapping is deliberately empty. Product
+    generation uses this boundary so validation data cannot influence rows.
+    """
+
     data_dir = Path(data_dir)
     planets = load_generation_data(data_dir / "planet-resource-generation.csv")
     ires_nodes = load_ires_hierarchy(data_dir / "ires-hierarchy.csv")
@@ -946,7 +968,7 @@ def load_project_data(
     return ProjectData(
         planets=planets,
         ires_nodes=ires_nodes,
-        oracle=load_canonical_oracle(data_dir / "planet-all-resources.csv"),
+        oracle={},
         atmospheric_resources=atmospheric,
         planet_directory=directory,
         dataset_metadata={

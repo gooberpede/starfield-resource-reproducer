@@ -87,7 +87,9 @@ typed body/location/resource/origin view. The stable resource origins are
 RSGD relationship evidence remains `BIOM`, `PNDT`, or `PNDT_AND_BIOM` (the typed
 name for source value `PNDT+BIOM`). Common-family rows expose their root and the
 original family-generation biome independently of the current assignment
-mechanism. This is an in-memory model only; no occurrence CSV exporter exists yet.
+mechanism. The default exporter safely collapses this richer internal view to
+the consumer-facing `Planet x Location x Resource` grain documented in
+[docs/BIOME-INORGANIC-RESOURCES.md](docs/BIOME-INORGANIC-RESOURCES.md).
 
 ## Effective RSGD Rule
 
@@ -185,6 +187,16 @@ The command prints summary metrics and writes
 `validation/full-canonical-mismatches.csv` by default. An exact run produces a
 header-only mismatch report.
 
+Generate the default consumer dataset and its provenance manifest:
+
+```bash
+python reproduce.py --export-biome-resources
+```
+
+This writes `output/biome-inorganic-resources.csv` and
+`output/biome-inorganic-resources.manifest.json`. The generated `output/`
+directory is intentionally ignored by Git.
+
 Run the test suite:
 
 ```bash
@@ -214,6 +226,8 @@ baseline, not a contractual assertion; the suite may grow.
   status.
 - [docs/CANONICAL-XEDIT-EXPORTS.md](docs/CANONICAL-XEDIT-EXPORTS.md): maintained
   source-export provenance contracts.
+- [docs/BIOME-INORGANIC-RESOURCES.md](docs/BIOME-INORGANIC-RESOURCES.md): default
+  consumer dataset and manifest contract.
 - [docs/V1-VALIDATION-BASELINE.md](docs/V1-VALIDATION-BASELINE.md): v1.0 evidence
   baseline.
 - [docs/BACKLOG.md](docs/BACKLOG.md): genuine post-v1.0 work.

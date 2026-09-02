@@ -19,6 +19,7 @@ from starfield_resource_reproducer.load_data import (
     load_planet_directory,
     load_project_data,
 )
+from starfield_resource_reproducer.product import build_product
 
 
 DATA_DIR = Path(__file__).resolve().parents[1] / "data"
@@ -56,3 +57,10 @@ def planet_directory() -> dict[FormId, PlanetDirectoryRecord]:
 @pytest.fixture(scope="session")
 def project_data() -> ProjectData:
     return load_project_data(DATA_DIR)
+
+
+@pytest.fixture(scope="session")
+def default_product(project_data):
+    return build_product(
+        project_data, export_timestamp="2026-09-03T00:00:00Z"
+    )

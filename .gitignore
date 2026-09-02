@@ -6,6 +6,7 @@
 # Generated exports
 exports/*
 !exports/.gitkeep
+output/
 
 # Local scratch
 scratch/

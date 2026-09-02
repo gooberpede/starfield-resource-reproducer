@@ -29,6 +29,9 @@ canonical static inputs                  runtime-derived oracle
           |
           v
  occurrences.py (typed accepted-occurrence projection)
+          |
+          v
+ product.py (clean product collapse, validation, serialization)
 ```
 
 The oracle is never passed into generation. Validation begins only after an
@@ -115,8 +118,23 @@ origin remains part of occurrence identity.
 Atmosphere-only bodies are projected directly from directory plus atmosphere
 records. They do not receive a fabricated empty `PlanetGenerationResult`; Volii
 Alpha therefore produces two atmosphere occurrences and no biome occurrences.
-The projection never reads `ProjectData.oracle`. `ResourceCategory = Inorganic`
-remains a future serialization constant rather than redundant in-memory state.
+The projection never reads `ProjectData.oracle`. `product.py` supplies the
+`ResourceCategory = Inorganic` serialization constant and removes internal
+generation lineage from the default consumer shape.
+
+### Default consumer product
+
+`product.py` loads only the four production datasets, generates every supported
+terrestrial body, builds the enriched accepted-occurrence view, and safely
+collapses provenance-only duplicates to `Planet x Location x Resource`. Before
+collapse, every retained field must agree for a product key. Rows are validated
+against the exact 35-column contract, sorted by numeric IDs, and written with a
+source-hash manifest. The CSV and JSON destinations are each replaced atomically
+only after both complete temporary files exist.
+
+The validation-only projection helper can compare BIOME resource identities to
+the old oracle, but the oracle is absent from the production loader and cannot
+create, reorder, or repair product rows.
 
 ### Family cache, origin, and assignment
 
@@ -272,6 +290,13 @@ Compares the completed RSGD/CK-visible prediction against the filtered inorganic
 oracle by FormID. It retains atmospheric and final player-facing channels
 separately, aggregates all bodies, classifies mismatches/errors, and writes a
 deterministic mismatch CSV.
+
+### `product.py`
+
+Owns default product projection, safe collapse, schema/nullability/uniqueness
+validation, stable numeric ordering, biome identity audit, input hashing, and
+atomic CSV/manifest output. It does not expose diagnostic lineage or modify
+generation semantics.
 
 ### `cli.py` and `reproduce.py`
 

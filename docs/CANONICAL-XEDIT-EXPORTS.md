@@ -8,6 +8,10 @@ repository script copies current for Brief 10B. These exports contain only
 game/plugin record data and deterministic exporter-derived values; none consults
 the validation oracle.
 
+These files are source inputs, not generated consumer products. The default
+consumer dataset is written under `output/` and is documented separately in
+`docs/BIOME-INORGANIC-RESOURCES.md`.
+
 | Exporter | Output |
 |---|---|
 | `Starfield - Export Planet Atmospheric Resources.pas` | `planet-atmospheric-resources.csv` |
