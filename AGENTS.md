@@ -22,6 +22,31 @@ When an implementation brief exists, treat it as the authoritative scope for tha
 
 Do not silently broaden a brief.
 
+## xEdit Script Working Copies
+
+xEdit scripts may exist in two locations with distinct roles:
+
+- `D:\tools\xEdit.4.1.5p\Edit Scripts\`
+  - the active xEdit installation's script directory;
+  - use this location when the user asks to inspect, run, or modify installed xEdit scripts.
+
+- `D:\Projects\starfield-resource-reproducer\xedit-scripts\`
+  - the repository-maintained copy of relevant xEdit scripts;
+  - preserves those scripts in Git for review and version history.
+
+When asked to modify an installed `.pas` script:
+
+1. Treat the copy under `D:\tools\xEdit.4.1.5p\Edit Scripts\` as the active xEdit working copy.
+2. Apply the requested change there.
+3. Copy the completed script into the repository's `xedit-scripts\` directory using the same filename.
+4. Verify that the installed and repository copies are byte-for-byte identical.
+5. Preserve valid UTF-8 and run the repository's required encoding and diff checks.
+
+Do not modify installed or repository script copies unless the user explicitly
+requests a change. Reading or comparing the scripts does not authorize edits.
+Do not assume that editing the repository copy alone updates the active xEdit
+installation.
+
 ## Source of Truth
 
 Use these inputs as distinct sources with distinct roles:
