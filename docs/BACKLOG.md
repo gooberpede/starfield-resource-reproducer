@@ -23,6 +23,11 @@ and the typed enriched accepted-occurrence view without changing generation.
 Brief 10D completed the clean 35-column biome/atmosphere inorganic-resource
 product, safe occurrence collapse, deterministic serialization, and source-hash
 manifest without changing generation.
+Brief 10E completed the stable production CLI: bare validated export, individual
+input overrides, caller-relative output resolution, overwrite controls, optional
+and stale-safe manifests, validate-only execution, concise error handling, and
+quiet/verbose operational output. Oracle validation and diagnostic modes are not
+part of the public runtime interface.
 
 The earlier active items for unexplained shared-eight empty biomes, missing
 post-guard reuse, atmosphere insertion ordering, and central-path v0.1 completion
@@ -67,7 +72,7 @@ No planet-specific exceptions or output-fitting heuristics.
 
 ### Consumer and export API hardening
 
-- Stabilize documented serialized shapes for downstream consumers.
+- Maintain compatibility for the stabilized baseline CLI and serialized product.
 - Add compatibility policy and contract tests if an external consumer appears.
 - Improve explicit reporting for bodies with independently known channels but no
   PNDT/biome/effective-RSGD input.

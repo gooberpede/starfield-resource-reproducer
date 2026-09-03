@@ -10,6 +10,9 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = []
 
+[project.scripts]
+starfield-resource-reproducer = "starfield_resource_reproducer.cli:main"
+
 [project.optional-dependencies]
 dev = [
     "pytest>=8,<9",

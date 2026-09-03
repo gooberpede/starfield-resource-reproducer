@@ -124,8 +124,8 @@ generation lineage from the default consumer shape.
 
 ### Default consumer product
 
-`product.py` loads only the four production datasets, generates every supported
-terrestrial body, builds the enriched accepted-occurrence view, and safely
+`product.py` loads only four independently resolved production dataset paths,
+generates every supported terrestrial body, builds the enriched accepted-occurrence view, and safely
 collapses provenance-only duplicates to `Planet x Location x Resource`. Before
 collapse, every retained field must agree for a product key. Rows are validated
 against the exact 35-column contract, sorted by numeric IDs, and written with a
@@ -300,7 +300,16 @@ generation semantics.
 
 ### `cli.py` and `reproduce.py`
 
-Provide the thin command-line boundary for full validation and output paths.
+Provide the thin production command-line boundary. The CLI parses options,
+resolves the four default or overridden input files, resolves the caller-relative
+output destination, applies overwrite and manifest policy, invokes the single
+in-memory production path, and renders concise status or errors. Validation is
+always part of production; `--validate-only` changes only whether artifacts are
+written. Default inputs are project/package-relative while default outputs are
+caller-relative, so an installed program does not write into its own files.
+
+The public CLI has no oracle-validation or generation-diagnostic mode. Existing
+oracle comparison functions remain isolated research/test facilities.
 
 ## Missing-Input Semantics
 

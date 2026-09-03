@@ -33,7 +33,7 @@ from starfield_resource_reproducer.generation import (
     PlanetGenerationResult,
     generate_planet,
 )
-from starfield_resource_reproducer.load_data import load_production_data
+from starfield_resource_reproducer.load_data import load_production_files
 from starfield_resource_reproducer.occurrences import (
     EnrichedResourceOccurrence,
     LocationType,
@@ -129,6 +129,16 @@ class ProductBuildResult:
     biome_row_count: int
     atmosphere_row_count: int
     biome_audit: BiomeIdentityAudit
+
+
+@dataclass(frozen=True, slots=True)
+class PreparedProduct:
+    """One validated in-memory production run and its serialized artifacts."""
+
+    result: ProductBuildResult
+    manifest: dict[str, object]
+    csv_text: str
+    manifest_text: str
 
 
 @dataclass(frozen=True, slots=True)
@@ -328,24 +338,87 @@ def export_default_product(
     project_root = Path(project_root)
     data_dir = project_root / "data"
     output_dir = project_root / "output"
-    output_dir.mkdir(parents=True, exist_ok=True)
-    project = load_production_data(data_dir)
+    prepared = prepare_product(
+        resource_generation_path=data_dir / "planet-resource-generation.csv",
+        resource_tree_path=data_dir / "ires-hierarchy.csv",
+        atmospheric_resources_path=data_dir / "planet-atmospheric-resources.csv",
+        planet_directory_path=data_dir / "planet-directory.csv",
+        export_timestamp=export_timestamp,
+    )
+    write_prepared_product(
+        prepared,
+        output_dir / OUTPUT_FILENAME,
+        manifest_path=output_dir / MANIFEST_FILENAME,
+    )
+    return prepared.result
+
+
+def prepare_product(
+    *,
+    resource_generation_path: Path,
+    resource_tree_path: Path,
+    atmospheric_resources_path: Path,
+    planet_directory_path: Path,
+    output_filename: str = OUTPUT_FILENAME,
+    export_timestamp: str | None = None,
+) -> PreparedProduct:
+    """Load, validate, generate, and serialize one oracle-free production run."""
+
+    input_paths = {
+        "planet_resource_generation": Path(resource_generation_path),
+        "ires_hierarchy": Path(resource_tree_path),
+        "planet_atmospheric_resources": Path(atmospheric_resources_path),
+        "planet_directory": Path(planet_directory_path),
+    }
+    project = load_production_files(
+        resource_generation_path=input_paths["planet_resource_generation"],
+        resource_tree_path=input_paths["ires_hierarchy"],
+        atmospheric_resources_path=input_paths["planet_atmospheric_resources"],
+        planet_directory_path=input_paths["planet_directory"],
+    )
     result = build_product(project, export_timestamp=export_timestamp)
-    manifest = build_manifest(project, data_dir, result)
+    manifest = build_manifest(
+        project,
+        None,
+        result,
+        input_paths=input_paths,
+        output_filename=output_filename,
+    )
     csv_text = _serialize_csv(result.rows)
     manifest_text = json.dumps(manifest, indent=2, ensure_ascii=False) + "\n"
+    return PreparedProduct(result, manifest, csv_text, manifest_text)
+
+
+def write_prepared_product(
+    prepared: PreparedProduct,
+    csv_path: Path,
+    *,
+    manifest_path: Path | None = None,
+) -> None:
+    """Atomically replace requested artifacts after preparing every temp file."""
+
+    csv_path = Path(csv_path)
+    csv_path.parent.mkdir(parents=True, exist_ok=True)
+    if manifest_path is not None:
+        manifest_path = Path(manifest_path)
+        manifest_path.parent.mkdir(parents=True, exist_ok=True)
     csv_temp: Path | None = None
     manifest_temp: Path | None = None
     try:
-        csv_temp = _write_temporary(output_dir, OUTPUT_FILENAME, csv_text)
-        manifest_temp = _write_temporary(output_dir, MANIFEST_FILENAME, manifest_text)
-        os.replace(csv_temp, output_dir / OUTPUT_FILENAME)
-        os.replace(manifest_temp, output_dir / MANIFEST_FILENAME)
+        csv_temp = _write_temporary(csv_path.parent, csv_path.name, prepared.csv_text)
+        if manifest_path is not None:
+            manifest_temp = _write_temporary(
+                manifest_path.parent, manifest_path.name, prepared.manifest_text
+            )
+        os.replace(csv_temp, csv_path)
+        csv_temp = None
+        if manifest_path is not None and manifest_temp is not None:
+            os.replace(manifest_temp, manifest_path)
+            manifest_temp = None
     finally:
         for path in (csv_temp, manifest_temp):
             if path is not None and path.exists():
                 path.unlink()
-    return result
 
 
 def _product_row(
@@ -454,7 +527,12 @@ def _serialize_csv(rows: Sequence[Mapping[str, str]]) -> str:
 
 
 def build_manifest(
-    project: ProjectData, data_dir: Path, result: ProductBuildResult
+    project: ProjectData,
+    data_dir: Path | None,
+    result: ProductBuildResult,
+    *,
+    input_paths: Mapping[str, Path] | None = None,
+    output_filename: str = OUTPUT_FILENAME,
 ) -> dict[str, object]:
     """Build the lightweight source-provenance manifest for a product."""
 
@@ -462,7 +540,12 @@ def build_manifest(
     inputs = []
     for name in _PRODUCTION_DATASET_ORDER:
         metadata = project.dataset_metadata[name]
-        path = data_dir / metadata.filename
+        if input_paths is not None:
+            path = Path(input_paths[name])
+        elif data_dir is not None:
+            path = Path(data_dir) / metadata.filename
+        else:
+            raise ValueError("data_dir or input_paths is required for a manifest")
         inputs.append(
             {
                 "filename": metadata.filename,
@@ -476,7 +559,7 @@ def build_manifest(
         "schema_version": SCHEMA_VERSION,
         "reproducer_version": __version__,
         "export_timestamp": export_timestamp,
-        "output_filename": OUTPUT_FILENAME,
+        "output_filename": output_filename,
         "row_count": len(result.rows),
         "location_row_counts": {
             "BIOME": result.biome_row_count,

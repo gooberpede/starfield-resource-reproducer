@@ -947,23 +947,44 @@ def load_production_data(
     """
 
     data_dir = Path(data_dir)
-    planets = load_generation_data(data_dir / "planet-resource-generation.csv")
-    ires_nodes = load_ires_hierarchy(data_dir / "ires-hierarchy.csv")
-    atmospheric = load_atmospheric_resources(
-        atmospheric_path or data_dir / "planet-atmospheric-resources.csv"
+    return load_production_files(
+        resource_generation_path=data_dir / "planet-resource-generation.csv",
+        resource_tree_path=data_dir / "ires-hierarchy.csv",
+        atmospheric_resources_path=(
+            atmospheric_path or data_dir / "planet-atmospheric-resources.csv"
+        ),
+        planet_directory_path=data_dir / "planet-directory.csv",
     )
-    directory = load_planet_directory(data_dir / "planet-directory.csv")
+
+
+def load_production_files(
+    *,
+    resource_generation_path: Path,
+    resource_tree_path: Path,
+    atmospheric_resources_path: Path,
+    planet_directory_path: Path,
+) -> ProjectData:
+    """Load the production datasets from four independently resolved paths."""
+
+    resource_generation_path = Path(resource_generation_path)
+    resource_tree_path = Path(resource_tree_path)
+    atmospheric_resources_path = Path(atmospheric_resources_path)
+    planet_directory_path = Path(planet_directory_path)
+    planets = load_generation_data(resource_generation_path)
+    ires_nodes = load_ires_hierarchy(resource_tree_path)
+    atmospheric = load_atmospheric_resources(atmospheric_resources_path)
+    directory = load_planet_directory(planet_directory_path)
     validate_canonical_input_coherence(planets, ires_nodes, atmospheric, directory)
     production_paths = {
         "planet_resource_generation": (
-            data_dir / "planet-resource-generation.csv", GENERATION_COLUMNS
+            resource_generation_path, GENERATION_COLUMNS
         ),
-        "ires_hierarchy": (data_dir / "ires-hierarchy.csv", IRES_COLUMNS),
+        "ires_hierarchy": (resource_tree_path, IRES_COLUMNS),
         "planet_atmospheric_resources": (
-            atmospheric_path or data_dir / "planet-atmospheric-resources.csv",
+            atmospheric_resources_path,
             ATMOSPHERIC_COLUMNS,
         ),
-        "planet_directory": (data_dir / "planet-directory.csv", PLANET_DIRECTORY_COLUMNS),
+        "planet_directory": (planet_directory_path, PLANET_DIRECTORY_COLUMNS),
     }
     return ProjectData(
         planets=planets,

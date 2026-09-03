@@ -22,6 +22,16 @@ When an implementation brief exists, treat it as the authoritative scope for tha
 
 Do not silently broaden a brief.
 
+## Baseline Production CLI
+
+The public v1.0 command line is a production interface, not an oracle-validation
+or reverse-engineering diagnostic interface. A bare invocation loads the four
+canonical production inputs from the project/package `data/` location, validates
+and generates the clean product, and writes relative to the caller's current
+working directory. Validation is always enabled; `--validate-only` suppresses
+artifact writing rather than adding extra validation. The runtime CLI must not
+load `planet-all-resources.csv`, and diagnostic modes remain deferred.
+
 ## xEdit Script Working Copies
 
 xEdit scripts may exist in two locations with distinct roles:

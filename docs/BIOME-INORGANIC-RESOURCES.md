@@ -2,7 +2,7 @@
 
 ## Purpose
 
-`output/biome-inorganic-resources.csv` is the default consumer-facing export of
+`biome-inorganic-resources.csv` is the default consumer-facing export of
 known inorganic resource locations. Its grain is:
 
 ```text
@@ -16,12 +16,20 @@ does not expose generation-path diagnostics or Common-family lineage.
 Generate it with:
 
 ```bash
-python reproduce.py --export-biome-resources
+starfield-resource-reproducer
 ```
 
-The exporter also writes
-`output/biome-inorganic-resources.manifest.json`. The entire `output/` directory
-is generated and ignored by Git.
+The default destination is `./output/biome-inorganic-resources.csv`, relative to
+the caller's current working directory. If that directory cannot be created or
+used, the CLI falls back to `./biome-inorganic-resources.csv`. `--output` accepts
+an existing or new directory or an explicit `.csv` path. Missing parent
+directories are created; explicit destinations never fall back elsewhere.
+
+Overwrite is the default. `--no-overwrite` rejects an existing requested
+artifact without prompting. The sibling manifest is off by default and is
+created with `--manifest`; if a sibling manifest already exists, later successful
+CSV overwrites refresh it even when `--manifest` is omitted so it cannot become
+stale. A custom `my-resources.csv` uses `my-resources.manifest.json`.
 
 ## Schema version 1
 
@@ -117,6 +125,12 @@ Production loads exactly four canonical inputs:
 - `data/planet-atmospheric-resources.csv`
 - `data/planet-directory.csv`
 
+These defaults resolve from the project/package canonical data location, not a
+`data/` directory in the caller's current working directory. Each input can be
+overridden separately with `--resource-generation-file`, `--resource-tree-file`,
+`--atmospheric-resources-file`, and `--planet-directory-file`. Relative override
+paths resolve from the caller's current working directory.
+
 The generator independently predicts terrestrial resources, then the accepted
 occurrence projection adds canonical body/location/resource provenance. Rejected
 attempts, failed candidates, no-assignment records, traversal-only records,
@@ -136,9 +150,11 @@ collapsed internal occurrences, and the four production input descriptors. Each
 input descriptor records filename, source extraction timestamp, row count, and
 SHA-256 digest.
 
-Both complete temporary files are prepared in `output/` before the CSV and JSON
-destinations are replaced. A failed build does not serialize partially validated
-rows.
+When a manifest is requested or refreshed, both complete contents are derived
+from the same in-memory production run and prepared as temporary files before
+the CSV and JSON destinations are replaced. A failed build does not serialize
+partially validated rows. `--validate-only` executes this same loading,
+generation, product-building, and validation path but writes neither artifact.
 
 ## Diagnostic scope
 

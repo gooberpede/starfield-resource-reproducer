@@ -177,25 +177,50 @@ Create a Python 3.12 environment and install the project with its test tools:
 python -m pip install -e ".[dev]"
 ```
 
-Run the complete canonical validation:
+Run the validated production pipeline:
 
 ```bash
-python reproduce.py --validate-all
+starfield-resource-reproducer
 ```
 
-The command prints summary metrics and writes
-`validation/full-canonical-mismatches.csv` by default. An exact run produces a
-header-only mismatch report.
+The bare command loads and validates the four canonical production inputs,
+generates the terrestrial results, builds and validates the clean product, and
+writes `./output/biome-inorganic-resources.csv`. Default inputs are resolved
+from the project/package `data/` location independently of the caller's current
+directory; default output is deliberately relative to the caller. If `./output/`
+cannot be used, the command falls back to `./biome-inorganic-resources.csv`.
 
-Generate the default consumer dataset and its provenance manifest:
+Common forms include:
 
-```bash
-python reproduce.py --export-biome-resources
+```text
+starfield-resource-reproducer
+starfield-resource-reproducer --manifest
+starfield-resource-reproducer --output C:\Exports
+starfield-resource-reproducer --output C:\Exports\my-resources.csv --manifest
+starfield-resource-reproducer --no-overwrite
+starfield-resource-reproducer --validate-only
 ```
 
-This writes `output/biome-inorganic-resources.csv` and
-`output/biome-inorganic-resources.manifest.json`. The generated `output/`
-directory is intentionally ignored by Git.
+`--output` accepts an existing or new directory, or an explicit `.csv` file.
+Overwrite is the default; `--no-overwrite` fails without prompting. A manifest
+is off by default and can be requested with `--manifest`; an existing sibling
+manifest is always refreshed when its CSV is replaced. `--validate-only` runs
+the same complete build and validation path but writes nothing. `--quiet` and
+`--verbose` control operational messages and are mutually exclusive.
+
+All four inputs can be overridden independently (relative paths are resolved
+from the caller's current directory):
+
+```text
+starfield-resource-reproducer \
+  --resource-generation-file data/planet-resource-generation.csv \
+  --resource-tree-file data/ires-hierarchy.csv \
+  --atmospheric-resources-file data/planet-atmospheric-resources.csv \
+  --planet-directory-file data/planet-directory.csv
+```
+
+The production CLI never loads `planet-all-resources.csv`. Oracle comparison
+remains an internal research regression, and diagnostic CLI modes are deferred.
 
 Run the test suite:
 
