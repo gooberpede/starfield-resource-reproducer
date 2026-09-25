@@ -22,7 +22,7 @@ Planet-wide 1,444/1,444 validation does not test this missing biome-local relati
 
 ### First generation
 
-After Common selection, `_run_planet()` calls `get_or_generate_family()` at [generation.py](D:/Projects/starfield-resource-reproducer/src/starfield_resource_reproducer/generation.py:959).
+After Common selection, `_run_planet()` calls `get_or_generate_family()` at [generation.py](../../src/starfield_resource_reproducer/generation.py#L959).
 
 For a new root:
 
@@ -35,7 +35,7 @@ For a new root:
 
 ### Ordinary cache hit
 
-At [generation.py](D:/Projects/starfield-resource-reproducer/src/starfield_resource_reproducer/generation.py:642):
+At [generation.py](../../src/starfield_resource_reproducer/generation.py#L642):
 
 - `cached = family_cache[root_form_id]`;
 - no descendant-generation RNG is consumed;
@@ -44,16 +44,16 @@ At [generation.py](D:/Projects/starfield-resource-reproducer/src/starfield_resou
 - the cached root and `cached.emitted_descendants` are passed through `PlanetResourceState.record()` again with the later biome’s context;
 - those records normally have `occupied_new_slot=False`, because the FormIDs already occupy planet-wide state.
 
-The returned `FamilyAccessResult` is attached directly to the current `BiomeFamilyGenerationResult` at [generation.py](D:/Projects/starfield-resource-reproducer/src/starfield_resource_reproducer/generation.py:991).
+The returned `FamilyAccessResult` is attached directly to the current `BiomeFamilyGenerationResult` at [generation.py](../../src/starfield_resource_reproducer/generation.py#L991).
 
-Existing tests prove object identity and zero descendant RNG consumption at [test_family_generation.py](D:/Projects/starfield-resource-reproducer/tests/test_family_generation.py:147). Algorab also verifies a later biome receives `family_access` with `cache_hit=True` at [test_algorab_live_evidence.py](D:/Projects/starfield-resource-reproducer/tests/test_algorab_live_evidence.py:8).
+Existing tests prove object identity and zero descendant RNG consumption at [test_family_generation.py](../../tests/test_family_generation.py#L147). Algorab also verifies a later biome receives `family_access` with `cache_hit=True` at [test_algorab_live_evidence.py](../../tests/test_algorab_live_evidence.py#L8).
 
 ### Guard paths
 
 The current code behaves differently when either guard fires:
 
-- Five-tree guard: [generation.py](D:/Projects/starfield-resource-reproducer/src/starfield_resource_reproducer/generation.py:883)
-- Shared-eight guard: [generation.py](D:/Projects/starfield-resource-reproducer/src/starfield_resource_reproducer/generation.py:898)
+- Five-tree guard: [generation.py](../../src/starfield_resource_reproducer/generation.py#L883)
+- Shared-eight guard: [generation.py](../../src/starfield_resource_reproducer/generation.py#L898)
 
 Both set:
 
@@ -108,9 +108,9 @@ No dedicated biome field-sheet forecast implementation exists in the repository.
 
 Two reporting hazards do exist:
 
-1. The dossier insertion ledger only treats `RESOURCE_SLOT_OCCUPIED` as an insertion at [dossier.py](D:/Projects/starfield-resource-reproducer/src/starfield_resource_reproducer/dossier.py:129). It therefore omits cache-hit resources, which produce `RESOURCE_SLOT_ALREADY_OCCUPIED`.
+1. The dossier insertion ledger only treats `RESOURCE_SLOT_OCCUPIED` as an insertion at [dossier.py](../../src/starfield_resource_reproducer/dossier.py#L129). It therefore omits cache-hit resources, which produce `RESOURCE_SLOT_ALREADY_OCCUPIED`.
 
-2. The family ledger includes cache hits, but sets `root_emitted=not access.cache_hit` at [dossier.py](D:/Projects/starfield-resource-reproducer/src/starfield_resource_reproducer/dossier.py:342). That means “newly emitted/inserted,” not “assigned to this biome,” and could be misinterpreted.
+2. The family ledger includes cache hits, but sets `root_emitted=not access.cache_hit` at [dossier.py](../../src/starfield_resource_reproducer/dossier.py#L342). That means “newly emitted/inserted,” not “assigned to this biome,” and could be misinterpreted.
 
 For an ordinary cache hit, reporting should read `biome.family_access.family.emitted_resources`, not only new slot events or unique `planet.family_results`.
 
@@ -142,11 +142,11 @@ For ordinary cache hits, no production-generation change is required. A future b
 - biome-context Everywhere occurrences;
 - biome-context Special occurrences.
 
-Likely reporting changes would be confined to a new reporting helper and, if reused, [dossier.py](D:/Projects/starfield-resource-reproducer/src/starfield_resource_reproducer/dossier.py).
+Likely reporting changes would be confined to a new reporting helper and, if reused, [dossier.py](../../src/starfield_resource_reproducer/dossier.py).
 
 Guard-path assignments require additional engine evidence before implementation. If recovered, the likely surface would include:
 
-- guard handling in `_run_planet()` in [generation.py](D:/Projects/starfield-resource-reproducer/src/starfield_resource_reproducer/generation.py);
+- guard handling in `_run_planet()` in [generation.py](../../src/starfield_resource_reproducer/generation.py);
 - an explicit biome-assignment representation distinct from Common selection and planet-wide insertion;
 - corresponding diagnostics and focused biome-assignment tests.
 

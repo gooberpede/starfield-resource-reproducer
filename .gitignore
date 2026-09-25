@@ -2,6 +2,15 @@
 *.exe
 *.dll
 *.pdb
+*.trace64
+*.dmp
+*.dd32
+*.dd64
+
+# Archives / packaged research artifacts
+*.zip
+*.7z
+*.rar
 
 # Generated exports
 exports/*

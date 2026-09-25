@@ -19,6 +19,60 @@ consumer dataset is written under `output/` and is documented separately in
 | `Starfield - Export Resource Tree.pas` | `ires-hierarchy.csv` |
 | `Starfield - Export Planet Directory.pas` | `planet-directory.csv` |
 
+## Public run procedure
+
+The maintained scripts were tested with xEdit/SF1Edit 4.1.5p. To regenerate an
+export:
+
+The canonical official ESM load set for the current v1.0 repository corpus is:
+
+```text
+Starfield.esm
+ShatteredSpace.esm
+SFBGS00D.esm
+SFBGS050.esm
+```
+
+`Starfield.esm` supplies the base game; `ShatteredSpace.esm` supplies the
+Va'ruun planetary records; `SFBGS00D.esm` supplies the Terran Armada orbital
+records; and `SFBGS050.esm` supplies the Terran Armada X-Tech resource record.
+This load set defines the present corpus, not a permanent universal rule.
+
+1. Copy the required `.pas` file from `xedit-scripts/` into the active xEdit
+   installation's `Edit Scripts` directory.
+2. Start SF1Edit and load the four canonical official ESMs above. Allow
+   background loading to complete before selecting records.
+3. In the left record tree, make the selection shown below. Right-click the
+   selection, choose **Apply Script**, select the maintained script by its exact
+   filename, and run it.
+4. Read the Messages tab for warnings and the reported row count/output path.
+   Each script writes its stable output filename into xEdit's active
+   `ScriptsPath` (normally the same `Edit Scripts` directory).
+5. The scripts save to the stable filename and can replace an existing file.
+   Preserve or move any prior export first when it is needed for comparison.
+   Review warnings and diff the new CSV against the tracked canonical file
+   before deliberately replacing repository data. Do not copy incidental
+   outputs into the repository.
+
+| Exporter | Required record/group selection | Output filename |
+|---|---|---|
+| `Starfield - Export Planet Atmospheric Resources.pas` | Selected `PNDT` records, or the `PNDT` group for the intended loaded files | `planet-atmospheric-resources.csv` |
+| `Starfield - Export Planet Resource Generation.pas` | Selected `PNDT` records, or the `PNDT` group for the intended loaded files | `planet-resource-generation.csv` |
+| `Starfield - Export Resource Tree.pas` | Selected `IRES` records containing the intended resource hierarchy; non-`IRES` selections are skipped | `ires-hierarchy.csv` |
+| `Starfield - Export Planet Directory.pas` (v4) | Selected `PNDT` records, or the `PNDT` group for the intended loaded files | `planet-directory.csv` |
+
+Selection determines the records passed to the script; loaded plugin/master
+context determines how links and winning overrides resolve. Use the canonical
+corpus selection when replacing a canonical repository input, not a convenient
+subset. The validation-only `planet-all-resources.csv` is not produced by these
+four production-input exporters.
+
+The required load set may change when future official DLC adds relevant
+planets, star systems, orbitals, resources, or other records, or when a user
+deliberately exports from modded ESMs/plugins. Either case produces a different
+corpus. Such an export must not silently replace the current canonical inputs;
+update the corpus contract and extraction provenance explicitly first.
+
 Each exporter captures `FormatDateTime('yyyy-mm-dd hh:nn:ss', Now)` once in
 `Initialize` and repeats that local file-production timestamp on every row.
 `SourceFile`-style values come from `GetFileName(GetFile(record))`. FormIDs are

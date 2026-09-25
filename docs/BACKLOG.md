@@ -76,8 +76,19 @@ No planet-specific exceptions or output-fitting heuristics.
 - Add compatibility policy and contract tests if an external consumer appears.
 - Improve explicit reporting for bodies with independently known channels but no
   PNDT/biome/effective-RSGD input.
-- Design any provenance-rich diagnostic export separately from the default
-  product; no diagnostic mode exists yet.
+- Design an expanded, provenance-rich diagnostic CLI/interface separately from
+  the default product; no diagnostic mode exists yet. Retain single-planet RNG,
+  family-cache, assignment, and oracle-difference detail without changing the
+  stable production CLI.
+
+### Wheel / PyPI distribution
+
+- Package the four canonical production inputs correctly.
+- Replace source-tree-relative data lookup with an installed-resource strategy.
+- Support and verify clean non-editable/wheel execution, including CLI use from
+  outside the repository.
+- Add expanded package metadata appropriate to a published distribution.
+- Decide whether to publish the package on PyPI.
 
 ### Planner integration
 
@@ -85,10 +96,30 @@ No planet-specific exceptions or output-fitting heuristics.
 - Keep the standalone reproducer available as the regression oracle.
 - Do not add planner behavior to this repository without an explicit brief.
 
-### Optional packaging and release automation
+### Optional release automation
 
-- Add distribution or release automation only when an actual release is planned.
-- A Git tag or GitHub release is not part of the v1.0 algorithm designation.
+- Create the approved annotated `v1.0.0` tag only after remediation, diff
+  review, commit/sync, and the final release-readiness recheck.
+- Decide later whether a GitHub Release adds value beyond public repositories
+  plus the annotated tag; a GitHub Release is not required for v1.0.
+- Add release automation only when an actual recurring release need exists.
+- A Git tag or GitHub Release is not part of the v1.0 algorithm designation.
+
+### Public repository metadata (owner action)
+
+Authenticated GitHub repository settings are not available in the current
+Codex environment. Before public release, the owner should:
+
+- verify the default branch is `main`;
+- verify the repository is not archived;
+- set the description to `Deterministic Python reference implementation of
+  Starfield's planetary inorganic resource-generation algorithm, validated
+  across 1,444 bodies.`; and
+- set topics to `starfield`, `modding`, `reverse-engineering`, `python`, `xedit`,
+  and `bethesda`.
+
+Do not change visibility as part of remediation; visibility remains a separate
+coordinated owner decision.
 
 ## Permanently Out of Current Scope
 

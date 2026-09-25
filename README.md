@@ -3,6 +3,13 @@
 A deterministic reference implementation of vanilla Starfield's inorganic
 planetary-resource generation algorithm.
 
+This repository owns the executable reference model, regression suite,
+production CLI, canonical xEdit-derived inputs, and consumer export. The
+companion
+[starfield-resource-research](https://github.com/gooberpede/starfield-resource-research)
+repository owns evidence status, reverse-engineering findings, trace and static
+analysis provenance, and the historical investigation.
+
 ## Status
 
 **Algorithm/model status: v1.0**
@@ -171,13 +178,22 @@ Benzene and Water but no fabricated biome assignment. This validates the
 reproducer's epistemic/input boundary, not Volii Alpha's actual terrestrial
 biome allocation or a native engine rule.
 
-## Usage
+## Installation and usage
 
-Create a Python 3.12 environment and install the project with its test tools:
+For v1.0, the supported installation mode is a GitHub source checkout plus an
+editable installation. Clone the repository, create a Python 3.12 environment,
+and install the project with its test tools:
 
 ```bash
+git clone https://github.com/gooberpede/starfield-resource-reproducer.git
+cd starfield-resource-reproducer
 python -m pip install -e ".[dev]"
 ```
+
+Conventional wheel or other non-editable installation is not supported in
+v1.0 because the four canonical production data files are not packaged in the
+wheel. Wheel/PyPI distribution is deferred; do not publish the current build to
+PyPI.
 
 Run the validated production pipeline:
 
@@ -224,14 +240,18 @@ starfield-resource-reproducer \
 The production CLI never loads `planet-all-resources.csv`. Oracle comparison
 remains an internal research regression, and diagnostic CLI modes are deferred.
 
+The editable installation resolves its default inputs from the source checkout,
+so the installed command remains usable when invoked from a caller directory
+that has no local `data/` directory.
+
 Run the test suite:
 
 ```bash
 python -m pytest
 ```
 
-The v1.0 evidence run recorded 138 passing tests. That number is a historical
-baseline, not a contractual assertion; the suite may grow.
+The public-release remediation run recorded 183 passing tests. That number is a
+point-in-time baseline, not a contractual assertion; the suite may grow.
 
 ## Worked Regression Cases
 
@@ -260,6 +280,51 @@ baseline, not a contractual assertion; the suite may grow.
 - [docs/BACKLOG.md](docs/BACKLOG.md): genuine post-v1.0 work.
 - [docs/IMPLEMENTATION-WORKFLOW.md](docs/IMPLEMENTATION-WORKFLOW.md): brief-driven
   workflow and implementation history.
+- [docs/implementation-briefs/](docs/implementation-briefs/README.md) and
+  [docs/experiments/](docs/experiments/README.md): historical engineering and
+  research records, which may retain superseded commands and local paths.
+
+## Regenerating canonical inputs
+
+The four maintained xEdit/SF1Edit exporters live in
+[`xedit-scripts/`](xedit-scripts/). They were tested with xEdit/SF1Edit 4.1.5p.
+Copy them into the active xEdit `Edit Scripts` directory, load the required
+Starfield plugins and masters, select the documented record group or records,
+and run the applicable script. Exact selections, output filenames, locations,
+and overwrite/review expectations are in
+[docs/CANONICAL-XEDIT-EXPORTS.md](docs/CANONICAL-XEDIT-EXPORTS.md).
+
+## Issues and counterexamples
+
+Route algorithm and evidence counterexamples to
+[starfield-resource-research](https://github.com/gooberpede/starfield-resource-research/issues),
+including planet/biome output contradictions, Creation Kit or retail conflicts,
+new runtime evidence, executable/version drift, and evidence-status disputes.
+Include the Starfield or Creation Kit version, body/planet, reproduction steps,
+observed result, and expected/current reproducer result.
+
+Route software defects to this repository's
+[issue tracker](https://github.com/gooberpede/starfield-resource-reproducer/issues),
+including CLI, installation, loader/exporter, manifest/output, test-regression,
+and product/schema bugs. The research evidence record is not duplicated here.
+
+## Licence and game-derived data
+
+Project-authored Python source, xEdit scripts, tests, and documentation are
+licensed under GPL-3.0-or-later; see [LICENSE](LICENSE). Official Starfield
+names, identifiers, classifications, relationships, and other game-derived
+records are not relicensed by that grant. All five current CSVs remain
+published under this boundary: four production inputs and the distinct
+validation-only oracle described above. See
+[THIRD-PARTY-NOTICE.md](THIRD-PARTY-NOTICE.md) for the complete boundary and
+unofficial-project notice.
+
+## Release status
+
+The annotated `v1.0.0` tag is planned only after remediation review, commit and
+sync, and the final release-readiness recheck. No tag or GitHub Release is
+created by this remediation. Whether a GitHub Release adds value beyond public
+repositories and the annotated tag remains a later decision.
 
 ## Falsifiability
 

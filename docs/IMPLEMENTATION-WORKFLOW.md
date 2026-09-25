@@ -266,6 +266,12 @@ Do not create an elaborate ADR system unless the project genuinely needs one.
 The chronological implementation briefs and experiments remain the historical
 record; the README presents the current model rather than this sequence.
 
+The directory indexes in `docs/implementation-briefs/README.md` and
+`docs/experiments/README.md` frame these files as historical records. They may
+preserve superseded commands, old local paths, intermediate terminology, and
+historical assumptions. Current authoritative behavior lives in the root
+README, current architecture/domain contracts, source, and tests.
+
 ```text
 00-04     bootstrap, canonical loading, MT19937, orchestration, family generation
 05-05D   worked cases and recovered RNG mechanism split
