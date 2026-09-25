@@ -26,8 +26,9 @@ address equivalence with Creation Kit addresses.
 - `ires-hierarchy.csv`: authoritative IRES rarity and child graph.
 - `planet-atmospheric-resources.csv`: authoritative effective
   atmospheric inorganic-resource export for this corpus.
-- `planet-directory.csv`: canonical PNDT body-directory source export, staged
-  for later ingestion and not used by the v1.0 model.
+- `planet-directory.csv`: canonical 15-column PNDT body-directory v4 source
+  export, ingested as required production metadata. Its Solar/Wind power and
+  Planetary Habitation fields are retained but do not drive inorganic generation.
 - `planet-all-resources.csv`: canonical planet-wide validation oracle for the
   CK/RSGD-visible inorganic channel used by the validator.
 

@@ -59,8 +59,10 @@ roles:
 - `data/planet-atmospheric-resources.csv` is the authoritative effective
   atmospheric inorganic-resource export for the current corpus.
 - `data/planet-directory.csv` is the canonical PNDT body directory. It is
-  ingested independently and indexed by Planet FormID; directory presence does
-  not imply that either generation channel exists.
+  the 15-column v4 export, ingested independently and indexed by Planet FormID.
+  Its Solar Array power, Wind Turbine power, and Planetary Habitation rank are
+  retained as directory metadata only; directory presence does not imply that
+  either generation channel exists.
 - `data/planet-all-resources.csv` is the canonical planet-wide validation oracle
   for the CK/RSGD-visible inorganic channel used by the validator. It is not a
   complete final planetary-resource oracle because it omits at least some

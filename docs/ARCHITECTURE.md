@@ -46,7 +46,9 @@ independent prediction exists.
 - `planet-atmospheric-resources.csv` supplies authoritative effective
   atmospheric inorganic-resource records for the current corpus.
 - `planet-directory.csv` supplies the canonical PNDT body directory. It is
-  loaded as independent body metadata keyed by Planet FormID.
+  loaded as independent body metadata keyed by Planet FormID. Its v4 Solar
+  Array power, Wind Turbine power, and Planetary Habitation rank fields are
+  retained without participating in inorganic generation or product shaping.
 - `planet-all-resources.csv` supplies the validator's canonical planet-wide
   CK/RSGD-visible inorganic membership.
 
@@ -70,7 +72,8 @@ fallbacks, and deterministic exporter-derived fields in all four source exports.
   child `ResourceRef` retains its own source rather than inheriting the parent.
 - `AtmosphericResourceRecord` retains planet, ATMO, resource, source-file, and
   inheritance provenance.
-- `PlanetDirectoryRecord` retains body identity, hierarchy, and canonical flags.
+- `PlanetDirectoryRecord` retains body identity, hierarchy, canonical flags,
+  and the optional v4 environmental power/habitation metadata.
 - `CanonicalDatasetMetadata` retains dataset identity, filename, extraction
   timestamp, and row count outside row domain objects.
 - `CanonicalBodyResources` is validation-only runtime/oracle data.

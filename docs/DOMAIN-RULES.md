@@ -29,6 +29,11 @@ Use `ResourceFormID` as primary resource identity.
 
 EditorID and name are diagnostic/display metadata.
 
+The canonical Planet Directory v4 Solar Array power, Wind Turbine power, and
+Planetary Habitation rank fields are body metadata. There is no current evidence
+that they are inputs to reconstructed inorganic generation, so they do not
+affect eligibility, resource assignment, RNG state, or oracle validation.
+
 ## Rarity / Category Enum
 
 **PROVEN**

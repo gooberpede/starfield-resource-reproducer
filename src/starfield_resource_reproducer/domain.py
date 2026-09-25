@@ -225,7 +225,11 @@ class AtmosphericResourceRecord:
 
 @dataclass(frozen=True, slots=True)
 class PlanetDirectoryRecord:
-    """Canonical body identity and hierarchy metadata keyed by Planet FormID."""
+    """Canonical PNDT body metadata keyed by Planet FormID.
+
+    Environmental power and habitation values are v4 directory metadata only;
+    they are not reconstructed inorganic-generation inputs.
+    """
 
     source_file: str
     extract_timestamp: str
@@ -239,6 +243,9 @@ class PlanetDirectoryRecord:
     planet_id: int
     planet_not_landable: bool
     ocean_world: bool
+    solar_array_power: int | None
+    wind_turbine_power: int | None
+    planetary_habitation_rank: int | None
 
 
 @dataclass(frozen=True, slots=True)

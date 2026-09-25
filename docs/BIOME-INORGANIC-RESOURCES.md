@@ -125,6 +125,10 @@ Production loads exactly four canonical inputs:
 - `data/planet-atmospheric-resources.csv`
 - `data/planet-directory.csv`
 
+The Planet Directory input uses the canonical v4 schema. Its additional Solar
+Array power, Wind Turbine power, and Planetary Habitation rank values remain
+metadata and do not add columns to this 35-column consumer product.
+
 These defaults resolve from the project/package canonical data location, not a
 `data/` directory in the caller's current working directory. Each input can be
 overridden separately with `--resource-generation-file`, `--resource-tree-file`,

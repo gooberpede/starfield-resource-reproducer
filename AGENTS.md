@@ -204,7 +204,9 @@ Use these inputs as distinct sources with distinct roles:
 
 4. `planet-directory.csv`
    - canonical PNDT body-directory source export;
-   - ingested as independent canonical body metadata keyed by Planet FormID.
+   - ingested as independent canonical body metadata keyed by Planet FormID;
+   - canonical v4 Solar Array power, Wind Turbine power, and Planetary
+     Habitation rank remain metadata and are not inorganic-generation inputs.
 
 5. `planet-all-resources.csv`
    - **canonical verified planet/resource output oracle** for the CK/RSGD-visible

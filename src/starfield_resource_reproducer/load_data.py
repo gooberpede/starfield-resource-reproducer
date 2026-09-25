@@ -87,12 +87,11 @@ IRES_COLUMNS = frozenset(
     }
 )
 
-PLANET_DIRECTORY_COLUMNS = frozenset(
-    {
-        "SourceFile", "ExtractTimestamp", "PlanetFormID", "PlanetEditorID",
-        "PlanetName", "BodyType", "StarSystemID", "SystemName",
-        "ParentPlanetID", "PlanetID", "PlanetNotLandable", "OceanWorld",
-    }
+PLANET_DIRECTORY_COLUMNS = (
+    "SourceFile", "ExtractTimestamp", "PlanetFormID", "PlanetEditorID",
+    "PlanetName", "BodyType", "StarSystemID", "SystemName",
+    "ParentPlanetID", "PlanetID", "PlanetNotLandable", "OceanWorld",
+    "SolarArrayPower", "WindTurbinePower", "PlanetaryHabitationRank",
 )
 
 ORACLE_COLUMNS = frozenset(
@@ -132,16 +131,26 @@ class DataValidationError(ValueError):
 
 
 def _read_rows(
-    path: Path, required_columns: frozenset[str], *, delimiter: str = ","
+    path: Path,
+    required_columns: frozenset[str] | tuple[str, ...],
+    *,
+    delimiter: str = ",",
+    exact_header: tuple[str, ...] | None = None,
 ) -> list[dict[str, str]]:
     try:
         with path.open("r", encoding="utf-8-sig", newline="") as source:
             reader = csv.DictReader(source, delimiter=delimiter)
-            columns = set(reader.fieldnames or ())
-            missing = sorted(required_columns - columns)
+            fieldnames = tuple(reader.fieldnames or ())
+            columns = set(fieldnames)
+            missing = sorted(set(required_columns) - columns)
             if missing:
                 raise DataValidationError(
                     f"{path}: missing required column(s): {', '.join(missing)}"
+                )
+            if exact_header is not None and fieldnames != exact_header:
+                raise DataValidationError(
+                    f"{path}: header does not match approved schema; "
+                    f"expected {exact_header!r}, found {fieldnames!r}"
                 )
             rows = [dict(row) for row in reader]
             if not rows:
@@ -190,6 +199,21 @@ def _integer(
         raise DataValidationError(f"{context}: {field}={parsed} is below {minimum}")
     if maximum is not None and parsed > maximum:
         raise DataValidationError(f"{context}: {field}={parsed} exceeds {maximum}")
+    return parsed
+
+
+def _optional_integer_choice(
+    value: str, context: str, field: str, choices: frozenset[int]
+) -> int | None:
+    """Parse an optional exporter integer constrained to its approved values."""
+
+    if value == "":
+        return None
+    parsed = _integer(value, context, field)
+    if parsed not in choices:
+        raise DataValidationError(
+            f"{context}: invalid {field}={parsed}; expected one of {sorted(choices)!r}"
+        )
     return parsed
 
 
@@ -650,10 +674,14 @@ def load_canonical_oracle(path: Path) -> dict[FormId, CanonicalBodyResources]:
 
 
 def load_planet_directory(path: Path) -> dict[FormId, PlanetDirectoryRecord]:
-    """Load canonical body-directory metadata keyed only by Planet FormID."""
+    """Load the exact canonical v4 body-directory contract by Planet FormID."""
 
     path = Path(path)
-    raw_rows = _read_rows(path, PLANET_DIRECTORY_COLUMNS)
+    raw_rows = _read_rows(
+        path,
+        PLANET_DIRECTORY_COLUMNS,
+        exact_header=PLANET_DIRECTORY_COLUMNS,
+    )
     _extract_timestamp(raw_rows, path)
     directory: dict[FormId, PlanetDirectoryRecord] = {}
     required_identity = (
@@ -673,6 +701,43 @@ def load_planet_directory(path: Path) -> dict[FormId, PlanetDirectoryRecord]:
             raise DataValidationError(
                 f"{context}: duplicate PlanetFormID {planet_form_id}"
             )
+        planet_not_landable = _flag(
+            row["PlanetNotLandable"], context, "PlanetNotLandable"
+        )
+        solar_array_power = _optional_integer_choice(
+            row["SolarArrayPower"],
+            context,
+            "SolarArrayPower",
+            frozenset({2, 4, 6, 8}),
+        )
+        wind_turbine_power = _optional_integer_choice(
+            row["WindTurbinePower"],
+            context,
+            "WindTurbinePower",
+            frozenset({0, 3, 6, 10}),
+        )
+        planetary_habitation_rank = _optional_integer_choice(
+            row["PlanetaryHabitationRank"],
+            context,
+            "PlanetaryHabitationRank",
+            frozenset(range(5)),
+        )
+        if planet_not_landable and any(
+            value is not None
+            for value in (
+                solar_array_power,
+                wind_turbine_power,
+                planetary_habitation_rank,
+            )
+        ):
+            raise DataValidationError(
+                f"{context}: non-landable body must have blank v4 environmental metadata"
+            )
+        if not planet_not_landable:
+            if planetary_habitation_rank is None:
+                raise DataValidationError(
+                    f"{context}: landable body requires PlanetaryHabitationRank"
+                )
         directory[planet_form_id] = PlanetDirectoryRecord(
             source_file=row["SourceFile"],
             extract_timestamp=row["ExtractTimestamp"],
@@ -688,16 +753,19 @@ def load_planet_directory(path: Path) -> dict[FormId, PlanetDirectoryRecord]:
                 row["ParentPlanetID"], context, "ParentPlanetID", minimum=0
             ),
             planet_id=_integer(row["PlanetID"], context, "PlanetID", minimum=0),
-            planet_not_landable=_flag(
-                row["PlanetNotLandable"], context, "PlanetNotLandable"
-            ),
+            planet_not_landable=planet_not_landable,
             ocean_world=_flag(row["OceanWorld"], context, "OceanWorld"),
+            solar_array_power=solar_array_power,
+            wind_turbine_power=wind_turbine_power,
+            planetary_habitation_rank=planetary_habitation_rank,
         )
     return directory
 
 
 def _dataset_metadata(
-    path: Path, required_columns: frozenset[str], dataset_name: str
+    path: Path,
+    required_columns: frozenset[str] | tuple[str, ...],
+    dataset_name: str,
 ) -> CanonicalDatasetMetadata:
     """Read only file-level production metadata for the project aggregate."""
 

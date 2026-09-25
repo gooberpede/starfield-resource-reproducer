@@ -3,10 +3,10 @@
 ## Purpose and scope
 
 This document records the maintained provenance contract for the four canonical
-xEdit source exports. The audit is based on the synchronized installed and
-repository script copies current for Brief 10B. These exports contain only
-game/plugin record data and deterministic exporter-derived values; none consults
-the validation oracle.
+xEdit source exports. The Planet Directory script and data are synchronized to
+the canonical v4 exporter; the other exporters retain their Brief 10B state.
+These exports contain only game/plugin record data and deterministic
+exporter-derived values; none consults the validation oracle.
 
 These files are source inputs, not generated consumer products. The default
 consumer dataset is written under `output/` and is documented separately in
@@ -27,8 +27,16 @@ lookups produce blank strings unless a field-specific rule below says otherwise.
 
 ## Planet Directory
 
+`Starfield - Export Planet Directory.pas` version 4 is canonical and was tested
+for xEdit / SF1Edit 4.1.5p. It is run on selected PNDT records or the PNDT group
+and writes `planet-directory.csv` under xEdit's active `ScriptsPath`.
+
 The row grain is one processed `PNDT` main record. Non-`PNDT` selections emit no
-row.
+row. The exact approved column order is:
+
+```text
+SourceFile,ExtractTimestamp,PlanetFormID,PlanetEditorID,PlanetName,BodyType,StarSystemID,SystemName,ParentPlanetID,PlanetID,PlanetNotLandable,OceanWorld,SolarArrayPower,WindTurbinePower,PlanetaryHabitationRank
+```
 
 | Column | Record and extraction | Semantics and blank/fallback behavior |
 |---|---|---|
@@ -44,9 +52,15 @@ row.
 | `PlanetID` | `PNDT`; `Body\GNAM - Galaxy Data\Planet ID` | Direct numeric hierarchy value; blank when absent. |
 | `PlanetNotLandable` | `PNDT` `Base Form Components` | Deterministic classification. The exporter locates `BGSKeywordForm_Component`, scans `Component Data - Keywords\Keywords\KWDA - Keywords`, and returns `1` when a value contains `PlanetNotLandable [KYWD:000B04F3]`; otherwise `0`. Missing components/keywords are false, not blank. |
 | `OceanWorld` | `PNDT` `Biomes` plus linked `BIOM` | Deterministic classification. It returns `1` only when the PNDT has exactly one biome entry, `Biome` resolves to a `BIOM`, and recursive traversal of that BIOM resolves a keyword leaf to `BiomeTypeOcean [KYWD:002C539E]`; otherwise `0`. |
+| `SolarArrayPower` | PNDT temperature keyword resolved through `BGSKeywordForm_Component` | Basic Solar Array output: Deep Freeze `2`; Frozen/Cold `4`; Temperate/Hot `6`; Scorched/Inferno `8`. Blank for non-landable bodies or when no recognized temperature keyword is available. Unexpected blanks on landable planets/moons are logged; orbitals are excluded from that warning. |
+| `WindTurbinePower` | PNDT atmosphere and pressure keywords resolved through `BGSKeywordForm_Component` | Basic Wind Turbine output: no atmosphere `0`; Thin `3`; Standard/Terrestrial `6`; High/Extreme `10`. A recognized atmosphere without a recognized pressure uses the logged standard/base fallback `6`. Otherwise the value may remain blank when no recognized atmosphere/pressure combination is available. Unexpected blanks on landable planets/moons are logged; orbitals are excluded from that warning. |
+| `PlanetaryHabitationRank` | Highest applicable PNDT environment-keyword requirement | Deep Freeze/Inferno gives at least rank `1`; Extreme pressure rank `2`; Corrosive/Toxic rank `3`; Extreme gravity rank `4`; otherwise `0`. Blank for non-landable bodies. |
 
-The audit found these derivations canonical, deterministic, and appropriately
-bounded to plugin data. No schema or script change was required.
+The first 12 v4 columns remain byte-for-byte value-equivalent to the prior
+canonical export aside from the file-wide extraction timestamp. The three v4
+fields are canonical directory metadata, not evidenced inorganic-generation
+inputs, and they do not alter the generator, validation oracle, or 35-column
+consumer product.
 
 ## Planet Atmospheric Resources
 

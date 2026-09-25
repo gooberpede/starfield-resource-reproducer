@@ -2,12 +2,13 @@ unit UserScript;
 
 {
   Starfield - Export Planet Directory.pas
-  
-  Version: 1
+
+  Version: 4
 
   Purpose:
     Export a compact directory of PNDT records for joining against the
-    runtime PlanetResourceExport data.
+    runtime PlanetResourceExport data, including planetary Solar Power,
+    Wind Power, and Planetary Habitation requirements.
 
   Tested target:
     xEdit / SF1Edit 4.1.5p
@@ -25,6 +26,33 @@ unit UserScript;
     PlanetID
     PlanetNotLandable
     OceanWorld
+    SolarArrayPower
+    WindTurbinePower
+    PlanetaryHabitationRank
+
+  Derived gameplay columns:
+    SolarArrayPower
+      Basic Solar Array output selected by the PNDT temperature keyword:
+        Deep Freeze             = 2
+        Frozen / Cold           = 4
+        Temperate / Hot         = 6
+        Scorched / Inferno      = 8
+
+    WindTurbinePower
+      Basic Wind Turbine output selected by the PNDT atmosphere/pressure
+      keywords:
+        No atmosphere           = 0
+        Thin                    = 3
+        Standard                = 6
+        High / Extreme          = 10
+
+    PlanetaryHabitationRank
+      Highest applicable requirement:
+        Deep Freeze / Inferno   = rank 1
+        Extreme pressure        = rank 2
+        Corrosive / Toxic       = rank 3
+        Extreme gravity         = rank 4
+        Otherwise               = 0
 
   Notes:
     - "StarSystemID" is the numeric ID stored in PNDT\Body\GNAM - Galaxy Data.
@@ -34,10 +62,22 @@ unit UserScript;
       -> StarSystemID = 55539
          SystemName   = Katydid
     - PlanetName is taken from Body\ANAM - Name, with FULL - Name as fallback.
+    - Solar/Wind values are the authoritative integer output values of the
+      basic Solar Array / Wind Turbine variants selected by the game data,
+      not rounded percentages from an external website.
+    - For non-landable bodies, SolarArrayPower, WindTurbinePower and
+      PlanetaryHabitationRank are left blank.
+    - Unexpected keyword combinations on landable planets/moons are logged as
+      warnings so new/exceptional cases are not silently misclassified.
+      BodyType = Orbital is excluded from these warnings because orbital PNDTs
+      normally do not carry planetary temperature/pressure classifications.
+    - Wind fallback: if a landable, non-Orbital body has a recognised atmosphere
+      but no recognised pressure keyword, WindTurbinePower defaults to the basic
+      turbine's standard/base output of 6 and a warning is logged.
     - The script is intended to be run on selected PNDT records or the PNDT group.
-	
+
   Output:
-	planet-directory.csv
+    planet-directory.csv
 }
 
 var
@@ -180,6 +220,202 @@ begin
   end;
 end;
 
+
+function HasPlanetKeyword(e: IInterface; const TargetEditorID: string): Boolean;
+var
+  i, j: Integer;
+  comps, comp, compType, kwda, kw, linked: IInterface;
+begin
+  Result := False;
+
+  if not Assigned(e) then
+    Exit;
+
+  comps := ElementByPath(e, 'Base Form Components');
+  if not Assigned(comps) then
+    Exit;
+
+  for i := 0 to ElementCount(comps) - 1 do begin
+    comp := ElementByIndex(comps, i);
+    if not Assigned(comp) then
+      Continue;
+
+    compType := ElementByPath(comp, 'BFCB - Component Type');
+    if not Assigned(compType) then
+      Continue;
+
+    if not SameText(GetEditValue(compType), 'BGSKeywordForm_Component') then
+      Continue;
+
+    kwda := ElementByPath(
+      comp,
+      'Component Data - Keywords\Keywords\KWDA - Keywords'
+    );
+    if not Assigned(kwda) then
+      Exit;
+
+    for j := 0 to ElementCount(kwda) - 1 do begin
+      kw := ElementByIndex(kwda, j);
+      if not Assigned(kw) then
+        Continue;
+
+      linked := nil;
+      try
+        linked := LinksTo(kw);
+      except
+        linked := nil;
+      end;
+
+      if not Assigned(linked) then
+        Continue;
+
+      if Signature(linked) <> 'KYWD' then
+        Continue;
+
+      if SameText(EditorID(linked), TargetEditorID) then begin
+        Result := True;
+        Exit;
+      end;
+    end;
+
+    { A PNDT should only have one keyword component. }
+    Exit;
+  end;
+end;
+
+
+function HasAnyAtmosphereKeyword(e: IInterface): Boolean;
+var
+  i, j: Integer;
+  comps, comp, compType, kwda, kw, linked: IInterface;
+  edid: string;
+begin
+  Result := False;
+
+  if not Assigned(e) then
+    Exit;
+
+  comps := ElementByPath(e, 'Base Form Components');
+  if not Assigned(comps) then
+    Exit;
+
+  for i := 0 to ElementCount(comps) - 1 do begin
+    comp := ElementByIndex(comps, i);
+    if not Assigned(comp) then
+      Continue;
+
+    compType := ElementByPath(comp, 'BFCB - Component Type');
+    if not Assigned(compType) then
+      Continue;
+
+    if not SameText(GetEditValue(compType), 'BGSKeywordForm_Component') then
+      Continue;
+
+    kwda := ElementByPath(
+      comp,
+      'Component Data - Keywords\Keywords\KWDA - Keywords'
+    );
+    if not Assigned(kwda) then
+      Exit;
+
+    for j := 0 to ElementCount(kwda) - 1 do begin
+      kw := ElementByIndex(kwda, j);
+      if not Assigned(kw) then
+        Continue;
+
+      linked := nil;
+      try
+        linked := LinksTo(kw);
+      except
+        linked := nil;
+      end;
+
+      if not Assigned(linked) then
+        Continue;
+
+      if Signature(linked) <> 'KYWD' then
+        Continue;
+
+      edid := EditorID(linked);
+      if (Length(edid) >= Length('PlanetAtmosphereType')) and
+         SameText(Copy(edid, 1, Length('PlanetAtmosphereType')),
+                  'PlanetAtmosphereType') then begin
+        if not SameText(edid, 'PlanetAtmosphereType00None') then begin
+          Result := True;
+          Exit;
+        end;
+      end;
+    end;
+
+    Exit;
+  end;
+end;
+
+function GetSolarArrayPower(e: IInterface): string;
+begin
+  Result := '';
+
+  if HasPlanetKeyword(e, 'PlanetTemperature00DeepFreeze') then
+    Result := '2'
+  else if HasPlanetKeyword(e, 'PlanetTemperature01Frozen') or
+          HasPlanetKeyword(e, 'PlanetTemperature02Cold') then
+    Result := '4'
+  else if HasPlanetKeyword(e, 'PlanetTemperature03Temperate') or
+          HasPlanetKeyword(e, 'PlanetTemperature04Hot') then
+    Result := '6'
+  else if HasPlanetKeyword(e, 'PlanetTemperature05Scorched') or
+          HasPlanetKeyword(e, 'PlanetTemperature06Inferno') then
+    Result := '8';
+end;
+
+function GetWindTurbinePower(e: IInterface; var UsedFallback: Boolean): string;
+begin
+  Result := '';
+  UsedFallback := False;
+
+  if HasPlanetKeyword(e, 'PlanetAtmosphereType00None') then
+    Result := '0'
+  else if HasPlanetKeyword(e, 'PlanetPressure01Thin') then
+    Result := '3'
+  else if HasPlanetKeyword(e, 'PlanetPressure02Terrestrial') then
+    Result := '6'
+  else if HasPlanetKeyword(e, 'PlanetPressure03High') or
+          HasPlanetKeyword(e, 'PlanetPressure04Extreme') then
+    Result := '10'
+  else if HasAnyAtmosphereKeyword(e) then begin
+    { Conservative anomaly fallback:
+      an atmosphere is present but no known pressure keyword is available. }
+    Result := '6';
+    UsedFallback := True;
+  end;
+end;
+
+function GetPlanetaryHabitationRank(e: IInterface): string;
+var
+  rank: Integer;
+begin
+  rank := 0;
+
+  if HasPlanetKeyword(e, 'PlanetTemperature00DeepFreeze') or
+     HasPlanetKeyword(e, 'PlanetTemperature06Inferno') then
+    rank := 1;
+
+  if HasPlanetKeyword(e, 'PlanetPressure04Extreme') then
+    if rank < 2 then
+      rank := 2;
+
+  if HasPlanetKeyword(e, 'PlanetAtmosphereToxicity00Corrosive') or
+     HasPlanetKeyword(e, 'PlanetAtmosphereToxicity01Toxic') then
+    if rank < 3 then
+      rank := 3;
+
+  if HasPlanetKeyword(e, 'PlanetGravity03Extreme') then
+    if rank < 4 then
+      rank := 4;
+
+  Result := IntToStr(rank);
+end;
+
 function RecordReferencesKeyword(e: IInterface; const TargetFormID: string): Boolean;
 var
   i: Integer;
@@ -281,7 +517,10 @@ begin
     'ParentPlanetID' + ',' +
     'PlanetID' + ',' +
     'PlanetNotLandable' + ',' +
-    'OceanWorld'
+    'OceanWorld' + ',' +
+    'SolarArrayPower' + ',' +
+    'WindTurbinePower' + ',' +
+    'PlanetaryHabitationRank'
   );
 
   OutPath := ScriptsPath + 'planet-directory.csv';
@@ -296,6 +535,8 @@ var
   systemRaw, systemID, systemName: string;
   parentPlanetID, planetID: string;
   planetNotLandable, oceanWorld: string;
+  solarArrayPower, windTurbinePower, planetaryHabitationRank: string;
+  windUsedFallback: Boolean;
 begin
   Result := 0;
 
@@ -322,6 +563,41 @@ begin
   planetNotLandable := HasPlanetNotLandableKeyword(e);
   oceanWorld := IsOceanWorld(e);
 
+  solarArrayPower := '';
+  windTurbinePower := '';
+  planetaryHabitationRank := '';
+
+  { Ignore non-landable bodies for environmental outpost calculations. }
+  if planetNotLandable = '0' then begin
+    solarArrayPower := GetSolarArrayPower(e);
+    windUsedFallback := False;
+    windTurbinePower := GetWindTurbinePower(e, windUsedFallback);
+    planetaryHabitationRank := GetPlanetaryHabitationRank(e);
+
+    { Do not silently invent values for an unexpected landable world.
+      Orbital PNDTs intentionally lack normal planetary environment keywords,
+      so suppress Solar/Wind warnings for BodyType = Orbital. }
+    if not SameText(bodyType, 'Orbital') then begin
+      if solarArrayPower = '' then
+        AddMessage(
+          'WARNING: no recognized Solar temperature keyword for ' +
+          planetEditorID + ' [' + planetFormID + ']'
+        );
+
+      if windUsedFallback then
+        AddMessage(
+          'WARNING: no recognized Wind pressure keyword for ' +
+          planetEditorID + ' [' + planetFormID + ']; atmosphere present, ' +
+          'using standard/base WindTurbinePower fallback = 6.'
+        )
+      else if windTurbinePower = '' then
+        AddMessage(
+          'WARNING: no recognized Wind atmosphere/pressure keyword for ' +
+          planetEditorID + ' [' + planetFormID + ']'
+        );
+    end;
+  end;
+
   sl.Add(
     CsvField(sourceFile) + ',' +
     CsvField(extractTimestamp) + ',' +
@@ -334,7 +610,10 @@ begin
     CsvField(parentPlanetID) + ',' +
     CsvField(planetID) + ',' +
     CsvField(planetNotLandable) + ',' +
-    CsvField(oceanWorld)
+    CsvField(oceanWorld) + ',' +
+    CsvField(solarArrayPower) + ',' +
+    CsvField(windTurbinePower) + ',' +
+    CsvField(planetaryHabitationRank)
   );
 end;
 
