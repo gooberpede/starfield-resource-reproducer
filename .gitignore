@@ -12,6 +12,9 @@
 *.7z
 *.rar
 
+!docs/implementation-briefs/implementation-briefs.zip
+!docs/audits/audits.zip
+
 # Generated exports
 exports/*
 !exports/.gitkeep
